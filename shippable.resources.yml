@@ -1,5 +1,5 @@
 resources:
-  - name: infra-repo
+  - name: beta-infra-repo
     type: gitRepo
     integration: ric03uec-github
     pointer:
@@ -12,4 +12,3 @@ resources:
     pointer:
       sourceName : "v4BetaCL"
       region: "us-west-2"
-
