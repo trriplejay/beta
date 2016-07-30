@@ -1,5 +1,5 @@
 jobs:
- - name: provision
+  - name: provision
     type: runSh
     steps:
       - IN: infra-repo
