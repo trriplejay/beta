@@ -5,4 +5,4 @@ jobs:
       - IN: betaCluster
       - IN: beta-infra-repo
       - TASK:
-        - script: ./IN/infra-repo/infra-repo/provision.sh
+        - script: ./build/IN/beta-infra-repo/beta-infra-repo/provision.sh
