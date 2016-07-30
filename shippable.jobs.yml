@@ -1,0 +1,9 @@
+jobs:
+ - name: provision
+    type: runSh
+    steps:
+      - IN: infra-repo
+      - TASK:
+        - script: ./IN/infra-repo/infra-repo/provision.sh
+      - on_success:
+        - echo 'Infra job ran successfully !!!'
