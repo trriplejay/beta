@@ -1,14 +1,14 @@
 resources:
   - name: infra-repo
     type: gitRepo
-    integration: github
+    integration: ric03uec-github
     pointer:
       sourceName: shippable/betaInfra
       branch: master
 
   - name: betaCluster
     type: cluster
-    integration: ric03uec-ecs
+    integration: ric03uec-ecs-beta
     pointer:
       sourceName : "v4BetaCL"
       region: "us-west-2"
