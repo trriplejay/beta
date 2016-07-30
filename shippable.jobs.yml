@@ -6,5 +6,3 @@ jobs:
       - IN: beta-infra-repo
       - TASK:
         - script: ./IN/infra-repo/infra-repo/provision.sh
-      - on_success:
-        - echo 'Infra job ran successfully !!!'
