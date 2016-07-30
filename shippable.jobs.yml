@@ -2,6 +2,7 @@ jobs:
   - name: provision
     type: runSh
     steps:
+      - IN: betaCluster
       - IN: beta-infra-repo
       - TASK:
         - script: ./IN/infra-repo/infra-repo/provision.sh
