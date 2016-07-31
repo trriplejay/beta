@@ -4,6 +4,8 @@ jobs:
     steps:
       - IN: betaCluster
       - IN: beta-infra-repo
+      - IN: beta_master
       - TASK:
+        - script: ls -al /IN/beta_master/beta_master/
         - script: ls -al IN/beta-infra-repo/beta-infra-repo/
         - script: IN/beta-infra-repo/beta-infra-repo/provision.sh
