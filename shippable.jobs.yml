@@ -5,10 +5,11 @@ jobs:
       - IN: betaCluster
       - IN: beta-infra-repo
       - TASK:
+        - script: ls -atr
         - script: ls -al IN/beta-infra-repo/beta-infra-repo/
         - script: IN/beta-infra-repo/beta-infra-repo/provision.sh
 
     on_success:
-      - echo "on success !!!!!"
+      - echo 'on success !!!!!'
     on_failure:
-      - echo "Failed job .... :("
+      - echo 'Failed job .... :('
