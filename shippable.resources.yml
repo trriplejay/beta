@@ -12,3 +12,4 @@ resources:
     pointer:
       sourceName : "v4BetaCL"
       region: "us-west-2"
+
