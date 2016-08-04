@@ -1,9 +1,15 @@
 jobs:
- - name: provision
+  - name: provision
     type: runSh
     steps:
-      - IN: infra-repo
+      - IN: betaCluster
+      - IN: beta-infra-repo
       - TASK:
-        - script: ./IN/infra-repo/infra-repo/provision.sh
-      - on_success:
-        - echo 'Infra job ran successfully !!!'
+        - script: ls -atr
+        - script: ls -al IN/beta-infra-repo/beta-infra-repo/
+        - script: IN/beta-infra-repo/beta-infra-repo/provision.sh
+
+    on_success:
+      - echo 'on success !!!!!'
+    on_failure:
+      - echo 'Failed job .... :('
