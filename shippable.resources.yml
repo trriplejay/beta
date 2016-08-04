@@ -3,7 +3,7 @@ resources:
     type: gitRepo
     integration: ric03uec-github
     pointer:
-      sourceName: ric03uec/betaInfra
+      sourceName: shippable/betaInfra
       branch: master
 
   - name: betaCluster
