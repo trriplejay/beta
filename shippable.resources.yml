@@ -27,4 +27,3 @@ resources:
       sourceName: "library/nginx"
     seed:
       versionName: latest
-      
