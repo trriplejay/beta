@@ -19,3 +19,11 @@ resources:
     pointer:
       sourceName: shippable/microbase
       branch: master
+
+  - name: docker-creds
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "library/nginx"
+    seed:
+      versionName: latest
