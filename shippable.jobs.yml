@@ -1,5 +1,5 @@
 jobs:
-  - name: provision
+  - name: beta-provision
     type: runSh
     steps:
       - IN: betaCluster

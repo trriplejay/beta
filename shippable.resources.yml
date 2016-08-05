@@ -6,7 +6,7 @@ resources:
       sourceName: shippable/betaInfra
       branch: master
 
-  - name: betaCluster
+  - name: beta-aws-creds
     type: cluster
     integration: ric03uec-ecs-beta
     pointer:
