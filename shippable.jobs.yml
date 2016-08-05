@@ -2,7 +2,7 @@ jobs:
   - name: beta-provision
     type: runSh
     steps:
-      - IN: betaCluster
+      - IN: beta-aws-creds
       - IN: beta-infra-repo
       - TASK:
         - script: ls -atr
