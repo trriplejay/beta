@@ -20,10 +20,7 @@ jobs:
       - IN: microbase-repo
       - IN: docker-creds
       - TASK:
-        - script: ls -atr
-        - script: ls -al ./IN/microbase-repo/
-        - script: ls -al ./IN/microbase-repo/microbase-repo/
-        - script: ls -al ./IN/docker-creds
+        - script: ./IN/microbase-repo/microbase-repo/build.sh
 
     on_success:
       - echo 'on success !!!!!'
