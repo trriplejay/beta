@@ -27,3 +27,11 @@ resources:
       sourceName: "library/nginx"
     seed:
       versionName: latest
+
+  - name: microbase-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/microbase"
+    seed:
+      versionName: latest
