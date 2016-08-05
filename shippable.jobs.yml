@@ -22,7 +22,7 @@ jobs:
       - TASK:
         - script: sudo apt-get install -y jq
         - script: ./IN/microbase-repo/microbase-repo/build.sh
-
+      - OUT: microbase-img
     on_success:
       - echo 'on success !!!!!'
     on_failure:
