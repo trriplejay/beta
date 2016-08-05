@@ -13,3 +13,9 @@ resources:
       sourceName : "v4BetaCL"
       region: "us-west-2"
 
+  - name: microbase-repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/microbase
+      branch: master
