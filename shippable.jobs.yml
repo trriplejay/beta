@@ -13,3 +13,19 @@ jobs:
       - echo 'on success !!!!!'
     on_failure:
       - echo 'Failed job .... :('
+
+  - name: build-microbase
+    type: runSh
+    steps:
+      - IN: microbase-repo
+      - IN: docker-creds
+      - TASK:
+        - script: ls -atr
+        - script: ls -al ./IN/microbase-repo/
+        - script: ls -al ./IN/microbase-repo/microbase-repo/
+        - script: ls -al ./IN/docker-creds
+
+    on_success:
+      - echo 'on success !!!!!'
+    on_failure:
+      - echo 'Failed job .... :('
