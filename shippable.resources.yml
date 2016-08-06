@@ -50,3 +50,18 @@ resources:
       sourceName: "shipimg/api50"
     seed:
       versionName: latest
+
+  - name: www-repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/www
+      branch: master
+
+  - name: www-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/www50"
+    seed:
+      versionName: latest

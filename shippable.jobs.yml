@@ -42,3 +42,18 @@ jobs:
       - echo 'on success !!!!!'
     on_failure:
       - echo 'Failed job .... :('
+
+  - name: build-www
+    type: runSh
+    steps:
+      - IN: www-repo
+      - IN: microbase-img
+      - IN: docker-creds
+      - TASK:
+        - script: sudo apt-get install -y jq
+        - script: ./IN/www-repo/www-repo/build.sh
+      - OUT: www-img
+    on_success:
+      - echo 'on success !!!!!'
+    on_failure:
+      - echo 'Failed job .... :('
