@@ -47,6 +47,6 @@ resources:
     type: image
     integration: shipDH
     pointer:
-      sourceName: "shipimg/api"
+      sourceName: "shipimg/api50"
     seed:
       versionName: latest
