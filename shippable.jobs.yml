@@ -27,3 +27,17 @@ jobs:
       - echo 'on success !!!!!'
     on_failure:
       - echo 'Failed job .... :('
+
+  - name: build-api
+    type: runSh
+    steps:
+      - IN: api-repo
+      - IN: microbase-img
+      - IN: docker-creds
+      - TASK:
+        - script: ./IN/api-repo/api-repo/build.sh
+      - OUT: api-img
+    on_success:
+      - echo 'on success !!!!!'
+    on_failure:
+      - echo 'Failed job .... :('
