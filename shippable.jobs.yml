@@ -57,3 +57,54 @@ jobs:
       - echo 'on success !!!!!'
     on_failure:
       - echo 'Failed job .... :('
+
+  - name: build-micro
+    type: runSh
+    steps:
+      - IN: micro-repo
+      - IN: microbase-img
+      - IN: docker-creds
+      - TASK:
+        - script: sudo apt-get install -y jq
+        - script: ./IN/micro-repo/micro-repo/build.sh
+      - OUT: acs-img
+      - OUT: autod-img
+      - OUT: barge-img
+      - OUT: braintree-img
+      - OUT: certgen-img
+      - OUT: charon-img
+      - OUT: cron-img
+      - OUT: dcl-img
+      - OUT: ddc-img
+      - OUT: deploysteps-img
+      - OUT: ec2-img
+      - OUT: ecs-img
+      - OUT: email-img
+      - OUT: esync-img
+      - OUT: gke-img
+      - OUT: hipchat-img
+      - OUT: hubspotsync-img
+      - OUT: irc-img
+      - OUT: ini-img
+      - OUT: iscan-img
+      - OUT: isync-img
+      - OUT: jobrequest-img
+      - OUT: jobtrigger-img
+      - OUT: manifeststeps-img
+      - OUT: marshaller-img
+      - OUT: nexec-img
+      - OUT: nf-img
+      - OUT: rds-img
+      - OUT: releasesteps-img
+      - OUT: rsyncsteps-img
+      - OUT: runcisteps-img
+      - OUT: runshsteps-img
+      - OUT: sync-img
+      - OUT: timetrigger-img
+      - OUT: triton-img
+      - OUT: versiontrigger-img
+      - OUT: webhook-img
+    on_success:
+      - echo 'on success !!!!!'
+    on_failure:
+      - echo 'Failed job .... :('
