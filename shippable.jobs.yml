@@ -76,33 +76,26 @@ jobs:
       - OUT: cron-img
       - OUT: dcl-img
       - OUT: ddc-img
-      - OUT: deploysteps-img
       - OUT: ec2-img
       - OUT: ecs-img
       - OUT: email-img
-      - OUT: esync-img
       - OUT: gke-img
       - OUT: hipchat-img
-      - OUT: hubspotsync-img
+      - OUT: hubspotSync-img
       - OUT: irc-img
       - OUT: ini-img
       - OUT: iscan-img
       - OUT: isync-img
-      - OUT: jobrequest-img
-      - OUT: jobtrigger-img
-      - OUT: manifeststeps-img
+      - OUT: jobRequest-img
+      - OUT: jobTrigger-img
       - OUT: marshaller-img
-      - OUT: nexec-img
       - OUT: nf-img
-      - OUT: rds-img
-      - OUT: releasesteps-img
-      - OUT: rsyncsteps-img
-      - OUT: runcisteps-img
-      - OUT: runshsteps-img
+      - OUT: slack-img
+      - OUT: stepExec-img
       - OUT: sync-img
-      - OUT: timetrigger-img
+      - OUT: timeTrigger-img
       - OUT: triton-img
-      - OUT: versiontrigger-img
+      - OUT: versionTrigger-img
       - OUT: webhook-img
     on_success:
       - echo 'on success !!!!!'
