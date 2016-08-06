@@ -35,3 +35,18 @@ resources:
       sourceName: "shipimg/microbase"
     seed:
       versionName: latest
+
+  - name: api-repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/api
+      branch: master
+
+  - name: api-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/api"
+    seed:
+      versionName: latest
