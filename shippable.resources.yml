@@ -65,3 +65,314 @@ resources:
       sourceName: "shipimg/www50"
     seed:
       versionName: latest
+
+  - name: micro-repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/micro
+      branch: master
+
+  - name: acs-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: autod-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: barge-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: braintree-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: certgen-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: charon-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: cron-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: dcl-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: ddc-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: deploysteps-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: ec2-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: ecs-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: email-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: esync-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: gke-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: hipchat-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: hubspotsync-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: irc-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: ini-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: iscan-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: isync-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: jobrequest-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: jobtrigger-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: manifeststeps-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: marshaller-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: nexec-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: nf-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: rds-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: releasesteps-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: rsyncsteps-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: runcisteps-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: runshsteps-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: slack-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: sync-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: timetrigger-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: triton-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: versiontrigger-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: webhook-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
