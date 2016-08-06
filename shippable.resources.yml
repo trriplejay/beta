@@ -145,14 +145,6 @@ resources:
     seed:
       versionName: latest
 
-  - name: deploysteps-img
-    type: image
-    integration: shipDH
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
   - name: ec2-img
     type: image
     integration: shipDH
@@ -177,14 +169,6 @@ resources:
     seed:
       versionName: latest
 
-  - name: esync-img
-    type: image
-    integration: shipDH
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
   - name: gke-img
     type: image
     integration: shipDH
@@ -201,7 +185,7 @@ resources:
     seed:
       versionName: latest
 
-  - name: hubspotsync-img
+  - name: hubspotSync-img
     type: image
     integration: shipDH
     pointer:
@@ -241,7 +225,7 @@ resources:
     seed:
       versionName: latest
 
-  - name: jobrequest-img
+  - name: jobRequest-img
     type: image
     integration: shipDH
     pointer:
@@ -249,15 +233,7 @@ resources:
     seed:
       versionName: latest
 
-  - name: jobtrigger-img
-    type: image
-    integration: shipDH
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
-  - name: manifeststeps-img
+  - name: jobTrigger-img
     type: image
     integration: shipDH
     pointer:
@@ -297,39 +273,15 @@ resources:
     seed:
       versionName: latest
 
-  - name: releasesteps-img
-    type: image
-    integration: shipDH
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
-  - name: rsyncsteps-img
-    type: image
-    integration: shipDH
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
-  - name: runcisteps-img
-    type: image
-    integration: shipDH
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
-  - name: runshsteps-img
-    type: image
-    integration: shipDH
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
   - name: slack-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: stepExec-img
     type: image
     integration: shipDH
     pointer:
@@ -345,7 +297,7 @@ resources:
     seed:
       versionName: latest
 
-  - name: timetrigger-img
+  - name: timeTrigger-img
     type: image
     integration: shipDH
     pointer:
@@ -361,7 +313,7 @@ resources:
     seed:
       versionName: latest
 
-  - name: versiontrigger-img
+  - name: versionTrigger-img
     type: image
     integration: shipDH
     pointer:
