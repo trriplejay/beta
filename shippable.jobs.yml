@@ -6,7 +6,7 @@ jobs:
       - IN: beta-infra-repo
       - TASK:
         - script: ls -atr
-        - script: ls -al IN/beta-infra-repo/beta-infra-repo/
+        - script: ls -al IN/beta-infra-repo/gitRepo/
         - script: IN/beta-infra-repo/beta-infra-repo/provision.sh
 
     on_success:
@@ -21,7 +21,7 @@ jobs:
       - IN: docker-creds
       - TASK:
         - script: sudo apt-get install -y jq
-        - script: ./IN/microbase-repo/microbase-repo/build.sh
+        - script: ./IN/microbase-repo/gitRepo/build.sh
       - OUT: microbase-img
     on_success:
       - echo 'on success !!!!!'
@@ -36,7 +36,7 @@ jobs:
       - IN: docker-creds
       - TASK:
         - script: sudo apt-get install -y jq
-        - script: ./IN/api-repo/api-repo/build.sh
+        - script: ./IN/api-repo/gitRepo/build.sh
       - OUT: api-img
     on_success:
       - echo 'on success !!!!!'
@@ -51,7 +51,7 @@ jobs:
       - IN: docker-creds
       - TASK:
         - script: sudo apt-get install -y jq
-        - script: ./IN/www-repo/www-repo/build.sh
+        - script: ./IN/www-repo/gitRepo/build.sh
       - OUT: www-img
     on_success:
       - echo 'on success !!!!!'
@@ -66,7 +66,7 @@ jobs:
       - IN: docker-creds
       - TASK:
         - script: sudo apt-get install -y jq
-        - script: ./IN/micro-repo/micro-repo/build.sh
+        - script: ./IN/micro-repo/gitRepo/build.sh
       - OUT: acs-img
       - OUT: autod-img
       - OUT: barge-img
