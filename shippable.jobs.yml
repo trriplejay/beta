@@ -108,10 +108,17 @@ jobs:
       - IN: nf-img
       - IN: nf-params
 
-  - name: deploy-beta-nf
+  - name: man-slack
+    type: manifest
+    steps:
+      - IN: slack-img
+      - IN: slack-params
+
+  - name: deploy-beta-notify
     type: deploy
     steps:
       - IN: man-nf
+      - IN: man-slack
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust

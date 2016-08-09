@@ -329,6 +329,13 @@ resources:
     seed:
       versionName: latest
 
+  - name: beta-clust
+    type: cluster
+    integration: beta-ecs
+    pointer:
+      sourceName : "v4BetaCL"
+      region: "us-west-2"
+
   - name: beta-prm
     type: params
     version:
@@ -351,9 +358,8 @@ resources:
       params:
         COMPONENT: "nf"
 
-  - name: beta-clust
-    type: cluster
-    integration: beta-ecs
-    pointer:
-      sourceName : "v4BetaCL"
-      region: "us-west-2"
+  - name: slack-params
+    type: params
+    version:
+      params:
+        COMPONENT: "slack"
