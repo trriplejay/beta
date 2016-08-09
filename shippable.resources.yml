@@ -440,3 +440,50 @@ resources:
     version:
       params:
         COMPONENT: "triton"
+
+  - name: charon-params
+    type: params
+    version:
+      params:
+        COMPONENT: "charon"
+
+  - name: deploySteps-params
+    type: params
+    version:
+      params:
+        COMPONENT: "stepExec"
+        JOB_TYPE: "deploySteps"
+
+  - name: manifestSteps-params
+    type: params
+    version:
+      params:
+        COMPONENT: "stepExec"
+        JOB_TYPE: "manifestSteps"
+
+  - name: releaseSteps-params
+    type: params
+    version:
+      params:
+        COMPONENT: "stepExec"
+        JOB_TYPE: "releaseSteps"
+
+  - name: rSyncSteps-params
+    type: params
+    version:
+      params:
+        COMPONENT: "stepExec"
+        JOB_TYPE: "rSyncSteps"
+        secure: tyxff/arRtRpWauEJAvppqhbVu37OV+2t7gyEBI77yxd0SbRwsuplDk4otot0C7ekgDXgmSkGPxVoTVGNEVlzL9j62vvdexaokJdxm+ffzcEVtpvb087iGlmYI/cwTBoCmJJ/zllnvRWXu4+06AnamuexbehkPSUJSn3791uGboUwvkFFPpgIX0qBpup4IvD+eL7/F3Vz16eKiYJy27uQFOxFzTgGZUsQ6bYXmfSvA6fOb6ZzmQjlUuxVLoSusjIcvTUC1O05/E+8zNKgYCo+xC9TmJgexZL8WUw4Tn1l0gZheRcQpPyyYlL+WA3LGTy/VNjtTLxh6hzBXHG43A8xA==
+
+  - name: timeTrigger-params
+    type: params
+    version:
+      params:
+        COMPONENT: "timeTrigger"
+
+  - name: versionTrigger-params
+    type: params
+    version:
+      params:
+        COMPONENT: "versionTrigger"
