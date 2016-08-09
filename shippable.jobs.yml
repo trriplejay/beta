@@ -332,3 +332,24 @@ jobs:
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
+
+  - name: man-ini
+    type: manifest
+    steps:
+      - IN: ini-img
+      - IN: ini-params
+
+  - name: man-ec2
+    type: manifest
+    steps:
+      - IN: ec2-img
+      - IN: ec2-params
+
+  - name: deploy-beta-ci
+    type: deploy
+    steps:
+      - IN: man-ini
+      - IN: man-ec2
+      - IN: beta-docOpts
+      - IN: beta-prm
+      - IN: beta-clust

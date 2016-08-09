@@ -550,3 +550,22 @@ resources:
     version:
       params:
         COMPONENT: "braintree"
+
+  - name: ini-params
+    type: params
+    version:
+      params:
+        COMPONENT: "ini"
+        DOCKER_API_VERSION: "1.18"
+        DOCKER_VERSION: "1.9.1"
+        ES_VERSION: "1.5.0"
+        ETCD_VERSION: "v2.0.11"
+        FLANNEL_VERSION: "0.3.0"
+        KUBERNETES_VERSION: "v1.0.1"
+        NODE_TLS_REJECT_UNAUTHORIZED: "0"
+
+  - name: ec2-params
+    type: params
+    version:
+      params:
+        COMPONENT: "ec2"
