@@ -114,11 +114,18 @@ jobs:
       - IN: slack-img
       - IN: slack-params
 
+  - name: man-email
+    type: manifest
+    steps:
+      - IN: email-img
+      - IN: email-params
+
   - name: deploy-beta-notify
     type: deploy
     steps:
       - IN: man-nf
       - IN: man-slack
+      - IN: man-email
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust

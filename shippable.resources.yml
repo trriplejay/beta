@@ -363,3 +363,15 @@ resources:
     version:
       params:
         COMPONENT: "slack"
+
+  - name: email-params
+    type: params
+    version:
+      params:
+        COMPONENT: "email"
+        EMAIL_SERVICE_NAME: "Mailgun"
+        EMAIL_SENDER: "beta.Shippable.com <noreply@shippable.com"
+        EMAIL_AUTH_USER: "postmaster@qhode.com"
+        secure: 4tVOArQ9fkjzj6VKGU4ZJyt9LPGboEp7/Pkvxam0T3T70omH5f9QoaYpMJf7JDXWUkm1Yzv87zFQzuYhG38PI2J0s2ERqHqwIGPhjsojvhCYbTgpYurQ761XJIBYEh9b0C/PsdCyCp3m7HnBZ/uIYeORxpRn3xR5v4hecS4RyhG1Q/sDAGfc2526dVGSy4KRYpYwlXgURV7TDPM9KDYzsY4xUu3rqpkOCxY5lupPXQ7K5skGAEQgbNuEGt9sE/aa7gp3ZfnOM2TpFv6gy4UKkCRzz0vea8gDCHtqi/N8bEVqIZG8C/QHGVfpioACq8mP+rDEgUqA0MdVpi6oNWf2OA==
+
+
