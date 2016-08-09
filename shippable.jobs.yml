@@ -157,10 +157,59 @@ jobs:
       - IN: barge-img
       - IN: barge-params
 
+  - name: man-acs
+    type: manifest
+    steps:
+      - IN: acs-img
+      - IN: acs-params
+
+  - name: man-autod
+    type: manifest
+    steps:
+      - IN: autod-img
+      - IN: autod-params
+
+  - name: man-dcl
+    type: manifest
+    steps:
+      - IN: dcl-img
+      - IN: dcl-params
+
+  - name: man-ddc
+    type: manifest
+    steps:
+      - IN: ddc-img
+      - IN: ddc-params
+
+  - name: man-ecs
+    type: manifest
+    steps:
+      - IN: ecs-img
+      - IN: ecs-params
+
+  - name: man-gke
+    type: manifest
+    steps:
+      - IN: gke-img
+      - IN: gke-params
+
+  - name: man-triton
+    type: manifest
+    steps:
+      - IN: triton-img
+      - IN: triton-params
+
   - name: deploy-beta-pv1
     type: deploy
     steps:
       - IN: man-barge
+      - IN: man-acs
+      - IN: man-autod
+      - IN: man-dcl
+      - IN: man-ddc
+      - IN: man-ecs
+      - IN: man-gke
+      - IN: man-triton
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
