@@ -120,12 +120,19 @@ jobs:
       - IN: email-img
       - IN: email-params
 
+  - name: man-hipchat
+    type: manifest
+    steps:
+      - IN: hipchat-img
+      - IN: hipchat-params
+
   - name: deploy-beta-notify
     type: deploy
     steps:
       - IN: man-nf
       - IN: man-slack
       - IN: man-email
+      - IN: man-hipchat
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
