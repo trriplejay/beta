@@ -398,3 +398,45 @@ resources:
     version:
       params:
         COMPONENT: "barge"
+
+  - name: acs-params
+    type: params
+    version:
+      params:
+        COMPONENT: "acs"
+
+  - name: autod-params
+    type: params
+    version:
+      params:
+        COMPONENT: "autod"
+
+  - name: dcl-params
+    type: params
+    version:
+      params:
+        COMPONENT: "dcl"
+
+  - name: ddc-params
+    type: params
+    version:
+      params:
+        COMPONENT: "ddc"
+
+  - name: ecs-params
+    type: params
+    version:
+      params:
+        COMPONENT: "ecs"
+
+  - name: gke-params
+    type: params
+    version:
+      params:
+        COMPONENT: "gke"
+
+  - name: triton-params
+    type: params
+    version:
+      params:
+        COMPONENT: "triton"
