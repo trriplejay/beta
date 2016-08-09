@@ -488,3 +488,65 @@ resources:
     version:
       params:
         COMPONENT: "versionTrigger"
+
+  - name: sync-params
+    type: params
+    version:
+      params:
+        COMPONENT: "sync"
+        secure: tyxff/arRtRpWauEJAvppqhbVu37OV+2t7gyEBI77yxd0SbRwsuplDk4otot0C7ekgDXgmSkGPxVoTVGNEVlzL9j62vvdexaokJdxm+ffzcEVtpvb087iGlmYI/cwTBoCmJJ/zllnvRWXu4+06AnamuexbehkPSUJSn3791uGboUwvkFFPpgIX0qBpup4IvD+eL7/F3Vz16eKiYJy27uQFOxFzTgGZUsQ6bYXmfSvA6fOb6ZzmQjlUuxVLoSusjIcvTUC1O05/E+8zNKgYCo+xC9TmJgexZL8WUw4Tn1l0gZheRcQpPyyYlL+WA3LGTy/VNjtTLxh6hzBXHG43A8xA==
+
+  - name: marshaller-params
+    type: params
+    version:
+      params:
+        COMPONENT: "marshaller"
+        PROVIDERS: "ec2"
+        SHIPPABLE_EXEC_IMAGE: "shipimg/micro50:stepExec"
+
+  - name: jobTrigger-params
+    type: params
+    version:
+      params:
+        COMPONENT: "jobTrigger"
+        API_RETRY_INTERVAL: "3"
+
+  - name: jobRequest-params
+    type: params
+    version:
+      params:
+        COMPONENT: "jobRequest"
+        API_RETRY_INTERVAL: "3"
+        REGISTRY_ACCOUNT_ID: "291318889788"
+        REGISTRY_REGION: "us-east-1"
+        secure: tyxff/arRtRpWauEJAvppqhbVu37OV+2t7gyEBI77yxd0SbRwsuplDk4otot0C7ekgDXgmSkGPxVoTVGNEVlzL9j62vvdexaokJdxm+ffzcEVtpvb087iGlmYI/cwTBoCmJJ/zllnvRWXu4+06AnamuexbehkPSUJSn3791uGboUwvkFFPpgIX0qBpup4IvD+eL7/F3Vz16eKiYJy27uQFOxFzTgGZUsQ6bYXmfSvA6fOb6ZzmQjlUuxVLoSusjIcvTUC1O05/E+8zNKgYCo+xC9TmJgexZL8WUw4Tn1l0gZheRcQpPyyYlL+WA3LGTy/VNjtTLxh6hzBXHG43A8xA==
+
+  - name: hubspotSync-params
+    type: params
+    version:
+      params:
+        COMPONENT: "hubspotSync"
+        SHOULD_SIMULATE: "true"
+        SHIP_GET_LIMIT: "10"
+        HUBSPOT_API_ENDPOINT: "https://api.hubapi.com"
+        HUBSPOT_LIST_ID: "318"
+        secure: Ju/9La1TDhyCTjWpR2YSA/BwmyH82/FC+ebuySM/QQbC3BvTXjLv75zFQ8N088Rh2VflVrIvupE3+vtI9EMtH6DtdsPWXTCljJcw8dHCpkfx3Ab07uQ7dMC4/urECHOTGf/Eh7z9mo/1fBnyWNhUC0PvnoEvggJWfV6AFtxBQmh2ZFSUFmZlWIaIHGEkmP9+9cjtTmH9fQdHPNyYm/k9+oxpd3UTjeW65DCpsTsqgSp/mwY8Jfx4y63ylzgogTKdJyw2HhlZwRPJ7thXccNdySlIfmRpjYCwkUF3LSyHao/x2F1CYqOR7aMHbraodpkyJ0SXqx4JihUILXAqi48ArA==
+
+  - name: cron-params
+    type: params
+    version:
+      params:
+        COMPONENT: "cron"
+        DEFAULT_CRON_LOOP_HOURS: "2"
+
+  - name: certgen-params
+    type: params
+    version:
+      params:
+        COMPONENT: "certgen"
+
+  - name: braintree-params
+    type: params
+    version:
+      params:
+        COMPONENT: "braintree"
