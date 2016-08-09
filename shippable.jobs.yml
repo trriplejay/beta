@@ -230,7 +230,7 @@ jobs:
     type: manifest
     steps:
       - IN: stepExec-img
-      - IN: autod-params
+      - IN: manifestSteps-params
 
   - name: man-releaseSteps
     type: manifest
@@ -266,6 +266,69 @@ jobs:
       - IN: man-rSyncSteps
       - IN: man-timeTrigger
       - IN: man-versionTrigger
+      - IN: beta-docOpts
+      - IN: beta-prm
+      - IN: beta-clust
+
+  - name: man-sync
+    type: manifest
+    steps:
+      - IN: sync-img
+      - IN: sync-params
+
+  - name: man-marshaller
+    type: manifest
+    steps:
+      - IN: marshaller-img
+      - IN: marshaller-params
+
+  - name: man-jobTrigger
+    type: manifest
+    steps:
+      - IN: jobTrigger-img
+      - IN: jobTrigger-params
+
+  - name: man-jobRequest
+    type: manifest
+    steps:
+      - IN: jobRequest-img
+      - IN: jobRequest-params
+
+  - name: man-hubspotSync
+    type: manifest
+    steps:
+      - IN: hubspotSync-img
+      - IN: hubspotSync-params
+
+  - name: man-cron
+    type: manifest
+    steps:
+      - IN: cron-img
+      - IN: cron-params
+
+  - name: man-certgen
+    type: manifest
+    steps:
+      - IN: certgen-img
+      - IN: certgen-params
+
+  - name: man-braintree
+    type: manifest
+    steps:
+      - IN: braintree-img
+      - IN: braintree-params
+
+  - name: deploy-beta-core
+    type: deploy
+    steps:
+      - IN: man-sync
+      - IN: man-marshaller
+      - IN: man-jobTrigger
+      - IN: man-jobRequest
+      - IN: man-hubspotSync
+      - IN: man-cron
+      - IN: man-certgen
+      - IN: man-braintree
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
