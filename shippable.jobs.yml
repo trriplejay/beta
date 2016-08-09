@@ -244,12 +244,6 @@ jobs:
       - IN: stepExec-img
       - IN: rSyncSteps-params
 
-  - name: man-runShSteps
-    type: manifest
-    steps:
-      - IN: stepExec-img
-      - IN: runShSteps-params
-
   - name: man-timeTrigger
     type: manifest
     steps:
@@ -270,7 +264,6 @@ jobs:
       - IN: man-manifestSteps
       - IN: man-releaseSteps
       - IN: man-rSyncSteps
-      - IN: man-runShSteps
       - IN: man-timeTrigger
       - IN: man-versionTrigger
       - IN: beta-docOpts
