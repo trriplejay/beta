@@ -386,3 +386,9 @@ resources:
       params:
         COMPONENT: "irc"
         IRC_BOT_NICK: "ShippableIRC-Beta"
+
+  - name: webhook-params
+    type: params
+    version:
+      params:
+        COMPONENT: "webhook"

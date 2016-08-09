@@ -132,6 +132,12 @@ jobs:
       - IN: irc-img
       - IN: irc-params
 
+  - name: man-webhook
+    type: manifest
+    steps:
+      - IN: webhook-img
+      - IN: webhook-params
+
   - name: deploy-beta-notify
     type: deploy
     steps:
@@ -140,6 +146,7 @@ jobs:
       - IN: man-email
       - IN: man-hipchat
       - IN: man-irc
+      - IN: man-webhook
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
