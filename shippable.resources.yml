@@ -392,3 +392,9 @@ resources:
     version:
       params:
         COMPONENT: "webhook"
+
+  - name: barge-params
+    type: params
+    version:
+      params:
+        COMPONENT: "barge"
