@@ -428,6 +428,7 @@ resources:
     version:
       params:
         COMPONENT: "ecs"
+        - secure: VWMRgRLRTho+pq4VTbYzRs4UeX/OwUoa5qHEIWNBl/n/fe9NJ0gr15uJeCBMcc1y5w52gtfuwRpgfFxcnmlNNcp3b+a1ybmX8KetGS3CTxEV67TzZrhjWS2OQPcXmFdT4Kec59ea4sx6MjRF1V1DAZsTrgOpYm7uXoS7Rvhl/rzTBcw/uUxFKRKn1srs3vtLa0IFI2Fa7ofUNfVWNow/SyBFNjOjyoF/qSWOBODXv/MvmYVKfyxJc+3stQxJj+4sZHjOJAVqyznGX+p1YEKZh2g1JfjOwF7xF/3XZDdofepQG0cFu8zqPuSwZgJJnuW5CdSaoWY6/ruN4B0zwFMNew==
 
   - name: gke-params
     type: params
