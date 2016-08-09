@@ -332,3 +332,37 @@ jobs:
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
+
+  - name: man-ini
+    type: manifest
+    steps:
+      - IN: ini-img
+      - IN: ini-params
+
+  - name: man-ec2
+    type: manifest
+    steps:
+      - IN: ec2-img
+      - IN: ec2-params
+
+  - name: man-certgen
+    type: manifest
+    steps:
+      - IN: certgen-img
+      - IN: certgen-params
+
+  - name: man-braintree
+    type: manifest
+    steps:
+      - IN: braintree-img
+      - IN: braintree-params
+
+  - name: deploy-beta-ci
+    type: deploy
+    steps:
+      - IN: man-ini
+      - IN: man-ec2
+      - IN: man-braintree
+      - IN: beta-docOpts
+      - IN: beta-prm
+      - IN: beta-clust
