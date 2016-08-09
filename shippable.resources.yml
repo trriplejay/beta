@@ -328,3 +328,32 @@ resources:
       sourceName: "shipimg/micro50"
     seed:
       versionName: latest
+
+  - name: beta-prm
+    type: params
+    version:
+      params:
+        RUN_MODE: "beta"
+        SHIPPABLE_AMQP_DEFAULT_EXCHANGE: "shippableEx"
+        SHIPPABLE_API_URL: "https://apibeta.shippable.com"
+        SHIPPABLE_VORTEX_URL: "https://apibeta.shippable.com/vortex"
+        SHIPPABLE_WWW_URL: "https://beta.shippable.com"
+        secure: exJ3FP4D9LkBTqMKUxmrkxq+y4vRNO0rK08LqoZhy71Te4t82StjhLGulAns+t+bv2GJTuifVD06fZbXOEQhUKlLILbxqIPCLYFNAFQz6FOVwuYVkQEm1aPNxRF+dUlddNOzrQ7PFb9kX35YtSmPb5JMmtjebKJ4IbwpGZxLVkSQ1gw2rwcy5DyJgyTNUJhbAsoZd8EZrus105fK62yNr/mbGfSFpEXz2QiJwLmmXx5aPWpcqtkVEpjyIpOCjNz41MCH2fagzHoZoJ9XSvKvY+2rMYi9rMY7OrSai4dAmSIQCb+DJS+NBL+Z848fZ9O5Z/Ml2W2Px7PQMov1fOhXHw==
+
+  - name: beta-docOpts
+    type: dockerOptions
+    version:
+      memory: 400
+
+  - name: nf-params
+    type: params
+    version:
+      params:
+        COMPONENT: "nf"
+
+  - name: beta-clust
+    type: cluster
+    integration: beta-ecs
+    pointer:
+      sourceName : "v4BetaCL"
+      region: "us-west-2"

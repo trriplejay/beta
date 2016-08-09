@@ -101,3 +101,17 @@ jobs:
       - echo 'on success !!!!!'
     on_failure:
       - echo 'Failed job .... :('
+
+  - name: man-nf
+    type: manifest
+    steps:
+      - IN: nf-img
+      - IN: nf-params
+
+  - name: deploy-beta-nf
+    type: deploy
+    steps:
+      - IN: man-nf
+      - IN: beta-docOpts
+      - IN: beta-prm
+      - IN: beta-clust
