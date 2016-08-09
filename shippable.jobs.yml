@@ -150,3 +150,17 @@ jobs:
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
+
+  - name: man-barge
+    type: manifest
+    steps:
+      - IN: barge-img
+      - IN: barge-params
+
+  - name: deploy-beta-pv1
+    type: deploy
+    steps:
+      - IN: man-barge
+      - IN: beta-docOpts
+      - IN: beta-prm
+      - IN: beta-clust
