@@ -380,3 +380,9 @@ resources:
       params:
         COMPONENT: "hipchat"
 
+  - name: irc-params
+    type: params
+    version:
+      params:
+        COMPONENT: "irc"
+        IRC_BOT_NICK: "ShippableIRC-Beta"

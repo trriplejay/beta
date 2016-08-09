@@ -126,6 +126,12 @@ jobs:
       - IN: hipchat-img
       - IN: hipchat-params
 
+  - name: man-irc
+    type: manifest
+    steps:
+      - IN: irc-img
+      - IN: irc-params
+
   - name: deploy-beta-notify
     type: deploy
     steps:
@@ -133,6 +139,7 @@ jobs:
       - IN: man-slack
       - IN: man-email
       - IN: man-hipchat
+      - IN: man-irc
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
