@@ -65,6 +65,7 @@ jobs:
     type: runSh
     steps:
       - IN: nexec-repo
+      - IN: microbase-img
       - IN: docker-creds
       - TASK:
         - script: sudo apt-get install -y jq
