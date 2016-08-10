@@ -650,6 +650,12 @@ resources:
       params:
         COMPONENT: "ec2"
 
+  - name: rabbitMQ-params
+    type: params
+    version:
+      params:
+        secure: bRew7Pjg7ENeOuElYuCgrk7K7LLc6V6P55o1L0v4K0IjruWryTtYADmrHOF1oNjPmVz4229QKFw/AHqTokAaUqMg5LAIzQrmesg0C1ObageROGslRO1n7gM7jE1CY18y7nRXah/DLhIqF+1+bDnAdug0ThgkNu+l6zFr0OqVQDOb6h+xnPTpX2Gu6SijbOMQLCK9mpmEh8cCpz06U1bJOe95Ts2Ip7Zdq/3ldvFr/L7dCvNmFKhVoXRHu6GaxmbNvZl9DZgVqvlqybhD6LubKzHmSniqZc9hBxgzSq+MKv+9crfn5ZNuMJJ9t3zx6ZlsRTdcyZNB5W92VzXOWAqpDg==
+
   - name: shippable-ver
     type: version
     seed:

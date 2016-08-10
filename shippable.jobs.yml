@@ -310,6 +310,9 @@ jobs:
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
+      - IN: rabbitMQ-params
+        applyTo:
+          - man-autod
 
   - name: man-charon
     type: manifest
