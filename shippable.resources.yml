@@ -8,7 +8,7 @@ resources:
 
   - name: beta-aws-creds
     type: cluster
-    integration: ric03uec-ecs-beta
+    integration: beta-ecs
     pointer:
       sourceName : "v4BetaCL"
       region: "us-west-2"
