@@ -42,6 +42,18 @@ jobs:
     on_failure:
       - echo 'Failed job .... :('
 
+  - name: man-rds
+    type: manifest
+    steps:
+      - IN: rdsbase-img
+
+  - name: deploy-beta-rds
+    type: deploy
+    steps:
+      - IN: man-rds
+      - IN: beta-rds-docOpts
+      - IN: beta-clust
+
   - name: build-api
     type: runSh
     steps:

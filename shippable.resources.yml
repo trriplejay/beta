@@ -51,6 +51,13 @@ resources:
     seed:
       versionName: latest
 
+  - name: beta-rds-docOpts
+    type: dockerOptions
+    version:
+      memory: 400
+      portMappings:
+        - 6379:6379
+
   - name: api-repo
     type: gitRepo
     integration: ric03uec-github
