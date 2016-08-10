@@ -386,6 +386,7 @@ jobs:
   - name: deploy-beta-pv2
     type: deploy
     steps:
+      - IN: trigger-deploy
       - IN: man-charon
       - IN: man-deploySteps
       - IN: man-manifestSteps
