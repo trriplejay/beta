@@ -28,6 +28,20 @@ jobs:
     on_failure:
       - echo 'Failed job .... :('
 
+  - name: build-rp
+    type: runSh
+    steps:
+      - IN: rp-repo
+      - IN: docker-creds
+      - TASK:
+        - script: sudo apt-get install -y jq
+        - script: ./IN/rp-repo/gitRepo/build.sh
+      - OUT: rp-img
+    on_success:
+      - echo 'on success !!!!!'
+    on_failure:
+      - echo 'Failed job .... :('
+
   - name: build-rdsbase
     type: runSh
     steps:
