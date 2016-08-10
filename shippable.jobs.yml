@@ -119,6 +119,28 @@ jobs:
     on_failure:
       - echo 'Failed job .... :('
 
+  - name: man-api
+    type: manifest
+    steps:
+      - IN: api-img
+      - IN: api-params
+      - IN: beta-bitbuc-params
+
+  - name: deploy-beta-api
+    type: deploy
+    steps:
+      - IN: man-api
+      - IN: beta-api-docOpts
+      - IN: beta-prm
+      - IN: beta-clust
+      - IN: beta-api-lb
+        applyTo:
+          - manifest: man-api
+            image: api-img
+            port: 443
+      - TASK: managed
+        deployMethod: upgrade
+
   - name: build-www
     type: runSh
     steps:
@@ -344,6 +366,7 @@ jobs:
     steps:
       - IN: stepExec-img
       - IN: rSyncSteps-params
+      - IN: beta-bitbuc-params
 
   - name: man-timeTrigger
     type: manifest
@@ -376,6 +399,7 @@ jobs:
     steps:
       - IN: sync-img
       - IN: sync-params
+      - IN: beta-bitbuc-params
 
   - name: man-marshaller
     type: manifest
@@ -394,6 +418,7 @@ jobs:
     steps:
       - IN: jobRequest-img
       - IN: jobRequest-params
+      - IN: beta-bitbuc-params
 
   - name: man-hubspotSync
     type: manifest
@@ -473,6 +498,8 @@ jobs:
       - IN: deploy-beta-rds
         switch: off
       - IN: deploy-beta-www
+        switch: off
+      - IN: deploy-beta-api
         switch: off
       - IN: deploy-beta-nexec
         switch: off
