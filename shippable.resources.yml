@@ -634,3 +634,8 @@ resources:
     version:
       params:
         COMPONENT: "ec2"
+
+  - name: shippable-ver
+    type: version
+    seed:
+      versionName: "4.0.0"
