@@ -435,3 +435,28 @@ jobs:
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
+
+  - name: shippable-rel
+    type: release
+    steps:
+      - IN: shippable-ver
+        switch: off
+      - IN: deploy-beta-ci
+        switch: off
+      - IN: deploy-beta-core
+        switch: off
+      - IN: deploy-beta-pv2
+        switch: off
+      - IN: deploy-beta-pv1
+        switch: off
+      - IN: deploy-beta-notify
+        switch: off
+      - IN: deploy-beta-rds
+        switch: off
+      - IN: deploy-beta-wwww
+        switch: off
+      - IN: deploy-beta-nexec
+        switch: off
+      - IN: trigger-product-release
+      - TASK: managed
+        bump: patch
