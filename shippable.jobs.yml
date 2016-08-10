@@ -404,6 +404,7 @@ jobs:
           - man-deploySteps
           - man-releaseSteps
           - man-charon
+          - man-versionTrigger
 
   - name: man-sync
     type: manifest
