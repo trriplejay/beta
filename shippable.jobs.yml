@@ -95,6 +95,7 @@ jobs:
     type: manifest
     steps:
       - IN: nexec-img
+        switch: off
 
   - name: deploy-beta-nexec
     type: deploy
