@@ -643,6 +643,7 @@ resources:
         FLANNEL_VERSION: "0.3.0"
         KUBERNETES_VERSION: "v1.0.1"
         NODE_TLS_REJECT_UNAUTHORIZED: "0"
+        secure: 0apIb4rT8ssyTEt8OMt74szz0fKHcqFwKNuMDlVgv1WJbSiqW7wRAMwUwdfmqTPkBUFx2D7fwZ8J0gHJxmn7613SND8k9JwRwKqqUSobW8D1sjXqGQzMXkgsw36tP+KwE0iPk/tlIdcG4b9Sb21C6GpaoxcuOj42RB+qItDB3wtX9Lvh9F3AXqEQoMZttsrKfPt5Ds4ZLFVtY9l6ARxswg4FyqnMsEfUA/GCeiuI1AaHFhi8flEHsu9zOtpXdLvOSputKq0Gn9kermhnp8hN3iw2b9FlbGmuo2y960CvScdfUkxcxegsjCBHJ0oVsjoj15JeGv2jTgyYcRHstCwYbw==
 
   - name: ec2-params
     type: params
