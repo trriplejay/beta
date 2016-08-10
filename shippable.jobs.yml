@@ -58,6 +58,8 @@ jobs:
           - manifest: man-rds  # manifest that contains image to connect to
             image: rdsbase-img # img to connect to inside the above manifest
             port: 6379         # containerPort to connect to
+      - TASK: managed
+        deployMethod: upgrade
 
   - name: build-api
     type: runSh
