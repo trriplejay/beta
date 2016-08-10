@@ -119,6 +119,27 @@ jobs:
     on_failure:
       - echo 'Failed job .... :('
 
+  - name: man-www
+    type: manifest
+    steps:
+      - IN: www-img
+      - IN: www-params
+
+  - name: deploy-beta-www
+    type: deploy
+    steps:
+      - IN: man-www
+      - IN: beta-www-docOpts
+      - IN: beta-prm
+      - IN: beta-clust
+      - IN: beta-www-lb
+        applyTo:
+          - manifest: man-www
+            image: www-img
+            port: 443
+      - TASK: managed
+        deployMethod: upgrade
+
   - name: build-micro
     type: runSh
     steps:
