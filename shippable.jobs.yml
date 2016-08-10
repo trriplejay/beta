@@ -299,6 +299,7 @@ jobs:
   - name: deploy-beta-pv1
     type: deploy
     steps:
+      - IN: trigger-deploy
       - IN: man-barge
       - IN: man-acs
       - IN: man-autod
