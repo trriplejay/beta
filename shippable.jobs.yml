@@ -61,6 +61,33 @@ jobs:
       - TASK: managed
         deployMethod: upgrade
 
+  - name: build-nexec
+    type: runSh
+    steps:
+      - IN: nexec-repo
+      - IN: docker-creds
+      - TASK:
+        - script: sudo apt-get install -y jq
+        - script: ./IN/nexec-repo/gitRepo/build.sh
+      - OUT: nexec-img
+    on_success:
+      - echo 'on success !!!!!'
+    on_failure:
+      - echo 'Failed job .... :('
+
+  - name: man-nexec
+    type: manifest
+    steps:
+      - IN: nexec-img
+
+  - name: deploy-beta-nexec
+    type: deploy
+    steps:
+      - IN: man-nexec
+      - IN: beta-docOpts
+      - IN: beta-prm
+      - IN: beta-clust
+
   - name: build-api
     type: runSh
     steps:

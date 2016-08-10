@@ -63,6 +63,21 @@ resources:
     pointer:
       sourceName: v4BetaRedLb
 
+  - name: nexec-repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/nexec
+      branch: master
+
+  - name: nexec-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/nexec"
+    seed:
+      versionName: latest
+
   - name: api-repo
     type: gitRepo
     integration: ric03uec-github
