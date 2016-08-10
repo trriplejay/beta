@@ -453,7 +453,7 @@ jobs:
         switch: off
       - IN: deploy-beta-rds
         switch: off
-      - IN: deploy-beta-wwww
+      - IN: deploy-beta-www
         switch: off
       - IN: deploy-beta-nexec
         switch: off
