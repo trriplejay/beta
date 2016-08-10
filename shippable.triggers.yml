@@ -2,4 +2,4 @@ triggers:
    - name: trigger-product-release
      type: trigger
      version:
-       counter: 2
+       counter: 3
