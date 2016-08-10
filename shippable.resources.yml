@@ -108,6 +108,29 @@ resources:
     seed:
       versionName: latest
 
+  - name: beta-www-docOpts
+    type: dockerOptions
+    version:
+      memory: 400
+      portMappings:
+        - 62371:443
+
+  - name: beta-www-lb
+    type: loadBalancer
+    pointer:
+      sourceName: v4BetaWWWLb
+
+  - name: www-params
+    type: params
+    version:
+      params:
+        SHIPPABLE_RDS_URL: "internal-v4BetaRedLb-241834752.us-west-2.elb.amazonaws.com"
+        SHIPPABLE_WWW_PORT: "443"
+        NODE_ENV: "production"
+        SHIPPABLE_AWS_ACCOUNT_ID: "291318889788"
+        GITHUB_LINK_SYSINT_ID: "574ee745d49b091400b76274"
+        BITBUCKET_LINK_SYSINT_ID: "574ee745d49b091400b76275"
+
   - name: micro-repo
     type: gitRepo
     integration: ric03uec-github
