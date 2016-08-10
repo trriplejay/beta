@@ -13,13 +13,6 @@ resources:
       sourceName : "v4BetaCL"
       region: "us-west-2"
 
-  - name: microbase-repo
-    type: gitRepo
-    integration: ric03uec-github
-    pointer:
-      sourceName: shippable/microbase
-      branch: master
-
   - name: docker-creds
     type: image
     integration: shipDH
@@ -28,11 +21,33 @@ resources:
     seed:
       versionName: latest
 
+  - name: microbase-repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/microbase
+      branch: master
+
   - name: microbase-img
     type: image
     integration: shipDH
     pointer:
       sourceName: "shipimg/microbase"
+    seed:
+      versionName: latest
+
+  - name: rdsbase-repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/rdsbase
+      branch: master
+
+  - name: rdsbase-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/rdsbase"
     seed:
       versionName: latest
 
