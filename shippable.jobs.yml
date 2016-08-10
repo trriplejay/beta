@@ -124,12 +124,15 @@ jobs:
     steps:
       - IN: api-img
       - IN: api-params
-      - IN: beta-bitbuc-params
 
   - name: deploy-beta-api
     type: deploy
     steps:
       - IN: man-api
+      - IN: beta-bitbuc-params
+      - IN: beta-braintree-prms
+      - IN: beta-db-prms
+      - IN: beta-aws-prms
       - IN: beta-api-docOpts
       - IN: beta-prm
       - IN: beta-clust

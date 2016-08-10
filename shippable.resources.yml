@@ -120,6 +120,27 @@ resources:
     pointer:
       sourceName: v4BetaAPILb
 
+  - name: beta-braintree-prms
+    type: params
+    version:
+      params:
+        FOO: bar
+        secure: kjULAaETQb4lDxzKJXrAeQ9y5zJ/o4Q5GwfUfk4TGau/bq4IdZUbvWklf5TLIN2UIwngyVAA6fDF6mKgqWOSTNppxUdsryPl4VC3WiLsiwnhMpnWpy6NqjbkxKwl7QoX9K8Kn7sPwSpGfytiUb5T4/DEO4BN3SwydSAGhOCTo0vNP1ygXjlxgAQ+dUjMmxDb7HuvbWY8SK8TvHqG72vvH3AV7LqzKsk9HIKNa6D2wJFZgEja2wnAxPDee9WgeG9/rwtkGJ0dy+SJjU65ShGKs1xgCHJBt11XPDtnYUhj3SR0uGRp+36XX5ZfT6tE6StdMW03ucyWS7ddI5oFR1VCtw==  #braintree
+
+  - name: beta-db-prms
+    type: params
+    version:
+      params:
+        FOO: bar
+        secure: vT9uwCA9bqjuI9v5ZOQhq8UrojiGnAjz2tduKuGDfpwSbWi82z1U9bKviJbSvXrbHP0MMmq9Q4kKHcdzhSI6YRqjPh7DLJaaciMX9nFsRUnsYjBYQ34wvziy/TXhEXuV3hnM3AxpdW+jU+dErqFb9jiGfLBHGPotePVpq2wrC1ZqroRboPV7AynyEZnBskfKbpK5EhY6dBCIby8tKikZ0ctyGyPNCBklpVmNm8Qj4W7gPp9F6aZ+rGNXCXe/rncX+swXQ2QMqDMNIJwytoFSGX0EiG5y6+UwmSBhKI+ib1KZEnDaoStMyJImYSeMV05QYYq4wSbXD3ZLDtKl+JI/rg== #DB conn string
+
+  - name: beta-aws-prms
+    type: params
+    version:
+      params:
+        FOO: bar
+        secure: lzCaZq/9Qg2oAGbaWpjo6QmxyZQ+4FRAzF54fPGhjVVqiS7GZbhimyHr89SU3RtWm2vSeGYOWTfibCkHg6/Y20/U92P4NIo7vhGE2b4gWmQ0wFZmehO2WPRAUguPueEQqpMkaET1WlGvaskjv1yIgBx0wS7DmZjB7MWqHxrd1hx5DdEFiphu6ctpw60h2w8iuOQ1olgJPSHdn9ZMgVf0MkKJFehZ0X/BncAPhHA2KgB2gvTGvNTGePl5S8jWfPL/Bfx9ZRtv9+vLpSFToSN2gVmrJWY6QjhkeWfdhwuJsfw7a/+DqNdpqDchnM+SnmlmsIxoEFD0mjem+n2TsoCBvpNOFkW8oi3BlmQmOgGposmPIla2WLAL++kMTGXNypsZZYY9c03beiA+v1CWjjxVlMRgbEbeYc4UhrrdLbHOqpesKTf5TDSgSpUphZ/5Eo0OGi/EUxUznS5+o4X9cFJvy7ENdueNKqceGvHYfaD8US0l2fNZGcoWpOir8FdkZ6cPEUcu7kPH96my0YrknqemEz/X/3QJfjN4oE78+S8YxQp875cMPtFstssWthVHimffojxm6kaPTq3+O1Lvr4H48FrKvAV98Cy6d1UdQi6PP/W/kkxOxvkBJlGw2Zfg9P0DbzkBmWLxCUrk3M7GLIQLqaduz3Puo6Y6Z0SrkIVjvag= #AWS Registry info
+
   - name: api-params
     type: params
     version:
@@ -128,9 +149,6 @@ resources:
         API_PORT: "443"
         VORTEX_QUEUE_LIST: "www.sockets|core.marshaller|marshaller.ec2|micro.ini|cluster.init|core.nf|nf.email|nf.hipchat|nf.irc|nf.slack|nf.webhook|core.iscan|iscan.isync|iscan.esync|core.hubspotSync|core.barge|barge.acs|barge.dcl|barge.ddc|barge.ebs|barge.ecs|barge.gke|micro.cu|micro.su|barge.triton|job.request|job.trigger|core.braintree|core.certgen|core.sync|versions.trigger|gitRepo.sync|steps.manifestSteps|steps.runCISteps|steps.releaseSteps||steps.runShSteps|steps.rSyncSteps|steps.deploySteps|core.charon"
         ROOT_QUEUE_LIST: "isync.autod"
-        secure: kjULAaETQb4lDxzKJXrAeQ9y5zJ/o4Q5GwfUfk4TGau/bq4IdZUbvWklf5TLIN2UIwngyVAA6fDF6mKgqWOSTNppxUdsryPl4VC3WiLsiwnhMpnWpy6NqjbkxKwl7QoX9K8Kn7sPwSpGfytiUb5T4/DEO4BN3SwydSAGhOCTo0vNP1ygXjlxgAQ+dUjMmxDb7HuvbWY8SK8TvHqG72vvH3AV7LqzKsk9HIKNa6D2wJFZgEja2wnAxPDee9WgeG9/rwtkGJ0dy+SJjU65ShGKs1xgCHJBt11XPDtnYUhj3SR0uGRp+36XX5ZfT6tE6StdMW03ucyWS7ddI5oFR1VCtw==  #braintree
-        secure: vT9uwCA9bqjuI9v5ZOQhq8UrojiGnAjz2tduKuGDfpwSbWi82z1U9bKviJbSvXrbHP0MMmq9Q4kKHcdzhSI6YRqjPh7DLJaaciMX9nFsRUnsYjBYQ34wvziy/TXhEXuV3hnM3AxpdW+jU+dErqFb9jiGfLBHGPotePVpq2wrC1ZqroRboPV7AynyEZnBskfKbpK5EhY6dBCIby8tKikZ0ctyGyPNCBklpVmNm8Qj4W7gPp9F6aZ+rGNXCXe/rncX+swXQ2QMqDMNIJwytoFSGX0EiG5y6+UwmSBhKI+ib1KZEnDaoStMyJImYSeMV05QYYq4wSbXD3ZLDtKl+JI/rg== #DB conn string
-        secure: lzCaZq/9Qg2oAGbaWpjo6QmxyZQ+4FRAzF54fPGhjVVqiS7GZbhimyHr89SU3RtWm2vSeGYOWTfibCkHg6/Y20/U92P4NIo7vhGE2b4gWmQ0wFZmehO2WPRAUguPueEQqpMkaET1WlGvaskjv1yIgBx0wS7DmZjB7MWqHxrd1hx5DdEFiphu6ctpw60h2w8iuOQ1olgJPSHdn9ZMgVf0MkKJFehZ0X/BncAPhHA2KgB2gvTGvNTGePl5S8jWfPL/Bfx9ZRtv9+vLpSFToSN2gVmrJWY6QjhkeWfdhwuJsfw7a/+DqNdpqDchnM+SnmlmsIxoEFD0mjem+n2TsoCBvpNOFkW8oi3BlmQmOgGposmPIla2WLAL++kMTGXNypsZZYY9c03beiA+v1CWjjxVlMRgbEbeYc4UhrrdLbHOqpesKTf5TDSgSpUphZ/5Eo0OGi/EUxUznS5+o4X9cFJvy7ENdueNKqceGvHYfaD8US0l2fNZGcoWpOir8FdkZ6cPEUcu7kPH96my0YrknqemEz/X/3QJfjN4oE78+S8YxQp875cMPtFstssWthVHimffojxm6kaPTq3+O1Lvr4H48FrKvAV98Cy6d1UdQi6PP/W/kkxOxvkBJlGw2Zfg9P0DbzkBmWLxCUrk3M7GLIQLqaduz3Puo6Y6Z0SrkIVjvag= #AWS Registry info
 
   - name: www-repo
     type: gitRepo
