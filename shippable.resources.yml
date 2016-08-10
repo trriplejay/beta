@@ -654,6 +654,7 @@ resources:
     type: params
     version:
       params:
+        FOO: bar
         secure: ldCE4P4C6+lVWMLrMcF/9eo30x+fIWq5r49M2wG77DuaOmZITfEjiPLfLU0PQGrKiABM6+XMd2MoLKfr7oYgzRK1KB2F+tVMsFfvGaYETmaN+dNTG1MNSD77Zoah3GAOqUIlWjBFWIw6KnVT4nehQ20p0jQJZNYb+1GsIOpkrO1CNH8PthP3yd9HjrBJ6PtJQwr9azSvrjdBh7bgyuwJGyA7AzSM3UV7lvFOYwTVrIsU6htU8VSUBXdJNG+GRt2dFu3CpeJ/OtEbAdBzjrl/ri+QEYIItIFqmL7dNAZd8LqNlZoNFR+a/ZDCqNMR3SEowromW04ZAh6S/Sz5LViQyA==
 
   - name: shippable-ver
