@@ -56,7 +56,12 @@ resources:
     version:
       memory: 400
       portMappings:
-        - 6379:6379
+        - 53385:6379
+
+  - name: beta-rds-lb
+    type: loadBalancer
+    pointer:
+      sourceName: v4BetaRedLb
 
   - name: api-repo
     type: gitRepo

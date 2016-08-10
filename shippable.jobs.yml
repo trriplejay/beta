@@ -53,6 +53,11 @@ jobs:
       - IN: man-rds
       - IN: beta-rds-docOpts
       - IN: beta-clust
+      - IN: beta-rds-lb
+        applyTo:
+          - manifest: man-rds  # manifest that contains image to connect to
+            image: rdsbase-img # img to connect to inside the above manifest
+            port: 6379         # containerPort to connect to
 
   - name: build-api
     type: runSh
