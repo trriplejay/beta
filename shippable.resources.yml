@@ -654,7 +654,7 @@ resources:
     type: params
     version:
       params:
-        secure: bRew7Pjg7ENeOuElYuCgrk7K7LLc6V6P55o1L0v4K0IjruWryTtYADmrHOF1oNjPmVz4229QKFw/AHqTokAaUqMg5LAIzQrmesg0C1ObageROGslRO1n7gM7jE1CY18y7nRXah/DLhIqF+1+bDnAdug0ThgkNu+l6zFr0OqVQDOb6h+xnPTpX2Gu6SijbOMQLCK9mpmEh8cCpz06U1bJOe95Ts2Ip7Zdq/3ldvFr/L7dCvNmFKhVoXRHu6GaxmbNvZl9DZgVqvlqybhD6LubKzHmSniqZc9hBxgzSq+MKv+9crfn5ZNuMJJ9t3zx6ZlsRTdcyZNB5W92VzXOWAqpDg==
+        secure: yzx3gXELqzl26cY8kTius5kthRM7EgrROqh848HveUz3mvAmlc+7iCLp+6V/0tNM+/dMz6/bokVABpp4clyMnAV8SmMW/roLZX0zta6oj3b1OWp39rKzjsW0OZDRIk6dd4qo4rJcLvoY8FHjVvl07GhFTdtkisXNDP7JQ5p06UYV1EzJ3riQOuTGkePfiBJtFgP6jxoVUaQTTMcZcJRwphenuZ7cehVlaQNkGBwqjiMsYjyRCkI3db5XN+zJsziAWjv7iaNgAatA9Tp08uHh7cFV2u6o4VXMbxP0UOpwW/L4US7MEptj+x0DZY1NyOykzHBRAH8dmtmZb+7P8zu9TA==
 
   - name: shippable-ver
     type: version
