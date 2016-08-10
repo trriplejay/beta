@@ -5,9 +5,8 @@ jobs:
       - IN: beta-aws-creds
       - IN: beta-infra-repo
       - TASK:
-        - script: ls -atr
-        - script: ls -al IN/beta-infra-repo/gitRepo/
-        - script: IN/beta-infra-repo/beta-infra-repo/provision.sh
+        - script: sudo apt-get install -y jq
+        - script: IN/beta-infra-repo/gitRepo/build.sh
 
     on_success:
       - echo 'on success !!!!!'
