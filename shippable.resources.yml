@@ -36,6 +36,21 @@ resources:
     seed:
       versionName: latest
 
+  - name: rp-repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/rp
+      branch: master
+
+  - name: rp-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/rp"
+    seed:
+      versionName: latest
+
   - name: rdsbase-repo
     type: gitRepo
     integration: ric03uec-github
