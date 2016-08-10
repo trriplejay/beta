@@ -403,6 +403,7 @@ jobs:
           - man-manifestSteps
           - man-deploySteps
           - man-releaseSteps
+          - man-charon
 
   - name: man-sync
     type: manifest
