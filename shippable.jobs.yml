@@ -123,13 +123,13 @@ jobs:
   - name: man-api
     type: manifest
     steps:
+      - IN: trigger-deploy
       - IN: api-img
       - IN: api-params
 
   - name: deploy-beta-api
     type: deploy
     steps:
-      - IN: trigger-deploy
       - IN: man-api
       - IN: beta-api-scaler
       - IN: beta-bitbuc-params
@@ -345,6 +345,7 @@ jobs:
           - man-autod
           - man-ddc
           - man-dcl
+          - man-ecs
           - man-gke
           - man-triton
 
