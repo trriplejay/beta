@@ -343,6 +343,7 @@ jobs:
         applyTo:
           - man-autod
           - man-gke
+          - man-ddc
 
   - name: man-charon
     type: manifest
