@@ -152,8 +152,8 @@ resources:
       params:
         SHIPPABLE_FE_URL: "https://beta.shippable.com"
         API_PORT: "443"
-        VORTEX_QUEUE_LIST: "www.sockets|cluster.init|barge.ebs|micro.cu|micro.su|job.request|job.trigger|core.braintree|gitRepo.sync|steps.runCISteps|steps.runShSteps"
-        ROOT_QUEUE_LIST: "core.iscan|iscan.isync|iscan.esync|isync.autod|core.barge|barge.acs|barge.ddc|barge.dcl|barge.ecs|barge.gke|barge.triton|steps.rSyncSteps|steps.manifestSteps|steps.deploySteps|steps.releaseSteps|core.charon|versions.trigger|core.nf|nf.email|nf.hipchat|nf.irc|nf.slack|nf.webhook|core.certgen|core.hubspotSync|core.marshaller|marshaller.ec2|core.sync|micro.ini"
+        VORTEX_QUEUE_LIST: "www.sockets|cluster.init|barge.ebs|micro.cu|micro.su|job.request|job.trigger|gitRepo.sync|steps.runCISteps|steps.runShSteps"
+        ROOT_QUEUE_LIST: "core.iscan|iscan.isync|iscan.esync|isync.autod|core.barge|barge.acs|barge.ddc|barge.dcl|barge.ecs|barge.gke|barge.triton|steps.rSyncSteps|steps.manifestSteps|steps.deploySteps|steps.releaseSteps|core.charon|versions.trigger|core.nf|nf.email|nf.hipchat|nf.irc|nf.slack|nf.webhook|core.braintree|core.certgen|core.hubspotSync|core.marshaller|marshaller.ec2|core.sync|micro.ini"
 
   - name: www-repo
     type: gitRepo
