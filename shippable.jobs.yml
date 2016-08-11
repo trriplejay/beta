@@ -467,14 +467,14 @@ jobs:
     type: deploy
     steps:
       - IN: trigger-deploy
-      - IN: man-sync
-      - IN: man-marshaller
-      - IN: man-jobTrigger
-      - IN: man-jobRequest
-      - IN: man-hubspotSync
-      - IN: man-cron
-      - IN: man-certgen
       - IN: man-braintree
+      - IN: man-certgen
+      - IN: man-cron
+      - IN: man-hubspotSync
+      - IN: man-jobRequest
+      - IN: man-jobTrigger
+      - IN: man-marshaller
+      - IN: man-sync
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
@@ -482,6 +482,7 @@ jobs:
         applyTo:
           - man-certgen
           - man-hubspotSync
+          - man-marshaller
           - man-sync
 
   - name: man-ini
