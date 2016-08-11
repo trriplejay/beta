@@ -483,6 +483,7 @@ jobs:
           - man-braintree
           - man-certgen
           - man-hubspotSync
+          - man-jobRequest
           - man-marshaller
           - man-sync
 
@@ -501,7 +502,6 @@ jobs:
   - name: deploy-beta-ci
     type: deploy
     steps:
-      - IN: trigger-deploy
       - IN: man-ec2
       - IN: man-ini
       - IN: beta-docOpts
