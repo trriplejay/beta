@@ -6,6 +6,7 @@ jobs:
       - IN: beta-infra-repo
       - TASK:
         - script: sudo apt-get install -y jq
+        - script: eval `ssh-agent -s`
         - script: ssh-add
         #- script: IN/beta-infra-repo/gitRepo/build.sh
 
