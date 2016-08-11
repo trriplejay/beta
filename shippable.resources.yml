@@ -152,8 +152,8 @@ resources:
       params:
         SHIPPABLE_FE_URL: "https://beta.shippable.com"
         API_PORT: "443"
-        VORTEX_QUEUE_LIST: "www.sockets|core.marshaller|marshaller.ec2|micro.ini|cluster.init|nf.email|nf.hipchat|nf.irc|core.hubspotSync|barge.ebs|micro.cu|micro.su|job.request|job.trigger|core.braintree|core.certgen|core.sync|gitRepo.sync|steps.runCISteps|steps.runShSteps"
-        ROOT_QUEUE_LIST: "core.iscan|iscan.isync|iscan.esync|isync.autod|core.barge|barge.acs|barge.ddc|barge.dcl|barge.ecs|barge.gke|barge.triton|steps.rSyncSteps|steps.manifestSteps|steps.deploySteps|steps.releaseSteps|core.charon|versions.trigger|core.nf|nf.slack|nf.webhook"
+        VORTEX_QUEUE_LIST: "www.sockets|core.marshaller|marshaller.ec2|micro.ini|cluster.init|nf.email|nf.irc|core.hubspotSync|barge.ebs|micro.cu|micro.su|job.request|job.trigger|core.braintree|core.certgen|core.sync|gitRepo.sync|steps.runCISteps|steps.runShSteps"
+        ROOT_QUEUE_LIST: "core.iscan|iscan.isync|iscan.esync|isync.autod|core.barge|barge.acs|barge.ddc|barge.dcl|barge.ecs|barge.gke|barge.triton|steps.rSyncSteps|steps.manifestSteps|steps.deploySteps|steps.releaseSteps|core.charon|versions.trigger|core.nf|nf.hipchat|nf.slack|nf.webhook"
 
   - name: www-repo
     type: gitRepo
