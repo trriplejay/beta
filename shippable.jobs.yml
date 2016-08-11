@@ -280,6 +280,7 @@ jobs:
         applyTo:
           - man-nf
           - man-hipchat
+          - man-irc
           - man-slack
           - man-webhook
 
