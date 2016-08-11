@@ -339,6 +339,7 @@ jobs:
       - IN: rabbitMQ-params
         applyTo:
           - man-autod
+          - man-gke
 
   - name: man-charon
     type: manifest
