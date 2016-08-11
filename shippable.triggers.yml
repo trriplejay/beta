@@ -7,4 +7,4 @@ triggers:
    - name: trigger-deploy
      type: trigger
      version:
-       counter: 15
+       counter: 16

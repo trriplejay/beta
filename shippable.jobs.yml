@@ -341,6 +341,7 @@ jobs:
       - IN: beta-clust
       - IN: rabbitMQ-params
         applyTo:
+          - man-acs
           - man-autod
           - man-ddc
           - man-dcl
