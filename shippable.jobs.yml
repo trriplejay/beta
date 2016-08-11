@@ -500,11 +500,15 @@ jobs:
   - name: deploy-beta-ci
     type: deploy
     steps:
-      - IN: man-ini
+      - IN: trigger-deploy
       - IN: man-ec2
+      - IN: man-ini
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
+      - IN: rabbitMQ-params
+        applyTo:
+          - man-ec2
 
   - name: shippable-rel
     type: release
