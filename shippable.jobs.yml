@@ -481,6 +481,7 @@ jobs:
       - IN: rabbitMQ-params
         applyTo:
           - man-certgen
+          - man-hubspotSync
 
   - name: man-ini
     type: manifest
