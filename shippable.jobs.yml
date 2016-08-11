@@ -340,15 +340,6 @@ jobs:
       - IN: beta-prm
       - IN: beta-clust
       - IN: rabbitMQ-params
-        applyTo:
-          - man-acs
-          - man-autod
-          - man-ddc
-          - man-dcl
-          - man-ecs
-          - man-gke
-          - man-triton
-
 
   - name: man-charon
     type: manifest
