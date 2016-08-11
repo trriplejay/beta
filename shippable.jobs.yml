@@ -266,7 +266,6 @@ jobs:
   - name: deploy-beta-notify
     type: deploy
     steps:
-      - IN: trigger-deploy
       - IN: man-nf
       - IN: man-slack
       - IN: man-email
@@ -336,7 +335,6 @@ jobs:
   - name: deploy-beta-pv1
     type: deploy
     steps:
-      - IN: trigger-deploy
       - IN: man-barge
       - IN: man-acs
       - IN: man-autod
@@ -396,7 +394,6 @@ jobs:
   - name: deploy-beta-pv2
     type: deploy
     steps:
-      - IN: trigger-deploy
       - IN: man-charon
       - IN: man-deploySteps
       - IN: man-manifestSteps
@@ -409,11 +406,11 @@ jobs:
       - IN: beta-clust
       - IN: rabbitMQ-params
         applyTo:
-          - man-rSyncSteps
-          - man-manifestSteps
-          - man-deploySteps
-          - man-releaseSteps
           - man-charon
+          - man-deploySteps
+          - man-manifestSteps
+          - man-releaseSteps
+          - man-rSyncSteps
           - man-versionTrigger
 
   - name: man-sync
@@ -469,6 +466,7 @@ jobs:
   - name: deploy-beta-core
     type: deploy
     steps:
+      - IN: trigger-deploy
       - IN: man-sync
       - IN: man-marshaller
       - IN: man-jobTrigger
@@ -480,6 +478,9 @@ jobs:
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
+      - IN: rabbitMQ-params
+        applyTo:
+          - man-certgen
 
   - name: man-ini
     type: manifest
