@@ -108,6 +108,11 @@ resources:
     seed:
       versionName: latest
 
+  - name: beta-api-scaler
+    type: replicas
+    version:
+      count: 2
+
   - name: beta-api-docOpts
     type: dockerOptions
     version:
