@@ -266,6 +266,7 @@ jobs:
   - name: deploy-beta-notify
     type: deploy
     steps:
+      - IN: trigger-deploy
       - IN: man-nf
       - IN: man-slack
       - IN: man-email
@@ -275,6 +276,9 @@ jobs:
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
+      - IN: rabbitMQ-params
+        applyTo:
+          - man-nf
 
   - name: man-barge
     type: manifest
