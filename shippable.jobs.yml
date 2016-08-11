@@ -482,6 +482,7 @@ jobs:
         applyTo:
           - man-certgen
           - man-hubspotSync
+          - man-sync
 
   - name: man-ini
     type: manifest
