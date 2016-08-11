@@ -480,6 +480,7 @@ jobs:
       - IN: beta-clust
       - IN: rabbitMQ-params
         applyTo:
+          - man-braintree
           - man-certgen
           - man-hubspotSync
           - man-marshaller
