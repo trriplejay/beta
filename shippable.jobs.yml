@@ -509,6 +509,7 @@ jobs:
       - IN: rabbitMQ-params
         applyTo:
           - man-ec2
+          - man-ini
 
   - name: shippable-rel
     type: release
