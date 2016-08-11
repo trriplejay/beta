@@ -279,6 +279,7 @@ jobs:
       - IN: rabbitMQ-params
         applyTo:
           - man-nf
+          - man-email
           - man-hipchat
           - man-irc
           - man-slack
