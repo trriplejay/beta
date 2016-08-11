@@ -345,6 +345,7 @@ jobs:
           - man-ddc
           - man-dcl
           - man-gke
+          - man-triton
 
 
   - name: man-charon
