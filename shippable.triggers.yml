@@ -3,8 +3,3 @@ triggers:
      type: trigger
      version:
        counter: 3
-
-   - name: trigger-deploy
-     type: trigger
-     version:
-       counter: 35
