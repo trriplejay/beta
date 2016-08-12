@@ -123,7 +123,6 @@ jobs:
   - name: man-api
     type: manifest
     steps:
-      - IN: trigger-deploy
       - IN: api-img
       - IN: api-params
 
@@ -466,7 +465,6 @@ jobs:
   - name: deploy-beta-core
     type: deploy
     steps:
-      - IN: trigger-deploy
       - IN: man-braintree
       - IN: man-certgen
       - IN: man-cron
