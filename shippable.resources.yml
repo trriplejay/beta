@@ -488,6 +488,19 @@ resources:
         SHIPPABLE_WWW_URL: "https://beta.shippable.com"
         secure: emfFGxrTWuvhVPGksLFIaoN16FjHRBCID6lZjoOa0UnzJyTID18GEevUqmG2maTk6fdW/p9a4oRhPSbd0djBavALeCfrIVtWjd2SKewjH5kHrA98agKoaO1aajmIPBIOtc3I+7/pwoOaMn03K4d+vC5W2+yMGWEaWwU/o6DPeX0lise3TSf9Fvq5PZeUSkPoxTLZ8F8FThNzvY6FzDkyUKVPpTF5vZPyPmBmXyNfeOzbqcKuUBkxK18L46Clmte6lLBRaq2PsooHOrLUuoiqcVr538PS6TkJNiyA0vEDEM1G1kk3v1jH/lYuK9DuHBWKLwinrfl5oHGx8pZuh1Thm54tc8WwGeqNLRyELJh+LFkmelqN28WDFkS8Npg3rS9e0rdO6wimsP8vWPYDugmAgTyPUxVqHTXvyRBiBz9yWI5gVJd/CtXkXMe2gjxKgPqa0SkTVsq1Z+qSTBLCXnLMGOwdFf5CXxK7pCgxziZ7yYr/B4c72DSX50Um0zqJW/9QvFtRLdq75oyGKUxW/afja/sxLFMTrULZ+To4EinO3mjiq2EP9Og+oR7eQdWZ/22ookzpQl7wvI6s7VTbAFxTABEjqBB/x/9T/ZTepSFYiA/UR3qVABlvWKf6PCOMdRyS4M6c+0lYQLhSVApMoniZ9N1W6xNX9Jk+HTa6aaMXUQk= #rabbitMQ params + API-TOKEN
 
+  - name: beta-bitbuc-params
+    type: params
+    version:
+      params:
+        FOO: bar
+        secure: L4uwHq35OhmAT4KjUShoW3nk7S5pXIU3UwnPyOjiOEApKbJgC9YnaBpi8ARkUcLwLJcgTffM6Qv97UJ7DIdfNMtji/6VoqEuRK9ShwQeQ+FGagbP7dpbD/NoPvO5G8IP2mPoedOlulzC2byt69QTH9ljephgRkYviesRnn4YgM9mEff5RvV9SiW/31ilfHEQXCu8T5uTD3SUcwK5s9pPwwqPaGmNDrBteyksytVi1CTB0u+K+NOd/VlOKt7U/DMaBryrr/ndzXySZ7JHPc2U+ALQA/cxrkd5zApWBGv4m4qh4345r22Z5Hv3SAQufvZfC5jo/Djspla+KTgUwmwjAw==
+
+  - name: rabbitMQ-params
+    type: params
+    version:
+      params:
+        SHIPPABLE_VHOST: shippableRoot
+
   - name: beta-docOpts
     type: dockerOptions
     version:
@@ -610,13 +623,6 @@ resources:
         COMPONENT: "stepExec"
         JOB_TYPE: "releaseSteps"
 
-  - name: beta-bitbuc-params
-    type: params
-    version:
-      params:
-        FOO: bar
-        secure: L4uwHq35OhmAT4KjUShoW3nk7S5pXIU3UwnPyOjiOEApKbJgC9YnaBpi8ARkUcLwLJcgTffM6Qv97UJ7DIdfNMtji/6VoqEuRK9ShwQeQ+FGagbP7dpbD/NoPvO5G8IP2mPoedOlulzC2byt69QTH9ljephgRkYviesRnn4YgM9mEff5RvV9SiW/31ilfHEQXCu8T5uTD3SUcwK5s9pPwwqPaGmNDrBteyksytVi1CTB0u+K+NOd/VlOKt7U/DMaBryrr/ndzXySZ7JHPc2U+ALQA/cxrkd5zApWBGv4m4qh4345r22Z5Hv3SAQufvZfC5jo/Djspla+KTgUwmwjAw==
-
   - name: rSyncSteps-params
     type: params
     version:
@@ -641,6 +647,26 @@ resources:
     version:
       params:
         COMPONENT: "sync"
+
+  - name: iscan-params
+    type: params
+    version:
+      params:
+        COMPONENT: "iscan"
+
+  - name: isync-params
+    type: params
+    version:
+      params:
+        COMPONENT: "isync"
+        INPUT_QUEUE: "iscan.isync"
+
+  - name: esync-params
+    type: params
+    version:
+      params:
+        COMPONENT: "isync"
+        INPUT_QUEUE: "iscan.esync"
 
   - name: marshaller-params
     type: params
@@ -714,12 +740,6 @@ resources:
     version:
       params:
         COMPONENT: "ec2"
-
-  - name: rabbitMQ-params
-    type: params
-    version:
-      params:
-        SHIPPABLE_VHOST: shippableRoot
 
   - name: shippable-ver
     type: version

@@ -7,9 +7,6 @@ jobs:
       - TASK:
         - script: sudo apt-get install -y jq
         - script: IN/beta-infra-repo/gitRepo/build.sh
-        #- script: eval `ssh-agent -s` && ssh-add
-        #- script: ssh-add
-
     on_success:
       - echo 'on success !!!!!'
     on_failure:
@@ -526,6 +523,39 @@ jobs:
           - man-ec2
           - man-ini
 
+  - name: man-isync
+    type: manifest
+    steps:
+      - IN: isync-img
+      - IN: isync-params
+
+  - name: man-esync
+    type: manifest
+    steps:
+      - IN: isync-img
+      - IN: esync-params
+
+  - name: man-iscan
+    type: manifest
+    steps:
+      - IN: iscan-img
+      - IN: iscan-params
+
+  - name: deploy-beta-scan
+    type: deploy
+    steps:
+      - IN: man-isync
+      - IN: man-esync
+      - IN: man-iscan
+      - IN: beta-docOpts
+      - IN: beta-prm
+      - IN: beta-clust
+      - IN: rabbitMQ-params
+        applyTo:
+          - man-isync
+          - man-esync
+          - man-iscan
+
   - name: shippable-rel
     type: release
     steps:
@@ -548,6 +578,8 @@ jobs:
       - IN: deploy-beta-api
         switch: off
       - IN: deploy-beta-nexec
+        switch: off
+      - IN: deploy-beta-scan
         switch: off
       - IN: trigger-product-release
       - TASK: managed
