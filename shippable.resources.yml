@@ -21,6 +21,21 @@ resources:
     seed:
       versionName: latest
 
+  - name: mexec-repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/mexec
+      branch: master
+
+  - name: mexec-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/mexec"
+    seed:
+      versionName: latest
+
   - name: microbase-repo
     type: gitRepo
     integration: ric03uec-github

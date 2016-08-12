@@ -15,6 +15,20 @@ jobs:
     on_failure:
       - echo 'Failed job .... :('
 
+  - name: build-mexec
+    type: runSh
+    steps:
+      - IN: mexec-repo
+      - IN: docker-creds
+      - TASK:
+        - script: sudo apt-get install -y jq
+        - script: ./IN/mexec-repo/gitRepo/build.sh
+      - OUT: mexec-img
+    on_success:
+      - echo 'on success !!!!!'
+    on_failure:
+      - echo 'Failed job .... :('
+
   - name: build-microbase
     type: runSh
     steps:
