@@ -484,6 +484,7 @@ jobs:
           - man-certgen
           - man-hubspotSync
           - man-jobRequest
+          - man-jobTrigger
           - man-marshaller
           - man-sync
 
