@@ -495,12 +495,6 @@ resources:
         FOO: bar
         secure: L4uwHq35OhmAT4KjUShoW3nk7S5pXIU3UwnPyOjiOEApKbJgC9YnaBpi8ARkUcLwLJcgTffM6Qv97UJ7DIdfNMtji/6VoqEuRK9ShwQeQ+FGagbP7dpbD/NoPvO5G8IP2mPoedOlulzC2byt69QTH9ljephgRkYviesRnn4YgM9mEff5RvV9SiW/31ilfHEQXCu8T5uTD3SUcwK5s9pPwwqPaGmNDrBteyksytVi1CTB0u+K+NOd/VlOKt7U/DMaBryrr/ndzXySZ7JHPc2U+ALQA/cxrkd5zApWBGv4m4qh4345r22Z5Hv3SAQufvZfC5jo/Djspla+KTgUwmwjAw==
 
-  - name: rabbitMQ-params
-    type: params
-    version:
-      params:
-        SHIPPABLE_VHOST: shippableRoot
-
   - name: beta-docOpts
     type: dockerOptions
     version:
