@@ -286,14 +286,6 @@ jobs:
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
-      - IN: rabbitMQ-params
-        applyTo:
-          - man-nf
-          - man-email
-          - man-hipchat
-          - man-irc
-          - man-slack
-          - man-webhook
 
   - name: man-barge
     type: manifest
@@ -357,7 +349,6 @@ jobs:
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
-      - IN: rabbitMQ-params
 
   - name: man-charon
     type: manifest
@@ -415,14 +406,6 @@ jobs:
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
-      - IN: rabbitMQ-params
-        applyTo:
-          - man-charon
-          - man-deploySteps
-          - man-manifestSteps
-          - man-releaseSteps
-          - man-rSyncSteps
-          - man-versionTrigger
 
   - name: man-sync
     type: manifest
@@ -488,15 +471,6 @@ jobs:
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
-      - IN: rabbitMQ-params
-        applyTo:
-          - man-braintree
-          - man-certgen
-          - man-hubspotSync
-          - man-jobRequest
-          - man-jobTrigger
-          - man-marshaller
-          - man-sync
 
   - name: man-ini
     type: manifest
@@ -518,10 +492,6 @@ jobs:
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
-      - IN: rabbitMQ-params
-        applyTo:
-          - man-ec2
-          - man-ini
 
   - name: man-isync
     type: manifest
@@ -550,11 +520,6 @@ jobs:
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
-      - IN: rabbitMQ-params
-        applyTo:
-          - man-isync
-          - man-esync
-          - man-iscan
 
   - name: shippable-rel
     type: release
