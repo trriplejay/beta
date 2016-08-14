@@ -390,14 +390,6 @@ resources:
     seed:
       versionName: latest
 
-  - name: nexec-img
-    type: image
-    integration: shipDH
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
   - name: nf-img
     type: image
     integration: shipDH
