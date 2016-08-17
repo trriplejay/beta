@@ -144,29 +144,27 @@ resources:
     type: params
     version:
       params:
-        FOO: bar
         secure: kjULAaETQb4lDxzKJXrAeQ9y5zJ/o4Q5GwfUfk4TGau/bq4IdZUbvWklf5TLIN2UIwngyVAA6fDF6mKgqWOSTNppxUdsryPl4VC3WiLsiwnhMpnWpy6NqjbkxKwl7QoX9K8Kn7sPwSpGfytiUb5T4/DEO4BN3SwydSAGhOCTo0vNP1ygXjlxgAQ+dUjMmxDb7HuvbWY8SK8TvHqG72vvH3AV7LqzKsk9HIKNa6D2wJFZgEja2wnAxPDee9WgeG9/rwtkGJ0dy+SJjU65ShGKs1xgCHJBt11XPDtnYUhj3SR0uGRp+36XX5ZfT6tE6StdMW03ucyWS7ddI5oFR1VCtw==  #braintree
 
   - name: beta-db-prms
     type: params
     version:
       params:
-        FOO: bar
         secure: vT9uwCA9bqjuI9v5ZOQhq8UrojiGnAjz2tduKuGDfpwSbWi82z1U9bKviJbSvXrbHP0MMmq9Q4kKHcdzhSI6YRqjPh7DLJaaciMX9nFsRUnsYjBYQ34wvziy/TXhEXuV3hnM3AxpdW+jU+dErqFb9jiGfLBHGPotePVpq2wrC1ZqroRboPV7AynyEZnBskfKbpK5EhY6dBCIby8tKikZ0ctyGyPNCBklpVmNm8Qj4W7gPp9F6aZ+rGNXCXe/rncX+swXQ2QMqDMNIJwytoFSGX0EiG5y6+UwmSBhKI+ib1KZEnDaoStMyJImYSeMV05QYYq4wSbXD3ZLDtKl+JI/rg== #DB conn string
 
   - name: beta-aws-prms
     type: params
     version:
       params:
-        FOO: bar
         secure: Qev97UAhC3r7SexjJBWhLSDOWrMEAlRRP/u0IM4W4m2GFTbo3iynCvDkoleaxeaRAlFYvxytJVUpW4jStdD9IcCt1a3m/zvSqTSYYACT3PQyxFSJoMFztKbZI30gL/H/yftw2REcWXfLyXWGWcDYpnn5ANVwdB8LbQHwCj/b9cgZtE5pZklpfIfZoD/k//MQE/gUT/zbANQ1o14pP8AVcGTaaOSeDG8mTv7oArMcS0PyS32TY7mtEKCQQl+I9Hh6YIU5+JMBM8ojTtnFNbdleYjdotJ3V/LK2NtcdbVsRhYMVfJ79cUAaJteQcaw+rre1fqYVmVcQPJWF/qUp3yqS9zs65zHU07DoG2nKUxyga5HDu+uE6xRVtYUBwrMgOZVn7R3DX2i/q9CnXQZufmlx4Yq5yy1ubTakpag8y8erMcHokGeVFKHT+e5kzGyA9aztRAK1Ezub4M11HKOefEpD/227rO3pjOJ96i8o5x13erVqdb8ESh3RXsIVnezooHlGYC34f8HHncVQZnvW9dvh/j07WqqBWn7n+xksjii+mtKwhnqUecRLm20ysvbsPdDsTF9AXtvdnnNxQAlA6W0sG9b6Cm98eAixrYob1YKyQBfi+cO4/egkn7CM9g+imv4aSKOkhZ4W7YRrj5YeqVnkFsSTUYQwisMLwpkGwOKQRw=
+
   - name: api-params
     type: params
     version:
       params:
         SHIPPABLE_FE_URL: "https://beta.shippable.com"
         API_PORT: "443"
-        ROOT_QUEUE_LIST: "www.sockets|core.iscan|iscan.isync|iscan.esync|isync.autod|core.barge|barge.acs|barge.ddc|barge.dcl|barge.ecs|barge.gke|barge.triton|steps.rSyncSteps|steps.manifestSteps|steps.deploySteps|steps.releaseSteps|core.charon|versions.trigger|core.nf|nf.email|nf.hipchat|nf.irc|nf.slack|nf.webhook|core.braintree|core.certgen|core.hubspotSync|core.marshaller|marshaller.ec2|core.sync|job.request|job.trigger|micro.ini|cluster.init"
+        ROOT_QUEUE_LIST: "www.sockets|core.iscan|iscan.isync|iscan.esync|isync.autod|core.barge|barge.acs|barge.ddc|barge.dcl|barge.ecs|barge.gke|barge.triton|steps.deploySteps|steps.manifestSteps|steps.releaseSteps|steps.rSyncSteps|core.charon|versions.trigger|core.nf|nf.email|nf.hipchat|nf.irc|nf.slack|nf.webhook|core.braintree|core.certgen|core.hubspotSync|core.marshaller|marshaller.ec2|core.sync|job.request|job.trigger|micro.ini|cluster.init|steps.deploy|steps.manifest|steps.rSync|steps.release"
 
   - name: www-repo
     type: gitRepo
@@ -483,7 +481,6 @@ resources:
     type: params
     version:
       params:
-        FOO: bar
         secure: L4uwHq35OhmAT4KjUShoW3nk7S5pXIU3UwnPyOjiOEApKbJgC9YnaBpi8ARkUcLwLJcgTffM6Qv97UJ7DIdfNMtji/6VoqEuRK9ShwQeQ+FGagbP7dpbD/NoPvO5G8IP2mPoedOlulzC2byt69QTH9ljephgRkYviesRnn4YgM9mEff5RvV9SiW/31ilfHEQXCu8T5uTD3SUcwK5s9pPwwqPaGmNDrBteyksytVi1CTB0u+K+NOd/VlOKt7U/DMaBryrr/ndzXySZ7JHPc2U+ALQA/cxrkd5zApWBGv4m4qh4345r22Z5Hv3SAQufvZfC5jo/Djspla+KTgUwmwjAw==
 
   - name: beta-docOpts
