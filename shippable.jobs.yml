@@ -356,29 +356,29 @@ jobs:
       - IN: charon-img
       - IN: charon-params
 
-  - name: man-deploySteps
+  - name: man-deploy
     type: manifest
     steps:
       - IN: stepExec-img
-      - IN: deploySteps-params
+      - IN: deploy-params
 
-  - name: man-manifestSteps
+  - name: man-manifest
     type: manifest
     steps:
       - IN: stepExec-img
-      - IN: manifestSteps-params
+      - IN: manifest-params
 
-  - name: man-releaseSteps
+  - name: man-release
     type: manifest
     steps:
       - IN: stepExec-img
-      - IN: releaseSteps-params
+      - IN: release-params
 
-  - name: man-rSyncSteps
+  - name: man-rSync
     type: manifest
     steps:
       - IN: stepExec-img
-      - IN: rSyncSteps-params
+      - IN: rSync-params
       - IN: beta-bitbuc-params
 
   - name: man-timeTrigger
@@ -397,10 +397,10 @@ jobs:
     type: deploy
     steps:
       - IN: man-charon
-      - IN: man-deploySteps
-      - IN: man-manifestSteps
-      - IN: man-releaseSteps
-      - IN: man-rSyncSteps
+      - IN: man-deploy
+      - IN: man-manifest
+      - IN: man-release
+      - IN: man-rSync
       - IN: man-timeTrigger
       - IN: man-versionTrigger
       - IN: beta-docOpts
