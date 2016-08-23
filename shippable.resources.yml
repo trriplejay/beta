@@ -126,12 +126,12 @@ resources:
   - name: beta-api-scaler
     type: replicas
     version:
-      count: 4
+      count: 2
 
   - name: beta-api-docOpts
     type: dockerOptions
     version:
-      memory: 400
+      memory: 1024
       portMappings:
         - 27163:443
 
