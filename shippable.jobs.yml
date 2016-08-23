@@ -361,6 +361,7 @@ jobs:
     steps:
       - IN: stepExec-img
       - IN: deploy-params
+      - IN: deploy-scaler
 
   - name: man-manifest
     type: manifest
