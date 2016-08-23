@@ -591,6 +591,11 @@ resources:
         COMPONENT: "stepExec"
         JOB_TYPE: "deploy"
 
+  - name: deploy-scaler
+    type: replicas
+    version:
+      count: 4
+
   - name: manifest-params
     type: params
     version:
