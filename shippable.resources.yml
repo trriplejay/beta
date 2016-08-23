@@ -126,7 +126,7 @@ resources:
   - name: beta-api-scaler
     type: replicas
     version:
-      count: 2
+      count: 4
 
   - name: beta-api-docOpts
     type: dockerOptions
