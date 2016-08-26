@@ -123,6 +123,63 @@ resources:
     seed:
       versionName: latest
 
+  - name: api-server-repo
+    type: gitRepo
+    flags:
+      - shippable-server
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/api
+      branch: server
+
+  - name: api-server-img
+    type: image
+    flags:
+      - shippable-server
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/api50"
+    seed:
+      versionName: latest
+
+  - name: www-server-repo
+    type: gitRepo
+    flags:
+      - shippable-server
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/www
+      branch: server
+
+  - name: www-server-img
+    type: image
+    flags:
+      - shippable-server
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/www50"
+    seed:
+      versionName: latest
+
+  - name: micro-server-repo
+    type: gitRepo
+    flags:
+      - shippable-server
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/micro
+      branch: server
+
+  - name: micro-server-img
+    type: image
+    flags:
+      - shippable-server
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
   - name: beta-api-scaler
     type: replicas
     version:
