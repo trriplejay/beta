@@ -8,9 +8,9 @@ jobs:
         - script: sudo apt-get install -y jq
         - script: IN/beta-infra-repo/gitRepo/build.sh
     on_success:
-      - echo 'on success !!!!!'
+      - script: echo 'on success !!!!!'
     on_failure:
-      - echo 'Failed job .... :('
+      - script: echo 'Failed job .... :('
 
   - name: build-mexec
     type: runSh
@@ -23,9 +23,9 @@ jobs:
         - script: ./IN/mexec-repo/gitRepo/build.sh
       - OUT: mexec-img
     on_success:
-      - echo 'on success !!!!!'
+      - script: echo 'on success !!!!!'
     on_failure:
-      - echo 'Failed job .... :('
+      - script: echo 'Failed job .... :('
 
   - name: build-microbase
     type: runSh
@@ -37,9 +37,9 @@ jobs:
         - script: ./IN/microbase-repo/gitRepo/build.sh
       - OUT: microbase-img
     on_success:
-      - echo 'on success !!!!!'
+      - script: echo 'on success !!!!!'
     on_failure:
-      - echo 'Failed job .... :('
+      - script: echo 'Failed job .... :('
 
   - name: build-rp
     type: runSh
@@ -52,9 +52,9 @@ jobs:
         - script: ./IN/rp-repo/gitRepo/build.sh
       - OUT: rp-img
     on_success:
-      - echo 'on success !!!!!'
+      - script: echo 'on success !!!!!'
     on_failure:
-      - echo 'Failed job .... :('
+      - script: echo 'Failed job .... :('
 
   - name: build-rdsbase
     type: runSh
@@ -66,9 +66,9 @@ jobs:
         - script: ./IN/rdsbase-repo/gitRepo/build.sh
       - OUT: rdsbase-img
     on_success:
-      - echo 'on success !!!!!'
+      - script: echo 'on success !!!!!'
     on_failure:
-      - echo 'Failed job .... :('
+      - script: echo 'Failed job .... :('
 
   - name: man-rds
     type: manifest
@@ -100,9 +100,9 @@ jobs:
         - script: ./IN/nexec-repo/gitRepo/build.sh
       - OUT: nexec-img
     on_success:
-      - echo 'on success !!!!!'
+      - script: echo 'on success !!!!!'
     on_failure:
-      - echo 'Failed job .... :('
+      - script: echo 'Failed job .... :('
 
   - name: man-nexec
     type: manifest
@@ -128,9 +128,9 @@ jobs:
         - script: ./IN/api-repo/gitRepo/build.sh
       - OUT: api-img
     on_success:
-      - echo 'on success !!!!!'
+      - script: echo 'on success !!!!!'
     on_failure:
-      - echo 'Failed job .... :('
+      - script: echo 'Failed job .... :('
 
   - name: man-api
     type: manifest
@@ -158,6 +158,57 @@ jobs:
       - TASK: managed
         deployMethod: upgrade
 
+  - name: build-api-server
+    type: runSh
+    flags:
+      - shippable-server
+    steps:
+      - IN: api-server-repo
+      - IN: microbase-img
+      - IN: docker-creds
+      - TASK:
+        - script: sudo apt-get install -y jq
+        - script: ./IN/api-server-repo/gitRepo/build.sh
+      - OUT: api-server-img
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  - name: build-www-server
+    type: runSh
+    flags:
+      - shippable-server
+    steps:
+      - IN: www-server-repo
+      - IN: microbase-img
+      - IN: docker-creds
+      - TASK:
+        - script: sudo apt-get install -y jq
+        - script: ./IN/www-server-repo/gitRepo/build.sh
+      - OUT: www-server-img
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  - name: build-micro-server
+    type: runSh
+    flags:
+      - shippable-server
+    steps:
+      - IN: micro-server-repo
+      - IN: microbase-img
+      - IN: docker-creds
+      - TASK:
+        - script: sudo apt-get install -y jq
+        - script: ./IN/micro-server-repo/gitRepo/build.sh
+      - OUT: micro-server-img
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
   - name: build-www
     type: runSh
     steps:
@@ -169,9 +220,9 @@ jobs:
         - script: ./IN/www-repo/gitRepo/build.sh
       - OUT: www-img
     on_success:
-      - echo 'on success !!!!!'
+      - script: echo 'on success !!!!!'
     on_failure:
-      - echo 'Failed job .... :('
+      - script: echo 'Failed job .... :('
 
   - name: man-www
     type: manifest
@@ -234,9 +285,9 @@ jobs:
       - OUT: versionTrigger-img
       - OUT: webhook-img
     on_success:
-      - echo 'on success !!!!!'
+      - script: echo 'on success !!!!!'
     on_failure:
-      - echo 'Failed job .... :('
+      - script: echo 'Failed job .... :('
 
   - name: man-nf
     type: manifest
