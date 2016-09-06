@@ -192,23 +192,6 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build-micro-server
-    type: runSh
-    flags:
-      - shippable-server
-    steps:
-      - IN: micro-server-repo
-      - IN: microbase-img
-      - IN: docker-creds
-      - TASK:
-        - script: sudo apt-get install -y jq
-        - script: ./IN/micro-server-repo/gitRepo/build.sh
-      - OUT: micro-server-img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
   - name: build-www
     type: runSh
     steps:
@@ -601,3 +584,285 @@ jobs:
       - IN: trigger-product-release
       - TASK: managed
         bump: patch
+
+  ##########################
+  # begin Shippable Server jobs
+  ##########################
+  - name: build-micro-server
+    type: runSh
+    flags:
+      - shippable-server
+    steps:
+      - IN: micro-server-repo
+      - IN: microbase-img
+      - IN: docker-creds
+      - TASK:
+        - script: sudo apt-get install -y jq
+        - script: ./IN/micro-server-repo/gitRepo/build.sh
+      - OUT: braintree-server-img
+      - OUT: certgen-server-img
+      - OUT: charon-server-img
+      - OUT: cron-server-img
+      - OUT: ec2-server-img
+      - OUT: email-server-img
+      - OUT: hipchat-server-img
+      - OUT: hubspotSync-server-img
+      - OUT: irc-server-img
+      - OUT: ini-server-img
+      - OUT: jobRequest-server-img
+      - OUT: jobTrigger-server-img
+      - OUT: marshaller-server-img
+      - OUT: nf-server-img
+      - OUT: slack-server-img
+      - OUT: stepExec-server-img
+      - OUT: sync-server-img
+      - OUT: timeTrigger-server-img
+      - OUT: versionTrigger-server-img
+      - OUT: webhook-server-img
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+
+
+  - name: man-braintree-server
+    type: manifest
+    flags:
+      - shippable-server
+    steps:
+      - IN: braintree-server-img
+
+  - name: man-certgen-server
+    type: manifest
+    flags:
+      - shippable-server
+    steps:
+      - IN: certgen-server-img
+
+  - name: man-charon-server
+    type: manifest
+    flags:
+      - shippable-server
+    steps:
+      - IN: charon-server-img
+
+  - name: man-cron-server
+    type: manifest
+    flags:
+      - shippable-server
+    steps:
+      - IN: cron-server-img
+
+  - name: man-ec2-server
+    type: manifest
+    flags:
+      - shippable-server
+    steps:
+      - IN: ec2-server-img
+
+  - name: man-email-server
+    type: manifest
+    flags:
+      - shippable-server
+    steps:
+      - IN: email-server-img
+
+  - name: man-hipchat-server
+    type: manifest
+    flags:
+      - shippable-server
+    steps:
+      - IN: hipchat-server-img
+
+  - name: man-hubspotSync-server
+    type: manifest
+    flags:
+      - shippable-server
+    steps:
+      - IN: hubspotSync-server-img
+
+  - name: man-irc-server
+    type: manifest
+    flags:
+      - shippable-server
+    steps:
+      - IN: irc-server-img
+
+  - name: man-ini-server
+    type: manifest
+    flags:
+      - shippable-server
+    steps:
+      - IN: ini-server-img
+
+  - name: man-jobRequest-server
+    type: manifest
+    flags:
+      - shippable-server
+    steps:
+      - IN: jobRequest-server-img
+
+  - name: man-jobTrigger-server
+    type: manifest
+    flags:
+      - shippable-server
+    steps:
+      - IN: jobTrigger-server-img
+
+  - name: man-marshaller-server
+    type: manifest
+    flags:
+      - shippable-server
+    steps:
+      - IN: marshaller-server-img
+
+  - name: man-nf-server
+    type: manifest
+    flags:
+      - shippable-server
+    steps:
+      - IN: nf-server-img
+
+  - name: man-slack-server
+    type: manifest
+    flags:
+      - shippable-server
+    steps:
+      - IN: slack-server-img
+
+  - name: man-stepExec-server
+    type: manifest
+    flags:
+      - shippable-server
+    steps:
+      - IN: stepExec-server-img
+
+  - name: man-sync-server
+    type: manifest
+    flags:
+      - shippable-server
+    steps:
+      - IN: sync-server-img
+
+  - name: man-timeTrigger-server
+    type: manifest
+    flags:
+      - shippable-server
+    steps:
+      - IN: timeTrigger-server-img
+
+  - name: man-versionTrigger-server
+    type: manifest
+    flags:
+      - shippable-server
+    steps:
+      - IN: versionTrigger-server-img
+
+  - name: man-webhook-server
+    type: manifest
+    flags:
+      - shippable-server
+    steps:
+      - IN: webhook-server-img
+
+  - name: man-api-server
+    type: manifest
+    flags:
+      - shippable-server
+    steps:
+      - IN: api-server-img
+
+  - name: man-www-server
+    type: manifest
+    flags:
+      - shippable-server
+    steps:
+      - IN: www-server-img
+
+  ###########################################
+  # package all server images into one release
+  ###########################################
+
+  - name: shippable-server-rel
+    type: release
+    flags:
+      - shippable-server
+    steps:
+      - IN: shippable-server-ver
+        switch: off
+      - IN: man-nexec
+        switch: off
+      - IN: man-www-server
+        switch: off
+      - IN: man-api-server
+        switch: off
+      - IN: man-webhook-server
+        switch: off
+      - IN: man-versionTrigger-server
+        switch: off
+      - IN: man-timeTrigger-server
+        switch: off
+      - IN: man-sync-server
+        switch: off
+      - IN: man-stepExec-server
+        switch: off
+      - IN: man-slack-server
+        switch: off
+      - IN: man-nf-server
+        switch: off
+      - IN: man-marshaller-server
+        switch: off
+      - IN: man-jobTrigger-server
+        switch: off
+      - IN: man-jobRequest-server
+        switch: off
+      - IN: man-ini-server
+        switch: off
+      - IN: man-irc-server
+        switch: off
+      - IN: man-hubspotSync-server
+        switch: off
+      - IN: man-hipchat-server
+        switch: off
+      - IN: man-email-server
+        switch: off
+      - IN: man-ec2-server
+        switch: off
+      - IN: man-cron-server
+        switch: off
+      - IN: man-charon-server
+        switch: off
+      - IN: man-certgen-server
+        switch: off
+      - IN: man-braintree-server
+        switch: off
+      - IN: man-email-server
+        switch: off
+      - IN: man-email-server
+        switch: off
+      - IN: man-email-server
+        switch: off
+      - IN: man-email-server
+        switch: off
+      - IN: trigger-server-release
+      - TASK: managed
+        bump: patch
+
+  ###########################################
+  # push server release to special repo
+  ###########################################
+
+  - name: push-release
+    type: runSh
+    flags:
+      - shippable-server
+    steps:
+      - IN: docker-creds
+      - IN: shippable-server-rel
+      - TASK:
+        - script: echo 'hello world'
+    on_success:
+      - script: echo 'succeeded'
+    on_failure:
+      - script: echo 'failed'
