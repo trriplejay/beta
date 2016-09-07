@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 export VERSION=""
 export PUSH_TARGET="shipprod"
