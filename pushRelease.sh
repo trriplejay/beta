@@ -65,7 +65,7 @@ tag_and_push() {
     echo "tagging image $full_name as $PUSH_TARGET/$name:$new_tag"
     sudo docker tag -f $full_name:$tag $PUSH_TARGET/$name:$new_tag
     echo "pushing image $PUSH_TARGET/$name:$new_tag"
-    echo "blah sudo docker push $PUSH_TARGET/$name:$new_tag"
+    sudo docker push $PUSH_TARGET/$name:$new_tag
   fi
 }
 
