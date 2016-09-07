@@ -123,63 +123,6 @@ resources:
     seed:
       versionName: latest
 
-  - name: api-server-repo
-    type: gitRepo
-    flags:
-      - shippable-server
-    integration: ric03uec-github
-    pointer:
-      sourceName: shippable/api
-      branch: server
-
-  - name: api-server-img
-    type: image
-    flags:
-      - shippable-server
-    integration: shipDH
-    pointer:
-      sourceName: "shipimg/api50"
-    seed:
-      versionName: latest
-
-  - name: www-server-repo
-    type: gitRepo
-    flags:
-      - shippable-server
-    integration: ric03uec-github
-    pointer:
-      sourceName: shippable/www
-      branch: server
-
-  - name: www-server-img
-    type: image
-    flags:
-      - shippable-server
-    integration: shipDH
-    pointer:
-      sourceName: "shipimg/www50"
-    seed:
-      versionName: latest
-
-  - name: micro-server-repo
-    type: gitRepo
-    flags:
-      - shippable-server
-    integration: ric03uec-github
-    pointer:
-      sourceName: shippable/micro
-      branch: server
-
-  - name: micro-server-img
-    type: image
-    flags:
-      - shippable-server
-    integration: shipDH
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
   - name: beta-api-scaler
     type: replicas
     version:
@@ -789,3 +732,248 @@ resources:
     type: version
     seed:
       versionName: "4.0.0"
+
+  ###############################
+  # begin Shippable Server resources
+  ###############################
+
+  - name: api-server-repo
+    type: gitRepo
+    flags:
+      - shippable-server
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/api
+      branch: server
+
+  - name: api-server-img
+    type: image
+    flags:
+      - shippable-server
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/api50"
+    seed:
+      versionName: latest
+
+  - name: www-server-repo
+    type: gitRepo
+    flags:
+      - shippable-server
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/www
+      branch: server
+
+  - name: www-server-img
+    type: image
+    flags:
+      - shippable-server
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/www50"
+    seed:
+      versionName: latest
+
+  - name: micro-server-repo
+    type: gitRepo
+    flags:
+      - shippable-server
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/micro
+      branch: server
+
+  - name: braintree-server-img
+    type: image
+    flags:
+      - shippable-server
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: certgen-server-img
+    type: image
+    flags:
+      - shippable-server
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: charon-server-img
+    type: image
+    flags:
+      - shippable-server
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: cron-server-img
+    type: image
+    flags:
+      - shippable-server
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: ec2-server-img
+    type: image
+    flags:
+      - shippable-server
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: email-server-img
+    type: image
+    flags:
+      - shippable-server
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: hipchat-server-img
+    type: image
+    flags:
+      - shippable-server
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: hubspotSync-server-img
+    type: image
+    flags:
+      - shippable-server
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: irc-server-img
+    type: image
+    flags:
+      - shippable-server
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: ini-server-img
+    type: image
+    flags:
+      - shippable-server
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: jobRequest-server-img
+    type: image
+    flags:
+      - shippable-server
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: jobTrigger-server-img
+    type: image
+    flags:
+      - shippable-server
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: marshaller-server-img
+    type: image
+    flags:
+      - shippable-server
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: nf-server-img
+    type: image
+    flags:
+      - shippable-server
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: rds-server-img
+    type: image
+    flags:
+      - shippable-server
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: slack-server-img
+    type: image
+    flags:
+      - shippable-server
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: stepExec-server-img
+    type: image
+    flags:
+      - shippable-server
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: sync-server-img
+    type: image
+    flags:
+      - shippable-server
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: timeTrigger-server-img
+    type: image
+    flags:
+      - shippable-server
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: versionTrigger-server-img
+    type: image
+    flags:
+      - shippable-server
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: webhook-server-img
+    type: image
+    flags:
+      - shippable-server
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
+  - name: shippable-server-ver
+    type: version
+    seed:
+      versionName: "4.10.0"
