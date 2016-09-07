@@ -737,6 +737,15 @@ resources:
   # begin Shippable Server resources
   ###############################
 
+  - name: beta-config-repo
+    type: gitRepo
+    flags:
+      - shippable-server
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/beta
+      branch: master
+
   - name: api-server-repo
     type: gitRepo
     flags:
