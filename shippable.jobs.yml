@@ -791,6 +791,8 @@ jobs:
     steps:
       - IN: shippable-server-ver
         switch: off
+      - IN: man-rds
+        switch: off
       - IN: man-nexec
         switch: off
       - IN: man-www-server
@@ -837,14 +839,6 @@ jobs:
         switch: off
       - IN: man-braintree-server
         switch: off
-      - IN: man-email-server
-        switch: off
-      - IN: man-email-server
-        switch: off
-      - IN: man-email-server
-        switch: off
-      - IN: man-email-server
-        switch: off
       - IN: trigger-server-release
       - TASK: managed
         bump: patch
@@ -858,10 +852,14 @@ jobs:
     flags:
       - shippable-server
     steps:
+      - IN: beta-config-repo
+        switch: off
       - IN: docker-creds
+        switch: off
       - IN: shippable-server-rel
+        switch: off
       - TASK:
-        - script: echo 'hello world'
+        - script: ./IN/beta-config-repo/gitRepo/pushRelease.sh
     on_success:
       - script: echo 'succeeded'
     on_failure:
