@@ -859,6 +859,7 @@ jobs:
       - IN: shippable-server-rel
         switch: off
       - TASK:
+        - script: sudo apt-get update
         - script: sudo apt-get install -y jq awscli
         - script: ./IN/beta-config-repo/gitRepo/pushRelease.sh
     on_success:
