@@ -737,6 +737,10 @@ resources:
   # begin Shippable Server resources
   ###############################
 
+  - name: shipbits-ecr
+    type: integration
+    integration: "shipbits-ecr-john"
+
   - name: beta-config-repo
     type: gitRepo
     flags:
