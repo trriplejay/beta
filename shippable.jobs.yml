@@ -854,10 +854,12 @@ jobs:
         switch: off
       - IN: docker-creds
         switch: off
+      - IN: shipbits-ecr
+        switch: off
       - IN: shippable-server-rel
         switch: off
       - TASK:
-        - script: sudo apt-get install -y jq
+        - script: sudo apt-get install -y jq awscli
         - script: ./IN/beta-config-repo/gitRepo/pushRelease.sh
     on_success:
       - script: echo 'succeeded'
