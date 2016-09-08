@@ -860,7 +860,7 @@ jobs:
         switch: off
       - TASK:
         - script: echo 'updating packages' && sudo apt-get update
-        - script: echo 'installing jq and awscli' && sudo apt-get install -y jq python3-botocore awscli
+        - script: echo 'installing jq and awscli' && sudo apt-get install -y -f jq awscli
         - script: aws --version
         - script: docker --version
         - script: ./IN/beta-config-repo/gitRepo/pushRelease.sh
