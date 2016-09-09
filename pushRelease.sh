@@ -30,7 +30,7 @@ configure_aws() {
   echo "Extracting ECR credentials"
   . $creds_path
   echo "Configuring aws cli with ECR credentials"
-  aws configure set aws_access_key_id $aws_access_key_id
+  aws configure set aws_access_key_id $awsAccessKeyId
   aws configure set aws_secret_access_key $awsSecretAccessKey
   aws configure set region $PUSH_REGION
   echo "Successfully configured aws cli credentials"
@@ -86,7 +86,7 @@ tag_and_push_images() {
     echo "no manifest path provided"
     return 1
   fi
-  
+
   manifest_path="$1"
   echo "executing aws setup"
   configure_aws
