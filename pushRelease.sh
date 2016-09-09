@@ -38,7 +38,8 @@ configure_aws() {
 
 ecr_login() {
   echo "logging in to Amazon ECR"
-  aws ecr get-login --region $PUSH_REGION
+  docker_login_cmd=$(aws ecr get-login --region $PUSH_REGION)
+  $docker_login_cmd > /dev/null 2>&1
   echo "Amazon ECR login complete"
 }
 
