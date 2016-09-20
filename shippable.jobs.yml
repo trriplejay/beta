@@ -795,6 +795,13 @@ jobs:
     steps:
       - IN: www-server-img
 
+  - name: man-runSh-server
+    type: manifest
+    flags:
+      - shippable-server
+    steps:
+      - IN: runSh-img
+
   ###########################################
   # package all server images into one release
   ###########################################
@@ -851,6 +858,8 @@ jobs:
       - IN: man-certgen-server
         switch: off
       - IN: man-braintree-server
+        switch: off
+      - IN: man-runSh-server
         switch: off
       - IN: trigger-server-release
       - TASK: managed
