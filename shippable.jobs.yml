@@ -41,6 +41,21 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
+  - name: build-runSh
+    type: runSh
+    steps:
+      - IN: runSh-repo
+      - IN: microbase-img
+      - IN: docker-creds
+      - TASK:
+        - script: sudo apt-get install -y jq
+        - script: ./IN/runSh-repo/gitRepo/build.sh
+      - OUT: runSh-img
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
   - name: build-rp
     type: runSh
     steps:
