@@ -470,7 +470,7 @@ resources:
     type: image
     integration: shipDH
     pointer:
-      sourceName: "shipimg/runsh50"
+      sourceName: "shipimg/runsh"
     seed:
       versionName: latest
 
