@@ -626,6 +626,7 @@ jobs:
       - OUT: ini-server-img
       - OUT: jobRequest-server-img
       - OUT: jobTrigger-server-img
+      - OUT: jSync-server-img
       - OUT: marshaller-server-img
       - OUT: nf-server-img
       - OUT: slack-server-img
@@ -724,6 +725,13 @@ jobs:
       - shippable-server
     steps:
       - IN: jobTrigger-server-img
+
+  - name: man-jSync-server
+    type: manifest
+    flags:
+      - shippable-server
+    steps:
+      - IN: jSync-server-img
 
   - name: man-marshaller-server
     type: manifest
@@ -860,6 +868,8 @@ jobs:
       - IN: man-braintree-server
         switch: off
       - IN: man-runSh-server
+        switch: off
+      - IN: man-jSync-server
         switch: off
       - IN: trigger-server-release
       - TASK: managed
