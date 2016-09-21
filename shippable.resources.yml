@@ -920,6 +920,16 @@ resources:
     seed:
       versionName: latest
 
+
+  - name: jSync-server-img
+    type: image
+    flags:
+      - shippable-server
+    pointer:
+      sourceName: "shipimg/micro50"
+    seed:
+      versionName: latest
+
   - name: marshaller-server-img
     type: image
     flags:
