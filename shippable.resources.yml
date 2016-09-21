@@ -928,7 +928,7 @@ resources:
     pointer:
       sourceName: "shipimg/micro50"
     seed:
-      versionName: latest
+      versionName: "jSync.server.8236"
 
   - name: marshaller-server-img
     type: image
