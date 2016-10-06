@@ -805,7 +805,7 @@ resources:
 
   - name: www-lat-img
     type: image
-    integration: shipbits-ecr
+    integration: shipbits-ecr-john
     pointer:
       sourceName: "374168611083.dkr.ecr.$PUSH_REGION.amazonaws.com/www"
     seed:
