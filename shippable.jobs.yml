@@ -198,6 +198,7 @@ jobs:
       - IN: www-server-repo
       - IN: microbase-img
       - IN: docker-creds
+      - IN: shipbits-ecr
       - TASK:
         - script: sudo apt-get install -y jq
         - script: ./IN/www-server-repo/gitRepo/build.sh
