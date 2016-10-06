@@ -36,6 +36,14 @@ resources:
     seed:
       versionName: latest
 
+  - name: mexec-def-img
+    type: image
+    integration: shipbits-ecr-john
+    pointer:
+      sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/mexec"
+    seed:
+      versionName: latest
+
   - name: microbase-repo
     type: gitRepo
     integration: ric03uec-github
