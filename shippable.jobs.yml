@@ -870,6 +870,32 @@ jobs:
       - IN: runSh-img
 
   ###########################################
+  # package all server images into one default manifest
+  ###########################################
+
+  - name: man-def-server
+    type: manifest
+    steps:
+      - IN: api-def-img
+      - IN: wwww-def-img
+      - IN: nexec-def-img
+      - IN: mexec-def-img
+      - IN: runsh-def-img
+      - IN: micro-def-img
+
+  ###########################################
+  # release alpha server from default manifest
+  ###########################################
+
+  - name: rel-alpha-server
+    type: release
+    steps:
+      - IN: alpha-server-ver
+      - IN: man-def-server
+      - TASK: managed
+        bump: patch
+
+  ###########################################
   # package all server images into one release
   ###########################################
 
