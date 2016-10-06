@@ -836,7 +836,6 @@ resources:
     seed:
       versionName: latest
 
-
   - name: braintree-server-img
     type: image
     flags:
