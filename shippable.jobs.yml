@@ -880,7 +880,7 @@ jobs:
       - IN: www-def-img
       - IN: nexec-def-img
       - IN: mexec-def-img
-      - IN: runsh-def-img
+      - IN: runSh-def-img
       - IN: micro-def-img
 
   ###########################################
