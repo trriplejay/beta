@@ -828,6 +828,15 @@ resources:
       sourceName: shippable/micro
       branch: server
 
+  - name: micro-def-img
+    type: image
+    integration: shipbits-ecr-john
+    pointer:
+      sourceName: "374168611083.dkr.ecr.$PUSH_REGION.amazonaws.com/micro"
+    seed:
+      versionName: latest
+
+
   - name: braintree-server-img
     type: image
     flags:
