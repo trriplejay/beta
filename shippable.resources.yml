@@ -803,7 +803,7 @@ resources:
     seed:
       versionName: latest
 
-  - name: www-lat-img
+  - name: www-def-img
     type: image
     integration: shipbits-ecr-john
     pointer:

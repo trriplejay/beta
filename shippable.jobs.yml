@@ -211,7 +211,7 @@ jobs:
         - script: docker --version
         - script: ./IN/www-server-repo/gitRepo/build.sh
       - OUT: www-server-img
-      - OUT: www-lat-img
+      - OUT: www-def-img
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
