@@ -108,6 +108,14 @@ resources:
     seed:
       versionName: latest
 
+  - name: nexec-def-img
+    type: image
+    integration: shipbits-ecr-john
+    pointer:
+      sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/nexec"
+    seed:
+      versionName: latest
+
   - name: api-repo
     type: gitRepo
     integration: ric03uec-github
@@ -478,7 +486,7 @@ resources:
     type: image
     integration: shipbits-ecr-john
     pointer:
-      sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/runSh"
+      sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/runsh"
     seed:
       versionName: latest
 
