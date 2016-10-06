@@ -803,6 +803,14 @@ resources:
     seed:
       versionName: latest
 
+  - name: www-lat-img
+    type: image
+    integration: shipbits-ecr
+    pointer:
+      sourceName: "374168611083.dkr.ecr.$PUSH_REGION.amazonaws.com/www"
+    seed:
+      versionName: latest
+
   - name: micro-server-repo
     type: gitRepo
     flags:
@@ -1015,3 +1023,8 @@ resources:
     type: version
     seed:
       versionName: "4.10.0"
+
+  ###############################
+  # begin Shippable Server resources
+  ###############################
+
