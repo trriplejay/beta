@@ -281,6 +281,7 @@ jobs:
         - script: aws --version
         - script: docker --version
         - script: ./IN/micro-repo/gitRepo/build.sh
+        - script: ./IN/micro-repo/gitRepo/buildOld.sh
       - OUT: acs-img
       - OUT: autod-img
       - OUT: barge-img
