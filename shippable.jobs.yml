@@ -877,7 +877,7 @@ jobs:
     type: manifest
     steps:
       - IN: api-def-img
-      - IN: wwww-def-img
+      - IN: www-def-img
       - IN: nexec-def-img
       - IN: mexec-def-img
       - IN: runsh-def-img
