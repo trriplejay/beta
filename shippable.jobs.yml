@@ -47,10 +47,20 @@ jobs:
       - IN: runSh-repo
       - IN: microbase-img
       - IN: docker-creds
+      - IN: shipbits-ecr
       - TASK:
-        - script: sudo apt-get install -y jq
+        - script: echo 'updating packages' && sudo apt-get update
+        - script: echo 'installing jq and unzip' && sudo apt-get install -y jq unzip
+        - script: echo 'installing awscli'
+        - script: curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+        - script: unzip awscli-bundle.zip
+        - script: sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+        - script: echo 'which aws?' && which aws || true
+        - script: aws --version
+        - script: docker --version
         - script: ./IN/runSh-repo/gitRepo/build.sh
       - OUT: runSh-img
+      - OUT: runSh-def-img
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:

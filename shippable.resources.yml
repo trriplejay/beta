@@ -474,6 +474,14 @@ resources:
     seed:
       versionName: latest
 
+  - name: runSh-def-img
+    type: image
+    integration: shipbits-ecr-john
+    pointer:
+      sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/runSh"
+    seed:
+      versionName: latest
+
   - name: beta-clust
     type: cluster
     integration: beta-ecs
