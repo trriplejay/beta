@@ -893,7 +893,7 @@ jobs:
       - IN: alpha-server-ver
       - IN: man-def-server
       - TASK: managed
-        bump: patch
+        bump: alpha
 
   ###########################################
   # package all server images into one release
