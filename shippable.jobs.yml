@@ -887,13 +887,13 @@ jobs:
   # release alpha server from default manifest
   ###########################################
 
-#  - name: rel-alpha-server
-#    type: release
-#    steps:
-#      - IN: alpha-server-ver
-#      - IN: man-def-server
-#      - TASK: managed
-#        bump: alpha
+  - name: rel-alpha-server
+    type: release
+    steps:
+      - IN: alpha-server-ver
+      - IN: man-def-server
+      - TASK: managed
+        bump: alpha
 
   ###########################################
   # package all server images into one release
