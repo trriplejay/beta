@@ -784,6 +784,14 @@ resources:
     seed:
       versionName: latest
 
+  - name: api-def-img
+    type: image
+    integration: shipbits-ecr-john
+    pointer:
+      sourceName: "374168611083.dkr.ecr.$PUSH_REGION.amazonaws.com/api"
+    seed:
+      versionName: latest
+
   - name: www-server-repo
     type: gitRepo
     flags:
