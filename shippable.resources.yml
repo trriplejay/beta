@@ -788,7 +788,7 @@ resources:
     type: image
     integration: shipbits-ecr-john
     pointer:
-      sourceName: "374168611083.dkr.ecr.$PUSH_REGION.amazonaws.com/api"
+      sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/api"
     seed:
       versionName: latest
 
@@ -815,7 +815,7 @@ resources:
     type: image
     integration: shipbits-ecr-john
     pointer:
-      sourceName: "374168611083.dkr.ecr.$PUSH_REGION.amazonaws.com/www"
+      sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/www"
     seed:
       versionName: latest
 
@@ -832,7 +832,7 @@ resources:
     type: image
     integration: shipbits-ecr-john
     pointer:
-      sourceName: "374168611083.dkr.ecr.$PUSH_REGION.amazonaws.com/micro"
+      sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/micro"
     seed:
       versionName: latest
 
