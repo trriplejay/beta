@@ -896,6 +896,33 @@ jobs:
         bump: alpha
 
   ###########################################
+  # push alpha release to special repo
+  ###########################################
+
+  - name: push-alpha
+    type: runSh
+    steps:
+      - IN: beta-config-repo
+        switch: off
+      - IN: shipbits-ecr
+      - IN: rel-alpha-server
+      - TASK:
+        - script: echo 'updating packages' && sudo apt-get update
+        - script: echo 'installing jq and unzip' && sudo apt-get install -y jq unzip
+        - script: echo 'installing awscli'
+        - script: curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+        - script: unzip awscli-bundle.zip
+        - script: sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+        - script: echo 'which aws?' && which aws || true
+        - script: aws --version
+        - script: docker --version
+        - script: ./IN/beta-config-repo/gitRepo/pushAlpha.sh
+    on_success:
+      - script: echo 'succeeded'
+    on_failure:
+      - script: echo 'failed'
+
+  ###########################################
   # package all server images into one release
   ###########################################
 
