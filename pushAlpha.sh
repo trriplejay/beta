@@ -89,25 +89,11 @@ __tag_and_push() {
 
   image=$1
   echo "processing image: $1"
-  # assumes image will be tagged
-  # as branch.build_number or service.branch.build_number
   full_name=$(echo $image | cut -d':' -f 1)
-  tag=$(echo $image | cut -d':' -f 2)
-  repo=$(echo $full_name | cut -d'/' -f 1)
-  name=$(echo $full_name | cut -d'/' -f 2)
-  svc_name=$(echo $tag | cut -d'.' -f 1)
-  third_column=$(echo $tag | cut -d'.' -f 3)
 
-  if [ -n "$third_column" ]; then
-    new_tag="${svc_name}.$VERSION"
-  else
-    new_tag=$VERSION
-  fi
-
-  echo "tagging image $full_name as $HUB_TARGET/$name:$new_tag"
-  sudo docker tag -f $full_name:$tag $HUB_TARGET/$name:$new_tag
-  echo "pushing image $HUB_TARGET/$name:$new_tag"
-  sudo docker push $HUB_TARGET/$name:$new_tag
+  echo "tag and push image $image as $full_name:$VERSION"
+  sudo docker tag -f $image $full_name:$VERSION
+  sudo docker push $full_name:$VERSION
 }
 
 main() {
