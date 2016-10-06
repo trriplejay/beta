@@ -1067,7 +1067,7 @@ resources:
   - name: alpha-server-ver
     type: version
     seed:
-      versionName: "4.11.0"
+      versionName: "4.11.2"
 
   ###############################
   # begin Shippable Server resources
