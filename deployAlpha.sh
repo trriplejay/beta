@@ -27,7 +27,7 @@ load_node_info() {
   echo "Loading node information"
   local node_info=$(cat IN/$ALPHA_SWARM/params)
   export $node_info
-  . $node_info
+  #. $node_info
 
   echo "########### USER: $ALPHA_SWARM_USER"
   echo "########### IP_ADDR: $ALPHA_SWARM_IP"
@@ -64,6 +64,11 @@ deploy() {
   echo "Successfully deployed release $VERSION to alpha env"
 }
 
+save_version() {
+  echo "Saving release version to state"
+
+}
+
 main() {
   eval $(ssh-agent -s)
   manifest_path="IN/$RES_RELEASE/release/manifests.json"
@@ -78,6 +83,7 @@ main() {
   echo "------------------"
   env
   deploy
+  save_version
 }
 
 main
