@@ -734,7 +734,7 @@ jobs:
   ###########################################
   # run infra provisioning
   ###########################################
-  - name: alpha-saas-prov
+  - name: infra-prov
     type: runSh
     steps:
       - IN: aws-alpha-pem
@@ -742,9 +742,8 @@ jobs:
       - IN: infra-repo
       - TASK:
         - script: sudo apt-get install -y jq
-        - script: IN/infra-repo/gitRepo/detectEnvChanges.sh
         - script: IN/infra-repo/gitRepo/restoreState.sh
-        - script: IN/infra-repo/gitRepo/alpha-saas/build.sh
+        - script: IN/infra-repo/gitRepo/detectEnvChanges.sh
     on_success:
       - script: /build/IN/infra-repo/gitRepo/archiveState.sh
     on_failure:
