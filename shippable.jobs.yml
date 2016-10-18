@@ -203,60 +203,6 @@ jobs:
       - TASK: managed
         deployMethod: upgrade
 
-  - name: build-api-server
-    type: runSh
-    flags:
-      - shippable-server
-    steps:
-      - IN: api-server-repo
-      - IN: microbase-img
-      - IN: docker-creds
-      - IN: shipbits-ecr
-      - TASK:
-        - script: echo 'updating packages' && sudo apt-get update
-        - script: echo 'installing jq and unzip' && sudo apt-get install -y jq unzip
-        - script: echo 'installing awscli'
-        - script: curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-        - script: unzip awscli-bundle.zip
-        - script: sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
-        - script: echo 'which aws?' && which aws || true
-        - script: aws --version
-        - script: docker --version
-        - script: ./IN/api-server-repo/gitRepo/build.sh
-      - OUT: api-server-img
-      - OUT: api-def-img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
-  - name: build-www-server
-    type: runSh
-    flags:
-      - shippable-server
-    steps:
-      - IN: www-server-repo
-      - IN: microbase-img
-      - IN: docker-creds
-      - IN: shipbits-ecr
-      - TASK:
-        - script: echo 'updating packages' && sudo apt-get update
-        - script: echo 'installing jq and unzip' && sudo apt-get install -y jq unzip
-        - script: echo 'installing awscli'
-        - script: curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-        - script: unzip awscli-bundle.zip
-        - script: sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
-        - script: echo 'which aws?' && which aws || true
-        - script: aws --version
-        - script: docker --version
-        - script: ./IN/www-server-repo/gitRepo/build.sh
-      - OUT: www-server-img
-      - OUT: www-def-img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
   - name: build-www
     type: runSh
     steps:
@@ -675,6 +621,58 @@ jobs:
         - script: ./IN/micro-server-repo/gitRepo/build.sh
         - script: ./IN/micro-server-repo/gitRepo/buildOld.sh
       - OUT: micro-def-img
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  - name: build-api-server
+    type: runSh
+    flags:
+      - shippable-server
+    steps:
+      - IN: api-server-repo
+      - IN: microbase-img
+      - IN: docker-creds
+      - IN: shipbits-ecr
+      - TASK:
+        - script: echo 'updating packages' && sudo apt-get update
+        - script: echo 'installing jq and unzip' && sudo apt-get install -y jq unzip
+        - script: echo 'installing awscli'
+        - script: curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+        - script: unzip awscli-bundle.zip
+        - script: sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+        - script: echo 'which aws?' && which aws || true
+        - script: aws --version
+        - script: docker --version
+        - script: ./IN/api-server-repo/gitRepo/build.sh
+      - OUT: api-def-img
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  - name: build-www-server
+    type: runSh
+    flags:
+      - shippable-server
+    steps:
+      - IN: www-server-repo
+      - IN: microbase-img
+      - IN: docker-creds
+      - IN: shipbits-ecr
+      - TASK:
+        - script: echo 'updating packages' && sudo apt-get update
+        - script: echo 'installing jq and unzip' && sudo apt-get install -y jq unzip
+        - script: echo 'installing awscli'
+        - script: curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+        - script: unzip awscli-bundle.zip
+        - script: sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+        - script: echo 'which aws?' && which aws || true
+        - script: aws --version
+        - script: docker --version
+        - script: ./IN/www-server-repo/gitRepo/build.sh
+      - OUT: www-def-img
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
