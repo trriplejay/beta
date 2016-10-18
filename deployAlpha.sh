@@ -2,6 +2,7 @@
 
 export VERSION=""
 export RES_RELEASE=rel-alpha-server
+export ALPHA_SWARM=aws-alpha-swarm
 
 parse_version() {
   release_path="IN/$RES_RELEASE/release/release.json"
@@ -14,6 +15,16 @@ parse_version() {
   VERSION=$(jq -r '.versionName' $release_path)
   echo "found version: $VERSION"
 }
+
+load_node_info() {
+  echo "=========================="
+  tree IN/
+
+  echo "=========================="
+  #local node_info_path="IN/$ALPHA_SWARM/release/release.json"
+
+}
+
 main() {
   manifest_path="IN/$RES_RELEASE/release/manifests.json"
   if [ ! -e $manifest_path ]; then
@@ -22,6 +33,7 @@ main() {
   fi
 
   parse_version
+  load_node_info
   echo "------------------"
   env
   ##############
