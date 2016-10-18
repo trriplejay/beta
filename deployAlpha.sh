@@ -5,6 +5,10 @@ export RES_RELEASE=rel-alpha-server
 #export ALPHA_INTEGRATION=aws-alpha-pem
 export ALPHA_INTEGRATION=shippable-alpha-pem
 export ALPHA_SWARM=aws-alpha-swarm
+export ALPHA_SWARM_BASTION_USER=""
+export ALPHA_SWARM_BASTION_IP=""
+export ALPHA_SWARM_USER=""
+export ALPHA_SWARM_IP=""
 
 parse_version() {
   release_path="IN/$RES_RELEASE/release/release.json"
@@ -19,17 +23,11 @@ parse_version() {
 }
 
 load_node_info() {
-  echo "=========================="
-  find IN/ -follow
-  echo "=========================="
-  cat IN/$ALPHA_SWARM/params
-
-  echo "___________________________"
-  sleep 5
-  
-  cat IN/$ALPHA_SWARM/version.json
-  #local node_info_path="IN/$ALPHA_SWARM/release/release.json"
-
+  echo "Loading node information"
+  . IN/$ALPHA_SWARM/params
+  echo "USER: $ALPHA_SWARM_USER"
+  echo "IP_ADDR: $ALPHA_SWARM_IP"
+  echo "successfully loaded node information"
 }
 
 configure_node_creds() {
@@ -44,7 +42,7 @@ configure_node_creds() {
   echo "configuring node credentials"
   echo "++++++++++++++++++++++++++++++++++"
   local write_key=$(echo $key | tee IN/$ALPHA_INTEGRATION/key.pem)
-  echo IN/$ALPHA_INTEGRATION/key.pem
+  cat IN/$ALPHA_INTEGRATION/key.pem
   local update_mode=$(chmod -cR 600 IN/$ALPHA_INTEGRATION/key.pem)
   #ssh-add IN/$ALPHA_INTEGRATION/key.pem
 }
