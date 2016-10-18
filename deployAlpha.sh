@@ -18,7 +18,7 @@ parse_version() {
 
 load_node_info() {
   echo "=========================="
-  tree IN/
+  find IN/ -follow
 
   echo "=========================="
   #local node_info_path="IN/$ALPHA_SWARM/release/release.json"
