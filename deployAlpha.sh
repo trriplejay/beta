@@ -80,6 +80,12 @@ save_version() {
   echo "Saving release version to state"
   echo "--------------------------------------"
 
+  local state_file_path=/build/state/alphaVersion.txt
+  echo $VERSION > $state_file_path
+
+  echo "Successfully dumped release version to state"
+  cat $state_file_path
+  echo "--------------------------------------"
 }
 
 main() {
