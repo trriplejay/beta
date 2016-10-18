@@ -740,6 +740,8 @@ jobs:
     steps:
       - IN: beta-config-repo
         switch: off
+      - IN: rel-alpha-server
+        switch: off
       - IN: push-alpha
       - IN: aws-alpha-pem
       - IN: aws-alpha-swarm
