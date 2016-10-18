@@ -78,6 +78,7 @@ deploy() {
 
 save_version() {
   echo "Saving release version to state"
+  echo "--------------------------------------"
 
 }
 
@@ -92,8 +93,6 @@ main() {
   parse_version
   load_node_info
   configure_node_creds
-  echo "------------------"
-  env
   deploy
   save_version
 }
