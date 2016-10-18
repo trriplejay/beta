@@ -1,6 +1,7 @@
 #!/bin/bash -e
 
 export VERSION=""
+export RES_RELEASE=rel-alpha-server
 
 parse_version() {
   release_path="IN/$RES_RELEASE/release/release.json"
