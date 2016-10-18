@@ -742,6 +742,7 @@ jobs:
       - IN: infra-repo
       - TASK:
         - script: sudo apt-get install -y jq
+        - script: IN/infra-repo/gitRepo/detectEnvChanges.sh
         - script: IN/infra-repo/gitRepo/restoreState.sh
         - script: IN/infra-repo/gitRepo/alpha-saas/build.sh
     on_success:
