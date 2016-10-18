@@ -40,14 +40,17 @@ configure_node_creds() {
   fi
 
   echo "Extracting node credentials"
+  echo "++++++++++++++++++++++++++++++++++"
+  cat $creds_path
   . $creds_path
   echo "configuring node credentials"
-  echo "++++++++++++++++++++++++++++++++++"
   local write_key=$(echo $key | tee IN/$ALPHA_INTEGRATION/key.pem)
   echo $write_key
+  echo '****************************'
+  cat $creds_path
   local update_mode=$(chmod -cR 600 IN/$ALPHA_INTEGRATION/key.pem)
   echo $update_mode
-  ssh-add IN/$ALPHA_INTEGRATION/key.pem
+  #ssh-add IN/$ALPHA_INTEGRATION/key.pem
 }
 
 deploy() {
