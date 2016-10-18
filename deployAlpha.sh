@@ -29,8 +29,8 @@ load_node_info() {
   export $node_info
   #. $node_info
 
-  echo "########### USER: $ALPHA_SWARM_USER"
-  echo "########### IP_ADDR: $ALPHA_SWARM_IP"
+  echo "########### SWARM USER: $ALPHA_SWARM_USER"
+  echo "########### SWARM IP_ADDR: $ALPHA_SWARM_IP"
   echo "########### BASTION USER: $ALPHA_BASTION_USER"
   echo "########### BASTION IP_ADDR: $ALPHA_BASTION_IP"
   echo "successfully loaded node information"
@@ -51,18 +51,27 @@ configure_node_creds() {
   chmod 600 $KEY_FILE_PATH
 
   ls -al $KEY_FILE_PATH
-  cat $KEY_FILE_PATH
-
+  echo "KEY file available at : $KEY_FILE_PATH"
   echo "Completed Extracting AWS PEM"
   echo "-----------------------------------"
 
   ssh-add $KEY_FILE_PATH
+  echo "SSH key added successfully"
+  echo "--------------------------------------"
 }
 
 deploy() {
   echo "Deploying the release $VERSION to alpha"
-  # - run command `ssh <user>@<bastion> ssh <user>@<swarm_node> \
-  #     cd base && sudo ./base.sh --release $VERSION
+  echo "--------------------------------------"
+
+
+  echo "SSH key file list"
+  ssh-add -L
+
+  #local deploy_command="cd ~/base && ./base.sh --release $VERSION"
+  local deploy_command="ls -al"
+  echo "Executing deploy command: $deploy_command"
+  ssh -A $ALPHA_BASTION_USER@$ALPHA_BASTION_IP ssh $ALPHA_SWARM_USER@$ALPHA_SWARM_IP $deploy_command
 
   echo "Successfully deployed release $VERSION to alpha env"
 }
