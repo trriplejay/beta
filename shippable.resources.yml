@@ -798,16 +798,6 @@ resources:
       sourceName: shippable/api
       branch: server
 
-  - name: api-server-img
-    type: image
-    flags:
-      - shippable-server
-    integration: shipDH
-    pointer:
-      sourceName: "shipimg/api50"
-    seed:
-      versionName: latest
-
   - name: api-def-img
     type: image
     integration: shipbits-ecr-john
@@ -824,16 +814,6 @@ resources:
     pointer:
       sourceName: shippable/www
       branch: server
-
-  - name: www-server-img
-    type: image
-    flags:
-      - shippable-server
-    integration: shipDH
-    pointer:
-      sourceName: "shipimg/www50"
-    seed:
-      versionName: latest
 
   - name: www-def-img
     type: image
@@ -860,205 +840,6 @@ resources:
     seed:
       versionName: latest
 
-  - name: braintree-server-img
-    type: image
-    flags:
-      - shippable-server
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
-  - name: certgen-server-img
-    type: image
-    flags:
-      - shippable-server
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
-  - name: charon-server-img
-    type: image
-    flags:
-      - shippable-server
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
-  - name: cron-server-img
-    type: image
-    flags:
-      - shippable-server
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
-  - name: ec2-server-img
-    type: image
-    flags:
-      - shippable-server
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
-  - name: email-server-img
-    type: image
-    flags:
-      - shippable-server
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
-  - name: hipchat-server-img
-    type: image
-    flags:
-      - shippable-server
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
-  - name: hubspotSync-server-img
-    type: image
-    flags:
-      - shippable-server
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
-  - name: irc-server-img
-    type: image
-    flags:
-      - shippable-server
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
-  - name: ini-server-img
-    type: image
-    flags:
-      - shippable-server
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
-  - name: jobRequest-server-img
-    type: image
-    flags:
-      - shippable-server
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
-  - name: jobTrigger-server-img
-    type: image
-    flags:
-      - shippable-server
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
-
-  - name: jSync-server-img
-    type: image
-    flags:
-      - shippable-server
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: "jSync.server.8236"
-
-  - name: marshaller-server-img
-    type: image
-    flags:
-      - shippable-server
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
-  - name: nf-server-img
-    type: image
-    flags:
-      - shippable-server
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
-  - name: rds-server-img
-    type: image
-    flags:
-      - shippable-server
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
-  - name: slack-server-img
-    type: image
-    flags:
-      - shippable-server
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
-  - name: stepExec-server-img
-    type: image
-    flags:
-      - shippable-server
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
-  - name: sync-server-img
-    type: image
-    flags:
-      - shippable-server
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
-  - name: timeTrigger-server-img
-    type: image
-    flags:
-      - shippable-server
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
-  - name: versionTrigger-server-img
-    type: image
-    flags:
-      - shippable-server
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
-  - name: webhook-server-img
-    type: image
-    flags:
-      - shippable-server
-    pointer:
-      sourceName: "shipimg/micro50"
-    seed:
-      versionName: latest
-
   - name: shippable-server-ver
     type: version
     seed:
@@ -1070,6 +851,6 @@ resources:
       versionName: "4.11.2"
 
   ###############################
-  # begin Shippable Server resources
+  # end Shippable Server resources
   ###############################
 
