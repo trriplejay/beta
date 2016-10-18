@@ -2,6 +2,7 @@
 
 export VERSION=""
 export RES_RELEASE=rel-alpha-server
+export ALPHA_INTEGRATION=aws-alpha-pem
 export ALPHA_SWARM=aws-alpha-swarm
 
 parse_version() {
@@ -19,8 +20,10 @@ parse_version() {
 load_node_info() {
   echo "=========================="
   find IN/ -follow
-
   echo "=========================="
+  cat IN/$ALPHA_SWARM/params
+  cat IN/$ALPHA_SWARM/version.json
+  cat IN/$ALPHA_INTEGRATION/integration.env
   #local node_info_path="IN/$ALPHA_SWARM/release/release.json"
 
 }
