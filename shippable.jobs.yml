@@ -732,6 +732,23 @@ jobs:
       - script: echo 'failed'
 
   ###########################################
+  # deploy alpha release to alpha environment
+  ###########################################
+
+  - name: deploy-alpha
+    type: runSh
+    steps:
+      - IN: push-alpha
+      - IN: aws-alpha-pem
+      - TASK:
+        - script: echo 'updating packages' && sudo apt-get update
+        - script: echo 'installing jq' && sudo apt-get install -y jq
+    on_success:
+      - script: echo 'succeeded'
+    on_failure:
+      - script: echo 'failed'
+
+  ###########################################
   # run infra provisioning
   ###########################################
   - name: alpha-saas-prov
