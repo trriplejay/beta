@@ -841,3 +841,28 @@ resources:
   # end Shippable Server resources
   ###############################
 
+  ###############################
+  # begin alpha rc infra
+  ###############################
+
+# PEM key for AWS demo account
+  - name: aws-alpha-pem
+    type: integration
+    integration: aws-alpha-pem
+
+# CREDS for AWS demo account
+  - name: aws-alpha-access
+    type: integration
+    integration: aws-alpha-access
+
+# REPO of AWS demo Infra
+  - name: infra-repo
+    type: gitRepo
+    integration: "avinci-gh"
+    pointer:
+      sourceName: "Shippable/infra"
+      branch: master
+
+  ###############################
+  # end alpha rc infra
+  ###############################

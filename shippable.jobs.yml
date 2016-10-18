@@ -730,3 +730,21 @@ jobs:
       - script: echo 'succeeded'
     on_failure:
       - script: echo 'failed'
+
+  ###########################################
+  # run infra provisioning
+  ###########################################
+  - name: alpha-saas-prov
+    type: runSh
+    steps:
+      - IN: aws-alpha-pem
+      - IN: aws-alpha-access
+      - IN: infra-repo
+      - TASK:
+        - script: sudo apt-get install -y jq
+        - script: IN/infra-repo/gitRepo/restoreState.sh
+        - script: IN/infra-repo/gitRepo/alpha-saas/build.sh
+    on_success:
+      - script: /build/IN/demo-infra-repo/gitRepo/archiveState.sh
+    on_failure:
+      - script: /build/IN/demo-infra-repo/gitRepo/archiveState.sh
