@@ -23,12 +23,27 @@ load_node_info() {
   echo "=========================="
   cat IN/$ALPHA_SWARM/params
   cat IN/$ALPHA_SWARM/version.json
-  cat IN/$ALPHA_INTEGRATION/integration.env
   #local node_info_path="IN/$ALPHA_SWARM/release/release.json"
 
 }
 
+configure_node_creds() {
+  local creds_path="IN/$ALPHA_INTEGRATION/integration.env"
+  if [ ! -f $creds_path ]; then
+    echo "No credentials file found at location: $creds_path"
+    return 1
+  fi
+
+  echo "Extracting node credentials"
+  . $creds_path
+  echo "configuring node credentials"
+  local write_key=$(echo $key | tee IN/$ALPHA_INTEGRATION/key.pem)
+  local update_mode=$(chmod -cR 600 IN/$ALPHA_INTEGRATION/key.pem)
+  ssh-add IN/$ALPHA_INTEGRATION/key.pem
+}
+
 main() {
+  eval $(ssh-agent)
   manifest_path="IN/$RES_RELEASE/release/manifests.json"
   if [ ! -e $manifest_path ]; then
     echo "No manifests.json file found at location: $manifest_path"
@@ -39,6 +54,7 @@ main() {
   load_node_info
   echo "------------------"
   env
+  configure_node_creds
   ##############
   #TODO: 
   # - get the alpha bastion node ip from env
