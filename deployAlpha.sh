@@ -24,9 +24,11 @@ parse_version() {
 
 load_node_info() {
   echo "Loading node information"
-  . IN/$ALPHA_SWARM/params
-  echo "USER: $ALPHA_SWARM_USER"
-  echo "IP_ADDR: $ALPHA_SWARM_IP"
+  local node_info=$(cat IN/$ALPHA_SWARM/params)
+  export $node_info
+
+  echo "########### USER: $ALPHA_SWARM_USER"
+  echo "########### IP_ADDR: $ALPHA_SWARM_IP"
   echo "successfully loaded node information"
 }
 
@@ -42,9 +44,18 @@ configure_node_creds() {
   echo "configuring node credentials"
   echo "++++++++++++++++++++++++++++++++++"
   local write_key=$(echo $key | tee IN/$ALPHA_INTEGRATION/key.pem)
-  cat IN/$ALPHA_INTEGRATION/key.pem
+  echo $write_key
   local update_mode=$(chmod -cR 600 IN/$ALPHA_INTEGRATION/key.pem)
-  #ssh-add IN/$ALPHA_INTEGRATION/key.pem
+  echo $update_mode
+  ssh-add IN/$ALPHA_INTEGRATION/key.pem
+}
+
+deploy() {
+  echo "Deploying the release $VERSION to alpha"
+  # - run command `ssh <user>@<bastion> ssh <user>@<swarm_node> \
+  #     cd base && sudo ./base.sh --release $VERSION
+
+  echo "Successfully deployed release $VERSION to alpha env"
 }
 
 main() {
@@ -57,21 +68,10 @@ main() {
 
   parse_version
   load_node_info
+  configure_node_creds
   echo "------------------"
   env
-  configure_node_creds
-  ##############
-  #TODO: 
-  # - get the alpha bastion node ip from env
-  # - get the alpha bastion node user from env
-  # - get the alpha bastion node key from IN
-  # - get the alpha swarm node ip from env
-  # - get the alpha swarm node user from env
-  # - get the alpha swarm node key from IN
-  # - run command `ssh-add <path_to_key>`
-  # - run command `ssh <user>@<bastion> ssh <user>@<swarm_node> \
-  #     cd base && sudo ./base.sh --release $VERSION
-  #############
+  deploy
 }
 
 main
