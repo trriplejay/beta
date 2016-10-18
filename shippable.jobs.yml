@@ -745,6 +745,6 @@ jobs:
         - script: IN/infra-repo/gitRepo/restoreState.sh
         - script: IN/infra-repo/gitRepo/alpha-saas/build.sh
     on_success:
-      - script: /build/IN/demo-infra-repo/gitRepo/archiveState.sh
+      - script: /build/IN/infra-repo/gitRepo/archiveState.sh
     on_failure:
-      - script: /build/IN/demo-infra-repo/gitRepo/archiveState.sh
+      - script: /build/IN/infra-repo/gitRepo/archiveState.sh
