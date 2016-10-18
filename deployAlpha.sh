@@ -50,6 +50,9 @@ configure_node_creds() {
     | jq -r '.key' > $KEY_FILE_PATH
   chmod 600 $KEY_FILE_PATH
 
+  ls -al $KEY_FILE_PATH
+  cat $KEY_FILE_PATH
+
   echo "Completed Extracting AWS PEM"
   echo "-----------------------------------"
 
