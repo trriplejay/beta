@@ -78,7 +78,14 @@ deploy() {
 
 save_version() {
   echo "Saving release version to state"
+  echo "--------------------------------------"
 
+  local state_file_path=/build/state/alphaVersion.txt
+  echo $VERSION > $state_file_path
+
+  echo "Successfully dumped release version to state"
+  cat $state_file_path
+  echo "--------------------------------------"
 }
 
 main() {
@@ -92,8 +99,6 @@ main() {
   parse_version
   load_node_info
   configure_node_creds
-  echo "------------------"
-  env
   deploy
   save_version
 }
