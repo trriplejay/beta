@@ -739,6 +739,8 @@ jobs:
     steps:
       - IN: aws-alpha-pem
       - IN: aws-alpha-access
+      - IN: aws-rc-pem
+      - IN: aws-rc-access
       - IN: infra-repo
       - TASK:
         - script: sudo apt-get install -y jq

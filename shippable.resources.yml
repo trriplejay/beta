@@ -863,6 +863,16 @@ resources:
       sourceName: "Shippable/infra"
       branch: master
 
+# PEM key for AWS demo account
+  - name: aws-rc-pem
+    type: integration
+    integration: aws-rc-pem
+
+# CREDS for AWS demo account
+  - name: aws-rc-access
+    type: integration
+    integration: aws-rc-access
+
   ###############################
   # end alpha rc infra
   ###############################
