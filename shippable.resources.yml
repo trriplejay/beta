@@ -881,11 +881,6 @@ resources:
   # begin alpha resources
   ###############################
 
-# PEM key for AWS alpha
-  - name: shippable-alpha-pem
-    type: integration
-    integration: shippable-alpha-pem
-
 # Swarm node info for alpha
   - name: aws-alpha-swarm
     type: params
