@@ -743,7 +743,7 @@ jobs:
       - IN: rel-alpha-server
         switch: off
       - IN: push-alpha
-      - IN: shippable-alpha-pem
+      - IN: aws-alpha-pem
       - IN: aws-alpha-swarm
       - TASK:
         - script: echo 'updating packages' && sudo apt-get update

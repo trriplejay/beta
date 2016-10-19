@@ -881,17 +881,12 @@ resources:
   # begin alpha resources
   ###############################
 
-# PEM key for AWS alpha
-  - name: shippable-alpha-pem
-    type: integration
-    integration: shippable-alpha-pem
-
 # Swarm node info for alpha
   - name: aws-alpha-swarm
     type: params
     version:
       params:
-        secure: obkaVUUE3wPCcEvHuCckZ2ZrudDzyHXByx/CYcDc3AVhHSSluhMWJwc7I/bQsHozbvzX3Ms6J5yxmAQ0P+bxoAjIHfDnc7KgCuuyUfPK7/4Co3OEN0xs4okrnp4qx++w8MADXyrM1RSsMYkVJW8xLMG2ytWM6wfM/bSXG2Vpqp9uLaqVBWxkEVWAvAmqH43ipMpZft3pB+S0pbN+A18Ik+YUUCPsAqsfDA1AlehM1/0Egc61fwG5rE/zZZXV4zzQ4Z4uW2/9cEFYomA3RmdpYgLU7Op2G5cPak/eiCKeVaXOWmknMLNbmbOhzTO8hlI4bGBKd0MPDow7DfF/z2HzRQ==
+        secure: J52GJxwB80nQ2pqwT1ykmVA/jYveKS/cAHHMYD4tvDJTuHD7LiVxtGNYoShPSdHJmonOLtXEPDrw/ATL5q1o0w62Y1C2Yb5P+wrdUlH5+vBNy46UvGAN2ou6IQ9K79jjJe5b9jaF6OHXooFblAsPwO/gcJz38EL4AG4iyMQYMtgYkbVp00bR9Jd27e8wT0QtQElrJb86DT9uV1rKU40rKYCD7GOLH9o6OHkNY5RQfrUggbmGGXs3yvbuxZ0WWRaiEYZd+s9169EzzS2RjordPMckxELiIpiaeWeYciqlnKmMADhg+nKoewAZPYVlIRSZYTmNscGW8KP7nK5VjtuNfA==
 
   ###############################
   # end alpha resources

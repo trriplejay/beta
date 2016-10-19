@@ -3,7 +3,7 @@
 export VERSION=""
 export RES_RELEASE=rel-alpha-server
 #export ALPHA_INTEGRATION=aws-alpha-pem
-export ALPHA_INTEGRATION=shippable-alpha-pem
+export ALPHA_INTEGRATION=aws-alpha-pem
 export ALPHA_SWARM=aws-alpha-swarm
 export ALPHA_BASTION_USER=""
 export ALPHA_BASTION_IP=""
