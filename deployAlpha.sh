@@ -70,13 +70,13 @@ deploy() {
 
   local inspect_command="ip addr"
   echo "Executing inspect command: $inspect_command"
-  ssh -A $ALPHA_BASTION_USER@$ALPHA_BASTION_IP ssh $ALPHA_SWARM_USER@$ALPHA_SWARM_IP $inspect_command
+  ssh -A $ALPHA_BASTION_USER@$ALPHA_BASTION_IP ssh $ALPHA_SWARM_USER@$ALPHA_SWARM_IP "$inspect_command"
   echo "-------------------------------------="
 
   #local deploy_command="ls -al"
   local deploy_command="cd /home/ubuntu/base && sudo ./base.sh --release $VERSION"
   echo "Executing deploy command: $deploy_command"
-  ssh -A $ALPHA_BASTION_USER@$ALPHA_BASTION_IP ssh $ALPHA_SWARM_USER@$ALPHA_SWARM_IP $deploy_command
+  ssh -A $ALPHA_BASTION_USER@$ALPHA_BASTION_IP ssh $ALPHA_SWARM_USER@$ALPHA_SWARM_IP "$deploy_command"
   echo "-------------------------------------="
 
   echo "Successfully deployed release $VERSION to alpha env"
