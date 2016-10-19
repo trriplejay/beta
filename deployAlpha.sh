@@ -68,8 +68,8 @@ deploy() {
   echo "SSH key file list"
   ssh-add -L
 
-  #local deploy_command="cd ~/base && ./base.sh --release $VERSION"
-  local deploy_command="ls -al"
+  #local deploy_command="ls -al"
+  local deploy_command="cd ~/base && sudo ./base.sh --release $VERSION"
   echo "Executing deploy command: $deploy_command"
   ssh -A $ALPHA_BASTION_USER@$ALPHA_BASTION_IP ssh $ALPHA_SWARM_USER@$ALPHA_SWARM_IP $deploy_command
 
