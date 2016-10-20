@@ -841,6 +841,11 @@ resources:
     seed:
       versionName: "4.11.3"
 
+  - name: rc-server-ver
+    type: version
+    seed:
+      versionName: "4.11.3"
+
   ###############################
   # end Shippable Server resources
   ###############################
