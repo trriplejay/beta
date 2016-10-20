@@ -810,7 +810,7 @@ jobs:
       - IN: rel-rc-server
         switch: off
       - IN: push-rc
-      - IN: aws-alpha-pem
+      - IN: aws-rc-pem
       - IN: aws-rc-swarm
       - TASK:
         - script: echo 'updating packages' && sudo apt-get update
