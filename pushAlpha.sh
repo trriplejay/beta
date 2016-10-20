@@ -108,7 +108,6 @@ dockerhub_login() {
   echo "----------------------------------------------"
 
   local creds_path="IN/$RES_DOCKERHUB_INTEGRATION/integration.json"
-  cat $creds_path
 
   find -L "IN/$RES_DOCKERHUB_INTEGRATION"
   local username=$(cat $creds_path \
