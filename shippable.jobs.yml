@@ -714,6 +714,7 @@ jobs:
       - IN: beta-config-repo
         switch: off
       - IN: shipbits-ecr
+      - IN: shipimg-dockerhub
       - IN: rel-alpha-server
       - TASK:
         - script: echo 'updating packages' && sudo apt-get update

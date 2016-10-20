@@ -5,6 +5,7 @@ export HUB_REGION=us-east-1
 export HUB_TARGET=374168611083.dkr.ecr.$HUB_REGION.amazonaws.com
 export RES_RELEASE=rel-alpha-server
 export RES_ECR_INTEGRATION=shipbits-ecr
+export RES_DOCKERHUB_INTEGRATION=shipimg-dockerhub
 
 parse_version() {
   release_path="IN/$RES_RELEASE/release/release.json"
@@ -65,23 +66,6 @@ __pull_image() {
   sudo docker pull $image
 }
 
-tag_and_push_images() {
-  if [[ -z "$1" ]]; then
-    echo "no manifest path provided"
-    return 1
-  fi
-
-  manifest_path="$1"
-  echo "executing aws setup"
-
-  echo "pushing release manifest images"
-  jq -r '.[] | .images | .[] | .image + ":" + .tag' $manifest_path |\
-  while read image
-  do
-    __tag_and_push $image
-  done
-}
-
 __tag_and_push() {
   if [[ -z "$1" ]]; then
     return 0
@@ -96,6 +80,73 @@ __tag_and_push() {
   sudo docker push $full_name:$VERSION
 }
 
+tag_and_push_images_ecr() {
+  echo "Pushing images to ECR"
+  echo "----------------------------------------------"
+  if [[ -z "$1" ]]; then
+    echo "no manifest path provided"
+    return 1
+  fi
+
+  manifest_path="$1"
+  echo "executing aws setup"
+
+  echo "pushing release manifest images"
+  jq -r '.[] | .images | .[] | .image + ":" + .tag' $manifest_path |\
+  while read image
+  do
+    #TODO: not push if its mexec or runsh
+    if [[ $image == *"mexec"* ]] || [[ $image == *"runsh"* ]]; then
+      echo "Not pushing to ECR : $image"
+    else
+      __tag_and_push $image
+    fi
+  done
+}
+
+dockerhub_login() {
+  echo "Logging in to Dockerhub"
+  echo "----------------------------------------------"
+
+  local creds_path="IN/$RES_DOCKERHUB_INTEGRATION/integration.env"
+  cat $creds_path
+
+  find -L "IN/$RES_DOCKERHUB_INTEGRATION"
+  local login_username=test
+  local login_pass=test
+  local login_email=test
+  echo "######### LOGIN: $login_username"
+  echo "######### EMAIL: $login_email"
+  #sudo docker login -u $login_username -p $login_pass -e $login_email
+}
+
+tag_and_push_images_dockerhub() {
+  echo "Pushing images to Dockerhub"
+  echo "----------------------------------------------"
+
+  if [[ -z "$1" ]]; then
+    echo "no manifest path provided"
+    return 1
+  fi
+
+  manifest_path="$1"
+  echo "executing aws setup"
+
+  echo "pushing release manifest images"
+  jq -r '.[] | .images | .[] | .image + ":" + .tag' $manifest_path |\
+  while read image
+  do
+    #TODO: push only if its runshsh or mexec
+    __tag_and_push $image
+    if [[ $image == *"mexec"* ]] || [[ $image == *"runsh"* ]]; then
+      __tag_and_push $image
+    else
+      echo "Not pushing to DockerHub : $image"
+    fi
+  done
+
+}
+
 main() {
   manifest_path="IN/$RES_RELEASE/release/manifests.json"
   if [ ! -e $manifest_path ]; then
@@ -107,7 +158,9 @@ main() {
   configure_aws
   ecr_login
   pull_images $manifest_path
-  tag_and_push_images $manifest_path
+  tag_and_push_images_ecr $manifest_path
+  dockerhub_login
+  tag_and_push_images_dockerhub $manifest_path
 }
 
 main

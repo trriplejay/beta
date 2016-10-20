@@ -772,6 +772,10 @@ resources:
     type: integration
     integration: "shipbits-ecr-john"
 
+  - name: shipimg-dockerhub
+    type: integration
+    integration: "shipimg-dockerhub-ric03uec"
+
   - name: beta-config-repo
     type: gitRepo
     flags:
