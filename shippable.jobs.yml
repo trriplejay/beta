@@ -792,7 +792,7 @@ jobs:
         - script: echo 'which aws?' && which aws || true
         - script: aws --version
         - script: docker --version
-        - script: ./IN/beta-config-repo/gitRepo/pushAlpha.sh
+        - script: ./IN/beta-config-repo/gitRepo/pushRc.sh
     on_success:
       - script: echo 'succeeded'
     on_failure:
@@ -815,7 +815,7 @@ jobs:
       - TASK:
         - script: echo 'updating packages' && sudo apt-get update
         - script: echo 'installing jq' && sudo apt-get install -y jq
-        - script: ./IN/beta-config-repo/gitRepo/deployAlpha.sh
+        - script: ./IN/beta-config-repo/gitRepo/deployRc.sh
     on_success:
       - script: echo 'succeeded'
     on_failure:
