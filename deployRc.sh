@@ -2,7 +2,7 @@
 
 export VERSION=""
 export RES_RELEASE=rel-rc-server
-export RC_INTEGRATION=aws-alpha-pem
+export RC_INTEGRATION=aws-rc-pem
 export RC_SWARM=aws-rc-swarm
 export RC_BASTION_USER=""
 export RC_BASTION_IP=""
