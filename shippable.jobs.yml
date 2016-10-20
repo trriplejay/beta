@@ -121,6 +121,7 @@ jobs:
           - manifest: man-rds  # manifest that contains image to connect to
             image: rdsbase-img # img to connect to inside the above manifest
             port: 6379         # containerPort to connect to
+      - IN: zero-replicas
       - TASK: managed
         deployMethod: upgrade
 
@@ -161,6 +162,7 @@ jobs:
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
+      - IN: zero-replicas
 
   - name: build-api
     type: runSh
@@ -187,7 +189,8 @@ jobs:
     type: deploy
     steps:
       - IN: man-api
-      - IN: beta-api-scaler
+    #  - IN: beta-api-scaler
+      - IN: zero-replicas
       - IN: beta-bitbuc-params
       - IN: beta-braintree-prms
       - IN: beta-db-prms
@@ -236,6 +239,7 @@ jobs:
           - manifest: man-www
             image: www-img
             port: 443
+      - IN: zero-replicas
       - TASK: managed
         deployMethod: upgrade
 
@@ -331,6 +335,7 @@ jobs:
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
+      - IN: zero-replicas
 
   - name: man-barge
     type: manifest
@@ -394,6 +399,7 @@ jobs:
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
+      - IN: zero-replicas
 
   - name: man-charon
     type: manifest
@@ -452,6 +458,7 @@ jobs:
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
+      - IN: zero-replicas
 
   - name: man-sync
     type: manifest
@@ -517,6 +524,7 @@ jobs:
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
+      - IN: zero-replicas
 
   - name: man-ini
     type: manifest
@@ -538,6 +546,7 @@ jobs:
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
+      - IN: zero-replicas
 
   - name: man-isync
     type: manifest
@@ -566,6 +575,7 @@ jobs:
       - IN: beta-docOpts
       - IN: beta-prm
       - IN: beta-clust
+      - IN: zero-replicas
 
   - name: shippable-rel
     type: release
