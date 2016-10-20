@@ -777,6 +777,8 @@ jobs:
     steps:
       - IN: beta-config-repo
         switch: off
+      - IN: deploy-alpha
+        switch: off
       - IN: shipbits-ecr
       - IN: shipimg-dockerhub
       - IN: rel-rc-server
