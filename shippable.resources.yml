@@ -144,6 +144,11 @@ resources:
     version:
       count: 2
 
+  - name: zero-replicas
+    type: replicas
+    version:
+      count: 0
+
   - name: beta-api-docOpts
     type: dockerOptions
     version:
