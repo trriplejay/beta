@@ -2,7 +2,7 @@
 
 export VERSION=""
 export HUB_REGION=us-east-1
-export HUB_TARGET=374168611083.dkr.ecr.$HUB_REGION.amazonaws.com
+export DOCKERHUB_TARGET=shipimg
 export RES_RELEASE=rel-alpha-server
 export RES_ECR_INTEGRATION=shipbits-ecr
 export RES_DOCKERHUB_INTEGRATION=shipimg-dockerhub
@@ -66,7 +66,7 @@ __pull_image() {
   sudo docker pull $image
 }
 
-__tag_and_push() {
+__tag_and_push_ecr() {
   if [[ -z "$1" ]]; then
     return 0
   fi
@@ -91,15 +91,14 @@ tag_and_push_images_ecr() {
   manifest_path="$1"
   echo "executing aws setup"
 
-  echo "pushing release manifest images"
+  echo "pushing release manifest images to ECR"
   jq -r '.[] | .images | .[] | .image + ":" + .tag' $manifest_path |\
   while read image
   do
-    #TODO: not push if its mexec or runsh
     if [[ $image == *"mexec"* ]] || [[ $image == *"runsh"* ]]; then
       echo "Not pushing to ECR : $image"
     else
-      __tag_and_push $image
+      __tag_and_push_ecr $image
     fi
   done
 }
@@ -108,16 +107,35 @@ dockerhub_login() {
   echo "Logging in to Dockerhub"
   echo "----------------------------------------------"
 
-  local creds_path="IN/$RES_DOCKERHUB_INTEGRATION/integration.env"
+  local creds_path="IN/$RES_DOCKERHUB_INTEGRATION/integration.json"
   cat $creds_path
 
   find -L "IN/$RES_DOCKERHUB_INTEGRATION"
-  local login_username=test
-  local login_pass=test
-  local login_email=test
-  echo "######### LOGIN: $login_username"
-  echo "######### EMAIL: $login_email"
-  #sudo docker login -u $login_username -p $login_pass -e $login_email
+  local username=$(cat $creds_path \
+    | jq -r '.username')
+  local password=$(cat $creds_path \
+    | jq -r '.password')
+  local email=$(cat $creds_path \
+    | jq -r '.email')
+  echo "######### LOGIN: $username"
+  echo "######### EMAIL: $email"
+  sudo docker login -u $username -p $password -e $email
+}
+
+__tag_and_push_dockerhub() {
+  if [[ -z "$1" ]]; then
+    return 0
+  fi
+
+  image=$1
+  echo "processing image: $1"
+  full_name=$(echo $image | cut -d ':' -f 1)
+  repo_name=$(echo $full_name | cut -d '/' -f 2)
+
+  local push_name="$DOCKERHUB_TARGET/$repo_name:$VERSION"
+  echo "tag and push image $image as $push_name"
+  sudo docker tag -f $image $push_name
+  sudo docker push $push_name
 }
 
 tag_and_push_images_dockerhub() {
@@ -130,16 +148,13 @@ tag_and_push_images_dockerhub() {
   fi
 
   manifest_path="$1"
-  echo "executing aws setup"
 
-  echo "pushing release manifest images"
+  echo "pushing release manifest images to dockerhub"
   jq -r '.[] | .images | .[] | .image + ":" + .tag' $manifest_path |\
   while read image
   do
-    #TODO: push only if its runshsh or mexec
-    __tag_and_push $image
     if [[ $image == *"mexec"* ]] || [[ $image == *"runsh"* ]]; then
-      __tag_and_push $image
+      __tag_and_push_dockerhub $image
     else
       echo "Not pushing to DockerHub : $image"
     fi
