@@ -811,7 +811,7 @@ jobs:
         switch: off
       - IN: push-rc
       - IN: aws-alpha-pem
-      - IN: aws-alpha-swarm
+      - IN: aws-rc-swarm
       - TASK:
         - script: echo 'updating packages' && sudo apt-get update
         - script: echo 'installing jq' && sudo apt-get install -y jq

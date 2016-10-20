@@ -900,3 +900,18 @@ resources:
   ###############################
   # end alpha resources
   ###############################
+
+  ###############################
+  # begin RC resources
+  ###############################
+
+# Swarm node info for alpha
+  - name: aws-rc-swarm
+    type: params
+    version:
+      params:
+        secure: vTgZvTUJmTdCpAp0DAUbmqP/rlh1VVV2K8X4BgR8ZsoKM8sT7e4vj5R7dWeisOfFwsQLzuUPprXp7z8pxFNcPKkifwb6bXurNjwJyuf2gTkM43VZ9tzGRUlVgUBoNbtcTXbsVFvXXmJWzWny6Q7sLwJrXeRX4e9tz58ez28C8xLyJtss8WaaFazC6xq+5YgWpuBdlRZbNCB+DZKJcTRSjdV+ELik9UqUtv1wYp7tZYOp7IAyhn+cWd5OYfYoD0+RTC8niOPZy1RLGtxm+nSKKQfuH78ecf53uubQiG9JnVRBxqz9Zvi25WpTSVp7qDv5RdyX9fDNAgkqIy9nRvv4aQ==
+
+  ###############################
+  # end RC resources
+  ###############################
