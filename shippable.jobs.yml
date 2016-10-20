@@ -756,6 +756,47 @@ jobs:
       - script: echo 'failed'
 
   ###########################################
+  # release rc server from default manifest
+  ###########################################
+
+  - name: rel-rc-server
+    type: release
+    steps:
+      - IN: rc-server-ver
+      - IN: man-def-server
+        switch: off
+      - TASK: managed
+        bump: rc
+
+  ###########################################
+  # push rc release to special repo
+  ###########################################
+
+  - name: push-rc
+    type: runSh
+    steps:
+      - IN: beta-config-repo
+        switch: off
+      - IN: shipbits-ecr
+      - IN: shipimg-dockerhub
+      - IN: rel-rc-server
+      - TASK:
+        - script: echo 'updating packages' && sudo apt-get update
+        - script: echo 'installing jq and unzip' && sudo apt-get install -y jq unzip
+        - script: echo 'installing awscli'
+        - script: curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+        - script: unzip awscli-bundle.zip
+        - script: sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+        - script: echo 'which aws?' && which aws || true
+        - script: aws --version
+        - script: docker --version
+        - script: ./IN/beta-config-repo/gitRepo/pushAlpha.sh
+    on_success:
+      - script: echo 'succeeded'
+    on_failure:
+      - script: echo 'failed'
+
+  ###########################################
   # run infra provisioning
   ###########################################
   - name: infra-prov
