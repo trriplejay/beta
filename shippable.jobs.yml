@@ -842,14 +842,14 @@ jobs:
       - TASK: managed
         bump: alpha
 
-  - name: rel-qhode-alpha
+  - name: rel-qhode-rc
     type: release
     steps:
       - IN: qhode-rc-ver
       - IN: man-def-server
         switch: off
       - TASK: managed
-        bump: alpha
+        bump: rc
 
   ###############################
   # end Shippable-Server(Qhode) pipeline
