@@ -831,6 +831,30 @@ jobs:
     on_failure:
       - script: echo 'failed'
 
+  ###############################
+  # begin Shippable-Server(Qhode) pipeline
+  ###############################
+  - name: rel-qhode-alpha
+    type: release
+    steps:
+      - IN: qhode-alpha-ver
+      - IN: man-def-server
+      - TASK: managed
+        bump: alpha
+
+  - name: rel-qhode-alpha
+    type: release
+    steps:
+      - IN: qhode-rc-ver
+      - IN: man-def-server
+        switch: off
+      - TASK: managed
+        bump: alpha
+
+  ###############################
+  # end Shippable-Server(Qhode) pipeline
+  ###############################
+
   ###########################################
   # run infra provisioning
   ###########################################
