@@ -920,3 +920,20 @@ resources:
   ###############################
   # end RC resources
   ###############################
+
+  ###############################
+  # begin Shippable-Server(Qhode) pipeline resources
+  ###############################
+  - name: qhode-alpha-ver
+    type: version
+    seed:
+      versionName: "4.11.3"
+
+  - name: qhode-rc-ver
+    type: version
+    seed:
+      versionName: "4.11.3"
+
+  ###############################
+  # end Shippable-Server pipeline resources
+  ###############################
