@@ -834,6 +834,7 @@ jobs:
   ###############################
   # begin Shippable-Server(Qhode) pipeline
   ###############################
+  # deploy to qhode-alpha-environment
   - name: deploy-qhode-alpha
     type: runSh
     steps:
@@ -848,6 +849,26 @@ jobs:
         - script: echo 'updating packages' && sudo apt-get update
         - script: echo 'installing jq' && sudo apt-get install -y jq
         - script: ./IN/beta-config-repo/gitRepo/deployQhodeAlpha.sh
+    on_success:
+      - script: echo 'succeeded'
+    on_failure:
+      - script: echo 'failed'
+
+  # deploy to qhode-rc-environment
+  - name: deploy-qhode-rc
+    type: runSh
+    steps:
+      - IN: beta-config-repo
+        switch: off
+      - IN: rel-rc-server
+        switch: off
+      - IN: push-rc
+      - IN: aws-rc-pem
+      - IN: qhode-rc-swarm
+      - TASK:
+        - script: echo 'updating packages' && sudo apt-get update
+        - script: echo 'installing jq' && sudo apt-get install -y jq
+        - script: ./IN/beta-config-repo/gitRepo/deployQhodeRc.sh
     on_success:
       - script: echo 'succeeded'
     on_failure:
