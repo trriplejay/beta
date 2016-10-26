@@ -891,6 +891,27 @@ resources:
   # end alpha rc infra
   ###############################
 
+
+  ###############################
+  # begin prod infra resources
+  ###############################
+
+# PEM key for AWS demo account
+  - name: aws-prod-pem
+    type: integration
+    integration: aws-prod-pem
+
+# CREDS for AWS demo account
+  - name: aws-prod-access
+    type: integration
+    integration: aws-prod-access
+
+  ###############################
+  # end alpha rc infra
+  ###############################
+
+
+
   ###############################
   # begin alpha resources
   ###############################
