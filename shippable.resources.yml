@@ -8,7 +8,7 @@ resources:
 
   - name: beta-aws-creds
     type: cluster
-    integration: beta-ecs
+    integration: aws-beta-access
     pointer:
       sourceName : "v4BetaCL"
       region: "us-west-2"
@@ -38,7 +38,7 @@ resources:
 
   - name: mexec-def-img
     type: image
-    integration: shipbits-ecr-john
+    integration: ecr-bits-push
     pointer:
       sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/mexec"
     seed:
@@ -118,7 +118,7 @@ resources:
 
   - name: nexec-def-img
     type: image
-    integration: shipbits-ecr-john
+    integration: ecr-bits-push
     pointer:
       sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/nexec"
     seed:
@@ -489,7 +489,7 @@ resources:
 
   - name: runSh-def-img
     type: image
-    integration: shipbits-ecr-john
+    integration: ecr-bits-push
     pointer:
       sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/runsh"
     seed:
@@ -497,7 +497,7 @@ resources:
 
   - name: beta-clust
     type: cluster
-    integration: beta-ecs
+    integration: aws-beta-access
     pointer:
       sourceName : "v4BetaCL"
       region: "us-west-2"
@@ -775,11 +775,11 @@ resources:
 
   - name: shipbits-ecr
     type: integration
-    integration: "shipbits-ecr-john"
+    integration: "ecr-bits-push"
 
   - name: shipimg-dockerhub
     type: integration
-    integration: "shipimg-dockerhub-ric03uec"
+    integration: "shipDH"
 
   - name: beta-config-repo
     type: gitRepo
@@ -801,7 +801,7 @@ resources:
 
   - name: api-def-img
     type: image
-    integration: shipbits-ecr-john
+    integration: ecr-bits-push
     pointer:
       sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/api"
     seed:
@@ -818,7 +818,7 @@ resources:
 
   - name: www-def-img
     type: image
-    integration: shipbits-ecr-john
+    integration: ecr-bits-push
     pointer:
       sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/www"
     seed:
@@ -835,7 +835,7 @@ resources:
 
   - name: micro-def-img
     type: image
-    integration: shipbits-ecr-john
+    integration: ecr-bits-push
     pointer:
       sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/micro"
     seed:
