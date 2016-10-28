@@ -908,7 +908,7 @@ jobs:
         switch: off
       - IN: shipbits-ecr
       - IN: shipimg-dockerhub
-      - IN: rel-shippable
+      - IN: rel-final
       - TASK:
         - script: echo 'updating packages' && sudo apt-get update
         - script: echo 'installing jq and unzip' && sudo apt-get install -y jq unzip
