@@ -893,7 +893,7 @@ jobs:
       - IN: man-def-server
         switch: off
       - TASK: managed
-        bump: minor
+        bump: patch
 
   ###########################################
   # push rc release to special repo
