@@ -889,7 +889,7 @@ jobs:
   - name: rel-shippable
     type: release
     steps:
-      - IN: shippable-ver
+      - IN: shippable-release-ver
       - IN: man-def-server
         switch: off
       - TASK: managed
