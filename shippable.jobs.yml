@@ -886,10 +886,10 @@ jobs:
   # release production from default manifest
   ###########################################
 
-  - name: rel-shippable
+  - name: rel-final
     type: release
     steps:
-      - IN: shippable-release-ver
+      - IN: final-release-ver
       - IN: man-def-server
         switch: off
       - TASK: managed
@@ -899,7 +899,7 @@ jobs:
   # push rc release to special repo
   ###########################################
 
-  - name: push-shippable
+  - name: push-final
     type: runSh
     steps:
       - IN: beta-config-repo
@@ -919,7 +919,7 @@ jobs:
         - script: echo 'which aws?' && which aws || true
         - script: aws --version
         - script: docker --version
-        - script: ./IN/beta-config-repo/gitRepo/push.sh
+        - script: ./IN/beta-config-repo/gitRepo/pushFinal.sh
     on_success:
       - script: echo 'succeeded'
     on_failure:

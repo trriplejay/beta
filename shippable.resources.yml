@@ -851,7 +851,7 @@ resources:
     seed:
       versionName: "4.11.3"
 
-  - name: shippable-release-ver
+  - name: final-release-ver
     type: version
     seed:
       versionName: "4.11.2"
