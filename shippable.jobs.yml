@@ -878,6 +878,58 @@ jobs:
   # end Shippable-Server(Qhode) pipeline
   ###############################
 
+  ###############################
+  # begin Shippable-Server(Prod) pipeline
+  ###############################
+
+  ###########################################
+  # release production from default manifest
+  ###########################################
+
+  - name: rel-shippable
+    type: release
+    steps:
+      - IN: shippable-ver
+      - IN: man-def-server
+        switch: off
+      - TASK: managed
+        bump: minor
+
+  ###########################################
+  # push rc release to special repo
+  ###########################################
+
+  - name: push-shippable
+    type: runSh
+    steps:
+      - IN: beta-config-repo
+        switch: off
+      - IN: deploy-rc
+        switch: off
+      - IN: shipbits-ecr
+      - IN: shipimg-dockerhub
+      - IN: rel-shippable
+      - TASK:
+        - script: echo 'updating packages' && sudo apt-get update
+        - script: echo 'installing jq and unzip' && sudo apt-get install -y jq unzip
+        - script: echo 'installing awscli'
+        - script: curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+        - script: unzip awscli-bundle.zip
+        - script: sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+        - script: echo 'which aws?' && which aws || true
+        - script: aws --version
+        - script: docker --version
+        - script: ./IN/beta-config-repo/gitRepo/push.sh
+    on_success:
+      - script: echo 'succeeded'
+    on_failure:
+      - script: echo 'failed'
+
+  ###############################
+  # end Shippable-Server(Prod) pipeline
+  ###############################
+
+
   ###########################################
   # run infra provisioning
   ###########################################

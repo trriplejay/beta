@@ -851,6 +851,11 @@ resources:
     seed:
       versionName: "4.11.3"
 
+  - name: shippable-ver
+    type: version
+    seed:
+      versionName: "4.11.3"
+
   ###############################
   # end Shippable Server resources
   ###############################
@@ -962,4 +967,12 @@ resources:
 
   ###############################
   # end Shippable-Server pipeline resources
+  ###############################
+
+  ###############################
+  # begin Shippable production pipeline resources
+  ###############################
+
+  ###############################
+  # begin Shippable production pipeline resources
   ###############################
