@@ -30,7 +30,6 @@ jobs:
         - script: aws --version
         - script: docker --version
         - script: ./IN/mexec-repo/gitRepo/build.sh
-      - OUT: mexec-img
       - OUT: mexec-def-img
     on_success:
       - script: echo 'on success !!!!!'
@@ -69,7 +68,6 @@ jobs:
         - script: aws --version
         - script: docker --version
         - script: ./IN/runSh-repo/gitRepo/build.sh
-      - OUT: runSh-img
       - OUT: runSh-def-img
     on_success:
       - script: echo 'on success !!!!!'
@@ -94,13 +92,11 @@ jobs:
         - script: aws --version
         - script: docker --version
         - script: ./IN/nexec-repo/gitRepo/build.sh
-      - OUT: nexec-img
       - OUT: nexec-def-img
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
       - script: echo 'Failed job .... :('
-
 
   ##########################
   # begin Shippable Server jobs
