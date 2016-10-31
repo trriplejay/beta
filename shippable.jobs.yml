@@ -213,7 +213,7 @@ jobs:
       - IN: alpha-server-ver
       - IN: man-def-server
       - TASK: managed
-        bump: minor
+        bump: alpha
 
   ###########################################
   # push alpha release to special repo
@@ -277,7 +277,7 @@ jobs:
       - IN: man-def-server
         switch: off
       - TASK: managed
-        bump: minor
+        bump: rc
 
   ###########################################
   # push rc release to special repo
@@ -391,10 +391,10 @@ jobs:
     type: release
     steps:
       - IN: final-release-ver
-      - IN: man-def-server
+      - IN: rel-rc-server
         switch: off
       - TASK: managed
-        bump: minor
+        bump: final
 
   ###########################################
   # push rc release to special repo
