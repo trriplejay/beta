@@ -1,4 +1,26 @@
 jobs:
+  - name: tmp-man-api
+    type: manifest
+    steps:
+      - IN: tmp-api-img
+      - IN: tmp-api-params
+
+  - name: tmp-deploy-api
+    type: deploy
+    steps:
+      - IN: tmp-man-api
+      - IN: tmp-api-scaler
+      - IN: tmp-db-prms
+      - IN: tmp-api-docOpts
+      - IN: tmp-aws-cluster
+      - IN: tmp-api-lb
+        applyTo:
+          - manifest: tmp-man-api
+            image: tmp-api-img
+            port: 443
+      - TASK: managed
+        deployMethod: upgrade
+
   - name: build-mexec
     type: runSh
     steps:
