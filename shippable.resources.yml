@@ -11,7 +11,8 @@ resources:
     version:
       portMappings:
         - 50000:50000
-        - cpuShares: 0
+        - cpuShares: 960
+        - memory: 3800
 
   - name: tmp-api-scaler
     type: replicas
