@@ -6,16 +6,12 @@ resources:
       sourceName : "default"
       region: "us-east-1"
 
-  - name: tmp-api-lb
-    type: loadBalancer
-    pointer:
-      sourceName: v4APILb
-
   - name: tmp-api-docOpts
     type: dockerOptions
     version:
       portMappings:
         - 50000:50000
+        - cpuShares: 0
 
   - name: tmp-api-scaler
     type: replicas

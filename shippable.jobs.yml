@@ -13,11 +13,6 @@ jobs:
       - IN: tmp-db-prms
       - IN: tmp-api-docOpts
       - IN: tmp-aws-cluster
-      - IN: tmp-api-lb
-        applyTo:
-          - manifest: tmp-man-api
-            image: tmp-api-img
-            port: 50000
       - TASK: managed
         deployMethod: upgrade
 
