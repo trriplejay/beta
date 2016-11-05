@@ -461,7 +461,7 @@ jobs:
       - IN: bat-repo
       - IN: bat-ship-alpha-parms
       - TASK:
-        - script: IN/bat-repo/gitRepo/test.sh
+        - script: IN/bat-repo/gitRepo/test.sh bat-ship-alpha-parms
     on_success:
       - script: echo 'succeeded'
     on_failure:
