@@ -307,3 +307,24 @@ resources:
   ###############################
   # end Shippable-Server pipeline resources
   ###############################
+
+  ###############################
+  # BEGIN Build Acceptance Test resources
+  ###############################
+  - name: bat-repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/bat
+      branch: master
+
+  - name: bat-ship-alpha-parms
+    type: params
+    version:
+      params:
+        #API_TOKEN API_URL
+        secure: ypKP0mdAj6ij6aHFm+fMBDxZQXNROlpd8PYPk9KZKSOa62A7VlrTnR+DLot/1cgsJ4ZjeQiNv5f8NtX/r818LyhaNJEzxyqYKMRbEO2UdYCJI6pFzseYzaAKYa+aQteY5bINoV/LbHLucmTL4ln0ZPHz/7GtsMx1BI87gNj7iGx4hRewKTGqSZchUuvlkdc+f+EwrixWuyzoF04E/Fzq1zbyqqqYrJm+UG/4Yzwa3qKvxJyaJ5iXtuYWmqtPC7/Aevdk2A+jDdXJBVsEQwL38DxVNgb4ZrxbE2SDRFQjKNZN1vbyeC3FUTf8r23NSczMcGlZ5u3515moZWls8qykxw==
+
+  ###############################
+  # END Build Acceptance Test resources
+  ###############################
