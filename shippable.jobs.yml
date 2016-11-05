@@ -13,11 +13,6 @@ jobs:
       - IN: tmp-db-prms
       - IN: tmp-api-docOpts
       - IN: tmp-aws-cluster
-      - IN: tmp-api-lb
-        applyTo:
-          - manifest: tmp-man-api
-            image: tmp-api-img
-            port: 50000
       - TASK: managed
         deployMethod: upgrade
 
@@ -430,9 +425,8 @@ jobs:
   # end Shippable-Server(Prod) pipeline
   ###############################
 
-
   ###########################################
-  # run infra provisioning
+  # BEGIN run infra provisioning
   ###########################################
   - name: infra-prov
     type: runSh
@@ -452,3 +446,27 @@ jobs:
       - script: /build/IN/infra-repo/gitRepo/archiveState.sh
     on_failure:
       - script: /build/IN/infra-repo/gitRepo/archiveState.sh
+
+  ###########################################
+  # BEGIN run infra provisioning
+  ###########################################
+
+  ###########################################
+  # BEGIN Build Acceptance Tests
+  ###########################################
+
+  - name: build-accept-test
+    type: runSh
+    steps:
+      - IN: bat-repo
+      - IN: bat-ship-alpha-parms
+      - TASK:
+        - script: IN/bat-repo/gitRepo/test.sh
+    on_success:
+      - script: echo 'succeeded'
+    on_failure:
+      - script: echo 'failed'
+
+  ###########################################
+  # END Build Acceptance Tests
+  ###########################################
