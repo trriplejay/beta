@@ -9,7 +9,7 @@ export RES_DOCKERHUB_INTEGRATION=shipimg-dockerhub
 export RES_ALPHA_PUSH=push-alpha
 
 parse_alpha_version() {
-  pushd /build/IN/$RES_ALPHA_PUSH/runsh
+  pushd ./IN/$RES_ALPHA_PUSH/runsh
   . alpha_ver.txt
   echo "Most recent alpha version is : $ALPHA_VER"
   popd
