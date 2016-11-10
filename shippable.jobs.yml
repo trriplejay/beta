@@ -260,7 +260,7 @@ jobs:
     type: release
     steps:
       - IN: rc-server-ver
-      - IN: man-def-server
+      - IN: rel-alpha-server
         switch: off
       - TASK: managed
         bump: rc
