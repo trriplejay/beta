@@ -73,7 +73,7 @@ __pull_image() {
   image=$1
   full_name=$(echo $image | cut -d':' -f 1)
   echo "pulling image $full_name:$ALPHA_VER"
-  sudo docker pull $image
+  sudo docker pull $full_name:$ALPHA_VER
 }
 
 __tag_and_push_ecr() {
