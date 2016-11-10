@@ -255,15 +255,11 @@ jobs:
   - name: rel-rc-server
     type: release
     steps:
-      - IN: push-alpha
-        switch: off
       - IN: rc-server-ver
       - IN: rel-alpha-server
         switch: off
       - TASK: managed
         bump: rc
-      - TASK:
-        - script: echo 'updating packages' && sudo apt-get update
 
   ###########################################
   # push rc release to special repo
@@ -272,6 +268,8 @@ jobs:
   - name: push-rc
     type: runSh
     steps:
+      - IN: push-alpha
+        switch: off
       - IN: beta-config-repo
         switch: off
       - IN: shipbits-ecr
@@ -351,7 +349,7 @@ jobs:
       - IN: push-rc
         switch: off
       - IN: aws-rc-pem
-      - IN: qhode-rc-swarm
+      - IN: qhode-r c-swarm
       - TASK:
         - script: echo 'updating packages' && sudo apt-get update
         - script: echo 'installing jq' && sudo apt-get install -y jq
