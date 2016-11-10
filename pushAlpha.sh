@@ -17,7 +17,7 @@ parse_version() {
   echo "extracting release versionName from state file"
   VERSION=$(jq -r '.versionName' $release_path)
   echo "found version: $VERSION"
-  echo "ALPHA_VER=$VERSION" > /build/state/alpha_ver.txt #adding version state
+  echo "REL_VER=$VERSION" > /build/state/rel_ver.txt #adding version state
 }
 
 configure_aws() {

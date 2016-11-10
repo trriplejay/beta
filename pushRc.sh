@@ -10,8 +10,8 @@ export RES_ALPHA_PUSH=push-alpha
 
 parse_alpha_version() {
   pushd ./IN/$RES_ALPHA_PUSH/runSh
-  . alpha_ver.txt #to set ALPHA_VER
-  echo "Most recent alpha version is : $ALPHA_VER"
+  . rel_ver.txt #to set REL_VER
+  echo "Most recent alpha version is : $REL_VER"
   popd
 }
 
@@ -72,8 +72,8 @@ __pull_image() {
 
   image=$1
   full_name=$(echo $image | cut -d':' -f 1)
-  echo "pulling image $full_name:$ALPHA_VER"
-  sudo docker pull $full_name:$ALPHA_VER
+  echo "pulling image $full_name:$REL_VER"
+  sudo docker pull $full_name:$REL_VER
 }
 
 __tag_and_push_ecr() {
@@ -85,8 +85,8 @@ __tag_and_push_ecr() {
   echo "processing image: $1"
   full_name=$(echo $image | cut -d':' -f 1)
 
-  echo "tag and push image $full_name:$ALPHA_VER as $full_name:$VERSION"
-  sudo docker tag -f $full_name:$ALPHA_VER $full_name:$VERSION
+  echo "tag and push image $full_name:$REL_VER as $full_name:$VERSION"
+  sudo docker tag -f $full_name:$REL_VER $full_name:$VERSION
   sudo docker push $full_name:$VERSION
 }
 
@@ -138,8 +138,8 @@ __tag_and_push_dockerhub() {
   repo_name=$(echo $full_name | cut -d '/' -f 2)
 
   local push_name="$DOCKERHUB_TARGET/$repo_name:$VERSION"
-  echo "tag and push image $full_name:$ALPHA_VER as $push_name"
-  sudo docker tag -f $full_name:$ALPHA_VER $push_name
+  echo "tag and push image $full_name:$REL_VER as $push_name"
+  sudo docker tag -f $full_name:$REL_VER $push_name
   sudo docker push $push_name
 }
 
