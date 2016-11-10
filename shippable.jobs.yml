@@ -262,6 +262,8 @@ jobs:
         switch: off
       - TASK: managed
         bump: rc
+      - TASK:
+        - script: echo 'updating packages' && sudo apt-get update
 
   ###########################################
   # push rc release to special repo
@@ -303,6 +305,7 @@ jobs:
       - IN: rel-rc-server
         switch: off
       - IN: push-rc
+        switch: off
       - IN: aws-rc-pem
       - IN: aws-rc-swarm
       - TASK:
@@ -346,6 +349,7 @@ jobs:
       - IN: rel-rc-server
         switch: off
       - IN: push-rc
+        switch: off
       - IN: aws-rc-pem
       - IN: qhode-rc-swarm
       - TASK:
