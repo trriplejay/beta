@@ -158,7 +158,6 @@ jobs:
     steps:
       - IN: www-server-repo
       - IN: microbase-img
-      - IN: shipimg-dockerhub
       - IN: shipbits-ecr
       - TASK:
         - script: echo 'updating packages' && sudo apt-get update
