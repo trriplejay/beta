@@ -258,6 +258,8 @@ jobs:
       - IN: rc-server-ver
       - IN: rel-alpha-server
         switch: off
+      - IN: push-alpha
+        switch: off
       - TASK: managed
         bump: rc
 
@@ -371,8 +373,6 @@ jobs:
     type: release
     steps:
       - IN: final-release-ver
-      - IN: rel-rc-server
-        switch: off
       - TASK: managed
         bump: final
 
