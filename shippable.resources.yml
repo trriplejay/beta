@@ -344,7 +344,7 @@ resources:
     type: integration
     integration: aws-bits-access
 
-  - name: baseami-parms
+  - name: baseami-params
     type: params
     version:
       params:
