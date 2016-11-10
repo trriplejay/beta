@@ -349,7 +349,7 @@ jobs:
       - IN: push-rc
         switch: off
       - IN: aws-rc-pem
-      - IN: qhode-r c-swarm
+      - IN: qhode-rc-swarm
       - TASK:
         - script: echo 'updating packages' && sudo apt-get update
         - script: echo 'installing jq' && sudo apt-get install -y jq
