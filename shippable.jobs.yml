@@ -471,7 +471,7 @@ jobs:
       - IN: bldami-repo
       - TASK:
         - script: sudo apt-get install -y jq
-        - script: IN/bldami-repo/gitRepo/pack.sh baseami-parms
+        - script: IN/bldami-repo/gitRepo/pack.sh baseami-params
     on_success:
       - script: echo "SUCCESS"
     on_failure:
