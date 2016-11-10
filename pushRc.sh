@@ -10,7 +10,7 @@ export RES_ALPHA_PUSH=push-alpha
 
 parse_alpha_version() {
   pushd ./IN/$RES_ALPHA_PUSH/runSh
-  . alpha_ver.txt
+  . alpha_ver.txt #to set ALPHA_VER
   echo "Most recent alpha version is : $ALPHA_VER"
   popd
 }
@@ -70,7 +70,8 @@ __pull_image() {
   fi
 
   image=$1
-  echo "pulling image $image"
+  full_name=$(echo $image | cut -d':' -f 1)
+  echo "pulling image $full_name:$ALPHA_VER"
   #sudo docker pull $image
 }
 
