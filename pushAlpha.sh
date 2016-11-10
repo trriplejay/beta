@@ -17,6 +17,7 @@ parse_version() {
   echo "extracting release versionName from state file"
   VERSION=$(jq -r '.versionName' $release_path)
   echo "found version: $VERSION"
+  echo "ALPHA_VER=$VERSION" > /build/state/alpha_ver.txt
 }
 
 configure_aws() {
@@ -169,12 +170,12 @@ main() {
   fi
 
   parse_version
-  configure_aws
-  ecr_login
-  pull_images $manifest_path
-  tag_and_push_images_ecr $manifest_path
-  dockerhub_login
-  tag_and_push_images_dockerhub $manifest_path
+  #configure_aws
+  #ecr_login
+  #pull_images $manifest_path
+  #tag_and_push_images_ecr $manifest_path
+  #dockerhub_login
+  #tag_and_push_images_dockerhub $manifest_path
 }
 
 main

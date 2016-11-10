@@ -6,6 +6,13 @@ export DOCKERHUB_TARGET=shipimg
 export RES_RELEASE=rel-rc-server
 export RES_ECR_INTEGRATION=shipbits-ecr
 export RES_DOCKERHUB_INTEGRATION=shipimg-dockerhub
+export RES_ALPHA_PUSH=push-alpha
+
+parse_alpha_version() {
+  popd /build/IN/$RES_ALPHA_PUSH/runsh
+  . alpha_ver.txt
+  echo "Most recent alpha version is : $ALPHA_VER"
+}
 
 parse_version() {
   release_path="IN/$RES_RELEASE/release/release.json"
@@ -168,6 +175,7 @@ main() {
     return 1
   fi
 
+  parse_alpha_version
   parse_version
   #configure_aws
   #ecr_login
