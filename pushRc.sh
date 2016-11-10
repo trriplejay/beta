@@ -86,7 +86,7 @@ __tag_and_push_ecr() {
   full_name=$(echo $image | cut -d':' -f 1)
 
   echo "tag and push image $full_name:$ALPHA_VER as $full_name:$VERSION"
-  sudo docker tag -f $image $full_name:$VERSION
+  sudo docker tag -f $full_name:$ALPHA_VER $full_name:$VERSION
   sudo docker push $full_name:$VERSION
 }
 
@@ -142,8 +142,8 @@ __tag_and_push_dockerhub() {
   repo_name=$(echo $full_name | cut -d '/' -f 2)
 
   local push_name="$DOCKERHUB_TARGET/$repo_name:$VERSION"
-  echo "tag and push image $image as $push_name"
-  sudo docker tag -f $image $push_name
+  echo "tag and push image $full_name:$ALPHA_VER as $push_name"
+  sudo docker tag -f $full_name:$ALPHA_VER $push_name
   sudo docker push $push_name
 }
 
