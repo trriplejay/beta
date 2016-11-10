@@ -60,7 +60,6 @@ jobs:
     steps:
       - IN: runSh-repo
       - IN: microbase-img
-      - IN: shipimg-dockerhub
       - IN: shipbits-ecr
       - TASK:
         - script: echo 'updating packages' && sudo apt-get update
@@ -74,7 +73,6 @@ jobs:
         - script: docker --version
         - script: ./IN/runSh-repo/gitRepo/build.sh
       - OUT: runSh-def-img
-      - OUT: runSh-img
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
