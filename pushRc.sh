@@ -105,11 +105,7 @@ tag_and_push_images_ecr() {
   jq -r '.[] | .images | .[] | .image + ":" + .tag' $manifest_path |\
   while read image
   do
-    if [[ $image == *"mexec"* ]] || [[ $image == *"runsh"* ]]; then
-      echo "Not pushing to ECR : $image"
-    else
-      __tag_and_push_ecr $image
-    fi
+    __tag_and_push_ecr $image
   done
 }
 
