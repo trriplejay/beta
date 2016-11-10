@@ -35,6 +35,7 @@ jobs:
         - script: docker --version
         - script: ./IN/mexec-repo/gitRepo/build.sh
       - OUT: mexec-def-img
+      - OUT: mexec-img
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
