@@ -63,7 +63,7 @@ __pull_image() {
 
   image=$1
   echo "pulling image $image"
-  sudo docker pull $image
+  #sudo docker pull $image
 }
 
 __tag_and_push_ecr() {
@@ -169,12 +169,12 @@ main() {
   fi
 
   parse_version
-  configure_aws
-  ecr_login
+  #configure_aws
+  #ecr_login
   pull_images $manifest_path
-  tag_and_push_images_ecr $manifest_path
-  dockerhub_login
-  tag_and_push_images_dockerhub $manifest_path
+  #tag_and_push_images_ecr $manifest_path
+  #dockerhub_login
+  #tag_and_push_images_dockerhub $manifest_path
 }
 
 main
