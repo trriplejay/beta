@@ -21,7 +21,7 @@ jobs:
     steps:
       - IN: mexec-repo
       - IN: microbase-img
-      - IN: docker-creds
+      - IN: shipimg-dockerhub
       - IN: shipbits-ecr
       - TASK:
         - script: echo 'updating packages' && sudo apt-get update
@@ -44,7 +44,7 @@ jobs:
     type: runSh
     steps:
       - IN: microbase-repo
-      - IN: docker-creds
+      - IN: shipimg-dockerhub
       - TASK:
         - script: sudo apt-get install -y jq
         - script: ./IN/microbase-repo/gitRepo/build.sh
@@ -59,7 +59,7 @@ jobs:
     steps:
       - IN: runSh-repo
       - IN: microbase-img
-      - IN: docker-creds
+      - IN: shipimg-dockerhub
       - IN: shipbits-ecr
       - TASK:
         - script: echo 'updating packages' && sudo apt-get update
@@ -83,7 +83,7 @@ jobs:
     steps:
       - IN: nexec-repo
       - IN: microbase-img
-      - IN: docker-creds
+      - IN: shipimg-dockerhub
       - IN: shipbits-ecr
       - TASK:
         - script: echo 'updating packages' && sudo apt-get update
@@ -107,12 +107,10 @@ jobs:
   ##########################
   - name: build-micro-server
     type: runSh
-    flags:
-      - shippable-server
     steps:
       - IN: micro-server-repo
       - IN: microbase-img
-      - IN: docker-creds
+      - IN: shipimg-dockerhub
       - IN: shipbits-ecr
       - TASK:
         - script: echo 'updating packages' && sudo apt-get update
@@ -134,12 +132,10 @@ jobs:
 
   - name: build-api-server
     type: runSh
-    flags:
-      - shippable-server
     steps:
       - IN: api-server-repo
       - IN: microbase-img
-      - IN: docker-creds
+      - IN: shipimg-dockerhub
       - IN: shipbits-ecr
       - TASK:
         - script: echo 'updating packages' && sudo apt-get update
@@ -160,12 +156,10 @@ jobs:
 
   - name: build-www-server
     type: runSh
-    flags:
-      - shippable-server
     steps:
       - IN: www-server-repo
       - IN: microbase-img
-      - IN: docker-creds
+      - IN: shipimg-dockerhub
       - IN: shipbits-ecr
       - TASK:
         - script: echo 'updating packages' && sudo apt-get update
