@@ -255,10 +255,10 @@ jobs:
   - name: rel-rc-server
     type: release
     steps:
+      - IN: push-alpha
+        switch: off
       - IN: rc-server-ver
       - IN: rel-alpha-server
-        switch: off
-      - IN: push-alpha
         switch: off
       - TASK: managed
         bump: rc
