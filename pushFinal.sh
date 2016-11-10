@@ -6,6 +6,14 @@ export DOCKERHUB_TARGET=shipimg
 export RES_RELEASE=rel-final
 export RES_ECR_INTEGRATION=shipbits-ecr
 export RES_DOCKERHUB_INTEGRATION=shipimg-dockerhub
+export RES_RC_PUSH=push-rc
+
+parse_rc_version() {
+  pushd ./IN/$RES_RC_PUSH/runSh
+  . rc_ver.txt #to set RC_VER
+  echo "Most recent alpha version is : $RC_VER"
+  popd
+}
 
 parse_version() {
   release_path="IN/$RES_RELEASE/release/release.json"
@@ -17,6 +25,7 @@ parse_version() {
   echo "extracting release versionName from state file"
   VERSION=$(jq -r '.versionName' $release_path)
   echo "found version: $VERSION"
+  echo "FINAL_VER=$VERSION" > /build/state/final_ver.txt #adding version state
 }
 
 configure_aws() {
@@ -62,8 +71,9 @@ __pull_image() {
   fi
 
   image=$1
-  echo "pulling image $image"
-  sudo docker pull $image
+  full_name=$(echo $image | cut -d':' -f 1)
+  echo "pulling image $full_name:$RC_VER"
+  sudo docker pull $full_name:$RC_VER
 }
 
 __tag_and_push_ecr() {
@@ -75,8 +85,8 @@ __tag_and_push_ecr() {
   echo "processing image: $1"
   full_name=$(echo $image | cut -d':' -f 1)
 
-  echo "tag and push image $image as $full_name:$VERSION"
-  sudo docker tag -f $image $full_name:$VERSION
+  echo "tag and push image $full_name:$RC_VER as $full_name:$VERSION"
+  sudo docker tag -f $full_name:$RC_VER $full_name:$VERSION
   sudo docker push $full_name:$VERSION
 }
 
@@ -95,11 +105,7 @@ tag_and_push_images_ecr() {
   jq -r '.[] | .images | .[] | .image + ":" + .tag' $manifest_path |\
   while read image
   do
-    if [[ $image == *"mexec"* ]] || [[ $image == *"runsh"* ]]; then
-      echo "Not pushing to ECR : $image"
-    else
-      __tag_and_push_ecr $image
-    fi
+    __tag_and_push_ecr $image
   done
 }
 
@@ -132,8 +138,8 @@ __tag_and_push_dockerhub() {
   repo_name=$(echo $full_name | cut -d '/' -f 2)
 
   local push_name="$DOCKERHUB_TARGET/$repo_name:$VERSION"
-  echo "tag and push image $image as $push_name"
-  sudo docker tag -f $image $push_name
+  echo "tag and push image $full_name:$RC_VER as $push_name"
+  sudo docker tag -f $full_name:$RC_VER $push_name
   sudo docker push $push_name
 }
 
@@ -168,6 +174,7 @@ main() {
     return 1
   fi
 
+  parse_rc_version
   parse_version
   configure_aws
   ecr_login
