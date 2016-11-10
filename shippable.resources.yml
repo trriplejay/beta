@@ -40,14 +40,6 @@ resources:
         SHIPPABLE_API_URL: "https://api.shippable.com"
         RUN_MODE: "production"
 
-  - name: docker-creds
-    type: image
-    integration: shipDH
-    pointer:
-      sourceName: "library/nginx"
-    seed:
-      versionName: latest
-
   - name: mexec-repo
     type: gitRepo
     integration: ric03uec-github
@@ -122,8 +114,6 @@ resources:
 
   - name: beta-config-repo
     type: gitRepo
-    flags:
-      - shippable-server
     integration: ric03uec-github
     pointer:
       sourceName: shippable/beta
@@ -131,8 +121,6 @@ resources:
 
   - name: api-server-repo
     type: gitRepo
-    flags:
-      - shippable-server
     integration: ric03uec-github
     pointer:
       sourceName: shippable/api
@@ -148,8 +136,6 @@ resources:
 
   - name: www-server-repo
     type: gitRepo
-    flags:
-      - shippable-server
     integration: ric03uec-github
     pointer:
       sourceName: shippable/www
@@ -165,8 +151,6 @@ resources:
 
   - name: micro-server-repo
     type: gitRepo
-    flags:
-      - shippable-server
     integration: ric03uec-github
     pointer:
       sourceName: shippable/micro
