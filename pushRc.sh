@@ -25,6 +25,7 @@ parse_version() {
   echo "extracting release versionName from state file"
   VERSION=$(jq -r '.versionName' $release_path)
   echo "found version: $VERSION"
+  echo "RC_VER=$VERSION" > /build/state/rc_ver.txt #adding version state
 }
 
 configure_aws() {
@@ -72,7 +73,7 @@ __pull_image() {
   image=$1
   full_name=$(echo $image | cut -d':' -f 1)
   echo "pulling image $full_name:$ALPHA_VER"
-  #sudo docker pull $image
+  sudo docker pull $image
 }
 
 __tag_and_push_ecr() {
@@ -84,7 +85,7 @@ __tag_and_push_ecr() {
   echo "processing image: $1"
   full_name=$(echo $image | cut -d':' -f 1)
 
-  echo "tag and push image $image as $full_name:$VERSION"
+  echo "tag and push image $full_name:$ALPHA_VER as $full_name:$VERSION"
   sudo docker tag -f $image $full_name:$VERSION
   sudo docker push $full_name:$VERSION
 }
@@ -179,12 +180,12 @@ main() {
 
   parse_alpha_version
   parse_version
-  #configure_aws
-  #ecr_login
+  configure_aws
+  ecr_login
   pull_images $manifest_path
-  #tag_and_push_images_ecr $manifest_path
-  #dockerhub_login
-  #tag_and_push_images_dockerhub $manifest_path
+  tag_and_push_images_ecr $manifest_path
+  dockerhub_login
+  tag_and_push_images_dockerhub $manifest_path
 }
 
 main
