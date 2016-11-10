@@ -92,6 +92,14 @@ resources:
       sourceName: shippable/runSh
       branch: master
 
+  - name: runSh-img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/runsh"
+    seed:
+      versionName: latest
+
   - name: runSh-def-img
     type: image
     integration: ecr-bits-push
