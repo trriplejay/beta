@@ -110,7 +110,6 @@ jobs:
     steps:
       - IN: micro-server-repo
       - IN: microbase-img
-      - IN: shipimg-dockerhub
       - IN: shipbits-ecr
       - TASK:
         - script: echo 'updating packages' && sudo apt-get update
@@ -123,7 +122,6 @@ jobs:
         - script: aws --version
         - script: docker --version
         - script: ./IN/micro-server-repo/gitRepo/build.sh
-        - script: ./IN/micro-server-repo/gitRepo/buildOld.sh
       - OUT: micro-def-img
     on_success:
       - script: echo 'on success !!!!!'
