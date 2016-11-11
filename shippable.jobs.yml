@@ -236,7 +236,7 @@ jobs:
         switch: off
       - IN: rel-alpha-server
         switch: off
-      - IN: push-alpha
+      - IN: build-alphaami
       - IN: aws-alpha-pem
       - IN: aws-alpha-swarm
       - TASK:
@@ -302,7 +302,7 @@ jobs:
         switch: off
       - IN: rel-rc-server
         switch: off
-      - IN: push-rc
+      - IN: build-rcami
         switch: off
       - IN: aws-rc-pem
       - IN: aws-rc-swarm
@@ -326,7 +326,7 @@ jobs:
         switch: off
       - IN: rel-alpha-server
         switch: off
-      - IN: push-alpha
+      - IN: build-alphaami
       - IN: aws-alpha-pem
       - IN: qhode-alpha-swarm
       - TASK:
@@ -346,7 +346,7 @@ jobs:
         switch: off
       - IN: rel-rc-server
         switch: off
-      - IN: push-rc
+      - IN: build-rcami
         switch: off
       - IN: aws-rc-pem
       - IN: qhode-rc-swarm
@@ -473,6 +473,59 @@ jobs:
       - TASK:
         - script: sudo apt-get install -y jq
         - script: IN/bldami-repo/gitRepo/basePack.sh baseami-params
+    on_success:
+      - script: echo "SUCCESS"
+    on_failure:
+      - script: echo "FAILURE"
+
+  - name: build-alphaami
+    type: runSh
+    steps:
+      - IN: baseami-params
+      - IN: aws-bits-access
+      - IN: bldami-repo
+        switch: off
+      - IN: build-baseami
+      - IN: push-alpha
+      - TASK:
+        - script: sudo apt-get install -y jq
+        - script: IN/bldami-repo/gitRepo/execPack.sh baseami-params push-alpha
+    on_success:
+      - script: echo "SUCCESS"
+    on_failure:
+      - script: echo "FAILURE"
+
+  - name: build-rcami
+    type: runSh
+    steps:
+      - IN: baseami-params
+      - IN: aws-bits-access
+      - IN: bldami-repo
+        switch: off
+      - IN: build-baseami
+        switch: off
+      - IN: push-rc
+      - TASK:
+        - script: sudo apt-get install -y jq
+        - script: IN/bldami-repo/gitRepo/execPack.sh baseami-params push-rc
+    on_success:
+      - script: echo "SUCCESS"
+    on_failure:
+      - script: echo "FAILURE"
+
+  - name: build-finalami
+    type: runSh
+    steps:
+      - IN: baseami-params
+      - IN: aws-bits-access
+      - IN: bldami-repo
+        switch: off
+      - IN: build-baseami
+        switch: off
+      - IN: push-final
+      - TASK:
+        - script: sudo apt-get install -y jq
+        - script: IN/bldami-repo/gitRepo/execPack.sh baseami-params push-final
     on_success:
       - script: echo "SUCCESS"
     on_failure:
