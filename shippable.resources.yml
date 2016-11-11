@@ -55,14 +55,6 @@ resources:
     seed:
       versionName: latest
 
-  - name: mexec-img
-    type: image
-    integration: shipDH
-    pointer:
-      sourceName: "shipimg/mexec"
-    seed:
-      versionName: latest
-
   - name: microbase-repo
     type: gitRepo
     integration: ric03uec-github
@@ -99,14 +91,6 @@ resources:
     pointer:
       sourceName: shippable/runSh
       branch: master
-
-  - name: runSh-img
-    type: image
-    integration: shipDH
-    pointer:
-      sourceName: "shipimg/runsh"
-    seed:
-      versionName: latest
 
   - name: runSh-def-img
     type: image
