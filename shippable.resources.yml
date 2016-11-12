@@ -339,14 +339,14 @@ resources:
 #        REGION: "us-east-2"
 
   - name: baseami-params
-      type: params
-      version:
-        params:
-          SOURCE_AMI: "ami-c8580bdf"
-          VPC_ID: "vpc-266f3241"
-          SUBNET_ID: "subnet-6df12f24"
-          SECURITY_GROUP_ID: "sg-f634518c"
-          REGION: "us-east-1"
+    type: params
+    version:
+      params:
+        SOURCE_AMI: "ami-c8580bdf"
+        VPC_ID: "vpc-266f3241"
+        SUBNET_ID: "subnet-6df12f24"
+        SECURITY_GROUP_ID: "sg-f634518c"
+        REGION: "us-east-1"
 
   ###############################
   # END AMI Build resources
