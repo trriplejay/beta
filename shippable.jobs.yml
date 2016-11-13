@@ -472,7 +472,23 @@ jobs:
         switch: off
       - TASK:
         - script: sudo apt-get install -y jq
-        - script: IN/bldami-repo/gitRepo/basePack.sh baseami-params
+        - script: IN/bldami-repo/gitRepo/base/basePack.sh baseami-params
+    on_success:
+      - script: echo "SUCCESS"
+    on_failure:
+      - script: echo "FAILURE"
+
+  - name: patch-baseami
+    type: runSh
+    steps:
+      - IN: baseami-params
+      - IN: aws-bits-access
+      - IN: build-baseami
+      - IN: bldami-repo
+        switch: off
+      - TASK:
+        - script: sudo apt-get install -y jq
+        - script: IN/bldami-repo/gitRepo/basePatch/basePatchPack.sh baseami-params
     on_success:
       - script: echo "SUCCESS"
     on_failure:
@@ -485,11 +501,11 @@ jobs:
       - IN: aws-bits-access
       - IN: bldami-repo
         switch: off
-      - IN: build-baseami
+      - IN: patch-baseami
       - IN: push-alpha
       - TASK:
         - script: sudo apt-get install -y jq
-        - script: IN/bldami-repo/gitRepo/execPack.sh baseami-params push-alpha
+        - script: IN/bldami-repo/gitRepo/exec/execPack.sh baseami-params push-alpha
     on_success:
       - script: echo "SUCCESS"
     on_failure:
@@ -502,12 +518,12 @@ jobs:
       - IN: aws-bits-access
       - IN: bldami-repo
         switch: off
-      - IN: build-baseami
+      - IN: patch-baseami
         switch: off
       - IN: push-rc
       - TASK:
         - script: sudo apt-get install -y jq
-        - script: IN/bldami-repo/gitRepo/execPack.sh baseami-params push-rc
+        - script: IN/bldami-repo/gitRepo/exec/execPack.sh baseami-params push-rc
     on_success:
       - script: echo "SUCCESS"
     on_failure:
@@ -520,12 +536,12 @@ jobs:
       - IN: aws-bits-access
       - IN: bldami-repo
         switch: off
-      - IN: build-baseami
+      - IN: patch-baseami
         switch: off
       - IN: push-final
       - TASK:
         - script: sudo apt-get install -y jq
-        - script: IN/bldami-repo/gitRepo/execPack.sh baseami-params push-final
+        - script: IN/bldami-repo/gitRepo/exec/execPack.sh baseami-params push-final
     on_success:
       - script: echo "SUCCESS"
     on_failure:
