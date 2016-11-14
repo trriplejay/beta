@@ -47,7 +47,7 @@ resources:
       sourceName: shippable/mexec
       branch: master
 
-  - name: mexec-def-img
+  - name: mexec-img
     type: image
     integration: ecr-bits-push
     pointer:
@@ -164,10 +164,10 @@ resources:
     seed:
       versionName: latest
 
-  - name: alpha-server-ver
+  - name: alpha-ver
     type: version
     seed:
-      versionName: "4.11.3"
+      versionName: "4.12.1"
 
   - name: rc-server-ver
     type: version
@@ -237,7 +237,6 @@ resources:
   ###############################
   # end alpha rc infra
   ###############################
-
 
 
   ###############################
