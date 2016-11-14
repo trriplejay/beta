@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 export VERSION=""
-export RES_RELEASE=rel-rc-server
+export RES_RELEASE=rel-rc
 export RC_INTEGRATION=aws-rc-pem
 export RC_SWARM=aws-rc-swarm
 export RC_BASTION_USER=""
