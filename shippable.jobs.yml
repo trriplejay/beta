@@ -192,7 +192,7 @@ jobs:
   - name: rel-alpha-server
     type: release
     steps:
-      - IN: alpha-server-ver
+      - IN: alpha-ver
       - IN: man-def-server
       - TASK: managed
         bump: alpha
