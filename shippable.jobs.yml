@@ -102,7 +102,7 @@ jobs:
   ##########################
   # begin Shippable Server jobs
   ##########################
-  - name: build-micro-server
+  - name: build-micro
     type: runSh
     steps:
       - IN: micro-repo
@@ -125,7 +125,7 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build-api-server
+  - name: build-api
     type: runSh
     steps:
       - IN: api-repo
@@ -148,7 +148,7 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build-www-server
+  - name: build-www
     type: runSh
     steps:
       - IN: www-repo
@@ -175,7 +175,7 @@ jobs:
   # package all server images into one default manifest
   ###########################################
 
-  - name: man-def-server
+  - name: man-ship
     type: manifest
     steps:
       - IN: api-img
@@ -189,11 +189,11 @@ jobs:
   # release alpha server from default manifest
   ###########################################
 
-  - name: rel-alpha-server
+  - name: rel-alpha
     type: release
     steps:
       - IN: ship-ver
-      - IN: man-def-server
+      - IN: man-ship
       - TASK: managed
         bump: alpha
 
@@ -208,7 +208,7 @@ jobs:
         switch: off
       - IN: shipbits-ecr
       - IN: shipimg-dockerhub
-      - IN: rel-alpha-server
+      - IN: rel-alpha
       - TASK:
         - script: echo 'updating packages' && sudo apt-get update
         - script: echo 'installing jq and unzip' && sudo apt-get install -y jq unzip
@@ -234,7 +234,7 @@ jobs:
     steps:
       - IN: beta-config-repo
         switch: off
-      - IN: rel-alpha-server
+      - IN: rel-alpha
         switch: off
       - IN: build-alphaami
       - IN: aws-alpha-pem
@@ -255,7 +255,7 @@ jobs:
   - name: rel-rc-server
     type: release
     steps:
-      - IN: rel-alpha-server
+      - IN: rel-alpha
         switch: off
       - TASK: managed
         bump: rc
@@ -323,7 +323,7 @@ jobs:
     steps:
       - IN: beta-config-repo
         switch: off
-      - IN: rel-alpha-server
+      - IN: rel-alpha
         switch: off
       - IN: build-alphaami
       - IN: aws-alpha-pem
