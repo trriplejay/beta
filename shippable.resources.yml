@@ -126,7 +126,7 @@ resources:
       sourceName: shippable/api
       branch: master
 
-  - name: api-def-img
+  - name: api-img
     type: image
     integration: ecr-bits-push
     pointer:
@@ -134,14 +134,14 @@ resources:
     seed:
       versionName: latest
 
-  - name: www-server-repo
+  - name: www-repo
     type: gitRepo
     integration: ric03uec-github
     pointer:
       sourceName: shippable/www
       branch: master
 
-  - name: www-def-img
+  - name: www-img
     type: image
     integration: ecr-bits-push
     pointer:
