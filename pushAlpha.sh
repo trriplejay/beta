@@ -161,7 +161,7 @@ tag_and_push_images_dockerhub() {
 
 tag_push_base(){
   pushd ./IN/$RES_BASE_REPO/gitRepo
-  echo "pushing git tag $VERSION to $RES_BASE_REPO"
+  echo "pushing git tag $VERSION to $RES_BASE_REPO at latest"
   git tag $VERSION
   git push origin $VERSION
   echo "completed pushing git tag $VERSION to $RES_BASE_REPO"
@@ -176,13 +176,13 @@ main() {
   fi
 
   parse_version
-  #configure_aws
-  #ecr_login
-  #pull_images $manifest_path
-  #tag_and_push_images_ecr $manifest_path
-  #dockerhub_login
-  #tag_and_push_images_dockerhub $manifest_path
-  tag_push_base
+  configure_aws
+  ecr_login
+  pull_images $manifest_path
+  tag_and_push_images_ecr $manifest_path
+  dockerhub_login
+  tag_and_push_images_dockerhub $manifest_path
+  #tag_push_base
 }
 
 main

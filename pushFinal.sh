@@ -7,6 +7,7 @@ export RES_RELEASE=rel-final
 export RES_ECR_INTEGRATION=shipbits-ecr
 export RES_DOCKERHUB_INTEGRATION=shipimg-dockerhub
 export RES_RC_PUSH=push-rc
+export RES_BASE_REPO=base-repo
 
 parse_rc_version() {
   pushd ./IN/$RES_RC_PUSH/runSh
@@ -167,6 +168,16 @@ tag_and_push_images_dockerhub() {
 
 }
 
+tag_push_base(){
+  pushd ./IN/$RES_BASE_REPO/gitRepo
+  echo "pushing git tag $VERSION to $RES_BASE_REPO at $REL_VER"
+  git checkout $(git rev-list -n 1 $REL_VER)
+  git tag $VERSION
+  git push origin $VERSION
+  echo "completed pushing git tag $VERSION to $RES_BASE_REPO at $REL_VER"
+  popd
+}
+
 main() {
   manifest_path="IN/$RES_RELEASE/release/manifests.json"
   if [ ! -e $manifest_path ]; then
@@ -182,6 +193,7 @@ main() {
   tag_and_push_images_ecr $manifest_path
   dockerhub_login
   tag_and_push_images_dockerhub $manifest_path
+  #tag_push_base
 }
 
 main
