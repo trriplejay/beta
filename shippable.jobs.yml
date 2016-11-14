@@ -105,7 +105,7 @@ jobs:
   - name: build-micro-server
     type: runSh
     steps:
-      - IN: micro-server-repo
+      - IN: micro-repo
       - IN: microbase-img
       - IN: shipbits-ecr
       - TASK:
@@ -118,8 +118,8 @@ jobs:
         - script: echo 'which aws?' && which aws || true
         - script: aws --version
         - script: docker --version
-        - script: ./IN/micro-server-repo/gitRepo/build.sh
-      - OUT: micro-def-img
+        - script: ./IN/micro-repo/gitRepo/build.sh
+      - OUT: micro-img
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
@@ -183,7 +183,7 @@ jobs:
       - IN: nexec-img
       - IN: mexec-def-img
       - IN: runSh-img
-      - IN: micro-def-img
+      - IN: micro-img
 
   ###########################################
   # release alpha server from default manifest
