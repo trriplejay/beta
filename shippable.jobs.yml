@@ -271,6 +271,8 @@ jobs:
     steps:
       - IN: push-alpha
         switch: off
+      - IN: base-repo
+        switch: off
       - IN: beta-config-repo
         switch: off
       - IN: shipbits-ecr
@@ -388,6 +390,8 @@ jobs:
     type: runSh
     steps:
       - IN: beta-config-repo
+        switch: off
+      - IN: base-repo
         switch: off
       - IN: deploy-rc
         switch: off
