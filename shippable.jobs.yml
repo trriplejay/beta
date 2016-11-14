@@ -33,7 +33,7 @@ jobs:
         - script: aws --version
         - script: docker --version
         - script: ./IN/mexec-repo/gitRepo/build.sh
-      - OUT: mexec-def-img
+      - OUT: mexec-img
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
@@ -181,7 +181,7 @@ jobs:
       - IN: api-img
       - IN: www-img
       - IN: nexec-img
-      - IN: mexec-def-img
+      - IN: mexec-img
       - IN: runSh-img
       - IN: micro-img
 

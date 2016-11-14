@@ -47,7 +47,7 @@ resources:
       sourceName: shippable/mexec
       branch: master
 
-  - name: mexec-def-img
+  - name: mexec-img
     type: image
     integration: ecr-bits-push
     pointer:
