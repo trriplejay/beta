@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 export VERSION=""
-export RES_RELEASE=rel-alpha-server
+export RES_RELEASE=rel-alpha
 #export ALPHA_INTEGRATION=aws-alpha-pem
 export ALPHA_INTEGRATION=aws-alpha-pem
 export ALPHA_SWARM=aws-alpha-swarm
