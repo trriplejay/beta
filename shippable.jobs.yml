@@ -373,6 +373,8 @@ jobs:
   - name: rel-final
     type: release
     steps:
+      - IN: rel-rc
+        switch: off
       - TASK: managed
         bump: final
 
