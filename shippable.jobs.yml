@@ -142,7 +142,7 @@ jobs:
         - script: aws --version
         - script: docker --version
         - script: ./IN/api-repo/gitRepo/build.sh
-      - OUT: api-def-img
+      - OUT: api-img
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
@@ -151,7 +151,7 @@ jobs:
   - name: build-www-server
     type: runSh
     steps:
-      - IN: www-server-repo
+      - IN: www-repo
       - IN: microbase-img
       - IN: shipbits-ecr
       - TASK:
@@ -164,8 +164,8 @@ jobs:
         - script: echo 'which aws?' && which aws || true
         - script: aws --version
         - script: docker --version
-        - script: ./IN/www-server-repo/gitRepo/build.sh
-      - OUT: www-def-img
+        - script: ./IN/www-repo/gitRepo/build.sh
+      - OUT: www-img
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
@@ -178,8 +178,8 @@ jobs:
   - name: man-def-server
     type: manifest
     steps:
-      - IN: api-def-img
-      - IN: www-def-img
+      - IN: api-img
+      - IN: www-img
       - IN: nexec-img
       - IN: mexec-def-img
       - IN: runSh-img
