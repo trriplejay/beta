@@ -206,6 +206,8 @@ jobs:
     steps:
       - IN: beta-config-repo
         switch: off
+      - IN: base-repo
+        switch: off
       - IN: shipbits-ecr
       - IN: shipimg-dockerhub
       - IN: rel-alpha

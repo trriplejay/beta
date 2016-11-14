@@ -6,6 +6,7 @@ export DOCKERHUB_TARGET=shipimg
 export RES_RELEASE=rel-alpha
 export RES_ECR_INTEGRATION=shipbits-ecr
 export RES_DOCKERHUB_INTEGRATION=shipimg-dockerhub
+export RES_BASE_REPO=base-repo
 
 parse_version() {
   release_path="IN/$RES_RELEASE/release/release.json"
@@ -158,6 +159,15 @@ tag_and_push_images_dockerhub() {
 
 }
 
+tag_push_base(){
+  pushd ./IN/$RES_BASE_REPO/gitRepo
+  echo "pushing git tag $VERSION to $RES_BASE_REPO"
+  git tag $VERSION
+  git push origin $VERSION
+  echo "completed pushing git tag $VERSION to $RES_BASE_REPO"
+  popd
+}
+
 main() {
   manifest_path="IN/$RES_RELEASE/release/manifests.json"
   if [ ! -e $manifest_path ]; then
@@ -166,12 +176,13 @@ main() {
   fi
 
   parse_version
-  configure_aws
-  ecr_login
-  pull_images $manifest_path
-  tag_and_push_images_ecr $manifest_path
-  dockerhub_login
-  tag_and_push_images_dockerhub $manifest_path
+  #configure_aws
+  #ecr_login
+  #pull_images $manifest_path
+  #tag_and_push_images_ecr $manifest_path
+  #dockerhub_login
+  #tag_and_push_images_dockerhub $manifest_path
+  tag_push_base
 }
 
 main

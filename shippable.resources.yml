@@ -40,6 +40,13 @@ resources:
         SHIPPABLE_API_URL: "https://api.shippable.com"
         RUN_MODE: "production"
 
+  - name: base-repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/base
+      branch: master
+
   - name: mexec-repo
     type: gitRepo
     integration: ric03uec-github
