@@ -70,7 +70,7 @@ jobs:
         - script: aws --version
         - script: docker --version
         - script: ./IN/runSh-repo/gitRepo/build.sh
-      - OUT: runSh-def-img
+      - OUT: runSh-img
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
@@ -93,7 +93,7 @@ jobs:
         - script: aws --version
         - script: docker --version
         - script: ./IN/nexec-repo/gitRepo/build.sh
-      - OUT: nexec-def-img
+      - OUT: nexec-img
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
@@ -128,7 +128,7 @@ jobs:
   - name: build-api-server
     type: runSh
     steps:
-      - IN: api-server-repo
+      - IN: api-repo
       - IN: microbase-img
       - IN: shipbits-ecr
       - TASK:
@@ -141,7 +141,7 @@ jobs:
         - script: echo 'which aws?' && which aws || true
         - script: aws --version
         - script: docker --version
-        - script: ./IN/api-server-repo/gitRepo/build.sh
+        - script: ./IN/api-repo/gitRepo/build.sh
       - OUT: api-def-img
     on_success:
       - script: echo 'on success !!!!!'
@@ -180,9 +180,9 @@ jobs:
     steps:
       - IN: api-def-img
       - IN: www-def-img
-      - IN: nexec-def-img
+      - IN: nexec-img
       - IN: mexec-def-img
-      - IN: runSh-def-img
+      - IN: runSh-img
       - IN: micro-def-img
 
   ###########################################
