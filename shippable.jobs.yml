@@ -192,7 +192,7 @@ jobs:
   - name: rel-alpha-server
     type: release
     steps:
-      - IN: alpha-ver
+      - IN: ship-ver
       - IN: man-def-server
       - TASK: managed
         bump: alpha
@@ -255,7 +255,6 @@ jobs:
   - name: rel-rc-server
     type: release
     steps:
-      - IN: rc-server-ver
       - IN: rel-alpha-server
         switch: off
       - TASK: managed
@@ -374,7 +373,6 @@ jobs:
   - name: rel-final
     type: release
     steps:
-      - IN: final-release-ver
       - TASK: managed
         bump: final
 

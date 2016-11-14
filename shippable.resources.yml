@@ -164,20 +164,10 @@ resources:
     seed:
       versionName: latest
 
-  - name: alpha-ver
+  - name: ship-ver
     type: version
     seed:
       versionName: "4.12.1"
-
-  - name: rc-server-ver
-    type: version
-    seed:
-      versionName: "4.11.3"
-
-  - name: final-release-ver
-    type: version
-    seed:
-      versionName: "4.11.2"
 
   ###############################
   # end Shippable Server resources
