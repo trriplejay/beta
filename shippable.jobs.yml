@@ -252,7 +252,7 @@ jobs:
   # release rc server from default manifest
   ###########################################
 
-  - name: rel-rc-server
+  - name: rel-rc
     type: release
     steps:
       - IN: rel-alpha
@@ -273,7 +273,7 @@ jobs:
         switch: off
       - IN: shipbits-ecr
       - IN: shipimg-dockerhub
-      - IN: rel-rc-server
+      - IN: rel-rc
       - TASK:
         - script: echo 'updating packages' && sudo apt-get update
         - script: echo 'installing jq and unzip' && sudo apt-get install -y jq unzip
@@ -299,7 +299,7 @@ jobs:
     steps:
       - IN: beta-config-repo
         switch: off
-      - IN: rel-rc-server
+      - IN: rel-rc
         switch: off
       - IN: build-rcami
         switch: off
@@ -343,7 +343,7 @@ jobs:
     steps:
       - IN: beta-config-repo
         switch: off
-      - IN: rel-rc-server
+      - IN: rel-rc
         switch: off
       - IN: build-rcami
         switch: off

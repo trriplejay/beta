@@ -3,7 +3,7 @@
 export VERSION=""
 export HUB_REGION=us-east-1
 export DOCKERHUB_TARGET=shipimg
-export RES_RELEASE=rel-rc-server
+export RES_RELEASE=rel-rc
 export RES_ECR_INTEGRATION=shipbits-ecr
 export RES_DOCKERHUB_INTEGRATION=shipimg-dockerhub
 export RES_ALPHA_PUSH=push-alpha
