@@ -60,6 +60,13 @@ configure_node_creds() {
   echo "--------------------------------------"
 }
 
+pull_base_repo() {
+  echo "Pull base-repo started"
+  cd /home/ubuntu/base
+  git pull origin master
+  echo "Successfully pulled base-repo"
+}
+
 deploy() {
   echo "Deploying the release $VERSION to alpha"
   echo "--------------------------------------"
@@ -105,6 +112,7 @@ main() {
   parse_version
   load_node_info
   configure_node_creds
+  pull_base_repo
   deploy
   save_version
 }
