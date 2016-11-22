@@ -307,7 +307,7 @@ resources:
     version:
       params:
         #API_TOKEN API_URL
-        secure: pQcVqaHHv0zx288AUzGjpHwH1OxVznItjGEk992Yh42EM0mtpAj8kMmWVYebRFb6KequY5sQo2r65xKt9s3T/mAH3zfWGEgqBonege6jU2YhxOi4TwzsngN0Mzp/ji3LZXF4M17va9k4MEsG/mnVDfcsoEwoF5HqVjxD2GdIBfg66L+WHNmrL4hM9QIL3CJshV0YJBAuM0U3G1QafIUR63pBkcwUqlXKT5RJnxdl7W7C9vg43hE6RCt1VWHpfoKO4oiuGDmGmrEH9Qc5rZTSRHYJiudvB6fDGBeoWuzp2Eg0K+Ib+1T4rrHK++SVYgytdjtqIEY2CFJYqfgJY61BJg==
+        secure: hBQoXHjIiOqpRm+d5Q95/6qKBcj58AR3tALq2m3lDavvVKJTqrZfRKODru6PuJOs9WuviX6ZlOWCV+gk1ZDcRFT9IFgQ6oGQ4Rg5oy2I0jF4DBoRuCg2f1xAEzGnQdVEDN/4rq3l0jm07Et1c5ousJP5AFY/wcFiqgwwPISJ+kIM3aQM8EEeGjubUYsYXpL/FjKg7rnm5WTWICFtCgs8jzv8GC9/2gdsD5G+fGA0By/91ZKo8BdE7sFy9ixUHrzPw45yzpJjpLb0In1dYNSbohhtC0fWqVKgVeVWEyvNTDqRNXN+ABtPptjjbcvZXk71AWVGn1yhDQS+bEssByJ5OtUovfmH8izszmFk1taEUsaOY9Fq9gq4C12IaYdaYjjujOT15P7+j2dgdI4aNoxX65If0On3+O7CZi3b09NpXQS/IG6Jy14N+vaN5W3ObT2iSULotMcaazV7uUJWmMekF8D9K1VU49IoBshj3U0Bhg51Ilzeak+ynd+bGpX/apuyh4ErwCGhnRXFKiE7xlTDH//kdqRDcmxolatdoO/CcgV6g19u8JGd6vJsAiBQUtI9BGsqoHVZ0QfvrKLO7ePapczfwHRK3agrsJHVA1Cgh/WRcfQH+tR37kRzhPgP0lL5IBfZcVuSvobeeB0XrBXT8BmQFka7vjorGBagiY7qDh0=
 
   ###############################
   # END Build Acceptance Test resources
