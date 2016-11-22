@@ -238,7 +238,7 @@ jobs:
         switch: off
       - IN: rel-alpha
         switch: off
-      - IN: build-alphaami
+      - IN: push-alpha
       - IN: aws-alpha-pem
       - IN: aws-alpha-swarm
       - TASK:
@@ -329,7 +329,7 @@ jobs:
         switch: off
       - IN: rel-alpha
         switch: off
-      - IN: build-alphaami
+      - IN: push-alpha
       - IN: aws-alpha-pem
       - IN: qhode-alpha-swarm
       - TASK:
