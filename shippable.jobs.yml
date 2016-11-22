@@ -455,7 +455,7 @@ jobs:
       - IN: bat-ship-alpha-parms
       - TASK:
         - script: sudo apt-get install -y jq
-        - script: IN/bat-repo/gitRepo/test.sh bat-ship-alpha-parms
+        - script: IN/bat-repo/gitRepo/test.sh bat-ship-alpha-parms-temp
     on_success:
       - script: echo 'succeeded'
     on_failure:
