@@ -303,14 +303,7 @@ resources:
     version:
       params:
         #API_TOKEN API_URL
-        secure: ypKP0mdAj6ij6aHFm+fMBDxZQXNROlpd8PYPk9KZKSOa62A7VlrTnR+DLot/1cgsJ4ZjeQiNv5f8NtX/r818LyhaNJEzxyqYKMRbEO2UdYCJI6pFzseYzaAKYa+aQteY5bINoV/LbHLucmTL4ln0ZPHz/7GtsMx1BI87gNj7iGx4hRewKTGqSZchUuvlkdc+f+EwrixWuyzoF04E/Fzq1zbyqqqYrJm+UG/4Yzwa3qKvxJyaJ5iXtuYWmqtPC7/Aevdk2A+jDdXJBVsEQwL38DxVNgb4ZrxbE2SDRFQjKNZN1vbyeC3FUTf8r23NSczMcGlZ5u3515moZWls8qykxw==
-
-  - name: bat-ship-alpha-parms-temp
-    type: params
-    version:
-      params:
-        #API_TOKEN API_URL GITHUB_TOKEN
-        secure: u5MEZkTMEZd1NfDJOX/wSvN0Vjuazsmvl6lE1Bp9osd92yT8cyBZZvDfwu1ieCMWp7GI6SbagFiz0rkszS/z4Mn4EJ5R4RIIfLCn1A2qeu9OOg/qgsWvXpPRV2X8Avc5vmnPywC0vgARssKuz69zxylF3sAfWTcOYhERQuJlApSBZpzg2HSDmrT9MAcbTUKw/LgQZGFwaNsRmAcABUSF/kIi6O7lqu1CRtywwMYp9ME9yJqIVXvaRT3odwugMMWkn7lsFCtCL5K96EWwZnfoEJHs5RWRWFBGUXe1Bxn2hbDEUgahccEoDQT5vxwmUIt9yeJ/Pbiri52nQKZYeU2b5A==
+        secure: pQcVqaHHv0zx288AUzGjpHwH1OxVznItjGEk992Yh42EM0mtpAj8kMmWVYebRFb6KequY5sQo2r65xKt9s3T/mAH3zfWGEgqBonege6jU2YhxOi4TwzsngN0Mzp/ji3LZXF4M17va9k4MEsG/mnVDfcsoEwoF5HqVjxD2GdIBfg66L+WHNmrL4hM9QIL3CJshV0YJBAuM0U3G1QafIUR63pBkcwUqlXKT5RJnxdl7W7C9vg43hE6RCt1VWHpfoKO4oiuGDmGmrEH9Qc5rZTSRHYJiudvB6fDGBeoWuzp2Eg0K+Ib+1T4rrHK++SVYgytdjtqIEY2CFJYqfgJY61BJg==
 
   ###############################
   # END Build Acceptance Test resources
