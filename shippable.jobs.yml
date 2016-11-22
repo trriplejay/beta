@@ -452,7 +452,7 @@ jobs:
     type: runSh
     steps:
       - IN: bat-repo
-      - IN: bat-ship-alpha-parms
+      - IN: bat-ship-alpha-parms-temp
       - TASK:
         - script: sudo apt-get install -y jq
         - script: IN/bat-repo/gitRepo/test.sh bat-ship-alpha-parms-temp
