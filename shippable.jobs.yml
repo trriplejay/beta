@@ -453,6 +453,7 @@ jobs:
     steps:
       - IN: bat-repo
       - IN: bat-ship-alpha-parms
+      - IN: deploy-alpha
       - TASK:
         - script: sudo apt-get install -y jq
         - script: IN/bat-repo/gitRepo/test.sh bat-ship-alpha-parms
