@@ -485,6 +485,21 @@ jobs:
     on_failure:
       - script: cat ./IN/bldami-repo/gitRepo/base/output.txt
 
+  - name: build-base-unstable-ami
+    type: runSh
+    steps:
+      - IN: baseami-params
+      - IN: aws-bits-access
+      - IN: bldami-repo
+        switch: off
+      - TASK:
+        - script: sudo apt-get install -y jq
+        - script: IN/bldami-repo/gitRepo/baseUnstable/basePack.sh baseami-params
+    on_success:
+      - script: echo "SUCCESS"
+    on_failure:
+      - script: cat ./IN/bldami-repo/gitRepo/baseUnstable/output.txt
+
   - name: patch-baseami
     type: runSh
     steps:
