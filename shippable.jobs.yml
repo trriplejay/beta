@@ -561,7 +561,25 @@ jobs:
       - IN: push-rc
       - TASK:
         - script: sudo apt-get install -y jq
-        - script: IN/bldami-repo/gitRepo/exec/execPack.sh baseami-params push-rc
+        - script: IN/bldami-repo/gitRepo/exec/execPack.sh baseami-params push-rc patch-baseami
+    on_success:
+      - script: echo "SUCCESS"
+    on_failure:
+      - script: cat ./IN/bldami-repo/gitRepo/exec/output.txt
+
+  - name: build-rc-unstable-ami
+    type: runSh
+    steps:
+      - IN: baseami-params
+      - IN: aws-bits-access
+      - IN: bldami-repo
+        switch: off
+      - IN: patch-base-unstable-ami
+        switch: off
+      - IN: push-rc
+      - TASK:
+        - script: sudo apt-get install -y jq
+        - script: IN/bldami-repo/gitRepo/exec/execPack.sh baseami-params push-rc patch-base-unstable-ami
     on_success:
       - script: echo "SUCCESS"
     on_failure:
