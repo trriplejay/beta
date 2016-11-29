@@ -561,7 +561,7 @@ jobs:
       - IN: push-rc
       - TASK:
         - script: sudo apt-get install -y jq
-        - script: IN/bldami-repo/gitRepo/exec/execPack.sh baseami-params push-rc patch-baseami
+        - script: IN/bldami-repo/gitRepo/exec/execPack.sh baseami-params push-rc patch-baseami stable
     on_success:
       - script: echo "SUCCESS"
     on_failure:
@@ -579,7 +579,7 @@ jobs:
       - IN: push-rc
       - TASK:
         - script: sudo apt-get install -y jq
-        - script: IN/bldami-repo/gitRepo/exec/execPack.sh baseami-params push-rc patch-base-unstable-ami
+        - script: IN/bldami-repo/gitRepo/exec/execPack.sh baseami-params push-rc patch-base-unstable-ami unstable
     on_success:
       - script: echo "SUCCESS"
     on_failure:
@@ -597,7 +597,7 @@ jobs:
       - IN: push-final
       - TASK:
         - script: sudo apt-get install -y jq
-        - script: IN/bldami-repo/gitRepo/exec/execPack.sh baseami-params push-final patch-baseami
+        - script: IN/bldami-repo/gitRepo/exec/execPack.sh baseami-params push-final patch-baseami stable
     on_success:
       - script: echo "SUCCESS"
     on_failure:
@@ -615,7 +615,7 @@ jobs:
       - IN: push-final
       - TASK:
         - script: sudo apt-get install -y jq
-        - script: IN/bldami-repo/gitRepo/exec/execPack.sh baseami-params push-final patch-base-unstable-ami
+        - script: IN/bldami-repo/gitRepo/exec/execPack.sh baseami-params push-final patch-base-unstable-ami unstable
     on_success:
       - script: echo "SUCCESS"
     on_failure:
