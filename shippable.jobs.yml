@@ -510,7 +510,7 @@ jobs:
         switch: off
       - TASK:
         - script: sudo apt-get install -y jq
-        - script: IN/bldami-repo/gitRepo/basePatch/basePatchPack.sh baseami-params build-baseami
+        - script: IN/bldami-repo/gitRepo/basePatch/basePatchPack.sh baseami-params build-baseami stable
     on_success:
       - script: echo "SUCCESS"
     on_failure:
@@ -526,7 +526,7 @@ jobs:
         switch: off
       - TASK:
         - script: sudo apt-get install -y jq
-        - script: IN/bldami-repo/gitRepo/basePatch/basePatchPack.sh baseami-params build-base-unstable-ami
+        - script: IN/bldami-repo/gitRepo/basePatch/basePatchPack.sh baseami-params build-base-unstable-ami unstable
     on_success:
       - script: echo "SUCCESS"
     on_failure:
