@@ -59,6 +59,13 @@ configure_node_creds() {
   echo "--------------------------------------"
 }
 
+pull_base_repo() {
+  echo "Pull base-repo started"
+  local pull_base_command="git -C /home/ubuntu/base pull origin master"
+  ssh -A $RC_BASTION_USER@$RC_BASTION_IP ssh $RC_SWARM_USER@$RC_SWARM_IP "$pull_base_command"
+  echo "Successfully pulled base-repo"
+}
+
 deploy() {
   echo "Deploying the release $VERSION to RC"
   echo "--------------------------------------"
@@ -104,6 +111,7 @@ main() {
   parse_version
   load_node_info
   configure_node_creds
+  pull_base_repo
   deploy
   save_version
 }
