@@ -617,7 +617,7 @@ jobs:
         - script: sudo apt-get install -y jq
         - script: IN/bldami-repo/gitRepo/exec/execPack.sh baseami-params push-final patch-base-unstable-ami unstable
     on_success:
-      - script: echo "SUCCESS"
+      - script: cat /build/IN/bldami-repo/gitRepo/exec/output.txt
     on_failure:
       - script: cat /build/IN/bldami-repo/gitRepo/exec/output.txt
 
