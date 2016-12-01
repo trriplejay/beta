@@ -483,7 +483,7 @@ jobs:
     on_success:
       - script: echo "SUCCESS"
     on_failure:
-      - script: cat ./IN/bldami-repo/gitRepo/base/output.txt
+      - script: cat /build/IN/bldami-repo/gitRepo/base/output.txt
 
   - name: build-base-unstable-ami
     type: runSh
@@ -498,7 +498,7 @@ jobs:
     on_success:
       - script: echo "SUCCESS"
     on_failure:
-      - script: cat ./IN/bldami-repo/gitRepo/baseUnstable/output.txt
+      - script: cat /build/IN/bldami-repo/gitRepo/baseUnstable/output.txt
 
   - name: patch-baseami
     type: runSh
@@ -514,7 +514,7 @@ jobs:
     on_success:
       - script: echo "SUCCESS"
     on_failure:
-      - script: cat ./IN/bldami-repo/gitRepo/basePatch/output.txt
+      - script: cat /build/IN/bldami-repo/gitRepo/basePatch/output.txt
 
   - name: patch-base-unstable-ami
     type: runSh
@@ -530,7 +530,7 @@ jobs:
     on_success:
       - script: echo "SUCCESS"
     on_failure:
-      - script: cat ./IN/bldami-repo/gitRepo/basePatch/output.txt
+      - script: cat /build/IN/bldami-repo/gitRepo/basePatch/output.txt
 
 #  - name: build-alphaami
 #    type: runSh
@@ -547,7 +547,7 @@ jobs:
 #    on_success:
 #      - script: echo "SUCCESS"
 #    on_failure:
-#      - script: cat ./IN/bldami-repo/gitRepo/exec/output.txt
+#      - script: cat /build/IN/bldami-repo/gitRepo/exec/output.txt
 
   - name: build-rcami
     type: runSh
@@ -565,7 +565,7 @@ jobs:
     on_success:
       - script: echo "SUCCESS"
     on_failure:
-      - script: cat ./IN/bldami-repo/gitRepo/exec/output.txt
+      - script: cat /build/IN/bldami-repo/gitRepo/exec/output.txt
 
   - name: build-rc-unstable-ami
     type: runSh
@@ -583,7 +583,7 @@ jobs:
     on_success:
       - script: echo "SUCCESS"
     on_failure:
-      - script: cat ./IN/bldami-repo/gitRepo/exec/output.txt
+      - script: cat /build/IN/bldami-repo/gitRepo/exec/output.txt
 
   - name: build-finalami
     type: runSh
@@ -601,7 +601,7 @@ jobs:
     on_success:
       - script: echo "SUCCESS"
     on_failure:
-      - script: cat ./IN/bldami-repo/gitRepo/exec/output.txt
+      - script: cat /build/IN/bldami-repo/gitRepo/exec/output.txt
 
   - name: build-final-unstable-ami
     type: runSh
@@ -619,7 +619,7 @@ jobs:
     on_success:
       - script: echo "SUCCESS"
     on_failure:
-      - script: cat ./IN/bldami-repo/gitRepo/exec/output.txt
+      - script: cat /build/IN/bldami-repo/gitRepo/exec/output.txt
 
   ###########################################
   # END Build AMI
