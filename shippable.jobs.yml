@@ -389,11 +389,11 @@ jobs:
   - name: push-final
     type: runSh
     steps:
+      - IN: push-rc
+        switch: off
       - IN: beta-config-repo
         switch: off
       - IN: base-repo
-        switch: off
-      - IN: deploy-rc
         switch: off
       - IN: shipbits-ecr
       - IN: shipimg-dockerhub
