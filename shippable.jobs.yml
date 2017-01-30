@@ -168,6 +168,7 @@ jobs:
       - IN: mexec-img
       - IN: runSh-img
       - IN: micro-img
+      - IN: genexec-img
 
   ###########################################
   # release alpha server from default manifest
