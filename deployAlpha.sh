@@ -96,8 +96,7 @@ configure_node_creds() {
   fi
 
   export KEY_FILE_PATH="IN/$INTEGRATION_RES/key.pem"
-  cat IN/$INTEGRATION_RES/integration.json  \
-    | jq -r '.key' > $KEY_FILE_PATH
+  cat IN/$INTEGRATION_RES/integration.json | jq -r '.key' > $KEY_FILE_PATH
   chmod 600 $KEY_FILE_PATH
 
   ls -al $KEY_FILE_PATH
@@ -155,9 +154,9 @@ main() {
 
   test_env_info
   configure_node_creds
-  #pull_base_repo
-  #deploy
-  #save_version
+  pull_base_repo
+  deploy
+  save_version
 }
 
 main
