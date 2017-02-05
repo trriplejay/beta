@@ -74,26 +74,13 @@ test_env_info() {
   echo "successfully loaded node information"
 }
 
-configure_node_creds() {
-  echo "Extracting AWS PEM"
-  echo "-----------------------------------"
-  local creds_path="IN/$INTEGRATION_RES/integration.env"
-  if [ ! -f $creds_path ]; then
-    echo "No credentials file found at location: $creds_path"
-    return 1
-  fi
-
-  export KEY_FILE_PATH="IN/$INTEGRATION_RES/key.pem"
-  cat IN/$INTEGRATION_RES/integration.json  \
-    | jq -r '.key' > $KEY_FILE_PATH
-  chmod 600 $KEY_FILE_PATH
-
-  ls -al $KEY_FILE_PATH
-  echo "KEY file available at : $KEY_FILE_PATH"
+setup_bastion_ssh_key() {
+  echo PEM_KEY > /tmp/key.pem
+  chmod 600 /tmp/key.pem
+  echo "KEY file available at : /tmp/key.pem"
   echo "Completed Extracting AWS PEM"
   echo "-----------------------------------"
-
-  ssh-add $KEY_FILE_PATH
+  ssh-add /tmp/key.pem
   echo "SSH key added successfully"
   echo "--------------------------------------"
 }
@@ -142,7 +129,7 @@ main() {
   eval $(ssh-agent -s)
 
   test_env_info
-  #configure_node_creds
+  setup_bastion_ssh_key
   #pull_base_repo
   #deploy
   #save_version
