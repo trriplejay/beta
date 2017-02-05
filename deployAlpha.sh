@@ -1,46 +1,64 @@
 #!/bin/bash -e
 
+export DEPLOY_ENV=ALPHA
+# name of the resource in uppercase without -
+export SWARM_CONN_RES=AWSALPHASWARM
 
 export ALPHA_INTEGRATION=aws-alpha-pem
-export ALPHA_SWARM=aws-alpha-swarm
 
-# name of the resource in uppercase without - and append PARAMS_ALPHA_ to it
+# name of the resource in uppercase without - and append PARAMS_ALPHA to it
+# PARAMS cos the resource is of type
 # this will give you all the ENVs that were setup in aws-alpha-swarm
-export PARAM_MSB=AWSALPHASWARM_PARAMS_ALPHA_
-export BASTION_USER=$(eval echo "$"$PARAM_MSB"BASTION_USER")
-export BASTION_IP=$(eval echo "$"$PARAM_MSB"BASTION_IP")
-export SWARM_USER=$(eval echo "$"$PARAM_MSB"SWARM_USER")
-export SWARM_IP=$(eval echo "$"$PARAM_MSB"SWARM_IP")
 
+# type of the resource above
+export SWARM_CONN_RES_TYPE=$(eval echo "$"$SWARM_CONN_RES"_TYPE") | awk '{print toupper($0)}'
+export SWARM_STRING=$SWARM_CONN_RES"_"$SWARM_CONN_RES_TYPE"_"$DEPLOY_ENV
 
-export RES_RELEASE=rel-alpha
-export VERSION=$RELALPHA_VERSIONNAME
+# rel-alpha in uppercase without -
+export RES_RELEASE=RELALPHA
+
+export BASTION_USER=$(eval echo "$"$SWARM_STRING"_BASTION_USER")
+export BASTION_IP=$(eval echo "$"$SWARM_STRING"_BASTION_IP")
+export SWARM_USER=$(eval echo "$"$SWARM_STRING"_SWARM_USER")
+export SWARM_IP=$(eval echo "$"$SWARM_STRING"_SWARM_IP")
+export VERSION=$(eval echo "$"$RES_RELEASE"_VERSIONNAME")
 
 export KEY_FILE_PATH=""
 
-parse_version() {
-#  release_path="IN/$RES_RELEASE/release/release.json"
-#  if [ ! -e $release_path ]; then
-#    echo "No release.json file found at location: $release_path"
-#    return 1
-#  fi
-#
-#  echo "extracting release versionName from state file"
-#  VERSION=$(jq -r '.versionName' $release_path)
-  echo "found version: $VERSION"
-  echo "found path: $FOO"
-}
+test_env_info() {
+  echo "Testing all environment variables that are critical"
 
-load_node_info() {
-  echo "Loading node information"
-  # local node_info=$(cat IN/$ALPHA_SWARM/params)
-  # export $node_info
-  #. $node_info
-
+  echo "########### VERSION: $VERSION"
   echo "########### SWARM USER: $SWARM_USER"
   echo "########### SWARM IP_ADDR: $SWARM_IP"
   echo "########### BASTION USER: $BASTION_USER"
   echo "########### BASTION IP_ADDR: $BASTION_IP"
+
+  if [ "$VERSION" == "" ]; then
+    echo "VERSION not found"
+    return 1
+  fi
+
+  if [ "$SWARM_USER" == "" ]; then
+    echo "SWARM_USER not found"
+    return 1
+  fi
+
+  if [ "$SWARM_IP" == "" ]; then
+    echo "SWARM_IP not found"
+    return 1
+  fi
+
+  if [ "$BASTION_USER" == "" ]; then
+    echo "BASTION_USER not found"
+    return 1
+  fi
+
+  if [ "$BASTION_IP" == "" ]; then
+    echo "BASTION_IP not found"
+    return 1
+  fi
+
   echo "successfully loaded node information"
 }
 
@@ -111,13 +129,7 @@ save_version() {
 main() {
   eval $(ssh-agent -s)
 
-  if [ "$VERSION" != "" ]; then
-    echo "No Version found to deploy"
-    return 1
-  fi
-
-  parse_version
-  #load_node_info
+  test_env_info
   #configure_node_creds
   #pull_base_repo
   #deploy
