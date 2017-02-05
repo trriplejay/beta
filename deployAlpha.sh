@@ -25,14 +25,14 @@ parse_version() {
 
 load_node_info() {
   echo "Loading node information"
-  local node_info=$(cat IN/$ALPHA_SWARM/params)
-  export $node_info
+  # local node_info=$(cat IN/$ALPHA_SWARM/params)
+  # export $node_info
   #. $node_info
 
-  echo "########### SWARM USER: $ALPHA_SWARM_USER"
-  echo "########### SWARM IP_ADDR: $ALPHA_SWARM_IP"
-  echo "########### BASTION USER: $ALPHA_BASTION_USER"
-  echo "########### BASTION IP_ADDR: $ALPHA_BASTION_IP"
+  echo "########### SWARM USER: $AWSALPHASWARM_PARAMS_ALPHA_SWARM_USER"
+  echo "########### SWARM IP_ADDR: $AWSALPHASWARM_PARAMS_ALPHA_SWARM_IP"
+  echo "########### BASTION USER: $AWSALPHASWARM_PARAMS_ALPHA_BASTION_USER"
+  echo "########### BASTION IP_ADDR: $AWSALPHASWARM_PARAMS_ALPHA_BASTION_IP"
   echo "successfully loaded node information"
 }
 
