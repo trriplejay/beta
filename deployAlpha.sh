@@ -14,6 +14,10 @@ export ALPHA_INTEGRATION=aws-alpha-pem
 export SWARM_CONN_RES_TYPE=$(eval echo "$"$SWARM_CONN_RES"_TYPE") | awk '{print toupper($0)}'
 export SWARM_STRING=$SWARM_CONN_RES"_"$SWARM_CONN_RES_TYPE"_"$DEPLOY_ENV
 
+
+echo "ResType : "$SWARM_CONN_RES_TYPE
+echo "Full String : "$SWARM_STRING
+
 # rel-alpha in uppercase without -
 export RES_RELEASE=RELALPHA
 
