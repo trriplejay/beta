@@ -76,14 +76,16 @@ test_env_info() {
 
 configure_node_creds() {
 
-  echo $PEM_KEY > /tmp/key.pem
-  chmod 600 /tmp/key.pem
-  echo "KEY file available at : /tmp/key.pem"
-  echo "Completed Extracting AWS PEM"
-  echo "-----------------------------------"
-  ssh-add /tmp/key.pem
-  echo "SSH key added successfully"
-  echo "--------------------------------------"
+echo $PEM_KEY
+
+#  echo $PEM_KEY > /tmp/key.pem
+#  chmod 600 /tmp/key.pem
+#  echo "KEY file available at : /tmp/key.pem"
+#  echo "Completed Extracting AWS PEM"
+#  echo "-----------------------------------"
+#  ssh-add /tmp/key.pem
+#  echo "SSH key added successfully"
+#  echo "--------------------------------------"
 
 #  echo "Extracting AWS PEM"
 #  echo "-----------------------------------"
