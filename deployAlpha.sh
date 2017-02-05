@@ -4,10 +4,14 @@ export RES_RELEASE=rel-alpha
 export ALPHA_INTEGRATION=aws-alpha-pem
 export ALPHA_SWARM=aws-alpha-swarm
 
-export ALPHA_BASTION_USER=$AWSALPHASWARM_PARAMS_ALPHA_BASTION_USER
-export ALPHA_BASTION_IP=$AWSALPHASWARM_PARAMS_ALPHA_BASTION_IP
-export ALPHA_SWARM_USER=$AWSALPHASWARM_PARAMS_ALPHA_SWARM_USER
-export ALPHA_SWARM_IP=$AWSALPHASWARM_PARAMS_ALPHA_SWARM_IP
+#name of the resource in uppercase without - and append PARAMS to it
+export PARAM_MSB=AWSALPHASWARM_PARAMS_
+export FOO=$(eval echo "$"$PARAM_MSB"BASTION_USER")
+
+export BASTION_USER=$AWSALPHASWARM_PARAMS_ALPHA_BASTION_USER
+export BASTION_IP=$AWSALPHASWARM_PARAMS_ALPHA_BASTION_IP
+export SWARM_USER=$AWSALPHASWARM_PARAMS_ALPHA_SWARM_USER
+export SWARM_IP=$AWSALPHASWARM_PARAMS_ALPHA_SWARM_IP
 export VERSION=$RELALPHA_VERSIONNAME
 
 export KEY_FILE_PATH=""
@@ -22,6 +26,7 @@ parse_version() {
 #  echo "extracting release versionName from state file"
 #  VERSION=$(jq -r '.versionName' $release_path)
   echo "found version: $VERSION"
+  echo $FOO
 }
 
 load_node_info() {
@@ -30,10 +35,10 @@ load_node_info() {
   # export $node_info
   #. $node_info
 
-  echo "########### SWARM USER: $ALPHA_SWARM_USER"
-  echo "########### SWARM IP_ADDR: $ALPHA_SWARM_IP"
-  echo "########### BASTION USER: $ALPHA_BASTION_USER"
-  echo "########### BASTION IP_ADDR: $ALPHA_BASTION_IP"
+  echo "########### SWARM USER: $SWARM_USER"
+  echo "########### SWARM IP_ADDR: $SWARM_IP"
+  echo "########### BASTION USER: $BASTION_USER"
+  echo "########### BASTION IP_ADDR: $BASTION_IP"
   echo "successfully loaded node information"
 }
 
@@ -64,7 +69,7 @@ configure_node_creds() {
 pull_base_repo() {
   echo "Pull base-repo started"
   local pull_base_command="git -C /home/ubuntu/base pull origin master"
-  ssh -A $ALPHA_BASTION_USER@$ALPHA_BASTION_IP ssh $ALPHA_SWARM_USER@$ALPHA_SWARM_IP "$pull_base_command"
+  ssh -A $BASTION_USER@$BASTION_IP ssh $SWARM_USER@$SWARM_IP "$pull_base_command"
   echo "Successfully pulled base-repo"
 }
 
@@ -72,19 +77,18 @@ deploy() {
   echo "Deploying the release $VERSION to alpha"
   echo "--------------------------------------"
 
-
   echo "SSH key file list"
   ssh-add -L
 
   local inspect_command="ip addr"
   echo "Executing inspect command: $inspect_command"
-  ssh -A $ALPHA_BASTION_USER@$ALPHA_BASTION_IP ssh $ALPHA_SWARM_USER@$ALPHA_SWARM_IP "$inspect_command"
+  ssh -A $BASTION_USER@$BASTION_IP ssh $SWARM_USER@$SWARM_IP "$inspect_command"
   echo "-------------------------------------="
 
   #local deploy_command="ls -al"
   local deploy_command="sudo /home/ubuntu/base/base.sh --release $VERSION"
   echo "Executing deploy command: $deploy_command"
-  ssh -A $ALPHA_BASTION_USER@$ALPHA_BASTION_IP ssh $ALPHA_SWARM_USER@$ALPHA_SWARM_IP "$deploy_command"
+  ssh -A $BASTION_USER@$BASTION_IP ssh $SWARM_USER@$SWARM_IP "$deploy_command"
   echo "-------------------------------------="
 
   echo "Successfully deployed release $VERSION to alpha env"
@@ -111,11 +115,11 @@ main() {
   fi
 
   parse_version
-  load_node_info
-  configure_node_creds
-  pull_base_repo
-  deploy
-  save_version
+  #load_node_info
+  #configure_node_creds
+  #pull_base_repo
+  #deploy
+  #save_version
 }
 
 main
