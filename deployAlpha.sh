@@ -11,7 +11,7 @@ export ALPHA_INTEGRATION=aws-alpha-pem
 # this will give you all the ENVs that were setup in aws-alpha-swarm
 
 # type of the resource above
-export SWARM_CONN_RES_TYPE_L=$(eval echo "$"$SWARM_CONN_RES"_TYPE")
+export SWARM_CONN_RES_TYPE_L=$(eval echo "$"$SWARM_CONN_RES"_TYPE" | awk '{print toupper($0)}')
 export SWARM_CONN_RES_TYPE_U=$(echo $SWARM_CONN_RES_TYPE_L | awk '{print toupper($0)}')
 
 export SWARM_STRING=$SWARM_CONN_RES"_"$SWARM_CONN_RES_TYPE"_"$DEPLOY_ENV
