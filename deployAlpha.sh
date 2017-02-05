@@ -22,7 +22,7 @@ export RELEASE_RES="REL"$DEPLOY_ENV
 export VERSION=$(eval echo "$"$RELEASE_RES"_VERSIONNAME")
 
 # uppercase name of integration resource without -
-export INTEGRATION_RES="aws-deploy-pem"
+export INTEGRATION_RES="aws-alpha-pem"
 
 #export INTEGRATION_RES="AWS"$DEPLOY_ENV"PEM"
 #
