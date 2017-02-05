@@ -22,13 +22,15 @@ export RELEASE_RES="REL"$DEPLOY_ENV
 export VERSION=$(eval echo "$"$RELEASE_RES"_VERSIONNAME")
 
 # uppercase name of integration resource without -
-export INTEGRATION_RES="AWS"$DEPLOY_ENV"PEM"
+export INTEGRATION_RES="aws-deploy-pem"
 
-# uppercase type of the resource above
-export INTEGRATION_RES_TYPE=$(eval echo "$"$INTEGRATION_RES"_TYPE" | awk '{print toupper($0)}')
-
-# path to find the INTEGRATION key
-export PEM_KEY=$(eval echo "$"$INTEGRATION_RES"_"$INTEGRATION_RES_TYPE"_KEY")
+#export INTEGRATION_RES="AWS"$DEPLOY_ENV"PEM"
+#
+## uppercase type of the resource above
+#export INTEGRATION_RES_TYPE=$(eval echo "$"$INTEGRATION_RES"_TYPE" | awk '{print toupper($0)}')
+#
+## path to find the INTEGRATION key
+#export PEM_KEY=$(eval echo "$"$INTEGRATION_RES"_"$INTEGRATION_RES_TYPE"_KEY")
 
 export KEY_FILE_PATH=""
 
@@ -76,8 +78,6 @@ test_env_info() {
 
 configure_node_creds() {
 
-echo $PEM_KEY
-
 #  echo $PEM_KEY > /tmp/key.pem
 #  chmod 600 /tmp/key.pem
 #  echo "KEY file available at : /tmp/key.pem"
@@ -87,27 +87,27 @@ echo $PEM_KEY
 #  echo "SSH key added successfully"
 #  echo "--------------------------------------"
 
-#  echo "Extracting AWS PEM"
-#  echo "-----------------------------------"
-#  local creds_path="IN/$INTEGRATION_RES/integration.env"
-#  if [ ! -f $creds_path ]; then
-#    echo "No credentials file found at location: $creds_path"
-#    return 1
-#  fi
-#
-#  export KEY_FILE_PATH="IN/$INTEGRATION_RES/key.pem"
-#  cat IN/$INTEGRATION_RES/integration.json  \
-#    | jq -r '.key' > $KEY_FILE_PATH
-#  chmod 600 $KEY_FILE_PATH
-#
-#  ls -al $KEY_FILE_PATH
-#  echo "KEY file available at : $KEY_FILE_PATH"
-#  echo "Completed Extracting AWS PEM"
-#  echo "-----------------------------------"
-#
-#  ssh-add $KEY_FILE_PATH
-#  echo "SSH key added successfully"
-#  echo "--------------------------------------"
+  echo "Extracting AWS PEM"
+  echo "-----------------------------------"
+  local creds_path="IN/$INTEGRATION_RES/integration.env"
+  if [ ! -f $creds_path ]; then
+    echo "No credentials file found at location: $creds_path"
+    return 1
+  fi
+
+  export KEY_FILE_PATH="IN/$INTEGRATION_RES/key.pem"
+  cat IN/$INTEGRATION_RES/integration.json  \
+    | jq -r '.key' > $KEY_FILE_PATH
+  chmod 600 $KEY_FILE_PATH
+
+  ls -al $KEY_FILE_PATH
+  echo "KEY file available at : $KEY_FILE_PATH"
+  echo "Completed Extracting AWS PEM"
+  echo "-----------------------------------"
+
+  ssh-add $KEY_FILE_PATH
+  echo "SSH key added successfully"
+  echo "--------------------------------------"
 }
 
 pull_base_repo() {
