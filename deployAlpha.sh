@@ -1,30 +1,34 @@
 #!/bin/bash -e
 
 export DEPLOY_ENV=ALPHA
-# name of the resource in uppercase without -
-export SWARM_CONN_RES=AWSALPHASWARM
 
-export ALPHA_INTEGRATION=aws-alpha-pem
+# uppercase name of the resource in uppercase without -
+export SWARM_CONN_RES="AWS"$DEPLOY_ENV"SWARM"
 
-# name of the resource in uppercase without - and append PARAMS_ALPHA to it
-# PARAMS cos the resource is of type
-# this will give you all the ENVs that were setup in aws-alpha-swarm
-
-# type of the resource above
+# uppercase type of the resource above
 export SWARM_CONN_RES_TYPE=$(eval echo "$"$SWARM_CONN_RES"_TYPE" | awk '{print toupper($0)}')
+
+# path to find the SWARM_CONN config
 export SWARM_STRING=$SWARM_CONN_RES"_"$SWARM_CONN_RES_TYPE"_"$DEPLOY_ENV
 
-echo "ResType : "$SWARM_CONN_RES_TYPE
-echo "Full String : "$SWARM_STRING
-
-# rel-alpha in uppercase without -
-export RES_RELEASE=RELALPHA
-
+# now set all other values
 export BASTION_USER=$(eval echo "$"$SWARM_STRING"_BASTION_USER")
 export BASTION_IP=$(eval echo "$"$SWARM_STRING"_BASTION_IP")
 export SWARM_USER=$(eval echo "$"$SWARM_STRING"_SWARM_USER")
 export SWARM_IP=$(eval echo "$"$SWARM_STRING"_SWARM_IP")
-export VERSION=$(eval echo "$"$RES_RELEASE"_VERSIONNAME")
+export VERSION=$(eval echo "$"$RELEASE_RES"_VERSIONNAME")
+
+# uppercase name of release job without -
+export RELEASE_RES="REL"$DEPLOY_ENV
+
+# uppercase name of integration resource without -
+export INTEGRATION_RES="AWS"$DEPLOY_ENV"PEM"
+
+# uppercase type of the resource above
+export INTEGRATION_RES_TYPE=$(eval echo "$"$INTEGRATION_RES"_TYPE" | awk '{print toupper($0)}')
+
+# path to find the INTEGRATION key
+export PEM_KEY=$(eval echo "$"$INTEGRATION_RES"_"$INTEGRATION_RES_TYPE"_KEY")
 
 export KEY_FILE_PATH=""
 
@@ -62,20 +66,25 @@ test_env_info() {
     return 1
   fi
 
+  if [ "$PEM_KEY" == "" ]; then
+    echo "PEM_KEY not found"
+    return 1
+  fi
+
   echo "successfully loaded node information"
 }
 
 configure_node_creds() {
   echo "Extracting AWS PEM"
   echo "-----------------------------------"
-  local creds_path="IN/$ALPHA_INTEGRATION/integration.env"
+  local creds_path="IN/$INTEGRATION_RES/integration.env"
   if [ ! -f $creds_path ]; then
     echo "No credentials file found at location: $creds_path"
     return 1
   fi
 
-  export KEY_FILE_PATH="IN/$ALPHA_INTEGRATION/key.pem"
-  cat IN/$ALPHA_INTEGRATION/integration.json  \
+  export KEY_FILE_PATH="IN/$INTEGRATION_RES/key.pem"
+  cat IN/$INTEGRATION_RES/integration.json  \
     | jq -r '.key' > $KEY_FILE_PATH
   chmod 600 $KEY_FILE_PATH
 
