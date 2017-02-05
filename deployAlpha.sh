@@ -111,7 +111,7 @@ save_version() {
 main() {
   eval $(ssh-agent -s)
 
-  if [ "$VERSION" -ne "" ]; then
+  if [ "$VERSION" != "" ]; then
     echo "No Version found to deploy"
     return 1
   fi
