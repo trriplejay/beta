@@ -5,10 +5,10 @@ export RES_RELEASE=rel-alpha
 #export ALPHA_INTEGRATION=aws-alpha-pem
 export ALPHA_INTEGRATION=aws-alpha-pem
 export ALPHA_SWARM=aws-alpha-swarm
-export ALPHA_BASTION_USER=""
-export ALPHA_BASTION_IP=""
-export ALPHA_SWARM_USER=""
-export ALPHA_SWARM_IP=""
+export ALPHA_BASTION_USER=$AWSALPHASWARM_PARAMS_ALPHA_BASTION_USER
+export ALPHA_BASTION_IP=$AWSALPHASWARM_PARAMS_ALPHA_BASTION_IP
+export ALPHA_SWARM_USER=$AWSALPHASWARM_PARAMS_ALPHA_SWARM_USER
+export ALPHA_SWARM_IP=$AWSALPHASWARM_PARAMS_ALPHA_SWARM_IP
 export KEY_FILE_PATH=""
 
 parse_version() {
@@ -29,10 +29,10 @@ load_node_info() {
   # export $node_info
   #. $node_info
 
-  echo "########### SWARM USER: $AWSALPHASWARM_PARAMS_ALPHA_SWARM_USER"
-  echo "########### SWARM IP_ADDR: $AWSALPHASWARM_PARAMS_ALPHA_SWARM_IP"
-  echo "########### BASTION USER: $AWSALPHASWARM_PARAMS_ALPHA_BASTION_USER"
-  echo "########### BASTION IP_ADDR: $AWSALPHASWARM_PARAMS_ALPHA_BASTION_IP"
+  echo "########### SWARM USER: $ALPHA_SWARM_USER"
+  echo "########### SWARM IP_ADDR: $ALPHA_SWARM_IP"
+  echo "########### BASTION USER: $ALPHA_BASTION_USER"
+  echo "########### BASTION IP_ADDR: $ALPHA_BASTION_IP"
   echo "successfully loaded node information"
 }
 
