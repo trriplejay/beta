@@ -153,7 +153,7 @@ main() {
   eval $(ssh-agent -s)
 
   test_env_info
-  #configure_node_creds
+  configure_node_creds
   #pull_base_repo
   #deploy
   #save_version
