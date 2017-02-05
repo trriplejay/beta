@@ -68,10 +68,10 @@ test_env_info() {
     return 1
   fi
 
-  if [ "$PEM_KEY" == "" ]; then
-    echo "PEM_KEY not found"
-    return 1
-  fi
+#  if [ "$PEM_KEY" == "" ]; then
+#    echo "PEM_KEY not found"
+#    return 1
+#  fi
 
   echo "successfully loaded node information"
 }
