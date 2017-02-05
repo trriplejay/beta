@@ -1,17 +1,19 @@
 #!/bin/bash -e
 
-export RES_RELEASE=rel-alpha
+
 export ALPHA_INTEGRATION=aws-alpha-pem
 export ALPHA_SWARM=aws-alpha-swarm
 
-#name of the resource in uppercase without - and append PARAMS to it
+# name of the resource in uppercase without - and append PARAMS_ALPHA_ to it
+# this will give you all the ENVs that were setup in aws-alpha-swarm
 export PARAM_MSB=AWSALPHASWARM_PARAMS_ALPHA_
-export FOO=$(eval echo "$"$PARAM_MSB"BASTION_USER")
+export BASTION_USER=$(eval echo "$"$PARAM_MSB"BASTION_USER")
+export BASTION_IP=$(eval echo "$"$PARAM_MSB"BASTION_IP")
+export SWARM_USER=$(eval echo "$"$PARAM_MSB"SWARM_USER")
+export SWARM_IP=$(eval echo "$"$PARAM_MSB"SWARM_IP")
 
-export BASTION_USER=$AWSALPHASWARM_PARAMS_ALPHA_BASTION_USER
-export BASTION_IP=$AWSALPHASWARM_PARAMS_ALPHA_BASTION_IP
-export SWARM_USER=$AWSALPHASWARM_PARAMS_ALPHA_SWARM_USER
-export SWARM_IP=$AWSALPHASWARM_PARAMS_ALPHA_SWARM_IP
+
+export RES_RELEASE=rel-alpha
 export VERSION=$RELALPHA_VERSIONNAME
 
 export KEY_FILE_PATH=""
@@ -108,9 +110,9 @@ save_version() {
 
 main() {
   eval $(ssh-agent -s)
-  manifest_path="IN/$RES_RELEASE/release/manifests.json"
-  if [ ! -e $manifest_path ]; then
-    echo "No manifests.json file found at location: $manifest_path"
+
+  if [ "$VERSION" -ne "" ]; then
+    echo "No Version found to deploy"
     return 1
   fi
 
