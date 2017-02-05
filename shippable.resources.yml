@@ -130,10 +130,18 @@ resources:
     seed:
       versionName: latest
 
+  - name: genexec-img
+    type: image
+    integration: ecr-bits-push
+    pointer:
+      sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/genexec"
+    seed:
+      versionName: latest
+
   - name: ship-ver
     type: version
     seed:
-      versionName: "4.12.2"
+      versionName: "5.2.2"
 
   ###############################
   # end Shippable Server resources
@@ -262,7 +270,7 @@ resources:
     version:
       params:
         #API_TOKEN API_URL
-        secure: miNYiVsMwdkZGeXnuVmqOULhAcxMv3nijXmkKuSNEc0/z+EHPHXsgtcsnMJjjGg0wiEh+LD7csNe9DuDWdMepJV3tDOW7F+I5fCQbOwYIMWSVXeyb6deIOvshoW4CqZvSBNn4oQE72l96p9hPK1NGbeM4qTAGtTBwC4CBly90h1e20/GqihsfuTlgik8um2ZZ7ePHrGLnlVK6upzqCePsZJfnPZthy9O7HpsOgNoKwGCstKzE/e1L2DbXfJTZurNC5D0FKz+LCZs47hmnUkhMv80EFpdX8tCU3V4CJboWslz5l6RzSzUmibtWaKwsTN+AJ06gfTv8obl2ej3MmSBj6cqLF2Us03meq7DQh5lEVAnayjqvXEAewcJoS1f3B7smCPnHMUckwUg3UIsyhKyraM2Ikquo2LYbzXaQkehiF7mQzMKaVfxSoj0eKjZierxzuxD8ts96VUvnQmJk5ljyD01i3XZkPVojOwQ/RjSOAnLH0bCxSh10mSEh2JyrV9ql/6b2YXo1jkKfx8m9Xc8eQ2P/o3s/PatTQimFvcKsh08XuMkWuXnIuLQFazp7YjpgT+v4X8rMulFPYD0od/rxzVClQoS0l3MHST+ZWFOwReGLVm/TjP4rMOefh0mCc23rmisk5fCCbPPuPLP0BuMAMpELSH0zJeGXc43eZamT2UkoyRhrCLvZ1D7zcHbq+gnUzHfTnu95/YSZ8o+aTZD/o0oz0QM1wtSs/X7aRGV6e2ej1aGbjUVJNx9w/rZlJ2lWYP5EA1J02BiD9YF6jBk3/BlMFGIXFJNrrKrAmygWPJIT4oRAjhRVFAKK2nsamQZFVNWdT49d1wb8mvLVBEZABFiTpOFoxky14UHjvHuNeb9GjZMnGZ3zZ+gIa0LIynhKRLn9jaqqltbJot0VKvnRfh2UG5z14bRWi87sMrRIcbfmvOeC08+KbRhNv47CVQYhVN6yTx3unGSdAv2ZbdRdfMQnB6vsbQkmxqmykuwV7LNytorYJoSOVLM5pswacsi
+        secure: YhKAiZ+6YMR8dld5DS3mM2p92/V7PPEh0Thc813HGRlmFY9iWIjAZheIk9jxwTGlopEeZ/jyfKMKlrE5mp1dzq14F8NKGhyJpDHWT0BbGlcC+OQBVMo+jtBNyld947fAb3cuwVgL4hrToUGs5GmFM3LmXSQ598Tg1TdtcwFUEY/KyEj9VUEC+xkRiI3j5+u0WrTVmpNCsgKMsZstup8LYj60rbAQ2jacFULgMieZNgMwnoBMcW7oGJzARqcEVokb5oTiHnzWgKwfU27qIkBGoqzOSrlbgMEWFP95QbQrFx0TsjqHt32cSkhtEJmlUMs4gK0mhfVacDi6xzxmb2bMLTdXJFPANx4vDxwgkR1uLRul3Bd+G4UzOuKKjRti44f5BTwkkuoqM0l0+xfKhkPLMhPvLnke7Q2uXVvrp0tWN+h0P2swYnVb+Jw79SpVICOIqLIj0o9Cjaj4ghTr3FKhccFFUEj/nUSVfm0FDn6eBnvZ/wClIlF5L4XymoObBR7NoKhigrri6u72fkDdDL7hyEenvfRngF0Aw/RDhAv/8KVinj9tCj72ye+oXIk6UPa4oybrLTOUdTJsUNQRXJ54jUTqYLdqAjJ/CepMQ/NprqO3sRyEHpa/OTcXjRVoy/1tPqtXlIeJF5izxkcIY8EinwVTdFlA4UgU6j14w4TA7Uo=
 
   ###############################
   # END Build Acceptance Test resources
@@ -297,7 +305,7 @@ resources:
     type: params
     version:
       params:
-        SOURCE_AMI: "ami-c8580bdf"
+        SOURCE_AMI: "ami-5ac2cd4d"
         VPC_ID: "vpc-266f3241"
         SUBNET_ID: "subnet-6df12f24"
         SECURITY_GROUP_ID: "sg-f634518c"
