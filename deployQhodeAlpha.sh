@@ -1,24 +1,26 @@
 #!/bin/bash -e
 
-export VERSION=""
 export RES_RELEASE=rel-alpha
 export ALPHA_INTEGRATION=aws-alpha-pem
 export ALPHA_SWARM=qhode-alpha-swarm
+
 export ALPHA_BASTION_USER=$QHODEALPHASWARM_PARAMS_ALPHA_BASTION_USER
 export ALPHA_BASTION_IP=$QHODEALPHASWARM_PARAMS_ALPHA_BASTION_IP
 export ALPHA_SWARM_USER=$QHODEALPHASWARM_PARAMS_ALPHA_SWARM_USER
 export ALPHA_SWARM_IP=$QHODEALPHASWARM_PARAMS_ALPHA_SWARM_IP
+export $VERSION=$RELALPHA_VERSIONNAME
+
 export KEY_FILE_PATH=""
 
 parse_version() {
-  release_path="IN/$RES_RELEASE/release/release.json"
-  if [ ! -e $release_path ]; then
-    echo "No release.json file found at location: $release_path"
-    return 1
-  fi
+  # release_path="IN/$RES_RELEASE/release/release.json"
+  # if [ ! -e $release_path ]; then
+  #  echo "No release.json file found at location: $release_path"
+  #  return 1
+  # fi
 
-  echo "extracting release versionName from state file"
-  VERSION=$(jq -r '.versionName' $release_path)
+  # echo "extracting release versionName from state file"
+  # VERSION=$(jq -r '.versionName' $release_path)
   echo "found version: $VERSION"
 }
 
