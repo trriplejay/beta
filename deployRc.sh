@@ -1,32 +1,33 @@
 #!/bin/bash -e
 
-export VERSION=""
 export RES_RELEASE=rel-rc
 export RC_INTEGRATION=aws-rc-pem
 export RC_SWARM=aws-rc-swarm
-export RC_BASTION_USER=""
-export RC_BASTION_IP=""
-export RC_SWARM_USER=""
-export RC_SWARM_IP=""
+
+export RC_BASTION_USER=$AWSRCSWARM_PARAMS_RC_BASTION_USER
+export RC_BASTION_IP=$$AWSRCSWARM_PARAMS_RC_BASTION_IP
+export RC_SWARM_USER=$AWSRCSWARM_PARAMS_RC_SWARM_USER
+export RC_SWARM_IP=$AWSRCSWARM_PARAMS_RC_SWARM_IP
 export KEY_FILE_PATH=""
+export $VERSION=$RELRC_VERSIONNAME
 
 parse_version() {
-  release_path="IN/$RES_RELEASE/release/release.json"
-  if [ ! -e $release_path ]; then
-    echo "No release.json file found at location: $release_path"
-    return 1
-  fi
-
-  echo "extracting release versionName from state file"
-  VERSION=$(jq -r '.versionName' $release_path)
+#  release_path="IN/$RES_RELEASE/release/release.json"
+#  if [ ! -e $release_path ]; then
+#    echo "No release.json file found at location: $release_path"
+#    return 1
+#  fi
+#
+#  echo "extracting release versionName from state file"
+#  VERSION=$(jq -r '.versionName' $release_path)
   echo "found version: $VERSION"
 }
 
 load_node_info() {
-  echo "Loading node information"
-  local node_info=$(cat IN/$RC_SWARM/params)
-  export $node_info
-  #. $node_info
+#  echo "Loading node information"
+#  local node_info=$(cat IN/$RC_SWARM/params)
+#  export $node_info
+#  #. $node_info
 
   echo "########### SWARM USER: $RC_SWARM_USER"
   echo "########### SWARM IP_ADDR: $RC_SWARM_IP"

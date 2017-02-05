@@ -1,32 +1,39 @@
 #!/bin/bash -e
 
-export VERSION=""
 export RES_RELEASE=rel-rc
 export RC_INTEGRATION=aws-rc-pem
 export RC_SWARM=qhode-rc-swarm
-export RC_BASTION_USER=""
-export RC_BASTION_IP=""
-export RC_SWARM_USER=""
-export RC_SWARM_IP=""
+
+export ALPHA_BASTION_USER=$QHODEALPHASWARM_PARAMS_ALPHA_BASTION_USER
+export ALPHA_BASTION_IP=$QHODEALPHASWARM_PARAMS_ALPHA_BASTION_IP
+export ALPHA_SWARM_USER=$QHODEALPHASWARM_PARAMS_ALPHA_SWARM_USER
+export ALPHA_SWARM_IP=$QHODEALPHASWARM_PARAMS_ALPHA_SWARM_IP
+
+export RC_BASTION_USER=$QHODERCSWARM_PARAMS_RC_BASTION_USER
+export RC_BASTION_IP=$QHODERCSWARM_PARAMS_RC_BASTION_IP
+export RC_SWARM_USER=$QHODERCSWARM_PARAMS_RC_SWARM_USER
+export RC_SWARM_IP=$QHODERCSWARM_PARAMS_RC_SWARM_IP
+export $VERSION=$RELRC_VERSIONNAME
+
 export KEY_FILE_PATH=""
 
 parse_version() {
-  release_path="IN/$RES_RELEASE/release/release.json"
-  if [ ! -e $release_path ]; then
-    echo "No release.json file found at location: $release_path"
-    return 1
-  fi
-
-  echo "extracting release versionName from state file"
-  VERSION=$(jq -r '.versionName' $release_path)
+#  release_path="IN/$RES_RELEASE/release/release.json"
+#  if [ ! -e $release_path ]; then
+#    echo "No release.json file found at location: $release_path"
+#    return 1
+#  fi
+#
+#  echo "extracting release versionName from state file"
+#  VERSION=$(jq -r '.versionName' $release_path)
   echo "found version: $VERSION"
 }
 
 load_node_info() {
-  echo "Loading node information"
-  local node_info=$(cat IN/$RC_SWARM/params)
-  export $node_info
-  #. $node_info
+#  echo "Loading node information"
+#  local node_info=$(cat IN/$RC_SWARM/params)
+#  export $node_info
+#  #. $node_info
 
   echo "########### SWARM USER: $RC_SWARM_USER"
   echo "########### SWARM IP_ADDR: $RC_SWARM_IP"
