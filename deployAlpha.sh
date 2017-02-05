@@ -5,7 +5,7 @@ export ALPHA_INTEGRATION=aws-alpha-pem
 export ALPHA_SWARM=aws-alpha-swarm
 
 #name of the resource in uppercase without - and append PARAMS to it
-export PARAM_MSB=AWSALPHASWARM_PARAMS_
+export PARAM_MSB=AWSALPHASWARM_PARAMS_ALPHA_
 export FOO=$(eval echo "$"$PARAM_MSB"BASTION_USER")
 
 export BASTION_USER=$AWSALPHASWARM_PARAMS_ALPHA_BASTION_USER
@@ -26,7 +26,7 @@ parse_version() {
 #  echo "extracting release versionName from state file"
 #  VERSION=$(jq -r '.versionName' $release_path)
   echo "found version: $VERSION"
-  echo $FOO
+  echo "found path: $FOO"
 }
 
 load_node_info() {
