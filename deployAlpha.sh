@@ -16,10 +16,10 @@ export BASTION_USER=$(eval echo "$"$SWARM_STRING"_BASTION_USER")
 export BASTION_IP=$(eval echo "$"$SWARM_STRING"_BASTION_IP")
 export SWARM_USER=$(eval echo "$"$SWARM_STRING"_SWARM_USER")
 export SWARM_IP=$(eval echo "$"$SWARM_STRING"_SWARM_IP")
-export VERSION=$(eval echo "$"$RELEASE_RES"_VERSIONNAME")
 
 # uppercase name of release job without -
 export RELEASE_RES="REL"$DEPLOY_ENV
+export VERSION=$(eval echo "$"$RELEASE_RES"_VERSIONNAME")
 
 # uppercase name of integration resource without -
 export INTEGRATION_RES="AWS"$DEPLOY_ENV"PEM"
