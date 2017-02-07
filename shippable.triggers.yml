@@ -1,5 +1,1 @@
 triggers:
-  - name: trigger-product-release
-    type: trigger
-    version:
-      counter: 3
