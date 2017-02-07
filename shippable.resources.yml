@@ -291,16 +291,6 @@ resources:
     type: integration
     integration: aws-bits-access
 
-#  - name: baseami-params
-#    type: params
-#    version:
-#      params:
-#        SOURCE_AMI: "ami-b7075dd2"
-#        VPC_ID: "vpc-2c6a9645"
-#        SUBNET_ID: "subnet-efbe7386"
-#        SECURITY_GROUP_ID: "sg-b62ae9df"
-#        REGION: "us-east-2"
-
   - name: baseami-params
     type: params
     version:

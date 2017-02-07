@@ -470,21 +470,6 @@ jobs:
     on_failure:
       - script: cat /build/IN/bldami-repo/gitRepo/base/output.txt
 
-  - name: build-base-unstable-ami
-    type: runSh
-    steps:
-      - IN: baseami-params
-      - IN: aws-bits-access
-      - IN: bldami-repo
-        switch: off
-      - TASK:
-        - script: sudo apt-get install -y jq
-        - script: IN/bldami-repo/gitRepo/baseUnstable/basePack.sh baseami-params
-    on_success:
-      - script: echo "SUCCESS"
-    on_failure:
-      - script: cat /build/IN/bldami-repo/gitRepo/baseUnstable/output.txt
-
   - name: patch-baseami
     type: runSh
     steps:
@@ -501,39 +486,6 @@ jobs:
     on_failure:
       - script: cat /build/IN/bldami-repo/gitRepo/basePatch/output.txt
 
-  - name: patch-base-unstable-ami
-    type: runSh
-    steps:
-      - IN: baseami-params
-      - IN: aws-bits-access
-      - IN: build-base-unstable-ami
-      - IN: bldami-repo
-        switch: off
-      - TASK:
-        - script: sudo apt-get install -y jq
-        - script: IN/bldami-repo/gitRepo/basePatch/basePatchPack.sh baseami-params build-base-unstable-ami unstable
-    on_success:
-      - script: echo "SUCCESS"
-    on_failure:
-      - script: cat /build/IN/bldami-repo/gitRepo/basePatch/output.txt
-
-#  - name: build-alphaami
-#    type: runSh
-#    steps:
-#      - IN: baseami-params
-#      - IN: aws-bits-access
-#      - IN: bldami-repo
-#        switch: off
-#      - IN: patch-baseami
-#      - IN: push-alpha
-#      - TASK:
-#        - script: sudo apt-get install -y jq
-#        - script: IN/bldami-repo/gitRepo/exec/execPack.sh baseami-params push-alpha
-#    on_success:
-#      - script: echo "SUCCESS"
-#    on_failure:
-#      - script: cat /build/IN/bldami-repo/gitRepo/exec/output.txt
-
   - name: build-rcami
     type: runSh
     steps:
@@ -547,24 +499,6 @@ jobs:
       - TASK:
         - script: sudo apt-get install -y jq
         - script: IN/bldami-repo/gitRepo/exec/execPack.sh baseami-params push-rc patch-baseami stable
-    on_success:
-      - script: echo "SUCCESS"
-    on_failure:
-      - script: cat /build/IN/bldami-repo/gitRepo/exec/output.txt
-
-  - name: build-rc-unstable-ami
-    type: runSh
-    steps:
-      - IN: baseami-params
-      - IN: aws-bits-access
-      - IN: bldami-repo
-        switch: off
-      - IN: patch-base-unstable-ami
-        switch: off
-      - IN: push-rc
-      - TASK:
-        - script: sudo apt-get install -y jq
-        - script: IN/bldami-repo/gitRepo/exec/execPack.sh baseami-params push-rc patch-base-unstable-ami unstable
     on_success:
       - script: echo "SUCCESS"
     on_failure:
@@ -585,24 +519,6 @@ jobs:
         - script: IN/bldami-repo/gitRepo/exec/execPack.sh baseami-params push-final patch-baseami stable
     on_success:
       - script: echo "SUCCESS"
-    on_failure:
-      - script: cat /build/IN/bldami-repo/gitRepo/exec/output.txt
-
-  - name: build-final-unstable-ami
-    type: runSh
-    steps:
-      - IN: baseami-params
-      - IN: aws-bits-access
-      - IN: bldami-repo
-        switch: off
-      - IN: patch-base-unstable-ami
-        switch: off
-      - IN: push-final
-      - TASK:
-        - script: sudo apt-get install -y jq
-        - script: IN/bldami-repo/gitRepo/exec/execPack.sh baseami-params push-final patch-base-unstable-ami unstable
-    on_success:
-      - script: cat /build/IN/bldami-repo/gitRepo/exec/output.txt
     on_failure:
       - script: cat /build/IN/bldami-repo/gitRepo/exec/output.txt
 
