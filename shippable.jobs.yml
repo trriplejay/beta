@@ -455,6 +455,22 @@ jobs:
   # START Build AMI
   ###########################################
 
+  - name: push-dry-tag
+    type: runSh
+    steps:
+      - IN: ship-ver
+        switch: off
+      - IN: bldami-repo
+        switch: off
+      - IN: shipimg-dockerhub
+      - TASK:
+        - script: docker --version
+        - script: ./IN/bldami-repo/gitRepo/tagImage/pushDryDockTag.sh
+    on_success:
+      - script: echo 'succeeded'
+    on_failure:
+      - script: echo 'failed'
+
   - name: build-baseami
     type: runSh
     steps:
