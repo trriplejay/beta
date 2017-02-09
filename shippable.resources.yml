@@ -304,3 +304,23 @@ resources:
   ###############################
   # END AMI Build resources
   ###############################
+
+  ###############################
+  # BEGIN notification resources
+  ###############################
+  - name: slack-alpha
+    type: notification
+    integration: ship-slack
+    pointer:
+      recipients:
+        - "#alpha"
+
+  - name: slack-rc
+    type: notification
+    integration: ship-slack
+    pointer:
+      recipients:
+        - "#rc"
+  ###############################
+  # END notification resources
+  ###############################
