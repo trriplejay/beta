@@ -176,12 +176,17 @@ jobs:
 
   - name: rel-alpha
     type: release
+    on_start:
+      - NOTIFY: slack-alpha
     steps:
       - IN: ship-ver
       - IN: man-ship
       - TASK: managed
         bump: alpha
-
+    on_success:
+      - NOTIFY: slack-alpha
+    on_failure:
+      - NOTIFY: slack-alpha
   ###########################################
   # push alpha release to special repo
   ###########################################
@@ -218,6 +223,8 @@ jobs:
 
   - name: deploy-alpha
     type: runSh
+    on_start:
+      - NOTIFY: slack-alpha
     steps:
       - IN: beta-config-repo
         switch: off
@@ -232,8 +239,10 @@ jobs:
         - script: ./IN/beta-config-repo/gitRepo/deployAlpha.sh
     on_success:
       - script: echo 'succeeded'
+      - NOTIFY: slack-alpha
     on_failure:
       - script: echo 'failed'
+      - NOTIFY: slack-alpha
 
   ###########################################
   # release rc server from default manifest
@@ -241,12 +250,17 @@ jobs:
 
   - name: rel-rc
     type: release
+    on_start:
+      - NOTIFY: slack-rc
     steps:
       - IN: rel-alpha
         switch: off
       - TASK: managed
         bump: rc
-
+    on_success:
+      - NOTIFY: slack-rc
+    on_failure:
+      - NOTIFY: slack-rc
   ###########################################
   # push rc release to special repo
   ###########################################
@@ -285,6 +299,8 @@ jobs:
 
   - name: deploy-rc
     type: runSh
+    on_start:
+      - NOTIFY: slack-rc
     steps:
       - IN: beta-config-repo
         switch: off
@@ -300,8 +316,10 @@ jobs:
         - script: ./IN/beta-config-repo/gitRepo/deployRc.sh
     on_success:
       - script: echo 'succeeded'
+      - NOTIFY: slack-rc
     on_failure:
       - script: echo 'failed'
+      - NOTIFY: slack-rc
 
   ###############################
   # begin Shippable-Server(Qhode) pipeline
