@@ -1,18 +1,4 @@
 jobs:
-  - name: tmp_fetch_state
-    type: runSh
-    steps:
-      - IN: infra-prov
-        versionNumber: 54
-      - IN: beta-config-repo
-        switch: off
-      - TASK:
-        - script: ./IN/beta-config-repo/gitRepo/recoverState.sh
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
   - name: build-microbase
     type: runSh
     steps:
@@ -372,26 +358,6 @@ jobs:
   ###########################################
   # BEGIN run infra provisioning
   ###########################################
-  - name: infra-prov
-    type: runSh
-    steps:
-      - IN: aws-alpha-pem
-      - IN: aws-alpha-access
-      - IN: aws-rc-pem
-      - IN: aws-rc-access
-      - IN: aws-prod-pem
-      - IN: aws-prod-access
-      - IN: infra-repo
-        switch: off
-      - TASK:
-        - script: sudo apt-get install -y jq
-        - script: IN/infra-repo/gitRepo/restoreState.sh
-        - script: IN/infra-repo/gitRepo/detectEnvChanges.sh
-    on_success:
-      - script: /build/IN/infra-repo/gitRepo/archiveState.sh
-    on_failure:
-      - script: /build/IN/infra-repo/gitRepo/archiveState.sh
-
   - name: infra_prov
     type: runSh
     steps:
