@@ -1,27 +1,4 @@
 jobs:
-  - name: build-mexec
-    type: runSh
-    steps:
-      - IN: mexec-repo
-      - IN: microbase-img
-      - IN: shipbits-ecr
-      - TASK:
-        - script: echo 'updating packages' && sudo apt-get update
-        - script: echo 'installing jq and unzip' && sudo apt-get install -y jq unzip
-        - script: echo 'installing awscli'
-        - script: curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-        - script: unzip awscli-bundle.zip
-        - script: sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
-        - script: echo 'which aws?' && which aws || true
-        - script: aws --version
-        - script: docker --version
-        - script: ./IN/mexec-repo/gitRepo/build.sh
-      - OUT: mexec-img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
   - name: build-microbase
     type: runSh
     steps:
@@ -31,29 +8,6 @@ jobs:
         - script: sudo apt-get install -y jq
         - script: ./IN/microbase-repo/gitRepo/build.sh
       - OUT: microbase-img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
-  - name: build-runSh
-    type: runSh
-    steps:
-      - IN: runSh-repo
-      - IN: microbase-img
-      - IN: shipbits-ecr
-      - TASK:
-        - script: echo 'updating packages' && sudo apt-get update
-        - script: echo 'installing jq and unzip' && sudo apt-get install -y jq unzip
-        - script: echo 'installing awscli'
-        - script: curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-        - script: unzip awscli-bundle.zip
-        - script: sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
-        - script: echo 'which aws?' && which aws || true
-        - script: aws --version
-        - script: docker --version
-        - script: ./IN/runSh-repo/gitRepo/build.sh
-      - OUT: runSh-img
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
@@ -165,8 +119,6 @@ jobs:
       - IN: api-img
       - IN: www-img
       - IN: nexec-img
-      - IN: mexec-img
-      - IN: runSh-img
       - IN: micro-img
       - IN: genexec-img
 
@@ -529,7 +481,7 @@ jobs:
       - IN: bldami-repo
         switch: off
       - IN: patch-baseami
-        switch: off 
+        switch: off
       - IN: push-final
       - TASK:
         - script: sudo apt-get install -y jq

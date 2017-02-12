@@ -150,7 +150,7 @@ tag_and_push_images_dockerhub() {
   jq -r '.[] | .images | .[] | .image + ":" + .tag' $manifest_path |\
   while read image
   do
-    if [[ $image == *"mexec"* ]] || [[ $image == *"runsh"* ]] || [[ $image == *"genexec"* ]]; then
+    if [[ $image == *"genexec"* ]]; then
       __tag_and_push_dockerhub $image
     else
       echo "Not pushing to DockerHub : $image"
