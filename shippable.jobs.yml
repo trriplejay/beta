@@ -382,6 +382,7 @@ jobs:
       - IN: aws-prod-pem
       - IN: aws-prod-access
       - IN: infra-repo
+        switch: off
       - TASK:
         - script: sudo apt-get install -y jq
         - script: IN/infra-repo/gitRepo/restoreState.sh
@@ -390,6 +391,26 @@ jobs:
       - script: /build/IN/infra-repo/gitRepo/archiveState.sh
     on_failure:
       - script: /build/IN/infra-repo/gitRepo/archiveState.sh
+
+  - name: infra_prov
+    type: runSh
+    steps:
+      - IN: aws-alpha-pem
+      - IN: aws-alpha-access
+      - IN: aws-rc-pem
+      - IN: aws-rc-access
+      - IN: aws-prod-pem
+      - IN: aws-prod-access
+      - IN: infra-repo
+      - TASK:
+        - script: sudo apt-get install -y jq
+        - script: IN/infra-repo/gitRepo/restoreTmpState.sh
+    on_success:
+      - script: echo 'SUCCESS!'
+    on_failure:
+      - script: echo 'FAILURE!'
+#    always:
+#      - script: /build/IN/infra-repo/gitRepo/archiveState.sh
 
   ###########################################
   # BEGIN run infra provisioning

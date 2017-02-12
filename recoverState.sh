@@ -1,9 +1,6 @@
 #!/bin/bash -e
 
 export RES_INFRA="infra-prov"
-export RC_INTEGRATION=aws-rc-pem
-export RC_SWARM=aws-rc-swarm
-
 export RES_INFRA_UP=$(echo ${RES_INFRA//-/} | awk '{print toupper($0)}')
 export RES_INFRA_STATE=$(eval echo "$"$RES_INFRA_UP"_STATE") #loc of git repo clone
 
