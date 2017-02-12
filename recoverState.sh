@@ -12,12 +12,17 @@ test_env_info() {
   echo "successfully loaded node information"
 
   ls -al $RES_INFRA_STATE
-  ls -al /build/IN/infra-prov/state
 }
 
 save_version() {
   echo "Copying State file"
   echo "--------------------------------------"
+
+  mkdir -p /build/state/alpha-saas
+  mkdir -p /build/state/alpha-server
+  mkdir -p /build/state/rc-saas
+  mkdir -p /build/state/rc-server
+  mkdir -p /build/state/prod-saas
 
   cp -vr "$RES_INFRA_STATE/alpha-saas/terraform.tfstate" "/build/state/alpha-saas/terraform.tfstate"
   cp -vr "$RES_INFRA_STATE/alpha-server/terraform.tfstate" "/build/state/alpha-server/terraform.tfstate"
