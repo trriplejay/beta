@@ -132,14 +132,6 @@ resources:
     integration: aws-alpha-access
 
 # REPO of AWS demo Infra
-  - name: infra-repo
-    type: gitRepo
-    integration: "ric03uec-github"
-    pointer:
-      sourceName: "Shippable/infra"
-      branch: master
-
-# REPO of AWS demo Infra
   - name: infra_repo
     type: gitRepo
     integration: "ric03uec-github"
