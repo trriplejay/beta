@@ -240,7 +240,7 @@ resources:
     version:
       params:
         #API_TOKEN API_URL
-        secure: YhKAiZ+6YMR8dld5DS3mM2p92/V7PPEh0Thc813HGRlmFY9iWIjAZheIk9jxwTGlopEeZ/jyfKMKlrE5mp1dzq14F8NKGhyJpDHWT0BbGlcC+OQBVMo+jtBNyld947fAb3cuwVgL4hrToUGs5GmFM3LmXSQ598Tg1TdtcwFUEY/KyEj9VUEC+xkRiI3j5+u0WrTVmpNCsgKMsZstup8LYj60rbAQ2jacFULgMieZNgMwnoBMcW7oGJzARqcEVokb5oTiHnzWgKwfU27qIkBGoqzOSrlbgMEWFP95QbQrFx0TsjqHt32cSkhtEJmlUMs4gK0mhfVacDi6xzxmb2bMLTdXJFPANx4vDxwgkR1uLRul3Bd+G4UzOuKKjRti44f5BTwkkuoqM0l0+xfKhkPLMhPvLnke7Q2uXVvrp0tWN+h0P2swYnVb+Jw79SpVICOIqLIj0o9Cjaj4ghTr3FKhccFFUEj/nUSVfm0FDn6eBnvZ/wClIlF5L4XymoObBR7NoKhigrri6u72fkDdDL7hyEenvfRngF0Aw/RDhAv/8KVinj9tCj72ye+oXIk6UPa4oybrLTOUdTJsUNQRXJ54jUTqYLdqAjJ/CepMQ/NprqO3sRyEHpa/OTcXjRVoy/1tPqtXlIeJF5izxkcIY8EinwVTdFlA4UgU6j14w4TA7Uo=
+        secure: NQyd32NnpzMIzuy6VRs6dOx0o9cF4MMM4NgUE6YdVi2Tg/FQGgGN9yjpwaQ2ONED2r4Rq5Bxu0P3Bohyrd+KcQrapcBdk9fXYFiQv3VqKtpfwi1LTAJ5/80U+lruokw3cPdgQa/c8RHiF6xqLpgXKZBmKgci5pBrjBpKfqWsEi8M7vfFQfB2kSTayVHgCSbG5FwhGDen/kZ6iIZc2Uld6x8xXi6+w/m58g9/N3RCPnvn63EZMPjAE/2vFQjCHqnBrGvmx+yR8zk2BYmSG/vk3p71sxCNTtpyQnRkgkvHaobBEZucbxpUAokYRYK/Wh/fk/Sxm9MaSEdc3f4BDRS4XhOuF+kXNrpwo6kxSpoTcIN6/9Gvbyk60PKN/A0UZGCv5gkpC0d0QtJTwJ5yP8374k+TOCBhscBYAPMN4UPTBDcYQLF5pR/apPgS33yKoDWK26Dm5IZmWDyOeTgAkYYhgyA+n0ftEfVQewPpRPPvCAyOIg+544r808O/mx9BYq6lYgxY70OlFn1k0Bq3wUPVWUOGAwHmkuiFnuEtU3826lxeKfpA9lWoXm0lqj/WctdJUazVJWR7yvXZfpmdymAr2IkH5gnki1fAGLOKcp2wzJqxvwkNUR9gb9X0dV54qB5pK/+GiaH6I3jriGF2MoNH7b5ZBRqC7mJKOBL0q3OJgJ4=
 
   ###############################
   # END Build Acceptance Test resources
