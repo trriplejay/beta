@@ -406,14 +406,14 @@ jobs:
       - TASK:
         - script: sudo apt-get install -y jq
         - script: IN/infra_repo/gitRepo/restoreTmpState.sh
-#        - script: IN/infra_repo/gitRepo/restoreState.sh
+        - script: IN/infra_repo/gitRepo/restoreState.sh
 #        - script: IN/infra_repo/gitRepo/detectEnvChanges.sh
     on_success:
       - script: echo 'SUCCESS!'
     on_failure:
       - script: echo 'FAILURE!'
 #    always:
-#      - script: /build/IN/infra_repo/gitRepo/archiveState.sh
+      - script: /build/IN/infra_repo/gitRepo/archiveState.sh
 
   ###########################################
   # BEGIN run infra provisioning
