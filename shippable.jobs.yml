@@ -395,6 +395,7 @@ jobs:
   - name: infra_prov
     type: runSh
     steps:
+      - IN: tmp_fetch_state
       - IN: aws-alpha-pem
       - IN: aws-alpha-access
       - IN: aws-rc-pem
