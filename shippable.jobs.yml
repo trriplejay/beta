@@ -422,10 +422,8 @@ jobs:
       - IN: aws-prod-access
       - IN: infra_repo
       - TASK:
-        - script: sudo apt-get install -y jq
-#        - script: IN/infra_repo/gitRepo/restoreTmpState.sh
         - script: IN/infra_repo/gitRepo/restoreState.sh
-#        - script: IN/infra_repo/gitRepo/detectEnvChanges.sh
+        - script: IN/infra_repo/gitRepo/detectEnvChanges.sh
     on_success:
       - script: echo 'SUCCESS!'
     on_failure:
