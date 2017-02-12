@@ -1,4 +1,18 @@
 jobs:
+  - name: tmp_fetch_state
+    type: runSh
+    steps:
+      - IN: infra-prov
+        versionNumber: 54
+      - IN: beta-config-repo
+        switch: off
+      - TASK:
+        - script: ./IN/beta-config-repo/gitRepo/recoverState.sh
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
   - name: build-microbase
     type: runSh
     steps:
