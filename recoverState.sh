@@ -10,6 +10,9 @@ export RES_INFRA_STATE=$(eval echo "$"$RES_INFRA_UP"_STATE") #loc of git repo cl
 test_env_info() {
   echo "########### RES_INFRA_STATE: $RES_INFRA_STATE"
   echo "successfully loaded node information"
+
+  ls -al $RES_INFRA_STATE
+  ls -al /build/IN/infra-prov/state
 }
 
 save_version() {
