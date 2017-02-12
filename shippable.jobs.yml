@@ -420,7 +420,7 @@ jobs:
       - IN: aws-rc-access
       - IN: aws-prod-pem
       - IN: aws-prod-access
-      - IN: infra-repo
+      - IN: infra_repo
       - TASK:
         - script: sudo apt-get install -y jq
         - script: IN/infra-repo/gitRepo/restoreTmpState.sh
