@@ -369,6 +369,7 @@ jobs:
       - IN: aws-prod-pem
       - IN: aws-prod-access
       - IN: infra_repo
+        switch: off
       - TASK:
         - script: IN/infra_repo/gitRepo/restoreState.sh
         - script: IN/infra_repo/gitRepo/detectEnvChanges.sh
