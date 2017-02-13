@@ -397,6 +397,79 @@ jobs:
     always:
       - script: /build/IN/infra_repo/gitRepo/archiveProvisionState.sh alpha saas
 
+  - name: alpha_server_infra_prov
+    type: runSh
+    steps:
+      - IN: alpha_aws_pem
+      - IN: alpha_aws_access
+      - IN: infra_repo
+        switch: off
+      - IN: infra_prov
+        switch: off
+      - TASK:
+        - script: IN/infra_repo/gitRepo/provision.sh alpha server
+    on_success:
+      - script: echo 'SUCCESS!'
+    on_failure:
+      - script: echo 'FAILURE!'
+    always:
+      - script: /build/IN/infra_repo/gitRepo/archiveProvisionState.sh alpha server
+
+  - name: rc_saas_infra_prov
+    type: runSh
+    steps:
+      - IN: rc_aws_pem
+      - IN: rc_aws_access
+      - IN: infra_repo
+        switch: off
+      - IN: infra_prov
+        switch: off
+      - TASK:
+        - script: IN/infra_repo/gitRepo/provision.sh rc saas
+    on_success:
+      - script: echo 'SUCCESS!'
+    on_failure:
+      - script: echo 'FAILURE!'
+    always:
+      - script: /build/IN/infra_repo/gitRepo/archiveProvisionState.sh rc saas
+
+  - name: rc_server_infra_prov
+    type: runSh
+    steps:
+      - IN: rc_aws_pem
+      - IN: rc_aws_access
+      - IN: infra_repo
+        switch: off
+      - IN: infra_prov
+        switch: off
+      - TASK:
+        - script: IN/infra_repo/gitRepo/provision.sh rc server
+    on_success:
+      - script: echo 'SUCCESS!'
+    on_failure:
+      - script: echo 'FAILURE!'
+    always:
+      - script: /build/IN/infra_repo/gitRepo/archiveProvisionState.sh rc server
+
+
+  - name: prod_saas_infra_prov
+    type: runSh
+    steps:
+      - IN: prod_aws_pem
+      - IN: prod_aws_access
+      - IN: infra_repo
+        switch: off
+      - IN: infra_prov
+        switch: off
+      - TASK:
+        - script: IN/infra_repo/gitRepo/provision.sh prod saas
+    on_success:
+      - script: echo 'SUCCESS!'
+    on_failure:
+      - script: echo 'FAILURE!'
+    always:
+      - script: /build/IN/infra_repo/gitRepo/archiveProvisionState.sh prod saas
+
   ###########################################
   # BEGIN run infra provisioning
   ###########################################

@@ -131,17 +131,17 @@ resources:
     type: integration
     integration: aws-alpha-access
 
-# CREDS for AWS demo account
+# CREDS for AWS ALPHA account
   - name: alpha_aws_access
     type: integration
     integration: aws-alpha-access
 
-# PEM key for AWS demo account
+# PEM key for AWS ALPHA account
   - name: alpha_aws_pem
     type: integration
     integration: aws-alpha-pem
 
-# REPO of AWS demo Infra
+# REPO of AWS Infra provisioning
   - name: infra_repo
     type: gitRepo
     integration: "ric03uec-github"
@@ -158,6 +158,16 @@ resources:
   - name: aws-rc-access
     type: integration
     integration: aws-rc-access
+
+# CREDS for AWS RC account
+  - name: rc_aws_access
+    type: integration
+    integration: aws-rc-access
+
+# PEM key for AWS RC account
+  - name: rc_aws_pem
+    type: integration
+    integration: aws-rc-pem
 
   ###############################
   # end alpha rc infra
@@ -177,6 +187,16 @@ resources:
   - name: aws-prod-access
     type: integration
     integration: aws-prod-access
+
+# CREDS for AWS PROD account
+  - name: prod_aws_access
+    type: integration
+    integration: aws-prod-access
+
+# PEM key for AWS PROD account
+  - name: prod_aws_pem
+    type: integration
+    integration: aws-prod-pem
 
   ###############################
   # end alpha rc infra
