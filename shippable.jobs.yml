@@ -397,6 +397,24 @@ jobs:
     always:
       - script: /build/IN/infra_repo/gitRepo/archiveState.sh
 
+  - name: alpha_saas_infra_prov
+    type: runSh
+    steps:
+      - IN: aws_alpha_pem
+      - IN: aws_alpha_access
+      - IN: infra_repo
+        switch: off
+      - IN: infra_prov
+        switch: off
+      - TASK:
+        - script: IN/infra_repo/gitRepo/provision.sh alpha saas
+    on_success:
+      - script: echo 'SUCCESS!'
+    on_failure:
+      - script: echo 'FAILURE!'
+    always:
+      - script: /build/IN/infra_repo/gitRepo/archiveProvisionState.sh alpha saas
+
   ###########################################
   # BEGIN run infra provisioning
   ###########################################

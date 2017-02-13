@@ -131,6 +131,16 @@ resources:
     type: integration
     integration: aws-alpha-access
 
+# CREDS for AWS demo account
+  - name: alpha_aws_access
+    type: integration
+    integration: aws-alpha-access
+
+# PEM key for AWS demo account
+  - name: alpha_aws_pem
+    type: integration
+    integration: aws-alpha-pem
+
 # REPO of AWS demo Infra
   - name: infra_repo
     type: gitRepo
