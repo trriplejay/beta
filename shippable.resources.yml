@@ -6,12 +6,20 @@ resources:
       sourceName: shippable/base
       branch: master
 
-  - name: microbase-repo
+  - name: microbase_repo
     type: gitRepo
     integration: ric03uec-github
     pointer:
       sourceName: shippable/microbase
       branch: master
+
+  - name: microbase_img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "shipimg/microbase"
+    seed:
+      versionName: latest
 
   - name: microbase-img
     type: image
@@ -43,6 +51,10 @@ resources:
   - name: shipbits-ecr
     type: integration
     integration: "ecr-bits-push"
+
+  - name: ship_dh
+    type: integration
+    integration: "shipDH"
 
   - name: shipimg-dockerhub
     type: integration
@@ -262,6 +274,13 @@ resources:
   # BEGIN AMI Build resources
   ###############################
   - name: bldami-repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/buildami
+      branch: master
+
+  - name: bldami_repo
     type: gitRepo
     integration: ric03uec-github
     pointer:

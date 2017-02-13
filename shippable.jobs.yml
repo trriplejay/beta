@@ -2,12 +2,12 @@ jobs:
   - name: build-microbase
     type: runSh
     steps:
-      - IN: microbase-repo
-      - IN: shipimg-dockerhub
+      - IN: microbase_repo
+      - IN: push_dry_tag
+      - IN: ship_dh
       - TASK:
-        - script: sudo apt-get install -y jq
         - script: ./IN/microbase-repo/gitRepo/build.sh
-      - OUT: microbase-img
+      - OUT: microbase_img
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
@@ -488,16 +488,15 @@ jobs:
   # START Build AMI
   ###########################################
 
-  - name: push-dry-tag
+  - name: push_dry_tag
     type: runSh
     steps:
       - IN: ship-ver
         switch: off
-      - IN: bldami-repo
+      - IN: bldami_repo
         switch: off
-      - IN: shipimg-dockerhub
+      - IN: ship_dh
       - TASK:
-        - script: docker --version
         - script: ./IN/bldami-repo/gitRepo/tagImage/pushDryDockTag.sh
     on_success:
       - script: echo 'succeeded'
