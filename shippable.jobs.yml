@@ -376,26 +376,6 @@ jobs:
   ###########################################
   # BEGIN run infra provisioning
   ###########################################
-  - name: infra_prov
-    type: runSh
-    steps:
-      - IN: aws-alpha-pem
-      - IN: aws-alpha-access
-      - IN: aws-rc-pem
-      - IN: aws-rc-access
-      - IN: aws-prod-pem
-      - IN: aws-prod-access
-      - IN: infra_repo
-        switch: off
-      - TASK:
-        - script: IN/infra_repo/gitRepo/restoreState.sh
-        - script: IN/infra_repo/gitRepo/detectEnvChanges.sh
-    on_success:
-      - script: echo 'SUCCESS!'
-    on_failure:
-      - script: echo 'FAILURE!'
-    always:
-      - script: /build/IN/infra_repo/gitRepo/archiveState.sh
 
   - name: alpha_saas_infra_prov
     type: runSh
