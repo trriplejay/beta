@@ -404,8 +404,6 @@ jobs:
       - IN: alpha_aws_access
       - IN: infra_repo
         switch: off
-      - IN: infra_prov
-        switch: off
       - TASK:
         - script: IN/infra_repo/gitRepo/provision.sh alpha saas
     on_success:
@@ -421,8 +419,6 @@ jobs:
       - IN: alpha_aws_pem
       - IN: alpha_aws_access
       - IN: infra_repo
-        switch: off
-      - IN: infra_prov
         switch: off
       - TASK:
         - script: IN/infra_repo/gitRepo/provision.sh alpha server
@@ -440,8 +436,6 @@ jobs:
       - IN: rc_aws_access
       - IN: infra_repo
         switch: off
-      - IN: infra_prov
-        switch: off
       - TASK:
         - script: IN/infra_repo/gitRepo/provision.sh rc saas
     on_success:
@@ -457,8 +451,6 @@ jobs:
       - IN: rc_aws_pem
       - IN: rc_aws_access
       - IN: infra_repo
-        switch: off
-      - IN: infra_prov
         switch: off
       - TASK:
         - script: IN/infra_repo/gitRepo/provision.sh rc server
@@ -476,8 +468,6 @@ jobs:
       - IN: prod_aws_pem
       - IN: prod_aws_access
       - IN: infra_repo
-        switch: off
-      - IN: infra_prov
         switch: off
       - TASK:
         - script: IN/infra_repo/gitRepo/provision.sh prod saas
