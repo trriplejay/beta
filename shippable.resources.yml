@@ -126,11 +126,6 @@ resources:
     type: integration
     integration: aws-alpha-pem
 
-# CREDS for AWS demo account
-  - name: aws-alpha-access
-    type: integration
-    integration: aws-alpha-access
-
 # CREDS for AWS ALPHA account
   - name: alpha_aws_access
     type: integration
@@ -154,10 +149,6 @@ resources:
     type: integration
     integration: aws-rc-pem
 
-# CREDS for AWS demo account
-  - name: aws-rc-access
-    type: integration
-    integration: aws-rc-access
 
 # CREDS for AWS RC account
   - name: rc_aws_access
@@ -177,16 +168,6 @@ resources:
   ###############################
   # begin prod infra resources
   ###############################
-
-# PEM key for AWS demo account
-  - name: aws-prod-pem
-    type: integration
-    integration: aws-prod-pem
-
-# CREDS for AWS demo account
-  - name: aws-prod-access
-    type: integration
-    integration: aws-prod-access
 
 # CREDS for AWS PROD account
   - name: prod_aws_access
