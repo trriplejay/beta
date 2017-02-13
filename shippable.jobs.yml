@@ -497,7 +497,7 @@ jobs:
         switch: off
       - IN: ship_dh
       - TASK:
-        - script: ./IN/bldami-repo/gitRepo/tagImage/pushDryDockTag.sh
+        - script: ./IN/bldami_repo/gitRepo/tagImage/pushDryDockTag.sh
     on_success:
       - script: echo 'succeeded'
     on_failure:
