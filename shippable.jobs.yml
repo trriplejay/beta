@@ -382,8 +382,8 @@ jobs:
   - name: alpha_saas_infra_prov
     type: runSh
     steps:
-      - IN: aws_alpha_pem
-      - IN: aws_alpha_access
+      - IN: alpha_aws_pem
+      - IN: alpha_aws_access
       - IN: infra_repo
         switch: off
       - IN: infra_prov
