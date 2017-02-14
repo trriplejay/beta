@@ -146,29 +146,6 @@ jobs:
   # deploy alpha release to alpha environment
   ###########################################
 
-  - name: deploy-alpha
-    type: runSh
-    on_start:
-      - NOTIFY: slack-alpha
-    steps:
-      - IN: beta-config-repo
-        switch: off
-      - IN: rel-alpha
-        switch: off
-      - IN: push-alpha
-      - IN: aws-alpha-pem
-      - IN: aws-alpha-swarm
-      - TASK:
-        - script: echo 'updating packages' && sudo apt-get update
-        - script: echo 'installing jq' && sudo apt-get install -y jq
-        - script: ./IN/beta-config-repo/gitRepo/deployAlpha.sh
-    on_success:
-      - script: echo 'succeeded'
-      - NOTIFY: slack-alpha
-    on_failure:
-      - script: echo 'failed'
-      - NOTIFY: slack-alpha
-
   - name: deploy_alpha
     type: runSh
     on_start:
@@ -269,25 +246,6 @@ jobs:
   # begin Shippable-Server(Qhode) pipeline
   ###############################
   # deploy to qhode-alpha-environment
-  - name: deploy-qhode-alpha
-    type: runSh
-    steps:
-      - IN: beta-config-repo
-        switch: off
-      - IN: rel-alpha
-        switch: off
-      - IN: push-alpha
-      - IN: aws-alpha-pem
-      - IN: qhode-alpha-swarm
-      - TASK:
-        - script: echo 'updating packages' && sudo apt-get update
-        - script: echo 'installing jq' && sudo apt-get install -y jq
-        - script: ./IN/beta-config-repo/gitRepo/deployQhodeAlpha.sh
-    on_success:
-      - script: echo 'succeeded'
-    on_failure:
-      - script: echo 'failed'
-
   - name: deploy_qhode_alpha
     type: runSh
     steps:
@@ -472,20 +430,6 @@ jobs:
   ###########################################
   # BEGIN Build Acceptance Tests
   ###########################################
-
-  - name: build-accept-test
-    type: runSh
-    steps:
-      - IN: bat-repo
-      - IN: bat-ship-alpha-parms
-      - IN: deploy-alpha
-      - TASK:
-        - script: sudo apt-get install -y jq
-        - script: IN/bat-repo/gitRepo/test.sh bat-ship-alpha-parms
-    on_success:
-      - script: echo 'succeeded'
-    on_failure:
-      - script: echo 'failed'
 
   - name: build_acceptance
     type: runSh
