@@ -1,18 +1,4 @@
 jobs:
-  - name: build-microbase
-    type: runSh
-    steps:
-      - IN: microbase_repo
-      - IN: push_dry_tag
-      - IN: ship_dh
-      - TASK:
-        - script: ./IN/microbase_repo/gitRepo/build.sh
-      - OUT: microbase_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
   - name: build_microbase
     type: runCLI
     steps:
