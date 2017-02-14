@@ -501,6 +501,21 @@ jobs:
     on_failure:
       - script: cat IN/bldami_repo/gitRepo/base/output.txt
 
+  - name: patch_baseami
+    type: runSh
+    steps:
+      - IN: baseami_params
+      - IN: aws_bits_access
+      - IN: build_baseami
+      - IN: bldami_repo
+        switch: off
+      - TASK:
+        - script: IN/bldami_repo/gitRepo/basePatch/basePatchPack.sh
+    on_success:
+      - script: echo "SUCCESS"
+    on_failure:
+      - script: cat IN/bldami_repo/gitRepo/basePatch/output.txt
+
   - name: patch-baseami
     type: runSh
     steps:
