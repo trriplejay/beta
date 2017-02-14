@@ -136,6 +136,11 @@ resources:
     type: integration
     integration: aws-alpha-pem
 
+# PEM key for AWS ALPHA account
+  - name: aws_alpha_pem
+    type: integration
+    integration: aws-alpha-pem
+
 # REPO of AWS Infra provisioning
   - name: infra_repo
     type: gitRepo
@@ -178,6 +183,9 @@ resources:
     type: integration
     integration: aws-prod-pem
 
+  - name: aws_prod_pem
+    type: integration
+    integration: aws-prod-pem
   ###############################
   # end alpha rc infra
   ###############################

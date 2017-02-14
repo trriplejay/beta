@@ -4,7 +4,7 @@ export CURR_JOB="deploy_alpha"
 export RES_REPO="config_repo"
 export RES_PUSH="push_alpha"
 export RES_SWARM="aws_alpha_swarm"
-export RES_PEM="alpha_aws_pem"
+export RES_PEM="aws_alpha_pem"
 
 export RES_REPO_UP=$(echo $RES_REPO | awk '{print toupper($0)}')
 export RES_REPO_STATE=$(eval echo "$"$RES_REPO_UP"_STATE")
