@@ -47,8 +47,6 @@ set_context() {
   echo "SWARM_IP=$SWARM_IP"
 }
 
-ALPHA_AWS_PEM_INTEGRATION_KEY
-
 configure_node_creds() {
   echo $PEM_KEY > /tmp/key.pem
   chmod 600 /tmp/key.pem
