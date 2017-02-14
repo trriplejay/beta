@@ -236,6 +236,27 @@ jobs:
   ###########################################
   # deploy rc release to rc environment
   ###########################################
+  - name: deploy_rc
+    type: runSh
+    on_start:
+      - NOTIFY: slack_rc
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: push_rc
+        switch: off
+      - IN: build_rcami
+        switch: off
+      - IN: aws_rc_pem
+      - IN: aws_rc_swarm
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/deployRc.sh
+    on_success:
+      - script: echo 'succeeded'
+      - NOTIFY: slack_rc
+    on_failure:
+      - script: echo 'failed'
+      - NOTIFY: slack_rc
 
   - name: deploy-rc
     type: runSh
