@@ -116,9 +116,9 @@ main() {
   eval $(ssh-agent -s)
   set_context
   configure_node_creds
-  #pull_base_repo
-  #deploy
-  #create_version
+  pull_base_repo
+  deploy
+  create_version
 }
 
 main
