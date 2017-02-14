@@ -167,6 +167,11 @@ resources:
     seed:
       versionName: "5.2.3"
 
+  - name: ship_ver
+    type: version
+    seed:
+      versionName: "5.2.3"
+
   ###############################
   # end Shippable Server resources
   ###############################
@@ -365,6 +370,13 @@ resources:
   # BEGIN notification resources
   ###############################
   - name: slack-alpha
+    type: notification
+    integration: ship-slack
+    pointer:
+      recipients:
+        - "#alpha"
+
+  - name: slack_alpha
     type: notification
     integration: ship-slack
     pointer:

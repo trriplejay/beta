@@ -93,16 +93,20 @@ jobs:
   - name: rel-alpha
     type: release
     on_start:
-      - NOTIFY: slack-alpha
+      - NOTIFY: slack_alpha
     steps:
-      - IN: ship-ver
-#      - IN: man-ship
+      - IN: ship_ver
+      - IN: api_img
+      - IN: www_img
+      - IN: nexec_img
+      - IN: micro_img
+      - IN: genexec_img
       - TASK: managed
         bump: alpha
     on_success:
-      - NOTIFY: slack-alpha
+      - NOTIFY: slack_alpha
     on_failure:
-      - NOTIFY: slack-alpha
+      - NOTIFY: slack_alpha
 
   ###########################################
   # push alpha release to special repo
