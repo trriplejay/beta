@@ -17,7 +17,7 @@ resources:
     type: image
     integration: shipDH
     pointer:
-      sourceName: "shipimg/microbase"
+      sourceName: "drydock/microbase"
     seed:
       versionName: latest
 
