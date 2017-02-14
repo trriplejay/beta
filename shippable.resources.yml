@@ -127,7 +127,7 @@ resources:
   ###############################
 
 # CREDS for AWS ALPHA account
-  - name: alpha_aws_access
+  - name: aws_alpha_access
     type: integration
     integration: aws-alpha-access
 
@@ -150,7 +150,7 @@ resources:
     integration: aws-rc-pem
 
 # CREDS for AWS RC account
-  - name: rc_aws_access
+  - name: aws_rc_access
     type: integration
     integration: aws-rc-access
 
@@ -164,7 +164,7 @@ resources:
   ###############################
 
 # CREDS for AWS PROD account
-  - name: prod_aws_access
+  - name: aws_prod_access
     type: integration
     integration: aws-prod-access
 
