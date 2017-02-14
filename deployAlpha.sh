@@ -25,7 +25,7 @@ set_context() {
   export BASTION_IP=$(eval echo "$"$RES_SWARM_PARAMS_STR"_BASTION_IP")
   export SWARM_USER=$(eval echo "$"$RES_SWARM_PARAMS_STR"_SWARM_USER")
   export SWARM_IP=$(eval echo "$"$RES_SWARM_PARAMS_STR"_SWARM_IP")
-  export $PEM_KEY=$(echo $RES_PEM_INT_STR)
+  export $PEM_KEY=$(RES_PEM_INT_STR)
 
   echo "CURR_JOB=$CURR_JOB"
   echo "RES_REPO=$RES_REPO"
