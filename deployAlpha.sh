@@ -14,7 +14,7 @@ export RES_PUSH_UP=$(echo $RES_PUSH | awk '{print toupper($0)}')
 export RES_PUSH_VER_NAME=$(eval echo "$"$RES_PUSH_UP"_VERSIONNAME")
 
 export RES_SWARM_UP=$(echo $RES_SWARM | awk '{print toupper($0)}')
-export RES_SWARM_PARAMS=$(eval echo "$"$RES_SWARM_UP"_PARAMS")
+export RES_SWARM_PARAMS=$RES_SWARM_UP"_PARAMS"
 
 export RES_PEM_UP=$(echo $RES_PEM | awk '{print toupper($0)}')
 export RES_PEM_META=$(eval echo "$"$RES_PEM_UP"_META")
