@@ -183,6 +183,7 @@ resources:
     type: integration
     integration: aws-prod-pem
 
+
   - name: aws_prod_pem
     type: integration
     integration: aws-prod-pem
