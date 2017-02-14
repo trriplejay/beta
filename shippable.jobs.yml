@@ -83,11 +83,6 @@ jobs:
       - NOTIFY: slack_alpha
     steps:
       - IN: ship_ver
-      - IN: api_img
-      - IN: www_img
-      - IN: nexec_img
-      - IN: micro_img
-      - IN: genexec_img
       - TASK: managed
         bump: alpha
     on_success:
@@ -98,6 +93,28 @@ jobs:
   ###########################################
   # push alpha release to special repo
   ###########################################
+
+  - name: push_alpha
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: base_repo
+        switch: off
+      - IN: shipbits_ecr_cli
+      - IN: ship_dh_cli
+      - IN: rel-alpha
+      - IN: api_img
+      - IN: www_img
+      - IN: nexec_img
+      - IN: micro_img
+      - IN: genexec_img
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/pushAlpha.sh
+    on_success:
+      - script: echo 'succeeded'
+    on_failure:
+      - script: echo 'failed'
 
   - name: push-alpha
     type: runSh
@@ -447,7 +464,7 @@ jobs:
   - name: push_dry_tag
     type: runSh
     steps:
-      - IN: ship-ver
+      - IN: ship_ver
         switch: off
       - IN: bldami_repo
         switch: off

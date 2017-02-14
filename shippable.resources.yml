@@ -6,6 +6,13 @@ resources:
       sourceName: shippable/base
       branch: master
 
+  - name: base_repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/base
+      branch: master
+
   - name: microbase_repo
     type: gitRepo
     integration: ric03uec-github
@@ -27,14 +34,6 @@ resources:
     pointer:
       sourceName: shippable/nexec
       branch: master
-
-  - name: nexec-img
-    type: image
-    integration: ecr-bits-push
-    pointer:
-      sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/nexec"
-    seed:
-      versionName: latest
 
   - name: nexec_img
     type: image
@@ -77,6 +76,13 @@ resources:
       sourceName: shippable/beta
       branch: master
 
+  - name: config_repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/beta
+      branch: master
+
   - name: api_repo
     type: gitRepo
     integration: ric03uec-github
@@ -85,14 +91,6 @@ resources:
       branch: master
 
   - name: api_img
-    type: image
-    integration: ecr-bits-push
-    pointer:
-      sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/api"
-    seed:
-      versionName: latest
-
-  - name: api-img
     type: image
     integration: ecr-bits-push
     pointer:
@@ -115,14 +113,6 @@ resources:
     seed:
       versionName: latest
 
-  - name: www-img
-    type: image
-    integration: ecr-bits-push
-    pointer:
-      sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/www"
-    seed:
-      versionName: latest
-
   - name: micro_repo
     type: gitRepo
     integration: ric03uec-github
@@ -130,27 +120,11 @@ resources:
       sourceName: shippable/micro
       branch: master
 
-  - name: micro-img
-    type: image
-    integration: ecr-bits-push
-    pointer:
-      sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/micro"
-    seed:
-      versionName: latest
-
   - name: micro_img
     type: image
     integration: ecr-bits-push
     pointer:
       sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/micro"
-    seed:
-      versionName: latest
-
-  - name: genexec-img
-    type: image
-    integration: ecr-bits-push
-    pointer:
-      sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/genexec"
     seed:
       versionName: latest
 
