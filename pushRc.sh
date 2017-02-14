@@ -6,7 +6,7 @@ export DOC_HUB_ORG="shipimg"
 export CURR_JOB="push_rc"
 export RES_REPO="config_repo"
 export RES_RELEASE="rel-rc"
-export RES_PUSH_ALPHA="push_alpha"
+export RES_LAST_STG_PUSH="push_alpha"
 export RES_BASE_REPO="base_repo"
 
 export RES_REPO_UP=$(echo $RES_REPO | awk '{print toupper($0)}')
@@ -15,38 +15,38 @@ export RES_REPO_STATE=$(eval echo "$"$RES_REPO_UP"_STATE")
 export RES_RELEASE_UP=$(echo ${RES_RELEASE//-/} | awk '{print toupper($0)}')
 export RES_RELEASE_VER_NAME=$(eval echo "$"$RES_RELEASE_UP"_VERSIONNAME")
 
-export RES_PUSH_ALPHA_UP=$(echo $RES_PUSH_ALPHA | awk '{print toupper($0)}')
-export RES_PUSH_ALPHA_VER_NAME=$(eval echo "$"$RES_PUSH_ALPHA_UP"_VERSIONNAME")
-export RES_PUSH_ALPHA_META=$(eval echo "$"$RES_PUSH_ALPHA_UP"_META")
+export RES_LAST_STG_PUSH_UP=$(echo $RES_LAST_STG_PUSH | awk '{print toupper($0)}')
+export RES_LAST_STG_PUSH_VER_NAME=$(eval echo "$"$RES_LAST_STG_PUSH_UP"_VERSIONNAME")
+export RES_LAST_STG_PUSH_META=$(eval echo "$"$RES_LAST_STG_PUSH_UP"_META")
 
 export RES_BASE_REPO_UP=$(echo $RES_BASE_REPO | awk '{print toupper($0)}')
 export RES_BASE_REPO_STATE=$(eval echo "$"$RES_BASE_REPO_UP"_STATE")
 
 set_context() {
-  export CURR_TAG=$RES_PUSH_ALPHA_VER_NAME
+  export LAST_STG_LATEST_TAG=$RES_LAST_STG_PUSH_VER_NAME
 
   echo "CURR_JOB=$CURR_JOB"
   echo "RES_REPO=$RES_REPO"
   echo "RES_RELEASE=$RES_RELEASE"
-  echo "RES_PUSH_ALPHA=$RES_PUSH_ALPHA"
+  echo "RES_LAST_STG_PUSH=$RES_LAST_STG_PUSH"
   echo "RES_BASE_REPO=$RES_BASE_REPO"
   echo "HUB_ORG=$HUB_ORG"
   echo "DOC_HUB_ORG=$DOC_HUB_ORG"
-  echo "CURR_TAG=$CURR_TAG"
+  echo "LAST_STG_LATEST_TAG=$LAST_STG_LATEST_TAG"
 
   echo "RES_REPO_UP=$RES_REPO_UP"
   echo "RES_REPO_STATE=$RES_REPO_STATE"
   echo "RES_RELEASE_UP=$RES_RELEASE_UP"
   echo "RES_RELEASE_VER_NAME=$RES_RELEASE_VER_NAME"
-  echo "RES_PUSH_ALPHA_UP=$RES_PUSH_ALPHA_UP"
-  echo "RES_PUSH_ALPHA_VER_NAME=$RES_PUSH_ALPHA_VER_NAME"
-  echo "RES_PUSH_ALPHA_META=$RES_PUSH_ALPHA_META"
+  echo "RES_LAST_STG_PUSH_UP=$RES_LAST_STG_PUSH_UP"
+  echo "RES_LAST_STG_PUSH_VER_NAME=$RES_LAST_STG_PUSH_VER_NAME"
+  echo "RES_LAST_STG_PUSH_META=$RES_LAST_STG_PUSH_META"
   echo "RES_BASE_REPO_UP=$RES_BASE_REPO_UP"
   echo "RES_BASE_REPO_STATE=$RES_BASE_REPO_STATE"
 }
 
 get_image_list() {
-  pushd $RES_PUSH_ALPHA_META
+  pushd $RES_LAST_STG_PUSH_META
   # This is set in the alpha job so that the same image list is maintained
   export IMAGE_NAMES=$(jq -r '.version.propertyBag.IMAGE_NAMES' version.json)
   echo "IMAGE_NAMES=$IMAGE_NAMES"
@@ -55,8 +55,8 @@ get_image_list() {
 
 pull_images() {
   for IMAGE in $IMAGE_NAMES; do
-    echo "Pulling image $HUB_ORG/$IMAGE:$CURR_TAG"
-    sudo docker pull "$HUB_ORG/$IMAGE:$CURR_TAG"
+    echo "Pulling image $HUB_ORG/$IMAGE:$LAST_STG_LATEST_TAG"
+    sudo docker pull "$HUB_ORG/$IMAGE:$LAST_STG_LATEST_TAG"
   done
 }
 
@@ -65,8 +65,8 @@ tag_and_push_images_ecr() {
   echo "----------------------------------------------"
 
   for IMAGE in $IMAGE_NAMES; do
-    echo "Tag and push image $HUB_ORG/$IMAGE:$CURR_TAG as $HUB_ORG/$IMAGE:$RES_RELEASE_VER_NAME"
-    sudo docker tag -f $HUB_ORG/$IMAGE:$CURR_TAG $HUB_ORG/$IMAGE:$RES_RELEASE_VER_NAME
+    echo "Tag and push image $HUB_ORG/$IMAGE:$LAST_STG_LATEST_TAG as $HUB_ORG/$IMAGE:$RES_RELEASE_VER_NAME"
+    sudo docker tag -f $HUB_ORG/$IMAGE:$LAST_STG_LATEST_TAG $HUB_ORG/$IMAGE:$RES_RELEASE_VER_NAME
     sudo docker push $HUB_ORG/$IMAGE:$RES_RELEASE_VER_NAME
   done
 }
@@ -76,7 +76,7 @@ tag_and_push_images_dockerhub() {
   echo "----------------------------------------------"
   for IMAGE in $IMAGE_NAMES; do
     if [[ $IMAGE == *"genexec"* ]]; then
-      sudo docker tag -f $HUB_ORG/$IMAGE:$CURR_TAG $DOC_HUB_ORG/$IMAGE:$RES_RELEASE_VER_NAME
+      sudo docker tag -f $HUB_ORG/$IMAGE:$LAST_STG_LATEST_TAG $DOC_HUB_ORG/$IMAGE:$RES_RELEASE_VER_NAME
       sudo docker push $DOC_HUB_ORG/$IMAGE:$RES_RELEASE_VER_NAME
     else
       echo "Not pushing to DockerHub : $image"
@@ -86,8 +86,8 @@ tag_and_push_images_dockerhub() {
 
 tag_push_base(){
   pushd $RES_BASE_REPO_STATE
-  echo "pushing git tag $RES_RELEASE_VER_NAME to $RES_BASE_REPO at $CURR_TAG"
-  git checkout $CURR_TAG
+  echo "pushing git tag $RES_RELEASE_VER_NAME to $RES_BASE_REPO at $LAST_STG_LATEST_TAG"
+  git checkout $LAST_STG_LATEST_TAG
   git tag $RES_RELEASE_VER_NAME
   git push origin $RES_RELEASE_VER_NAME
   echo "completed pushing git tag $RES_RELEASE_VER_NAME to $RES_BASE_REPO"
