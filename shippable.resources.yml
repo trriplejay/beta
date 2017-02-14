@@ -167,11 +167,6 @@ resources:
       sourceName: "Shippable/infra"
       branch: master
 
-# PEM key for AWS demo account
-  - name: aws-rc-pem
-    type: integration
-    integration: aws-rc-pem
-
 # PEM key for AWS RC account
   - name: aws_rc_pem
     type: integration
@@ -231,12 +226,6 @@ resources:
   ###############################
 
 # Swarm node info for alpha
-  - name: aws-rc-swarm
-    type: params
-    version:
-      params:
-        secure: i12Qc6wli31gqzWEYoWy09i9vmS0rbBNfvzU6X0qlChxEUvs4Cqde0BYbJZwwTAVbMZ/NOPd4E2PojVPC1WWx5Y2zW5YMY20aboIZ2O0f34AQyKe9YXZbwkGGGG7TddG7qafnKAFpwRkfCXysnTA/B1jh0QunQkojCu8zyTny3i84q/KvOTzLG5lS50fvHLdtCoVW1RGuXxZg6RBmtERHu1FhcaBmD1HadNKSV3NHQentnXwRk/xo2SVdQzLPDfKmu1/tmSGhr7beE06LSBJtJ9ttkq3hbKidmuU8rsa8RXRrvCm2KFuD/qFu1RQYl0vB88eDp69GQifkehBgXCtXA==
-
   - name: aws_rc_swarm
     type: params
     version:
@@ -259,12 +248,6 @@ resources:
         secure: 2hRQlnqWsr1XyGNROoyELvTFsMHl/XcmUKMSbNLxXs7XYBXO3tlpin6jxN28E55DldtWux0x9ke7dPHm7PxBXpgs0PS73WxVYxkIWeubQkbUVRcg2s4Rxa0AvUPwkQBTDqWw25PIeS74+nTJ4FftF2EZ6G6Dc7yR1ykjq9PjCSEffVFRrAze8/XvtzzlcfxlIHxgherJWtBAXAtttzjQ4lrnnMYNgAFHw6Iz+ktGn1DolhgLls3x/xPdhY9gzUycReVoVQMO7MSRQerXa/hGjPdX/i2MefTYxQMcsSR1x6i6cFqxWhgV3Ahz//TBVTPPse2Kwfw6UJQ2zaRk7ijlRA==
 
 # Swarm node info for qhode-rc
-  - name: qhode-rc-swarm
-    type: params
-    version:
-      params:
-        secure: uq8WeVBSKGcbWiy6iYL/f7I007C/+Mv1WhGefswd4vWVeZMOGxHBmCyeIiuhdRBuwCMDybHX7H079cCOBT/tEVDxdxe0eo4FB3hBSgAU6pk1bTU14zuNOhIHHr3U9tloL93V3uhIwptHYt9IFhy90CVoTw05XZM2OnWGe/H/4ns3PQ3pow7SkKWIglqQ2wTOkXVbQFJVln9/h388tV6N6oTtJc0Nr02FYlJ1uL88/ixDUwc3VllazyxusWGf5oYqhoj8W3ug+j7JiwW3lpIMfI1pWcTGeajaVLtRH6VhxcwLqTuUBnuzjDdz19CDz7cyblFEtUfIhq+/sUJo+Fb8YQ==
-
   - name: qhode_rc_swarm
     type: params
     version:
@@ -300,13 +283,6 @@ resources:
   ###############################
   # BEGIN AMI Build resources
   ###############################
-  - name: bldami-repo
-    type: gitRepo
-    integration: ric03uec-github
-    pointer:
-      sourceName: shippable/buildami
-      branch: master
-
   - name: bldami_repo
     type: gitRepo
     integration: ric03uec-github
@@ -314,23 +290,9 @@ resources:
       sourceName: shippable/buildami
       branch: master
 
-  - name: aws-bits-access
-    type: integration
-    integration: aws-bits-access
-
   - name: aws_bits_access
     type: integration
     integration: aws-bits-access
-
-  - name: baseami-params
-    type: params
-    version:
-      params:
-        SOURCE_AMI: "ami-5ac2cd4d"
-        VPC_ID: "vpc-266f3241"
-        SUBNET_ID: "subnet-6df12f24"
-        SECURITY_GROUP_ID: "sg-f634518c"
-        REGION: "us-east-1"
 
   - name: baseami_params
     type: params
@@ -356,20 +318,12 @@ resources:
       recipients:
         - "#alpha"
 
-  - name: slack-rc
-    type: notification
-    integration: ship-slack
-    pointer:
-      recipients:
-        - "#rc"
-
   - name: slack_rc
     type: notification
     integration: ship-slack
     pointer:
       recipients:
         - "#rc"
-
   ###############################
   # END notification resources
   ###############################
