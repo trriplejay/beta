@@ -96,13 +96,14 @@ jobs:
       - NOTIFY: slack-alpha
     steps:
       - IN: ship-ver
-      - IN: man-ship
+#      - IN: man-ship
       - TASK: managed
         bump: alpha
     on_success:
       - NOTIFY: slack-alpha
     on_failure:
       - NOTIFY: slack-alpha
+
   ###########################################
   # push alpha release to special repo
   ###########################################
