@@ -325,6 +325,25 @@ jobs:
   # push rc release to special repo
   ###########################################
 
+  - name: push_final
+    type: runSh
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: base_repo
+        switch: off
+      - IN: shipbits_ecr_cli
+      - IN: ship_dh_cli
+      - IN: push_rc
+        switch: off
+      - IN: rel-final
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/pushFinal.sh
+    on_success:
+      - script: echo 'succeeded'
+    on_failure:
+      - script: echo 'failed'
+
   - name: push-final
     type: runSh
     steps:
@@ -561,6 +580,23 @@ jobs:
       - TASK:
         - script: sudo apt-get install -y jq
         - script: IN/bldami-repo/gitRepo/exec/execPack.sh baseami-params push-rc ami-90fd0286 unstable
+    on_success:
+      - script: echo "SUCCESS"
+    on_failure:
+      - script: cat /build/IN/bldami-repo/gitRepo/exec/output.txt
+
+  - name: build_finalami
+    type: runSh
+    steps:
+      - IN: baseami_params
+      - IN: aws_bits_access
+      - IN: bldami_repo
+        switch: off
+      - IN: patch_baseami
+        switch: off
+      - IN: push-final
+      - TASK:
+        - script: IN/bldami-repo/gitRepo/exec/execPack.sh baseami-params push-final ami-90fd0286 unstable
     on_success:
       - script: echo "SUCCESS"
     on_failure:
