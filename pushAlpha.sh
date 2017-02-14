@@ -2,7 +2,7 @@
 
 export HUB_ORG="374168611083.dkr.ecr.us-east-1.amazonaws.com"
 export DOC_HUB_ORG="shipimg"
-export IMAGE_TAG="latest"
+export CURR_TAG="latest"
 
 export CURR_JOB="push_alpha"
 export RES_REPO="config_repo"
@@ -25,8 +25,10 @@ set_context() {
   echo "RES_BASE_REPO=$RES_BASE_REPO"
   echo "HUB_ORG=$HUB_ORG"
   echo "DOC_HUB_ORG=$DOC_HUB_ORG"
-  echo "IMAGE_TAG=$IMAGE_TAG"
+  echo "CURR_TAG=$CURR_TAG"
 
+  echo "RES_REPO_UP=$RES_REPO_UP"
+  echo "RES_REPO_STATE=$RES_REPO_STATE"
   echo "RES_RELEASE_UP=$RES_RELEASE_UP"
   echo "RES_RELEASE_VER_NAME=$RES_RELEASE_VER_NAME"
   echo "RES_BASE_REPO_UP=$RES_BASE_REPO_UP"
@@ -46,8 +48,8 @@ get_image_list() {
 
 pull_images() {
   for IMAGE in $IMAGE_NAMES; do
-    echo "Pulling image $HUB_ORG/$IMAGE:$IMAGE_TAG"
-    sudo docker pull "$HUB_ORG/$IMAGE:$IMAGE_TAG"
+    echo "Pulling image $HUB_ORG/$IMAGE:$CURR_TAG"
+    sudo docker pull "$HUB_ORG/$IMAGE:$CURR_TAG"
   done
 }
 
@@ -56,8 +58,8 @@ tag_and_push_images_ecr() {
   echo "----------------------------------------------"
 
   for IMAGE in $IMAGE_NAMES; do
-    echo "Tag and push image $HUB_ORG/$IMAGE:$IMAGE_TAG as $HUB_ORG/$IMAGE:$RES_RELEASE_VER_NAME"
-    sudo docker tag -f $HUB_ORG/$IMAGE:$IMAGE_TAG $HUB_ORG/$IMAGE:$RES_RELEASE_VER_NAME
+    echo "Tag and push image $HUB_ORG/$IMAGE:$CURR_TAG as $HUB_ORG/$IMAGE:$RES_RELEASE_VER_NAME"
+    sudo docker tag -f $HUB_ORG/$IMAGE:$CURR_TAG $HUB_ORG/$IMAGE:$RES_RELEASE_VER_NAME
     sudo docker push $HUB_ORG/$IMAGE:$RES_RELEASE_VER_NAME
   done
 }
@@ -67,7 +69,7 @@ tag_and_push_images_dockerhub() {
   echo "----------------------------------------------"
   for IMAGE in $IMAGE_NAMES; do
     if [[ $IMAGE == *"genexec"* ]]; then
-      sudo docker tag -f $HUB_ORG/$IMAGE:$IMAGE_TAG $DOC_HUB_ORG/$IMAGE:$RES_RELEASE_VER_NAME
+      sudo docker tag -f $HUB_ORG/$IMAGE:$CURR_TAG $DOC_HUB_ORG/$IMAGE:$RES_RELEASE_VER_NAME
       sudo docker push $DOC_HUB_ORG/$IMAGE:$RES_RELEASE_VER_NAME
     else
       echo "Not pushing to DockerHub : $image"

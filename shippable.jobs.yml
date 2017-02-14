@@ -172,16 +172,16 @@ jobs:
   - name: rel-rc
     type: release
     on_start:
-      - NOTIFY: slack-rc
+      - NOTIFY: slack_rc
     steps:
       - IN: rel-alpha
         switch: off
       - TASK: managed
         bump: rc
     on_success:
-      - NOTIFY: slack-rc
+      - NOTIFY: slack_rc
     on_failure:
-      - NOTIFY: slack-rc
+      - NOTIFY: slack_rc
   ###########################################
   # push rc release to special repo
   ###########################################
@@ -209,6 +209,25 @@ jobs:
         - script: aws --version
         - script: docker --version
         - script: ./IN/beta-config-repo/gitRepo/pushRc.sh
+    on_success:
+      - script: echo 'succeeded'
+    on_failure:
+      - script: echo 'failed'
+
+  - name: push_rc
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: base_repo
+        switch: off
+      - IN: shipbits_ecr_cli
+      - IN: ship_dh_cli
+      - IN: push_alpha
+        switch: off
+      - IN: rel-rc
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/pushRc.sh
     on_success:
       - script: echo 'succeeded'
     on_failure:
