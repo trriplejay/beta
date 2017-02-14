@@ -594,9 +594,9 @@ jobs:
         switch: off
       - IN: patch_baseami
         switch: off
-      - IN: push-final
+      - IN: push_final
       - TASK:
-        - script: IN/bldami-repo/gitRepo/exec/execPack.sh baseami-params push-final ami-90fd0286 unstable
+        - script: IN/bldami_repo/gitRepo/exec/execPack.sh build_finalami push_final
     on_success:
       - script: echo "SUCCESS"
     on_failure:
