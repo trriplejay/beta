@@ -1,11 +1,4 @@
 resources:
-  - name: base-repo
-    type: gitRepo
-    integration: ric03uec-github
-    pointer:
-      sourceName: shippable/base
-      branch: master
-
   - name: base_repo
     type: gitRepo
     integration: ric03uec-github
@@ -46,11 +39,6 @@ resources:
   ###############################
   # begin Shippable Server resources
   ###############################
-
-  - name: shipbits-ecr
-    type: integration
-    integration: "ecr-bits-push"
-
   - name: shipbits_ecr_cli
     type: cliConfig
     integration: "ecr-bits-push"
@@ -64,17 +52,6 @@ resources:
   - name: ship_dh_cli
     type: cliConfig
     integration: "shipDH"
-
-  - name: shipimg-dockerhub
-    type: integration
-    integration: "shipDH"
-
-  - name: beta-config-repo
-    type: gitRepo
-    integration: ric03uec-github
-    pointer:
-      sourceName: shippable/beta
-      branch: master
 
   - name: config_repo
     type: gitRepo
