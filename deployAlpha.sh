@@ -57,6 +57,7 @@ configure_node_creds() {
 #  echo "SSH key added successfully"
 #  echo "--------------------------------------"
 
+
   echo "Extracting AWS PEM"
   echo "-----------------------------------"
   local CREDS_PATH="$RES_PEM_META/integration.env"
