@@ -29,13 +29,6 @@ resources:
     seed:
       versionName: latest
 
-  - name: nexec-repo
-    type: gitRepo
-    integration: ric03uec-github
-    pointer:
-      sourceName: shippable/nexec
-      branch: master
-
   - name: nexec_repo
     type: gitRepo
     integration: ric03uec-github
