@@ -43,6 +43,9 @@ set_context() {
   echo "BASTION_IP=$BASTION_IP"
   echo "SWARM_USER=$SWARM_USER"
   echo "SWARM_IP=$SWARM_IP"
+  
+  echo $AWS_ALPHA_SWARM_PARAMS_BASTION_USER
+  echo $AWS_ALPHA_SWARM_PARAMS_BASTION_IP
 }
 
 configure_node_creds() {
@@ -116,10 +119,10 @@ create_version() {
 main() {
   eval $(ssh-agent -s)
   set_context
-  configure_node_creds
-  pull_base_repo
-  deploy
-  create_version
+  #configure_node_creds
+  #pull_base_repo
+  #deploy
+  #create_version
 }
 
 main
