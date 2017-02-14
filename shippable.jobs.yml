@@ -531,6 +531,23 @@ jobs:
     on_failure:
       - script: cat IN/bldami_repo/gitRepo/basePatch/output.txt
 
+  - name: build_rcami
+    type: runSh
+    steps:
+      - IN: baseami_params-params
+      - IN: aws_bits_access
+      - IN: bldami_repo
+        switch: off
+      - IN: patch_baseami
+        switch: off
+      - IN: push_rc
+      - TASK:
+        - script: IN/bldami_repo/gitRepo/exec/execPack.sh build_rcami push_rc
+    on_success:
+      - script: echo "SUCCESS"
+    on_failure:
+      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
+
   - name: build-rcami
     type: runSh
     steps:
