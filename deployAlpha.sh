@@ -48,35 +48,35 @@ set_context() {
 }
 
 configure_node_creds() {
-  echo $PEM_KEY > /tmp/key.pem
-  chmod 600 /tmp/key.pem
-  echo "KEY file available at : /tmp/key.pem"
-  echo "Completed Extracting AWS PEM"
-  echo "-----------------------------------"
-  ssh-add /tmp/key.pem
-  echo "SSH key added successfully"
-  echo "--------------------------------------"
-
-#  echo "Extracting AWS PEM"
-#  echo "-----------------------------------"
-#  local CREDS_PATH="$RES_PEM_META/integration.env"
-#  if [ ! -f $CREDS_PATH ]; then
-#    echo "No credentials file found at location: $creds_path"
-#    return 1
-#  fi
-#
-#  export KEY_FILE_PATH="$RES_PEM_META/key.pem"
-#  cat $CREDS_PATH | jq -r '.key' > $KEY_FILE_PATH
-#  chmod 600 $KEY_FILE_PATH
-#
-#  ls -al $KEY_FILE_PATH
-#  echo "KEY file available at : $KEY_FILE_PATH"
+#  echo $PEM_KEY > /tmp/key.pem
+#  chmod 600 /tmp/key.pem
+#  echo "KEY file available at : /tmp/key.pem"
 #  echo "Completed Extracting AWS PEM"
 #  echo "-----------------------------------"
-#
-#  ssh-add $KEY_FILE_PATH
+#  ssh-add /tmp/key.pem
 #  echo "SSH key added successfully"
 #  echo "--------------------------------------"
+
+  echo "Extracting AWS PEM"
+  echo "-----------------------------------"
+  local CREDS_PATH="$RES_PEM_META/integration.env"
+  if [ ! -f $CREDS_PATH ]; then
+    echo "No credentials file found at location: $creds_path"
+    return 1
+  fi
+
+  export KEY_FILE_PATH="$RES_PEM_META/key.pem"
+  cat $CREDS_PATH | jq -r '.key' > $KEY_FILE_PATH
+  chmod 600 $KEY_FILE_PATH
+
+  ls -al $KEY_FILE_PATH
+  echo "KEY file available at : $KEY_FILE_PATH"
+  echo "Completed Extracting AWS PEM"
+  echo "-----------------------------------"
+
+  ssh-add $KEY_FILE_PATH
+  echo "SSH key added successfully"
+  echo "--------------------------------------"
 }
 
 pull_base_repo() {
