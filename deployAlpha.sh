@@ -43,9 +43,8 @@ set_context() {
   echo "BASTION_IP=$BASTION_IP"
   echo "SWARM_USER=$SWARM_USER"
   echo "SWARM_IP=$SWARM_IP"
-  
-  echo $AWS_ALPHA_SWARM_PARAMS_BASTION_USER
-  echo $AWS_ALPHA_SWARM_PARAMS_BASTION_IP
+
+  printenv
 }
 
 configure_node_creds() {
