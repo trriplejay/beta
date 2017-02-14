@@ -1,121 +1,124 @@
 #!/bin/bash -e
 
-export RES_RELEASE=rel-rc
-export RC_INTEGRATION=aws-rc-pem
-export RC_SWARM=qhode-rc-swarm
+export CURR_JOB="deploy_qhode_rc"
+export RES_REPO="config_repo"
+export RES_PUSH="push_rc"
+export RES_SWARM="qhode_rc_swarm"
+export RES_PEM="aws_rc_pem"
 
-export RC_BASTION_USER=$QHODERCSWARM_PARAMS_RC_BASTION_USER
-export RC_BASTION_IP=$QHODERCSWARM_PARAMS_RC_BASTION_IP
-export RC_SWARM_USER=$QHODERCSWARM_PARAMS_RC_SWARM_USER
-export RC_SWARM_IP=$QHODERCSWARM_PARAMS_RC_SWARM_IP
-export VERSION=$RELRC_VERSIONNAME
+export RES_REPO_UP=$(echo $RES_REPO | awk '{print toupper($0)}')
+export RES_REPO_STATE=$(eval echo "$"$RES_REPO_UP"_STATE")
 
-export KEY_FILE_PATH=""
+export RES_PUSH_UP=$(echo $RES_PUSH | awk '{print toupper($0)}')
+export RES_PUSH_VER_NAME=$(eval echo "$"$RES_PUSH_UP"_VERSIONNAME")
 
-parse_version() {
-#  release_path="IN/$RES_RELEASE/release/release.json"
-#  if [ ! -e $release_path ]; then
-#    echo "No release.json file found at location: $release_path"
-#    return 1
-#  fi
-#
-#  echo "extracting release versionName from state file"
-#  VERSION=$(jq -r '.versionName' $release_path)
-  echo "found version: $VERSION"
-}
+export RES_SWARM_UP=$(echo $RES_SWARM | awk '{print toupper($0)}')
+export RES_SWARM_PARAMS_STR=$RES_SWARM_UP"_PARAMS_RC"
 
-load_node_info() {
-#  echo "Loading node information"
-#  local node_info=$(cat IN/$RC_SWARM/params)
-#  export $node_info
-#  #. $node_info
+export RES_PEM_UP=$(echo $RES_PEM | awk '{print toupper($0)}')
+export RES_PEM_META=$(eval echo "$"$RES_PEM_UP"_META")
+export RES_PEM_INT_STR=$RES_PEM_UP"_INTEGRATION_KEY"
 
-  echo "########### SWARM USER: $RC_SWARM_USER"
-  echo "########### SWARM IP_ADDR: $RC_SWARM_IP"
-  echo "########### BASTION USER: $RC_BASTION_USER"
-  echo "########### BASTION IP_ADDR: $RC_BASTION_IP"
-  echo "successfully loaded node information"
+set_context() {
+  export BASTION_USER=$(eval echo "$"$RES_SWARM_PARAMS_STR"_BASTION_USER")
+  export BASTION_IP=$(eval echo "$"$RES_SWARM_PARAMS_STR"_BASTION_IP")
+  export SWARM_USER=$(eval echo "$"$RES_SWARM_PARAMS_STR"_SWARM_USER")
+  export SWARM_IP=$(eval echo "$"$RES_SWARM_PARAMS_STR"_SWARM_IP")
+  #export $PEM_KEY=$(RES_PEM_INT_STR)
+
+  echo "CURR_JOB=$CURR_JOB"
+  echo "RES_REPO=$RES_REPO"
+  echo "RES_PUSH=$RES_PUSH"
+  echo "RES_SWARM=$RES_SWARM"
+
+  echo "RES_REPO_UP=$RES_REPO_UP"
+  echo "RES_REPO_STATE=$RES_REPO_STATE"
+  echo "RES_PUSH_UP=$RES_PUSH_UP"
+  echo "RES_PUSH_VER_NAME=$RES_PUSH_VER_NAME"
+  echo "RES_SWARM_UP=$RES_SWARM_UP"
+  echo "RES_SWARM_PARAMS=$RES_SWARM_PARAMS"
+  echo "RES_PEM_UP=$RES_PEM_UP"
+  echo "RES_PEM_META=$RES_PEM_META"
+
+  echo "BASTION_USER=$BASTION_USER"
+  echo "BASTION_IP=$BASTION_IP"
+  echo "SWARM_USER=$SWARM_USER"
+  echo "SWARM_IP=$SWARM_IP"
 }
 
 configure_node_creds() {
+#  echo $PEM_KEY > /tmp/key.pem
+#  chmod 600 /tmp/key.pem
+#  echo "KEY file available at : /tmp/key.pem"
+#  echo "Completed Extracting AWS PEM"
+#  echo "-----------------------------------"
+#  ssh-add /tmp/key.pem
+#  echo "SSH key added successfully"
+#  echo "--------------------------------------"
+
+
   echo "Extracting AWS PEM"
   echo "-----------------------------------"
-  local creds_path="IN/$RC_INTEGRATION/integration.env"
-  if [ ! -f $creds_path ]; then
-    echo "No credentials file found at location: $creds_path"
+  pushd $RES_PEM_META
+  if [ ! -f "integration.json" ]; then
+    echo "No credentials file found at location: $RES_PEM_META"
     return 1
   fi
 
-  export KEY_FILE_PATH="IN/$RC_INTEGRATION/key.pem"
-  cat IN/$RC_INTEGRATION/integration.json  \
-    | jq -r '.key' > $KEY_FILE_PATH
-  chmod 600 $KEY_FILE_PATH
+  cat integration.json | jq -r '.key' > key.pem
+  chmod 600 key.pem
 
-  ls -al $KEY_FILE_PATH
-  echo "KEY file available at : $KEY_FILE_PATH"
   echo "Completed Extracting AWS PEM"
   echo "-----------------------------------"
 
-  ssh-add $KEY_FILE_PATH
+  ssh-add key.pem
   echo "SSH key added successfully"
   echo "--------------------------------------"
+  popd
 }
 
 pull_base_repo() {
   echo "Pull base-repo started"
-  local pull_base_command="git -C /home/ubuntu/base pull origin master"
-  ssh -A $RC_BASTION_USER@$RC_BASTION_IP ssh $RC_SWARM_USER@$RC_SWARM_IP "$pull_base_command"
+  local PULL_CMD="git -C /home/ubuntu/base pull origin master"
+  ssh -A $BASTION_USER@$BASTION_IP ssh $SWARM_USER@$SWARM_IP "$PULL_CMD"
   echo "Successfully pulled base-repo"
 }
 
 deploy() {
-  echo "Deploying the release $VERSION to RC"
+  echo "Deploying the release $RES_PUSH_VER_NAME to rc"
   echo "--------------------------------------"
-
 
   echo "SSH key file list"
   ssh-add -L
 
   local inspect_command="ip addr"
   echo "Executing inspect command: $inspect_command"
-  ssh -A $RC_BASTION_USER@$RC_BASTION_IP ssh $RC_SWARM_USER@$RC_SWARM_IP "$inspect_command"
+  ssh -A $BASTION_USER@$BASTION_IP ssh $SWARM_USER@$SWARM_IP "$inspect_command"
   echo "-------------------------------------="
 
   #local deploy_command="ls -al"
-  local deploy_command="sudo /home/ubuntu/base/base.sh --release $VERSION"
+  local deploy_command="sudo /home/ubuntu/base/base.sh --release $RES_PUSH_VER_NAME"
   echo "Executing deploy command: $deploy_command"
-  ssh -A $RC_BASTION_USER@$RC_BASTION_IP ssh $RC_SWARM_USER@$RC_SWARM_IP "$deploy_command"
+  ssh -A $BASTION_USER@$BASTION_IP ssh $SWARM_USER@$SWARM_IP "$deploy_command"
   echo "-------------------------------------="
 
-  echo "Successfully deployed release $VERSION to RC env"
+  echo "Successfully deployed release $RES_PUSH_VER_NAME to rc env"
 }
 
-save_version() {
-  echo "Saving release version to state"
-  echo "--------------------------------------"
-
-  local state_file_path=/build/state/rcVersion.txt
-  echo $VERSION > $state_file_path
-
-  echo "Successfully dumped release version to state"
-  cat $state_file_path
-  echo "--------------------------------------"
+create_version() {
+  echo "Creating a state file for" $CURR_JOB
+  # create a state file so that next job can pick it up
+  echo "versionName=$RES_PUSH_VER_NAME" > /build/state/$CURR_JOB.env #adding version state
+  echo "Completed creating a state file for" $CURR_JOB
 }
 
 main() {
   eval $(ssh-agent -s)
-  manifest_path="IN/$RES_RELEASE/release/manifests.json"
-  if [ ! -e $manifest_path ]; then
-    echo "No manifests.json file found at location: $manifest_path"
-    return 1
-  fi
-
-  parse_version
-  load_node_info
+  set_context
   configure_node_creds
   pull_base_repo
   deploy
-  save_version
+  create_version
 }
 
 main
