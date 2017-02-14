@@ -346,24 +346,24 @@ jobs:
   # push rc release to special repo
   ###########################################
 
-#  - name: push_final
-#    type: runSh
-#    steps:
-#      - IN: config_repo
-#        switch: off
-#      - IN: base_repo
-#        switch: off
-#      - IN: shipbits_ecr_cli
-#      - IN: ship_dh_cli
-#      - IN: push_rc
-#        switch: off
-#      - IN: rel-final
-#      - TASK:
-#        - script: ./IN/config_repo/gitRepo/pushFinal.sh
-#    on_success:
-#      - script: echo 'succeeded'
-#    on_failure:
-#      - script: echo 'failed'
+  - name: push_final
+    type: runSh
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: base_repo
+        switch: off
+      - IN: shipbits_ecr_cli
+      - IN: ship_dh_cli
+      - IN: push_rc
+        switch: off
+      - IN: rel-final
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/pushFinal.sh
+    on_success:
+      - script: echo 'succeeded'
+    on_failure:
+      - script: echo 'failed'
 
   - name: push-final
     type: runSh
@@ -615,7 +615,7 @@ jobs:
         switch: off
       - IN: patch_baseami
         switch: off
-#      - IN: push_final
+      - IN: push_final
       - TASK:
         - script: IN/bldami_repo/gitRepo/exec/execPack.sh build_finalami push_final
     on_success:
