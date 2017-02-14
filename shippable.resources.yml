@@ -265,6 +265,12 @@ resources:
       params:
         secure: uq8WeVBSKGcbWiy6iYL/f7I007C/+Mv1WhGefswd4vWVeZMOGxHBmCyeIiuhdRBuwCMDybHX7H079cCOBT/tEVDxdxe0eo4FB3hBSgAU6pk1bTU14zuNOhIHHr3U9tloL93V3uhIwptHYt9IFhy90CVoTw05XZM2OnWGe/H/4ns3PQ3pow7SkKWIglqQ2wTOkXVbQFJVln9/h388tV6N6oTtJc0Nr02FYlJ1uL88/ixDUwc3VllazyxusWGf5oYqhoj8W3ug+j7JiwW3lpIMfI1pWcTGeajaVLtRH6VhxcwLqTuUBnuzjDdz19CDz7cyblFEtUfIhq+/sUJo+Fb8YQ==
 
+  - name: qhode_rc_swarm
+    type: params
+    version:
+      params:
+        secure: uq8WeVBSKGcbWiy6iYL/f7I007C/+Mv1WhGefswd4vWVeZMOGxHBmCyeIiuhdRBuwCMDybHX7H079cCOBT/tEVDxdxe0eo4FB3hBSgAU6pk1bTU14zuNOhIHHr3U9tloL93V3uhIwptHYt9IFhy90CVoTw05XZM2OnWGe/H/4ns3PQ3pow7SkKWIglqQ2wTOkXVbQFJVln9/h388tV6N6oTtJc0Nr02FYlJ1uL88/ixDUwc3VllazyxusWGf5oYqhoj8W3ug+j7JiwW3lpIMfI1pWcTGeajaVLtRH6VhxcwLqTuUBnuzjDdz19CDz7cyblFEtUfIhq+/sUJo+Fb8YQ==
+
   ###############################
   # end Shippable-Server pipeline resources
   ###############################

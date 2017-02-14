@@ -302,6 +302,24 @@ jobs:
       - script: echo 'failed'
 
   # deploy to qhode-rc-environment
+  - name: deploy_qhode_rc
+    type: runSh
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: push_rc
+        switch: off
+      - IN: build_rcami
+        switch: off
+      - IN: aws_rc_pem
+      - IN: qhode_rc_swarm
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/deployQhodeRc.sh
+    on_success:
+      - script: echo 'succeeded'
+    on_failure:
+      - script: echo 'failed'
+
   - name: deploy-qhode-rc
     type: runSh
     steps:
