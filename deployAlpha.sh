@@ -14,16 +14,18 @@ export RES_PUSH_UP=$(echo $RES_PUSH | awk '{print toupper($0)}')
 export RES_PUSH_VER_NAME=$(eval echo "$"$RES_PUSH_UP"_VERSIONNAME")
 
 export RES_SWARM_UP=$(echo $RES_SWARM | awk '{print toupper($0)}')
-export RES_SWARM_PARAMS=$RES_SWARM_UP"_PARAMS"
+export RES_SWARM_PARAMS_STR=$RES_SWARM_UP"_PARAMS_ALPHA"
 
 export RES_PEM_UP=$(echo $RES_PEM | awk '{print toupper($0)}')
 export RES_PEM_META=$(eval echo "$"$RES_PEM_UP"_META")
+export RES_PEM_INT_STR=$RES_SWARM_UP"_INTEGRATION"
 
 set_context() {
-  export BASTION_USER=$(eval echo "$"$RES_SWARM_PARAMS"_BASTION_USER")
-  export BASTION_IP=$(eval echo "$"$RES_SWARM_PARAMS"_BASTION_IP")
-  export SWARM_USER=$(eval echo "$"$RES_SWARM_PARAMS"_SWARM_USER")
-  export SWARM_IP=$(eval echo "$"$RES_SWARM_PARAMS"_SWARM_IP")
+  export BASTION_USER=$(eval echo "$"$RES_SWARM_PARAMS_STR"_BASTION_USER")
+  export BASTION_IP=$(eval echo "$"$RES_SWARM_PARAMS_STR"_BASTION_IP")
+  export SWARM_USER=$(eval echo "$"$RES_SWARM_PARAMS_STR"_SWARM_USER")
+  export SWARM_IP=$(eval echo "$"$RES_SWARM_PARAMS_STR"_SWARM_IP")
+  export $PEM_KEY=$(eval echo "$"$RES_PEM_INT_STR"_KEY")
 
   echo "CURR_JOB=$CURR_JOB"
   echo "RES_REPO=$RES_REPO"
@@ -44,40 +46,40 @@ set_context() {
   echo "SWARM_USER=$SWARM_USER"
   echo "SWARM_IP=$SWARM_IP"
 
-  printenv
 }
 
+ALPHA_AWS_PEM_INTEGRATION_KEY
+
 configure_node_creds() {
-
-#  echo $PEM_KEY > /tmp/key.pem
-#  chmod 600 /tmp/key.pem
-#  echo "KEY file available at : /tmp/key.pem"
-#  echo "Completed Extracting AWS PEM"
-#  echo "-----------------------------------"
-#  ssh-add /tmp/key.pem
-#  echo "SSH key added successfully"
-#  echo "--------------------------------------"
-
-  echo "Extracting AWS PEM"
-  echo "-----------------------------------"
-  local CREDS_PATH="$RES_PEM_META/integration.env"
-  if [ ! -f $CREDS_PATH ]; then
-    echo "No credentials file found at location: $creds_path"
-    return 1
-  fi
-
-  export KEY_FILE_PATH="$RES_PEM_META/key.pem"
-  cat $CREDS_PATH | jq -r '.key' > $KEY_FILE_PATH
-  chmod 600 $KEY_FILE_PATH
-
-  ls -al $KEY_FILE_PATH
-  echo "KEY file available at : $KEY_FILE_PATH"
+  echo $PEM_KEY > /tmp/key.pem
+  chmod 600 /tmp/key.pem
+  echo "KEY file available at : /tmp/key.pem"
   echo "Completed Extracting AWS PEM"
   echo "-----------------------------------"
-
-  ssh-add $KEY_FILE_PATH
+  ssh-add /tmp/key.pem
   echo "SSH key added successfully"
   echo "--------------------------------------"
+
+#  echo "Extracting AWS PEM"
+#  echo "-----------------------------------"
+#  local CREDS_PATH="$RES_PEM_META/integration.env"
+#  if [ ! -f $CREDS_PATH ]; then
+#    echo "No credentials file found at location: $creds_path"
+#    return 1
+#  fi
+#
+#  export KEY_FILE_PATH="$RES_PEM_META/key.pem"
+#  cat $CREDS_PATH | jq -r '.key' > $KEY_FILE_PATH
+#  chmod 600 $KEY_FILE_PATH
+#
+#  ls -al $KEY_FILE_PATH
+#  echo "KEY file available at : $KEY_FILE_PATH"
+#  echo "Completed Extracting AWS PEM"
+#  echo "-----------------------------------"
+#
+#  ssh-add $KEY_FILE_PATH
+#  echo "SSH key added successfully"
+#  echo "--------------------------------------"
 }
 
 pull_base_repo() {
@@ -118,7 +120,7 @@ create_version() {
 main() {
   eval $(ssh-agent -s)
   set_context
-  #configure_node_creds
+  configure_node_creds
   #pull_base_repo
   #deploy
   #create_version
