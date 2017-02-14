@@ -111,13 +111,6 @@ resources:
     seed:
       versionName: latest
 
-  - name: micro-repo
-    type: gitRepo
-    integration: ric03uec-github
-    pointer:
-      sourceName: shippable/micro
-      branch: master
-
   - name: micro_repo
     type: gitRepo
     integration: ric03uec-github
