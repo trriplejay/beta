@@ -62,6 +62,10 @@ resources:
     type: integration
     integration: "shipDH"
 
+  - name: ship_dh_cli
+    type: cliConfig
+    integration: "shipDH"
+
   - name: shipimg-dockerhub
     type: integration
     integration: "shipDH"
