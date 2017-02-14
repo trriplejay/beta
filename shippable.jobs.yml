@@ -59,29 +59,6 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build-api
-    type: runSh
-    steps:
-      - IN: api-repo
-      - IN: microbase-img
-      - IN: shipbits-ecr
-      - TASK:
-        - script: echo 'updating packages' && sudo apt-get update
-        - script: echo 'installing jq and unzip' && sudo apt-get install -y jq unzip
-        - script: echo 'installing awscli'
-        - script: curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-        - script: unzip awscli-bundle.zip
-        - script: sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
-        - script: echo 'which aws?' && which aws || true
-        - script: aws --version
-        - script: docker --version
-        - script: ./IN/api-repo/gitRepo/build.sh
-      - OUT: api-img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
   - name: build_www
     type: runCLI
     steps:
@@ -91,29 +68,6 @@ jobs:
       - TASK:
         - script: ./IN/www_repo/gitRepo/build.sh
       - OUT: www_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
-  - name: build-www
-    type: runSh
-    steps:
-      - IN: www-repo
-      - IN: microbase-img
-      - IN: shipbits-ecr
-      - TASK:
-        - script: echo 'updating packages' && sudo apt-get update
-        - script: echo 'installing jq and unzip' && sudo apt-get install -y jq unzip
-        - script: echo 'installing awscli'
-        - script: curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-        - script: unzip awscli-bundle.zip
-        - script: sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
-        - script: echo 'which aws?' && which aws || true
-        - script: aws --version
-        - script: docker --version
-        - script: ./IN/www-repo/gitRepo/build.sh
-      - OUT: www-img
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
