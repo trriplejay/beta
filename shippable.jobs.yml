@@ -534,7 +534,7 @@ jobs:
   - name: build_rcami
     type: runSh
     steps:
-      - IN: baseami_params-params
+      - IN: baseami_params
       - IN: aws_bits_access
       - IN: bldami_repo
         switch: off
