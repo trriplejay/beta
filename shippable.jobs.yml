@@ -74,19 +74,6 @@ jobs:
       - script: echo 'Failed job .... :('
 
   ###########################################
-  # package all server images into one default manifest
-  ###########################################
-
-  - name: man-ship
-    type: manifest
-    steps:
-      - IN: api-img
-      - IN: www-img
-      - IN: nexec-img
-      - IN: micro-img
-      - IN: genexec-img
-
-  ###########################################
   # release alpha server from default manifest
   ###########################################
 
