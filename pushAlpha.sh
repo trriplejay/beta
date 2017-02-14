@@ -5,8 +5,12 @@ export DOC_HUB_ORG="shipimg"
 export IMAGE_TAG="latest"
 
 export CURR_JOB="push_alpha"
+export RES_REPO="config_repo"
 export RES_RELEASE="rel-alpha"
 export RES_BASE_REPO="base_repo"
+
+export RES_REPO_UP=$(echo $RES_REPO | awk '{print toupper($0)}')
+export RES_REPO_STATE=$(eval echo "$"$RES_REPO_UP"_STATE")
 
 export RES_RELEASE_UP=$(echo $RES_RELEASE | awk '{print toupper($0)}')
 export RES_RELEASE_VER_NAME=$(eval echo "$"$RES_RELEASE_UP"_VERSIONNAME")
@@ -31,11 +35,13 @@ set_context() {
 }
 
 get_image_list() {
+  pushd $RES_REPO_STATE
   export IMAGE_NAMES=$(cat shippableImages.txt)
   export IMAGE_NAMES_SPACED=$(eval echo $(tr '\n' ' ' < shippableImages.txt))
 
   echo "IMAGE_NAMES=$IMAGE_NAMES"
   echo "IMAGE_NAMES_SPACED=$IMAGE_NAMES_SPACED"
+  popd
 }
 
 pull_images() {
