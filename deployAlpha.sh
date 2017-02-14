@@ -2,82 +2,47 @@
 
 export CURR_JOB="deploy_alpha"
 export RES_REPO="config_repo"
-export RES_RELEASE="rel-alpha"
+export RES_PUSH="push_alpha"
 export RES_SWARM="aws_alpha_swarm"
+export RES_PEM="aws_alpha_pem"
+export KEY_FILE_PATH=""
 
 export RES_REPO_UP=$(echo $RES_REPO | awk '{print toupper($0)}')
 export RES_REPO_STATE=$(eval echo "$"$RES_REPO_UP"_STATE")
 
-export RES_RELEASE_UP=$(echo $RES_RELEASE | awk '{print toupper($0)}')
-export RES_RELEASE_VER_NAME=$(eval echo "$"$RES_RELEASE_UP"_VERSIONNAME")
+export RES_PUSH_UP=$(echo $RES_PUSH | awk '{print toupper($0)}')
+export RES_PUSH_VER_NAME=$(eval echo "$"$RES_PUSH_UP"_VERSIONNAME")
 
 export RES_SWARM_UP=$(echo $RES_SWARM | awk '{print toupper($0)}')
 export RES_SWARM_PARAMS=$(eval echo "$"$RES_SWARM_UP"_PARAMS")
 
+export RES_PEM_UP=$(echo $RES_PEM | awk '{print toupper($0)}')
+export RES_PEM_META=$(eval echo "$"$RES_PEM_UP"_META")
 
-# now set all other values
-export BASTION_USER=$(eval echo "$"$RES_SWARM_PARAMS"_BASTION_USER")
-export BASTION_IP=$(eval echo "$"$RES_SWARM_PARAMS"_BASTION_IP")
-export SWARM_USER=$(eval echo "$"$RES_SWARM_PARAMS"_SWARM_USER")
-export SWARM_IP=$(eval echo "$"$RES_SWARM_PARAMS"_SWARM_IP")
+set_context() {
+  export BASTION_USER=$(eval echo "$"$RES_SWARM_PARAMS"_BASTION_USER")
+  export BASTION_IP=$(eval echo "$"$RES_SWARM_PARAMS"_BASTION_IP")
+  export SWARM_USER=$(eval echo "$"$RES_SWARM_PARAMS"_SWARM_USER")
+  export SWARM_IP=$(eval echo "$"$RES_SWARM_PARAMS"_SWARM_IP")
 
-# uppercase name of release job without -
-export RELEASE_RES="REL"$DEPLOY_ENV
-export VERSION=$(eval echo "$"$RELEASE_RES"_VERSIONNAME")
+  echo "CURR_JOB=$CURR_JOB"
+  echo "RES_REPO=$RES_REPO"
+  echo "RES_PUSH=$RES_PUSH"
+  echo "RES_SWARM=$RES_SWARM"
 
-# uppercase name of integration resource without -
-export INTEGRATION_RES="aws-alpha-pem"
+  echo "RES_REPO_UP=$RES_REPO_UP"
+  echo "RES_REPO_STATE=$RES_REPO_STATE"
+  echo "RES_PUSH_UP=$RES_PUSH_UP"
+  echo "RES_PUSH_VER_NAME=$RES_PUSH_VER_NAME"
+  echo "RES_SWARM_UP=$RES_SWARM_UP"
+  echo "RES_SWARM_PARAMS=$RES_SWARM_PARAMS"
+  echo "RES_PEM_UP=$RES_PEM_UP"
+  echo "RES_PEM_META=$RES_PEM_META"
 
-#export INTEGRATION_RES="AWS"$DEPLOY_ENV"PEM"
-#
-## uppercase type of the resource above
-#export INTEGRATION_RES_TYPE=$(eval echo "$"$INTEGRATION_RES"_TYPE" | awk '{print toupper($0)}')
-#
-## path to find the INTEGRATION key
-#export PEM_KEY=$(eval echo "$"$INTEGRATION_RES"_"$INTEGRATION_RES_TYPE"_KEY")
-
-export KEY_FILE_PATH=""
-
-test_env_info() {
-  echo "Testing all environment variables that are critical"
-
-  echo "########### VERSION: $VERSION"
-  echo "########### SWARM USER: $SWARM_USER"
-  echo "########### SWARM IP_ADDR: $SWARM_IP"
-  echo "########### BASTION USER: $BASTION_USER"
-  echo "########### BASTION IP_ADDR: $BASTION_IP"
-
-  if [ "$VERSION" == "" ]; then
-    echo "VERSION not found"
-    return 1
-  fi
-
-  if [ "$SWARM_USER" == "" ]; then
-    echo "SWARM_USER not found"
-    return 1
-  fi
-
-  if [ "$SWARM_IP" == "" ]; then
-    echo "SWARM_IP not found"
-    return 1
-  fi
-
-  if [ "$BASTION_USER" == "" ]; then
-    echo "BASTION_USER not found"
-    return 1
-  fi
-
-  if [ "$BASTION_IP" == "" ]; then
-    echo "BASTION_IP not found"
-    return 1
-  fi
-
-#  if [ "$PEM_KEY" == "" ]; then
-#    echo "PEM_KEY not found"
-#    return 1
-#  fi
-
-  echo "successfully loaded node information"
+  echo "BASTION_USER=$BASTION_USER"
+  echo "BASTION_IP=$BASTION_IP"
+  echo "SWARM_USER=$SWARM_USER"
+  echo "SWARM_IP=$SWARM_IP"
 }
 
 configure_node_creds() {
@@ -93,14 +58,14 @@ configure_node_creds() {
 
   echo "Extracting AWS PEM"
   echo "-----------------------------------"
-  local creds_path="IN/$INTEGRATION_RES/integration.env"
-  if [ ! -f $creds_path ]; then
+  local CREDS_PATH="$RES_PEM_META/integration.env"
+  if [ ! -f $CREDS_PATH ]; then
     echo "No credentials file found at location: $creds_path"
     return 1
   fi
 
-  export KEY_FILE_PATH="IN/$INTEGRATION_RES/key.pem"
-  cat IN/$INTEGRATION_RES/integration.json | jq -r '.key' > $KEY_FILE_PATH
+  export KEY_FILE_PATH="$RES_PEM_META/key.pem"
+  cat $CREDS_PATH | jq -r '.key' > $KEY_FILE_PATH
   chmod 600 $KEY_FILE_PATH
 
   ls -al $KEY_FILE_PATH
@@ -115,13 +80,13 @@ configure_node_creds() {
 
 pull_base_repo() {
   echo "Pull base-repo started"
-  local pull_base_command="git -C /home/ubuntu/base pull origin master"
-  ssh -A $BASTION_USER@$BASTION_IP ssh $SWARM_USER@$SWARM_IP "$pull_base_command"
+  local PULL_CMD="git -C /home/ubuntu/base pull origin master"
+  ssh -A $BASTION_USER@$BASTION_IP ssh $SWARM_USER@$SWARM_IP "$PULL_CMD"
   echo "Successfully pulled base-repo"
 }
 
 deploy() {
-  echo "Deploying the release $VERSION to alpha"
+  echo "Deploying the release $RES_PUSH_VER_NAME to alpha"
   echo "--------------------------------------"
 
   echo "SSH key file list"
@@ -133,34 +98,28 @@ deploy() {
   echo "-------------------------------------="
 
   #local deploy_command="ls -al"
-  local deploy_command="sudo /home/ubuntu/base/base.sh --release $VERSION"
+  local deploy_command="sudo /home/ubuntu/base/base.sh --release $RES_PUSH_VER_NAME"
   echo "Executing deploy command: $deploy_command"
   ssh -A $BASTION_USER@$BASTION_IP ssh $SWARM_USER@$SWARM_IP "$deploy_command"
   echo "-------------------------------------="
 
-  echo "Successfully deployed release $VERSION to alpha env"
+  echo "Successfully deployed release $RES_PUSH_VER_NAME to alpha env"
 }
 
-save_version() {
-  echo "Saving release version to state"
-  echo "--------------------------------------"
-
-  local state_file_path=/build/state/alphaVersion.txt
-  echo $VERSION > $state_file_path
-
-  echo "Successfully dumped release version to state"
-  cat $state_file_path
-  echo "--------------------------------------"
+create_version() {
+  echo "Creating a state file for" $CURR_JOB
+  # create a state file so that next job can pick it up
+  echo "versionName=$RES_PUSH_VER_NAME" > /build/state/$CURR_JOB.env #adding version state
+  echo "Completed creating a state file for" $CURR_JOB
 }
 
 main() {
   eval $(ssh-agent -s)
-
-  test_env_info
+  set_context
   configure_node_creds
   pull_base_repo
   deploy
-  save_version
+  create_version
 }
 
 main

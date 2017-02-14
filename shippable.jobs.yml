@@ -176,8 +176,6 @@ jobs:
     steps:
       - IN: config_repo
         switch: off
-      - IN: rel-alpha
-        switch: off
       - IN: push_alpha
       - IN: alpha_aws_pem
       - IN: aws_alpha_swarm
