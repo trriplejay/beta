@@ -27,6 +27,20 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
+  - name: build_nexec
+    type: runCLI
+    steps:
+      - IN: nexec_repo
+      - IN: microbase_img
+      - IN: shipbits_ecr_cli
+      - TASK:
+        - script: ./IN/nexec_repo/gitRepo/build.sh
+      - OUT: nexec_img
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
   ##########################
   # begin Shippable Server jobs
   ##########################
