@@ -1,188 +1,100 @@
 #!/bin/bash -e
 
-export VERSION=""
-export HUB_REGION=us-east-1
-export DOCKERHUB_TARGET=shipimg
-export RES_RELEASE=rel-alpha
-export RES_ECR_INTEGRATION=shipbits-ecr
-export RES_DOCKERHUB_INTEGRATION=shipimg-dockerhub
-export RES_BASE_REPO=base-repo
+export HUB_ORG="374168611083.dkr.ecr.us-east-1.amazonaws.com"
+export DOC_HUB_ORG="shipimg"
+export IMAGE_TAG="latest"
 
-parse_version() {
-  release_path="IN/$RES_RELEASE/release/release.json"
-  if [ ! -e $release_path ]; then
-    echo "No release.json file found at location: $release_path"
-    return 1
-  fi
+export CURR_JOB="push_alpha"
+export RES_RELEASE="rel-alpha"
+export RES_BASE_REPO="base_repo"
 
-  echo "extracting release versionName from state file"
-  VERSION=$(jq -r '.versionName' $release_path)
-  echo "found version: $VERSION"
-  echo "REL_VER=$VERSION" > /build/state/rel_ver.txt #adding version state
+export RES_RELEASE_UP=$(echo $RES_RELEASE | awk '{print toupper($0)}')
+export RES_RELEASE_VER_NAME=$(eval echo "$"$RES_RELEASE_UP"_VERSIONNAME")
+
+export RES_BASE_REPO_UP=$(echo $RES_BASE_REPO | awk '{print toupper($0)}')
+export RES_BASE_REPO_COMMIT=$(eval echo "$"$RES_BASE_REPO_UP"_COMMIT")
+export RES_BASE_REPO_STATE=$(eval echo "$"$RES_BASE_REPO_UP"_STATE")
+
+set_context() {
+  echo "CURR_JOB=$CURR_JOB"
+  echo "RES_RELEASE=$RES_RELEASE"
+  echo "RES_BASE_REPO=$RES_BASE_REPO"
+  echo "HUB_ORG=$HUB_ORG"
+  echo "DOC_HUB_ORG=$DOC_HUB_ORG"
+  echo "IMAGE_TAG=$IMAGE_TAG"
+
+  echo "RES_RELEASE_UP=$RES_RELEASE_UP"
+  echo "RES_RELEASE_VER_NAME=$RES_RELEASE_VER_NAME"
+  echo "RES_BASE_REPO_UP=$RES_BASE_REPO_UP"
+  echo "RES_BASE_REPO_COMMIT=$RES_BASE_REPO_COMMIT"
+  echo "RES_BASE_REPO_STATE=$RES_BASE_REPO_STATE"
 }
 
-configure_aws() {
-  creds_path="IN/$RES_ECR_INTEGRATION/integration.env"
-  if [ ! -e $creds_path ]; then
-    echo "No credentials file found at location: $creds_path"
-    return 1
-  fi
-  echo "Extracting ECR credentials"
-  . $creds_path
-  echo "Configuring aws cli with ECR credentials"
-  aws configure set aws_access_key_id $aws_access_key_id
-  aws configure set aws_secret_access_key $aws_secret_access_key
-  aws configure set region $HUB_REGION
-  echo "Successfully configured aws cli credentials"
-}
+get_image_list() {
+  export IMAGE_NAMES=$(cat shippableImages.txt)
+  export IMAGE_NAMES_SPACED=$(eval echo $(tr '\n' ' ' < shippableImages.txt))
 
-ecr_login() {
-  echo "logging in to Amazon ECR"
-  docker_login_cmd=$(aws ecr get-login --region $HUB_REGION)
-  $docker_login_cmd > /dev/null 2>&1
-  echo "Amazon ECR login complete"
+  echo "IMAGE_NAMES=$IMAGE_NAMES"
+  echo "IMAGE_NAMES_SPACED=$IMAGE_NAMES_SPACED"
 }
 
 pull_images() {
-  if [[ -z "$1" ]]; then
-    echo "no manifest path provided"
-    return 1
-  fi
-
-  manifest_path="$1"
-  echo "pulling release manifest images"
-  jq -r '.[] | .images | .[] | .image + ":" + .tag' $manifest_path |\
-  while read image
-  do
-    __pull_image $image
+  for IMAGE in $IMAGE_NAMES; do
+    echo "Pulling image $HUB_ORG/$IMAGE:$IMAGE_TAG"
+    sudo docker pull "$HUB_ORG/$IMAGE:$IMAGE_TAG"
   done
-}
-
-__pull_image() {
-  if [[ -z "$1" ]]; then
-    return 0
-  fi
-
-  image=$1
-  echo "pulling image $image"
-  sudo docker pull $image
-}
-
-__tag_and_push_ecr() {
-  if [[ -z "$1" ]]; then
-    return 0
-  fi
-
-  image=$1
-  echo "processing image: $1"
-  full_name=$(echo $image | cut -d':' -f 1)
-
-  echo "tag and push image $image as $full_name:$VERSION"
-  sudo docker tag -f $image $full_name:$VERSION
-  sudo docker push $full_name:$VERSION
 }
 
 tag_and_push_images_ecr() {
   echo "Pushing images to ECR"
   echo "----------------------------------------------"
-  if [[ -z "$1" ]]; then
-    echo "no manifest path provided"
-    return 1
-  fi
 
-  manifest_path="$1"
-  echo "executing aws setup"
-
-  echo "pushing release manifest images to ECR"
-  jq -r '.[] | .images | .[] | .image + ":" + .tag' $manifest_path |\
-  while read image
-  do
-    __tag_and_push_ecr $image
+  for IMAGE in $IMAGE_NAMES; do
+    echo "Tag and push image $HUB_ORG/$IMAGE:$IMAGE_TAG as $HUB_ORG/$IMAGE:$RES_RELEASE_VER_NAME"
+    sudo docker tag -f $HUB_ORG/$IMAGE:$IMAGE_TAG $HUB_ORG/$IMAGE:$RES_RELEASE_VER_NAME
+    sudo docker push $HUB_ORG/$IMAGE:$RES_RELEASE_VER_NAME
   done
-}
-
-dockerhub_login() {
-  echo "Logging in to Dockerhub"
-  echo "----------------------------------------------"
-
-  local creds_path="IN/$RES_DOCKERHUB_INTEGRATION/integration.json"
-
-  find -L "IN/$RES_DOCKERHUB_INTEGRATION"
-  local username=$(cat $creds_path \
-    | jq -r '.username')
-  local password=$(cat $creds_path \
-    | jq -r '.password')
-  local email=$(cat $creds_path \
-    | jq -r '.email')
-  echo "######### LOGIN: $username"
-  echo "######### EMAIL: $email"
-  sudo docker login -u $username -p $password -e $email
-}
-
-__tag_and_push_dockerhub() {
-  if [[ -z "$1" ]]; then
-    return 0
-  fi
-
-  image=$1
-  echo "processing image: $1"
-  full_name=$(echo $image | cut -d ':' -f 1)
-  repo_name=$(echo $full_name | cut -d '/' -f 2)
-
-  local push_name="$DOCKERHUB_TARGET/$repo_name:$VERSION"
-  echo "tag and push image $image as $push_name"
-  sudo docker tag -f $image $push_name
-  sudo docker push $push_name
 }
 
 tag_and_push_images_dockerhub() {
   echo "Pushing images to Dockerhub"
   echo "----------------------------------------------"
-
-  if [[ -z "$1" ]]; then
-    echo "no manifest path provided"
-    return 1
-  fi
-
-  manifest_path="$1"
-
-  echo "pushing release manifest images to dockerhub"
-  jq -r '.[] | .images | .[] | .image + ":" + .tag' $manifest_path |\
-  while read image
-  do
-    if [[ $image == *"genexec"* ]]; then
-      __tag_and_push_dockerhub $image
+  for IMAGE in $IMAGE_NAMES; do
+    if [[ $IMAGE == *"genexec"* ]]; then
+      sudo docker tag -f $HUB_ORG/$IMAGE:$IMAGE_TAG $DOC_HUB_ORG/$IMAGE:$RES_RELEASE_VER_NAME
+      sudo docker push $DOC_HUB_ORG/$IMAGE:$RES_RELEASE_VER_NAME
     else
       echo "Not pushing to DockerHub : $image"
     fi
   done
-
 }
 
 tag_push_base(){
-  pushd ./IN/$RES_BASE_REPO/gitRepo
-  echo "pushing git tag $VERSION to $RES_BASE_REPO at latest"
-  git tag $VERSION
-  git push origin $VERSION
-  echo "completed pushing git tag $VERSION to $RES_BASE_REPO"
+  pushd $RES_BASE_REPO_STATE
+  echo "pushing git tag $RES_RELEASE_VER_NAME to $RES_BASE_REPO at $RES_BASE_REPO_COMMIT"
+  git checkout $RES_BASE_REPO_COMMIT
+  git tag $RES_RELEASE_VER_NAME
+  git push origin $RES_RELEASE_VER_NAME
+  echo "completed pushing git tag $RES_RELEASE_VER_NAME to $RES_BASE_REPO"
   popd
 }
 
-main() {
-  manifest_path="IN/$RES_RELEASE/release/manifests.json"
-  if [ ! -e $manifest_path ]; then
-    echo "No manifests.json file found at location: $manifest_path"
-    return 1
-  fi
+create_version() {
+  echo "Creating a state file for" $CURR_JOB
+  # create a state file so that next job can pick it up
+  echo "versionName=$RES_RELEASE_VER_NAME" > /build/state/$CURR_JOB.env #adding version state
+  echo "IMAGE_NAMES=$IMAGE_NAMES_SPACED" >> /build/state/$CURR_JOB.env
+  echo "Completed creating a state file for" $CURR_JOB
+}
 
-  parse_version
-  configure_aws
-  ecr_login
-  pull_images $manifest_path
-  tag_and_push_images_ecr $manifest_path
-  dockerhub_login
-  tag_and_push_images_dockerhub $manifest_path
+main() {
+  set_context
+  get_image_list
+  pull_images
+  tag_and_push_images_ecr
+  tag_and_push_images_dockerhub
   #tag_push_base
+  create_version
 }
 
 main
