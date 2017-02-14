@@ -6,7 +6,7 @@ jobs:
       - IN: push_dry_tag
       - IN: ship_dh
       - TASK:
-        - script: ./IN/microbase-repo/gitRepo/build.sh
+        - script: ./IN/microbase_repo/gitRepo/build.sh
       - OUT: microbase_img
     on_success:
       - script: echo 'on success !!!!!'
