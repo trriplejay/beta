@@ -36,7 +36,22 @@ resources:
       sourceName: shippable/nexec
       branch: master
 
+  - name: nexec_repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/nexec
+      branch: master
+
   - name: nexec-img
+    type: image
+    integration: ecr-bits-push
+    pointer:
+      sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/nexec"
+    seed:
+      versionName: latest
+
+  - name: nexec_img
     type: image
     integration: ecr-bits-push
     pointer:
@@ -51,6 +66,12 @@ resources:
   - name: shipbits-ecr
     type: integration
     integration: "ecr-bits-push"
+
+  - name: shipbits_ecr_cli
+    type: cliConfig
+    integration: "ecr-bits-push"
+    pointer:
+      region: "us-east-1"
 
   - name: ship_dh
     type: integration

@@ -16,21 +16,12 @@ jobs:
   - name: build-nexec
     type: runSh
     steps:
-      - IN: nexec-repo
-      - IN: microbase-img
-      - IN: shipbits-ecr
+      - IN: nexec_repo
+      - IN: microbase_img
+      - IN: shipbits_ecr_cli
       - TASK:
-        - script: echo 'updating packages' && sudo apt-get update
-        - script: echo 'installing jq and unzip' && sudo apt-get install -y jq unzip
-        - script: echo 'installing awscli'
-        - script: curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-        - script: unzip awscli-bundle.zip
-        - script: sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
-        - script: echo 'which aws?' && which aws || true
-        - script: aws --version
-        - script: docker --version
-        - script: ./IN/nexec-repo/gitRepo/build.sh
-      - OUT: nexec-img
+        - script: ./IN/nexec_repo/gitRepo/build.sh
+      - OUT: nexec_img
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
