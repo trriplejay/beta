@@ -18,14 +18,14 @@ export RES_SWARM_PARAMS_STR=$RES_SWARM_UP"_PARAMS_ALPHA"
 
 export RES_PEM_UP=$(echo $RES_PEM | awk '{print toupper($0)}')
 export RES_PEM_META=$(eval echo "$"$RES_PEM_UP"_META")
-export RES_PEM_INT_STR=$RES_PEM_UP"_INTEGRATION"
+export RES_PEM_INT_STR=$RES_PEM_UP"_INTEGRATION_KEY"
 
 set_context() {
   export BASTION_USER=$(eval echo "$"$RES_SWARM_PARAMS_STR"_BASTION_USER")
   export BASTION_IP=$(eval echo "$"$RES_SWARM_PARAMS_STR"_BASTION_IP")
   export SWARM_USER=$(eval echo "$"$RES_SWARM_PARAMS_STR"_SWARM_USER")
   export SWARM_IP=$(eval echo "$"$RES_SWARM_PARAMS_STR"_SWARM_IP")
-#  export $PEM_KEY=$(eval echo "$"$RES_PEM_INT_STR"_KEY")
+  export $PEM_KEY=$(echo $RES_PEM_INT_STR)
 
   echo "CURR_JOB=$CURR_JOB"
   echo "RES_REPO=$RES_REPO"
