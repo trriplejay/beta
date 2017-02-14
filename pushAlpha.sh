@@ -12,7 +12,7 @@ export RES_BASE_REPO="base_repo"
 export RES_REPO_UP=$(echo $RES_REPO | awk '{print toupper($0)}')
 export RES_REPO_STATE=$(eval echo "$"$RES_REPO_UP"_STATE")
 
-export RES_RELEASE_UP=$(echo $RES_RELEASE | awk '{print toupper($0)}')
+export RES_RELEASE_UP=$(echo ${RES_RELEASE//-/} | awk '{print toupper($0)}')
 export RES_RELEASE_VER_NAME=$(eval echo "$"$RES_RELEASE_UP"_VERSIONNAME")
 
 export RES_BASE_REPO_UP=$(echo $RES_BASE_REPO | awk '{print toupper($0)}')

@@ -1,21 +1,25 @@
 #!/bin/bash -e
 
-export DEPLOY_ENV=ALPHA
+export CURR_JOB="deploy_alpha"
+export RES_REPO="config_repo"
+export RES_RELEASE="rel-alpha"
+export RES_SWARM="aws_alpha_swarm"
 
-# uppercase name of the resource in uppercase without -
-export SWARM_CONN_RES="AWS"$DEPLOY_ENV"SWARM"
+export RES_REPO_UP=$(echo $RES_REPO | awk '{print toupper($0)}')
+export RES_REPO_STATE=$(eval echo "$"$RES_REPO_UP"_STATE")
 
-# uppercase type of the resource above
-export SWARM_CONN_RES_TYPE=$(eval echo "$"$SWARM_CONN_RES"_TYPE" | awk '{print toupper($0)}')
+export RES_RELEASE_UP=$(echo $RES_RELEASE | awk '{print toupper($0)}')
+export RES_RELEASE_VER_NAME=$(eval echo "$"$RES_RELEASE_UP"_VERSIONNAME")
 
-# path to find the SWARM_CONN config
-export SWARM_STRING=$SWARM_CONN_RES"_"$SWARM_CONN_RES_TYPE"_"$DEPLOY_ENV
+export RES_SWARM_UP=$(echo $RES_SWARM | awk '{print toupper($0)}')
+export RES_SWARM_PARAMS=$(eval echo "$"$RES_SWARM_UP"_PARAMS")
+
 
 # now set all other values
-export BASTION_USER=$(eval echo "$"$SWARM_STRING"_BASTION_USER")
-export BASTION_IP=$(eval echo "$"$SWARM_STRING"_BASTION_IP")
-export SWARM_USER=$(eval echo "$"$SWARM_STRING"_SWARM_USER")
-export SWARM_IP=$(eval echo "$"$SWARM_STRING"_SWARM_IP")
+export BASTION_USER=$(eval echo "$"$RES_SWARM_PARAMS"_BASTION_USER")
+export BASTION_IP=$(eval echo "$"$RES_SWARM_PARAMS"_BASTION_IP")
+export SWARM_USER=$(eval echo "$"$RES_SWARM_PARAMS"_SWARM_USER")
+export SWARM_IP=$(eval echo "$"$RES_SWARM_PARAMS"_SWARM_IP")
 
 # uppercase name of release job without -
 export RELEASE_RES="REL"$DEPLOY_ENV
