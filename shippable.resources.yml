@@ -346,6 +346,14 @@ resources:
     pointer:
       recipients:
         - "#rc"
+
+  - name: slack_rc
+    type: notification
+    integration: ship-slack
+    pointer:
+      recipients:
+        - "#rc"
+
   ###############################
   # END notification resources
   ###############################
