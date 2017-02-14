@@ -288,6 +288,21 @@ jobs:
     on_failure:
       - script: echo 'failed'
 
+  - name: deploy_qhode_alpha
+    type: runSh
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: push_alpha
+      - IN: alpha_aws_pem
+      - IN: qhode_alpha_swarm
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/deployQhodeAlpha.sh
+    on_success:
+      - script: echo 'succeeded'
+    on_failure:
+      - script: echo 'failed'
+
   # deploy to qhode-rc-environment
   - name: deploy-qhode-rc
     type: runSh

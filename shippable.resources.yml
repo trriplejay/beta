@@ -259,6 +259,12 @@ resources:
       params:
         secure: 2hRQlnqWsr1XyGNROoyELvTFsMHl/XcmUKMSbNLxXs7XYBXO3tlpin6jxN28E55DldtWux0x9ke7dPHm7PxBXpgs0PS73WxVYxkIWeubQkbUVRcg2s4Rxa0AvUPwkQBTDqWw25PIeS74+nTJ4FftF2EZ6G6Dc7yR1ykjq9PjCSEffVFRrAze8/XvtzzlcfxlIHxgherJWtBAXAtttzjQ4lrnnMYNgAFHw6Iz+ktGn1DolhgLls3x/xPdhY9gzUycReVoVQMO7MSRQerXa/hGjPdX/i2MefTYxQMcsSR1x6i6cFqxWhgV3Ahz//TBVTPPse2Kwfw6UJQ2zaRk7ijlRA==
 
+  - name: qhode_alpha_swarm
+    type: params
+    version:
+      params:
+        secure: 2hRQlnqWsr1XyGNROoyELvTFsMHl/XcmUKMSbNLxXs7XYBXO3tlpin6jxN28E55DldtWux0x9ke7dPHm7PxBXpgs0PS73WxVYxkIWeubQkbUVRcg2s4Rxa0AvUPwkQBTDqWw25PIeS74+nTJ4FftF2EZ6G6Dc7yR1ykjq9PjCSEffVFRrAze8/XvtzzlcfxlIHxgherJWtBAXAtttzjQ4lrnnMYNgAFHw6Iz+ktGn1DolhgLls3x/xPdhY9gzUycReVoVQMO7MSRQerXa/hGjPdX/i2MefTYxQMcsSR1x6i6cFqxWhgV3Ahz//TBVTPPse2Kwfw6UJQ2zaRk7ijlRA==
+
 # Swarm node info for qhode-rc
   - name: qhode-rc-swarm
     type: params
