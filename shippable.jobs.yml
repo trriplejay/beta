@@ -45,19 +45,19 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_api
-    type: runSh
-    steps:
-      - IN: api_repo
-      - IN: microbase_img
-      - IN: shipbits_ecr_cli
-      - TASK:
-        - script: ./IN/api-repo/gitRepo/build.sh
-      - OUT: api_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
+#  - name: build_api
+#    type: runSh
+#    steps:
+#      - IN: api_repo
+#      - IN: microbase_img
+#      - IN: shipbits_ecr_cli
+#      - TASK:
+#        - script: ./IN/api-repo/gitRepo/build.sh
+#      - OUT: api_img
+#    on_success:
+#      - script: echo 'on success !!!!!'
+#    on_failure:
+#      - script: echo 'Failed job .... :('
 
   - name: build-api
     type: runSh
@@ -77,6 +77,20 @@ jobs:
         - script: docker --version
         - script: ./IN/api-repo/gitRepo/build.sh
       - OUT: api-img
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  - name: build_www
+    type: runCLI
+    steps:
+      - IN: www_repo
+      - IN: microbase_img
+      - IN: shipbits_ecr_cli
+      - TASK:
+        - script: ./IN/www-repo/gitRepo/build.sh
+      - OUT: www-img
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
