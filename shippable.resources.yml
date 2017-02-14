@@ -125,6 +125,13 @@ resources:
       sourceName: shippable/micro
       branch: master
 
+  - name: micro_repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/micro
+      branch: master
+
   - name: micro-img
     type: image
     integration: ecr-bits-push
@@ -133,7 +140,23 @@ resources:
     seed:
       versionName: latest
 
+  - name: micro_img
+    type: image
+    integration: ecr-bits-push
+    pointer:
+      sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/micro"
+    seed:
+      versionName: latest
+
   - name: genexec-img
+    type: image
+    integration: ecr-bits-push
+    pointer:
+      sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/genexec"
+    seed:
+      versionName: latest
+
+  - name: genexec_img
     type: image
     integration: ecr-bits-push
     pointer:
