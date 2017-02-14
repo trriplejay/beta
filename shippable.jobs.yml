@@ -186,34 +186,6 @@ jobs:
   # push rc release to special repo
   ###########################################
 
-  - name: push-rc
-    type: runSh
-    steps:
-      - IN: push-alpha
-        switch: off
-      - IN: base-repo
-        switch: off
-      - IN: beta-config-repo
-        switch: off
-      - IN: shipbits-ecr
-      - IN: shipimg-dockerhub
-      - IN: rel-rc
-      - TASK:
-        - script: echo 'updating packages' && sudo apt-get update
-        - script: echo 'installing jq and unzip' && sudo apt-get install -y jq unzip
-        - script: echo 'installing awscli'
-        - script: curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-        - script: unzip awscli-bundle.zip
-        - script: sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
-        - script: echo 'which aws?' && which aws || true
-        - script: aws --version
-        - script: docker --version
-        - script: ./IN/beta-config-repo/gitRepo/pushRc.sh
-    on_success:
-      - script: echo 'succeeded'
-    on_failure:
-      - script: echo 'failed'
-
   - name: push_rc
     type: runCLI
     steps:
@@ -258,30 +230,6 @@ jobs:
       - script: echo 'failed'
       - NOTIFY: slack_rc
 
-  - name: deploy-rc
-    type: runSh
-    on_start:
-      - NOTIFY: slack-rc
-    steps:
-      - IN: beta-config-repo
-        switch: off
-      - IN: rel-rc
-        switch: off
-      - IN: build-rcami
-        switch: off
-      - IN: aws-rc-pem
-      - IN: aws-rc-swarm
-      - TASK:
-        - script: echo 'updating packages' && sudo apt-get update
-        - script: echo 'installing jq' && sudo apt-get install -y jq
-        - script: ./IN/beta-config-repo/gitRepo/deployRc.sh
-    on_success:
-      - script: echo 'succeeded'
-      - NOTIFY: slack-rc
-    on_failure:
-      - script: echo 'failed'
-      - NOTIFY: slack-rc
-
   ###############################
   # begin Shippable-Server(Qhode) pipeline
   ###############################
@@ -315,26 +263,6 @@ jobs:
       - IN: qhode_rc_swarm
       - TASK:
         - script: ./IN/config_repo/gitRepo/deployQhodeRc.sh
-    on_success:
-      - script: echo 'succeeded'
-    on_failure:
-      - script: echo 'failed'
-
-  - name: deploy-qhode-rc
-    type: runSh
-    steps:
-      - IN: beta-config-repo
-        switch: off
-      - IN: rel-rc
-        switch: off
-      - IN: build-rcami
-        switch: off
-      - IN: aws-rc-pem
-      - IN: qhode-rc-swarm
-      - TASK:
-        - script: echo 'updating packages' && sudo apt-get update
-        - script: echo 'installing jq' && sudo apt-get install -y jq
-        - script: ./IN/beta-config-repo/gitRepo/deployQhodeRc.sh
     on_success:
       - script: echo 'succeeded'
     on_failure:
@@ -378,34 +306,6 @@ jobs:
       - IN: rel-final
       - TASK:
         - script: ./IN/config_repo/gitRepo/pushFinal.sh
-    on_success:
-      - script: echo 'succeeded'
-    on_failure:
-      - script: echo 'failed'
-
-  - name: push-final
-    type: runSh
-    steps:
-      - IN: push-rc
-        switch: off
-      - IN: beta-config-repo
-        switch: off
-      - IN: base-repo
-        switch: off
-      - IN: shipbits-ecr
-      - IN: shipimg-dockerhub
-      - IN: rel-final
-      - TASK:
-        - script: echo 'updating packages' && sudo apt-get update
-        - script: echo 'installing jq and unzip' && sudo apt-get install -y jq unzip
-        - script: echo 'installing awscli'
-        - script: curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-        - script: unzip awscli-bundle.zip
-        - script: sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
-        - script: echo 'which aws?' && which aws || true
-        - script: aws --version
-        - script: docker --version
-        - script: ./IN/beta-config-repo/gitRepo/pushFinal.sh
     on_success:
       - script: echo 'succeeded'
     on_failure:
