@@ -286,7 +286,21 @@ resources:
       sourceName: shippable/bat
       branch: master
 
+  - name: bat_repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/bat
+      branch: master
+
   - name: bat-ship-alpha-parms
+    type: params
+    version:
+      params:
+        #API_TOKEN API_URL
+        secure: NQyd32NnpzMIzuy6VRs6dOx0o9cF4MMM4NgUE6YdVi2Tg/FQGgGN9yjpwaQ2ONED2r4Rq5Bxu0P3Bohyrd+KcQrapcBdk9fXYFiQv3VqKtpfwi1LTAJ5/80U+lruokw3cPdgQa/c8RHiF6xqLpgXKZBmKgci5pBrjBpKfqWsEi8M7vfFQfB2kSTayVHgCSbG5FwhGDen/kZ6iIZc2Uld6x8xXi6+w/m58g9/N3RCPnvn63EZMPjAE/2vFQjCHqnBrGvmx+yR8zk2BYmSG/vk3p71sxCNTtpyQnRkgkvHaobBEZucbxpUAokYRYK/Wh/fk/Sxm9MaSEdc3f4BDRS4XhOuF+kXNrpwo6kxSpoTcIN6/9Gvbyk60PKN/A0UZGCv5gkpC0d0QtJTwJ5yP8374k+TOCBhscBYAPMN4UPTBDcYQLF5pR/apPgS33yKoDWK26Dm5IZmWDyOeTgAkYYhgyA+n0ftEfVQewPpRPPvCAyOIg+544r808O/mx9BYq6lYgxY70OlFn1k0Bq3wUPVWUOGAwHmkuiFnuEtU3826lxeKfpA9lWoXm0lqj/WctdJUazVJWR7yvXZfpmdymAr2IkH5gnki1fAGLOKcp2wzJqxvwkNUR9gb9X0dV54qB5pK/+GiaH6I3jriGF2MoNH7b5ZBRqC7mJKOBL0q3OJgJ4=
+
+  - name: bat_ship_alpha_parms
     type: params
     version:
       params:
