@@ -60,12 +60,12 @@ configure_node_creds() {
   echo "Extracting AWS PEM"
   echo "-----------------------------------"
   pushd $RES_PEM_META
-  if [ ! -f "integration.env" ]; then
+  if [ ! -f "integration.json" ]; then
     echo "No credentials file found at location: $RES_PEM_META"
     return 1
   fi
 
-  cat integration.env | jq -r '.key' > key.pem
+  cat integration.json | jq -r '.key' > key.pem
   chmod 600 key.pem
 
   echo "Completed Extracting AWS PEM"
