@@ -1,9 +1,9 @@
 #!/bin/bash -e
 
-export CURR_JOB="deploy_rc"
+export CURR_JOB="deploy_qhode_rc"
 export RES_REPO="config_repo"
 export RES_PUSH="push_rc"
-export RES_SWARM="aws_rc_swarm"
+export RES_SWARM="qhode_rc_swarm"
 export RES_PEM="aws_rc_pem"
 
 export RES_REPO_UP=$(echo $RES_REPO | awk '{print toupper($0)}')
