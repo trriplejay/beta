@@ -487,6 +487,19 @@ jobs:
     on_failure:
       - script: echo 'failed'
 
+  - name: build_acceptance
+    type: runSh
+    steps:
+      - IN: bat_repo
+      - IN: bat_ship_alpha_parms
+      - IN: deploy_alpha
+      - TASK:
+        - script: IN/bat_repo/gitRepo/test.sh bat_ship_alpha_parms
+    on_success:
+      - script: echo 'succeeded'
+    on_failure:
+      - script: echo 'failed'
+
   ###########################################
   # END Build Acceptance Tests
   ###########################################
