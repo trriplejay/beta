@@ -18,7 +18,7 @@ export RES_SWARM_PARAMS_STR=$RES_SWARM_UP"_PARAMS_ALPHA"
 
 export RES_PEM_UP=$(echo $RES_PEM | awk '{print toupper($0)}')
 export RES_PEM_META=$(eval echo "$"$RES_PEM_UP"_META")
-export RES_PEM_INT_STR=$RES_SWARM_UP"_INTEGRATION"
+export RES_PEM_INT_STR=$RES_PEM_UP"_INTEGRATION"
 
 set_context() {
   export BASTION_USER=$(eval echo "$"$RES_SWARM_PARAMS_STR"_BASTION_USER")
@@ -45,7 +45,6 @@ set_context() {
   echo "BASTION_IP=$BASTION_IP"
   echo "SWARM_USER=$SWARM_USER"
   echo "SWARM_IP=$SWARM_IP"
-
 }
 
 ALPHA_AWS_PEM_INTEGRATION_KEY
