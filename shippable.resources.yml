@@ -136,11 +136,6 @@ resources:
     seed:
       versionName: latest
 
-  - name: ship-ver
-    type: version
-    seed:
-      versionName: "5.2.3"
-
   - name: ship_ver
     type: version
     seed:
