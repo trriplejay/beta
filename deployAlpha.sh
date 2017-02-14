@@ -65,7 +65,7 @@ configure_node_creds() {
     return 1
   fi
 
-  cat $CREDS_PATH | jq -r '.key' > key.pem
+  cat integration.env | jq -r '.key' > key.pem
   chmod 600 key.pem
 
   echo "Completed Extracting AWS PEM"
