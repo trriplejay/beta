@@ -116,32 +116,6 @@ jobs:
     on_failure:
       - script: echo 'failed'
 
-  - name: push-alpha
-    type: runSh
-    steps:
-      - IN: beta-config-repo
-        switch: off
-      - IN: base-repo
-        switch: off
-      - IN: shipbits-ecr
-      - IN: shipimg-dockerhub
-      - IN: rel-alpha
-      - TASK:
-        - script: echo 'updating packages' && sudo apt-get update
-        - script: echo 'installing jq and unzip' && sudo apt-get install -y jq unzip
-        - script: echo 'installing awscli'
-        - script: curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-        - script: unzip awscli-bundle.zip
-        - script: sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
-        - script: echo 'which aws?' && which aws || true
-        - script: aws --version
-        - script: docker --version
-        - script: ./IN/beta-config-repo/gitRepo/pushAlpha.sh
-    on_success:
-      - script: echo 'succeeded'
-    on_failure:
-      - script: echo 'failed'
-
   ###########################################
   # deploy alpha release to alpha environment
   ###########################################
@@ -383,7 +357,6 @@ jobs:
     always:
       - script: /build/IN/infra_repo/gitRepo/archiveProvisionState.sh rc server
 
-
   - name: prod_saas_infra_prov
     type: runSh
     steps:
@@ -474,21 +447,6 @@ jobs:
     on_failure:
       - script: cat IN/bldami_repo/gitRepo/basePatch/output.txt
 
-  - name: patch-baseami
-    type: runSh
-    steps:
-      - IN: baseami_params
-      - IN: aws_bits_access
-      - IN: build_baseami
-      - IN: bldami_repo
-        switch: off
-      - TASK:
-        - script: IN/bldami_repo/gitRepo/basePatch/basePatchPack.sh
-    on_success:
-      - script: echo "SUCCESS"
-    on_failure:
-      - script: cat IN/bldami_repo/gitRepo/basePatch/output.txt
-
   - name: build_rcami
     type: runSh
     steps:
@@ -505,24 +463,6 @@ jobs:
       - script: echo "SUCCESS"
     on_failure:
       - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
-
-  - name: build-rcami
-    type: runSh
-    steps:
-      - IN: baseami-params
-      - IN: aws-bits-access
-      - IN: bldami-repo
-        switch: off
-      - IN: patch-baseami
-        switch: off
-      - IN: push-rc
-      - TASK:
-        - script: sudo apt-get install -y jq
-        - script: IN/bldami-repo/gitRepo/exec/execPack.sh baseami-params push-rc ami-90fd0286 unstable
-    on_success:
-      - script: echo "SUCCESS"
-    on_failure:
-      - script: cat /build/IN/bldami-repo/gitRepo/exec/output.txt
 
   - name: build_finalami
     type: runSh
