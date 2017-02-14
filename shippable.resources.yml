@@ -132,11 +132,6 @@ resources:
     integration: aws-alpha-access
 
 # PEM key for AWS ALPHA account
-  - name: alpha_aws_pem
-    type: integration
-    integration: aws-alpha-pem
-
-# PEM key for AWS ALPHA account
   - name: aws_alpha_pem
     type: integration
     integration: aws-alpha-pem
@@ -159,11 +154,6 @@ resources:
     type: integration
     integration: aws-rc-access
 
-# PEM key for AWS RC account
-  - name: rc_aws_pem
-    type: integration
-    integration: aws-rc-pem
-
   ###############################
   # end alpha rc infra
   ###############################
@@ -179,11 +169,6 @@ resources:
     integration: aws-prod-access
 
 # PEM key for AWS PROD account
-  - name: prod_aws_pem
-    type: integration
-    integration: aws-prod-pem
-
-
   - name: aws_prod_pem
     type: integration
     integration: aws-prod-pem
