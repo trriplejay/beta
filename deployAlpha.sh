@@ -5,7 +5,6 @@ export RES_REPO="config_repo"
 export RES_PUSH="push_alpha"
 export RES_SWARM="aws_alpha_swarm"
 export RES_PEM="alpha_aws_pem"
-export KEY_FILE_PATH=""
 
 export RES_REPO_UP=$(echo $RES_REPO | awk '{print toupper($0)}')
 export RES_REPO_STATE=$(eval echo "$"$RES_REPO_UP"_STATE")
@@ -25,7 +24,7 @@ set_context() {
   export BASTION_IP=$(eval echo "$"$RES_SWARM_PARAMS_STR"_BASTION_IP")
   export SWARM_USER=$(eval echo "$"$RES_SWARM_PARAMS_STR"_SWARM_USER")
   export SWARM_IP=$(eval echo "$"$RES_SWARM_PARAMS_STR"_SWARM_IP")
-  export $PEM_KEY=$(RES_PEM_INT_STR)
+  #export $PEM_KEY=$(RES_PEM_INT_STR)
 
   echo "CURR_JOB=$CURR_JOB"
   echo "RES_REPO=$RES_REPO"
@@ -60,24 +59,22 @@ configure_node_creds() {
 
   echo "Extracting AWS PEM"
   echo "-----------------------------------"
-  local CREDS_PATH="$RES_PEM_META/integration.env"
-  if [ ! -f $CREDS_PATH ]; then
-    echo "No credentials file found at location: $creds_path"
+  pushd $RES_PEM_META
+  if [ ! -f "integration.env" ]; then
+    echo "No credentials file found at location: $RES_PEM_META"
     return 1
   fi
 
-  export KEY_FILE_PATH="$RES_PEM_META/key.pem"
-  cat $CREDS_PATH | jq -r '.key' > $KEY_FILE_PATH
-  chmod 600 $KEY_FILE_PATH
+  cat $CREDS_PATH | jq -r '.key' > key.pem
+  chmod 600 key.pem
 
-  ls -al $KEY_FILE_PATH
-  echo "KEY file available at : $KEY_FILE_PATH"
   echo "Completed Extracting AWS PEM"
   echo "-----------------------------------"
 
-  ssh-add $KEY_FILE_PATH
+  ssh-add key.pem
   echo "SSH key added successfully"
   echo "--------------------------------------"
+  popd
 }
 
 pull_base_repo() {
