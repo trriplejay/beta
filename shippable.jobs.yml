@@ -169,6 +169,27 @@ jobs:
       - script: echo 'failed'
       - NOTIFY: slack-alpha
 
+  - name: deploy_alpha
+    type: runSh
+    on_start:
+      - NOTIFY: slack_alpha
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: rel_alpha
+        switch: off
+      - IN: push_alpha
+      - IN: alpha_aws_pem
+      - IN: aws_alpha_swarm
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/deployAlpha.sh
+    on_success:
+      - script: echo 'succeeded'
+      - NOTIFY: slack_alpha
+    on_failure:
+      - script: echo 'failed'
+      - NOTIFY: slack_alpha
+
   ###########################################
   # release rc server from default manifest
   ###########################################
