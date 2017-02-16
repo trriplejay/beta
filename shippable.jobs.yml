@@ -475,6 +475,23 @@ jobs:
     on_failure:
       - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
 
+  - name: build_rcami_tmp
+    type: runSh
+    steps:
+      - IN: baseami_params
+      - IN: aws_bits_access
+      - IN: bldami_repo
+        switch: off
+      - IN: patch_baseami
+        switch: off
+      - IN: push_rc
+      - TASK:
+        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_rcami_tmp push_rc ami-4ae41a5c stable
+    on_success:
+      - script: echo "SUCCESS"
+    on_failure:
+      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
+
   - name: build_finalami
     type: runSh
     steps:
@@ -492,7 +509,22 @@ jobs:
     on_failure:
       - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
 
-
+  - name: build_finalami_tmp
+    type: runSh
+    steps:
+      - IN: baseami_params
+      - IN: aws_bits_access
+      - IN: bldami_repo
+        switch: off
+      - IN: patch_baseami
+        switch: off
+      - IN: push_final
+      - TASK:
+        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_finalami_tmp push_final ami-90fd0286 unstable
+    on_success:
+      - script: echo "SUCCESS"
+    on_failure:
+      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
   ###########################################
   # END Build AMI
   ###########################################
