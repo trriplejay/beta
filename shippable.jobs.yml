@@ -571,12 +571,14 @@ jobs:
   - name: build_u14
     type: runCLI
     steps:
+      - IN: ship_ver
+        switch: off
       - IN: config_repo
         switch: off
       - IN: u14_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u14 ship_ver build_u14
       - OUT: u14_img
     on_success:
       - echo 'on success !!!!!'
@@ -592,7 +594,7 @@ jobs:
       - IN: u14all_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14all
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u14all u14_img build_u14all
       - OUT: u14all_img
     on_success:
       - echo 'on success !!!!!'
@@ -608,7 +610,7 @@ jobs:
       - IN: u14nodall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14nodall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u14nodall u14all_img build_u14nodall
       - OUT: u14nodall_img
     on_success:
       - echo 'on success !!!!!'
@@ -624,7 +626,7 @@ jobs:
       - IN: u14pytall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14pytall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u14pytall u14all_img build_u14pytall
       - OUT: u14pytall_img
     on_success:
       - echo 'on success !!!!!'
@@ -640,7 +642,7 @@ jobs:
       - IN: u14cloall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14cloall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u14cloall u14all_img build_u14cloall
       - OUT: u14cloall_img
     on_success:
       - echo 'on success !!!!!'
@@ -656,7 +658,7 @@ jobs:
       - IN: u14golall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14golall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u14golall u14all_img build_u14golall
       - OUT: u14golall_img
     on_success:
       - echo 'on success !!!!!'
@@ -672,7 +674,7 @@ jobs:
       - IN: u14javall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14javall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u14javall u14all_img build_u14javall
       - OUT: u14javall_img
     on_success:
       - echo 'on success !!!!!'
@@ -688,7 +690,7 @@ jobs:
       - IN: u14scaall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14scaall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u14scaall u14javall_img build_u14scaall
       - OUT: u14scaall_img
     on_success:
       - echo 'on success !!!!!'
@@ -704,7 +706,7 @@ jobs:
       - IN: u14ruball_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14ruball
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u14ruball u14all_img build_u14ruball
       - OUT: u14ruball_img
     on_success:
       - echo 'on success !!!!!'
@@ -720,7 +722,7 @@ jobs:
       - IN: u14phpall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14phpall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u14phpall u14all_img build_u14phpall
       - OUT: u14phpall_img
     on_success:
       - echo 'on success !!!!!'
@@ -736,7 +738,7 @@ jobs:
       - IN: u14cppall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14cppall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u14cppall u14all_img build_u14cppall
       - OUT: u14cppall_img
     on_success:
       - echo 'on success !!!!!'
@@ -746,12 +748,14 @@ jobs:
   - name: build_u16
     type: runCLI
     steps:
+      - IN: ship_ver
+        switch: off
       - IN: config_repo
         switch: off
       - IN: u16_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u16
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u16 ship_ver build_u16
       - OUT: u16_img
     on_success:
       - echo 'on success !!!!!'
@@ -767,7 +771,7 @@ jobs:
       - IN: u16all_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u16all
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u16all u16_img build_u16all
       - OUT: u16all_img
     on_success:
       - echo 'on success !!!!!'
@@ -783,7 +787,7 @@ jobs:
       - IN: u16nodall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u16nodall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u16nodall u16all_img build_u16nodall
       - OUT: u16nodall_img
     on_success:
       - echo 'on success !!!!!'
@@ -799,7 +803,7 @@ jobs:
       - IN: u16pytall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u16pytall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u16pytall u16all_img build_u16pytall
       - OUT: u16pytall_img
     on_success:
       - echo 'on success !!!!!'
@@ -815,7 +819,7 @@ jobs:
       - IN: u16cloall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u16cloall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u16cloall u16all_img build_u16cloall
       - OUT: u16cloall_img
     on_success:
       - echo 'on success !!!!!'
@@ -831,7 +835,7 @@ jobs:
       - IN: u16golall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u16golall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u16golall u16all_img build_u16golall
       - OUT: u16golall_img
     on_success:
       - echo 'on success !!!!!'
@@ -847,7 +851,7 @@ jobs:
       - IN: u16javall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u16javall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u16javall u16all_img build_u16javall
       - OUT: u16javall_img
     on_success:
       - echo 'on success !!!!!'
@@ -863,7 +867,7 @@ jobs:
       - IN: u16scaall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u16scaall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u16scaall u16javall_img build_u16scaall
       - OUT: u16scaall_img
     on_success:
       - echo 'on success !!!!!'
@@ -879,7 +883,7 @@ jobs:
       - IN: u16ruball_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u16ruball
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u16ruball u16all_img build_u16ruball
       - OUT: u16ruball_img
     on_success:
       - echo 'on success !!!!!'
@@ -895,7 +899,7 @@ jobs:
       - IN: u16phpall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u16phpall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u16phpall u16all_img build_u16phpall
       - OUT: u16phpall_img
     on_success:
       - echo 'on success !!!!!'
@@ -911,7 +915,7 @@ jobs:
       - IN: u16cppall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u16cppall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u16cppall u16all_img build_u16cppall
       - OUT: u16cppall_img
     on_success:
       - echo 'on success !!!!!'
