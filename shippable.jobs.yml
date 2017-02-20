@@ -87,7 +87,6 @@ jobs:
       - IN: www_img
       - IN: nexec_img
       - IN: micro_img
-        switch: off
       - IN: genexec_img
       - TASK: managed
         bump: alpha
