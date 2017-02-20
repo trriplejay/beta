@@ -3,7 +3,7 @@ jobs:
     type: runCLI
     steps:
       - IN: microbase_repo
-      - IN: push_dry_tag
+      - IN: u14_img
       - IN: ship_dh_cli
       - TASK:
         - script: ./IN/microbase_repo/gitRepo/build.sh
@@ -412,22 +412,6 @@ jobs:
   ###########################################
   # START Build AMI
   ###########################################
-
-  - name: push_dry_tag
-    type: runSh
-    steps:
-      - IN: ship_ver
-        switch: off
-      - IN: bldami_repo
-        switch: off
-      - IN: ship_dh
-      - TASK:
-        - script: IN/bldami_repo/gitRepo/tagImage/pushDryDockTag.sh
-    on_success:
-      - script: echo 'succeeded'
-    on_failure:
-      - script: echo 'failed'
-
   - name: build_baseami
     type: runSh
     steps:
