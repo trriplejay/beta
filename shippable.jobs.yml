@@ -431,7 +431,50 @@ jobs:
   - name: build_baseami
     type: runSh
     steps:
-      - IN: push_dry_tag
+      - IN: u16cppall_img
+        switch: off
+      - IN: u16phpall_img
+        switch: off
+      - IN: u16ruball_img
+        switch: off
+      - IN: u16scaall_img
+        switch: off
+      - IN: u16javall_img
+        switch: off
+      - IN: u16golall_img
+        switch: off
+      - IN: u16cloall_img
+        switch: off
+      - IN: u16pytall_img
+        switch: off
+      - IN: u16nodall_img
+        switch: off
+      - IN: u16all_img
+        switch: off
+      - IN: u16_img
+        switch: off
+      - IN: u14_img
+        switch: off
+      - IN: u14all_img
+        switch: off
+      - IN: u14nodall_img
+        switch: off
+      - IN: u14pytall_img
+        switch: off
+      - IN: u14cloall_img
+        switch: off
+      - IN: u14golall_img
+        switch: off
+      - IN: u14javall_img
+        switch: off
+      - IN: u14scaall_img
+        switch: off
+      - IN: u14ruball_img
+        switch: off
+      - IN: u14phpall_img
+        switch: off
+      - IN: u14cppall_img
+        switch: off
       - IN: baseami_params
       - IN: aws_bits_access
       - IN: bldami_repo
