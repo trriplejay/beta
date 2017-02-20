@@ -45,10 +45,6 @@ resources:
     pointer:
       region: "us-east-1"
 
-  - name: ship_dh
-    type: integration
-    integration: "shipDH"
-
   - name: ship_dh_cli
     type: cliConfig
     integration: "shipDH"
