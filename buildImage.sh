@@ -50,11 +50,11 @@ create_image() {
 
 create_out_state() {
   echo "Creating a state file for $RES_IMAGE_OUT"
-  echo versionName=$BLD_IMG > "$JOB_STATE/$RES_IMAGE_OUT.env"
+  echo versionName=$RES_TAG_VER_NAME > "$JOB_STATE/$RES_IMAGE_OUT.env"
   echo commitSHA=$RES_REPO_COMMIT >> "$JOB_STATE/$RES_IMAGE_OUT.env"
 
   echo "Creating a state file for $CURR_JOB"
-  echo versionName=$BLD_IMG > "$JOB_STATE/$CURR_JOB.env"
+  echo versionName=$RES_TAG_VER_NAME > "$JOB_STATE/$CURR_JOB.env"
   echo commitSHA=$RES_REPO_COMMIT >> "$JOB_STATE/$CURR_JOB.env"
 }
 
