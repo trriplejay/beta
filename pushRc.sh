@@ -97,8 +97,8 @@ tag_push_base(){
 create_version() {
   echo "Creating a state file for" $CURR_JOB
   # create a state file so that next job can pick it up
-  echo "versionName=$RES_RELEASE_VER_NAME" > /build/state/$CURR_JOB.env #adding version state
-  echo "IMAGE_NAMES=$IMAGE_NAMES" >> /build/state/$CURR_JOB.env
+  echo "versionName=$RES_RELEASE_VER_NAME" > "$JOB_STATE/$CURR_JOB.env" #adding version state
+  echo "IMAGE_NAMES=$IMAGE_NAMES" >> "$JOB_STATE/$CURR_JOB.env"
   echo "Completed creating a state file for" $CURR_JOB
 }
 
