@@ -108,7 +108,7 @@ deploy() {
 create_version() {
   echo "Creating a state file for" $CURR_JOB
   # create a state file so that next job can pick it up
-  echo "versionName=$RES_PUSH_VER_NAME" > /build/state/$CURR_JOB.env #adding version state
+  echo "versionName=$RES_PUSH_VER_NAME" > "$JOB_STATE/$CURR_JOB.env" #adding version state
   echo "Completed creating a state file for" $CURR_JOB
 }
 
