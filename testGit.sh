@@ -44,8 +44,12 @@ tag_push_base(){
   pushd $RES_TEST_REPO_STATE
   git checkout origin/master
   git status
-  ls -al
-  git tag $BUILD_NUMBER
+  git pull origin master
+  touch foo.txt
+  git add .
+  git commit -a -m"testing"
+  git push origin master
+  #git tag $BUILD_NUMBER
   #git push origin $BUILD_NUMBER
   popd
 }
