@@ -42,8 +42,10 @@ add_ssh_key() {
 
 tag_push_base(){
   pushd $RES_TEST_REPO_STATE
-  git tag $BUILD_NUMBER
-  git push origin $BUILD_NUMBER
+  git status
+  ls -al
+  #git tag $BUILD_NUMBER
+  #git push origin $BUILD_NUMBER
   popd
 }
 
