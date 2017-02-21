@@ -54,7 +54,7 @@ main() {
 
   set_context
   add_ssh_key
-#  tag_push_base
+  tag_push_base
 }
 
 main
