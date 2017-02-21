@@ -12,7 +12,7 @@ export RES_TEST_REPO_UP=$(echo $RES_TEST_REPO | awk '{print toupper($0)}')
 export RES_TEST_REPO_STATE=$(eval echo "$"$RES_TEST_REPO_UP"_STATE")
 
 export RES_GH_SSH_UP=$(echo $RES_GH_SSH | awk '{print toupper($0)}')
-export RES_GH_SSH_META=$(eval echo "$"$RES_GH_SSH_UP"_VERSIONNAME")
+export RES_GH_SSH_META=$(eval echo "$"$RES_GH_SSH_UP"_META")
 
 set_context() {
   echo "CURR_JOB=$CURR_JOB"
@@ -54,7 +54,7 @@ main() {
 
   set_context
   add_ssh_key
-  tag_push_base
+#  tag_push_base
 }
 
 main
