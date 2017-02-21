@@ -45,13 +45,10 @@ tag_push_base(){
   git checkout origin/master
   git status
   git pull origin master
+  git remote add up git@github.com:avinci/test.git
   git remote -v
-  #touch foo.txt
-  #git add .
-  #git commit -a -m"testing"
-  #git push origin master
-  #git tag $BUILD_NUMBER
-  #git push origin $BUILD_NUMBER
+  git tag $BUILD_NUMBER
+  git push up $BUILD_NUMBER
   popd
 }
 
