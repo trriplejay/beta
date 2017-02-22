@@ -597,8 +597,6 @@ jobs:
   - name: build_u14
     type: runCLI
     steps:
-      - IN: ship_ver
-        switch: off
       - IN: config_repo
         switch: off
       - IN: u14_repo
@@ -774,8 +772,6 @@ jobs:
   - name: build_u16
     type: runCLI
     steps:
-      - IN: ship_ver
-        switch: off
       - IN: config_repo
         switch: off
       - IN: u16_repo
