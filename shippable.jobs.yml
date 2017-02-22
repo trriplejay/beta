@@ -2,11 +2,13 @@ jobs:
   - name: build_microbase
     type: runCLI
     steps:
+      - IN: config_repo
+        switch: off
       - IN: microbase_repo
       - IN: u14_img
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/microbase_repo/gitRepo/build.sh
+        - script: ./IN/config_repo/gitRepo/buildImage.sh microbase drydock
       - OUT: microbase_img
     on_success:
       - script: echo 'on success !!!!!'
@@ -16,11 +18,13 @@ jobs:
   - name: build_nexec
     type: runCLI
     steps:
+      - IN: config_repo
+        switch: off
       - IN: nexec_repo
       - IN: microbase_img
       - IN: shipbits_ecr_cli
       - TASK:
-        - script: ./IN/nexec_repo/gitRepo/build.sh
+        - script: ./IN/config_repo/gitRepo/buildImage.sh nexec 374168611083.dkr.ecr.us-east-1.amazonaws.com
       - OUT: nexec_img
     on_success:
       - script: echo 'on success !!!!!'
@@ -48,11 +52,13 @@ jobs:
   - name: build_api
     type: runCLI
     steps:
+      - IN: config_repo
+        switch: off
       - IN: api_repo
       - IN: microbase_img
       - IN: shipbits_ecr_cli
       - TASK:
-        - script: ./IN/api_repo/gitRepo/build.sh
+        - script: ./IN/config_repo/gitRepo/buildImage.sh api 374168611083.dkr.ecr.us-east-1.amazonaws.com
       - OUT: api_img
     on_success:
       - script: echo 'on success !!!!!'
@@ -62,136 +68,138 @@ jobs:
   - name: build_www
     type: runCLI
     steps:
+      - IN: config_repo
+        switch: off
       - IN: www_repo
       - IN: microbase_img
       - IN: shipbits_ecr_cli
       - TASK:
-        - script: ./IN/www_repo/gitRepo/build.sh
+        - script: ./IN/config_repo/gitRepo/buildImage.sh www 374168611083.dkr.ecr.us-east-1.amazonaws.com
       - OUT: www_img
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
       - script: echo 'Failed job .... :('
 
-  ###########################################
-  # release alpha server from default manifest
-  ###########################################
-
-  - name: rel-alpha
-    type: release
-    on_start:
-      - NOTIFY: slack_alpha
-    steps:
-      - IN: ship_ver
-      - IN: api_img
-      - IN: www_img
-      - IN: nexec_img
-      - IN: micro_img
-      - IN: genexec_img
-      - TASK: managed
-        bump: alpha
-    on_success:
-      - NOTIFY: slack_alpha
-    on_failure:
-      - NOTIFY: slack_alpha
-
-  ###########################################
-  # push alpha release to special repo
-  ###########################################
-
-  - name: push_alpha
-    type: runCLI
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: base_repo
-        switch: off
-      - IN: shipbits_ecr_cli
-      - IN: ship_dh_cli
-      - IN: rel-alpha
-      - IN: api_img
-        switch: off
-      - IN: www_img
-        switch: off
-      - IN: nexec_img
-        switch: off
-      - IN: micro_img
-        switch: off
-      - IN: genexec_img
-        switch: off
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/pushAlpha.sh
-    on_success:
-      - script: echo 'succeeded'
-    on_failure:
-      - script: echo 'failed'
-
-  ###########################################
-  # deploy alpha release to alpha environment
-  ###########################################
-
-  - name: deploy_alpha
-    type: runSh
-    on_start:
-      - NOTIFY: slack_alpha
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: push_alpha
-      - IN: aws_alpha_pem
-      - IN: aws_alpha_swarm
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/deployAlpha.sh
-    on_success:
-      - script: echo 'succeeded'
-      - NOTIFY: slack_alpha
-    on_failure:
-      - script: echo 'failed'
-      - NOTIFY: slack_alpha
-
-  ###########################################
-  # release rc server from default manifest
-  ###########################################
-
-  - name: rel-rc
-    type: release
-    on_start:
-      - NOTIFY: slack_rc
-    steps:
-      - IN: rel-alpha
-        switch: off
-      - TASK: managed
-        bump: rc
-    on_success:
-      - NOTIFY: slack_rc
-    on_failure:
-      - NOTIFY: slack_rc
-  ###########################################
-  # push rc release to special repo
-  ###########################################
-
-  - name: push_rc
-    type: runCLI
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: base_repo
-        switch: off
-      - IN: shipbits_ecr_cli
-      - IN: ship_dh_cli
-      - IN: push_alpha
-        switch: off
-      - IN: rel-rc
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/pushRc.sh
-    on_success:
-      - script: echo 'succeeded'
-    on_failure:
-      - script: echo 'failed'
-
-  ###########################################
-  # deploy rc release to rc environment
-  ###########################################
+#  ###########################################
+#  # release alpha server from default manifest
+#  ###########################################
+#
+#  - name: rel-alpha
+#    type: release
+#    on_start:
+#      - NOTIFY: slack_alpha
+#    steps:
+#      - IN: ship_ver
+#      - IN: api_img
+#      - IN: www_img
+#      - IN: nexec_img
+#      - IN: micro_img
+#      - IN: genexec_img
+#      - TASK: managed
+#        bump: alpha
+#    on_success:
+#      - NOTIFY: slack_alpha
+#    on_failure:
+#      - NOTIFY: slack_alpha
+#
+#  ###########################################
+#  # push alpha release to special repo
+#  ###########################################
+#
+#  - name: push_alpha
+#    type: runCLI
+#    steps:
+#      - IN: config_repo
+#        switch: off
+#      - IN: base_repo
+#        switch: off
+#      - IN: shipbits_ecr_cli
+#      - IN: ship_dh_cli
+#      - IN: rel-alpha
+#      - IN: api_img
+#        switch: off
+#      - IN: www_img
+#        switch: off
+#      - IN: nexec_img
+#        switch: off
+#      - IN: micro_img
+#        switch: off
+#      - IN: genexec_img
+#        switch: off
+#      - TASK:
+#        - script: ./IN/config_repo/gitRepo/pushAlpha.sh
+#    on_success:
+#      - script: echo 'succeeded'
+#    on_failure:
+#      - script: echo 'failed'
+#
+#  ###########################################
+#  # deploy alpha release to alpha environment
+#  ###########################################
+#
+#  - name: deploy_alpha
+#    type: runSh
+#    on_start:
+#      - NOTIFY: slack_alpha
+#    steps:
+#      - IN: config_repo
+#        switch: off
+#      - IN: push_alpha
+#      - IN: aws_alpha_pem
+#      - IN: aws_alpha_swarm
+#      - TASK:
+#        - script: ./IN/config_repo/gitRepo/deployAlpha.sh
+#    on_success:
+#      - script: echo 'succeeded'
+#      - NOTIFY: slack_alpha
+#    on_failure:
+#      - script: echo 'failed'
+#      - NOTIFY: slack_alpha
+#
+#  ###########################################
+#  # release rc server from default manifest
+#  ###########################################
+#
+#  - name: rel-rc
+#    type: release
+#    on_start:
+#      - NOTIFY: slack_rc
+#    steps:
+#      - IN: rel-alpha
+#        switch: off
+#      - TASK: managed
+#        bump: rc
+#    on_success:
+#      - NOTIFY: slack_rc
+#    on_failure:
+#      - NOTIFY: slack_rc
+#  ###########################################
+#  # push rc release to special repo
+#  ###########################################
+#
+#  - name: push_rc
+#    type: runCLI
+#    steps:
+#      - IN: config_repo
+#        switch: off
+#      - IN: base_repo
+#        switch: off
+#      - IN: shipbits_ecr_cli
+#      - IN: ship_dh_cli
+#      - IN: push_alpha
+#        switch: off
+#      - IN: rel-rc
+#      - TASK:
+#        - script: ./IN/config_repo/gitRepo/pushRc.sh
+#    on_success:
+#      - script: echo 'succeeded'
+#    on_failure:
+#      - script: echo 'failed'
+#
+#  ###########################################
+#  # deploy rc release to rc environment
+#  ###########################################
   - name: deploy_rc
     type: runSh
     on_start:
@@ -199,8 +207,8 @@ jobs:
     steps:
       - IN: config_repo
         switch: off
-      - IN: push_rc
-        switch: off
+#      - IN: push_rc
+#        switch: off
       - IN: build_rcami
         switch: off
       - IN: aws_rc_pem
@@ -214,86 +222,96 @@ jobs:
       - script: echo 'failed'
       - NOTIFY: slack_rc
 
-  ###############################
-  # begin Shippable-Server(Qhode) pipeline
-  ###############################
-  # deploy to qhode-alpha-environment
-  - name: deploy_qhode_alpha
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: push_alpha
-      - IN: aws_alpha_pem
-      - IN: qhode_alpha_swarm
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/deployQhodeAlpha.sh
-    on_success:
-      - script: echo 'succeeded'
-    on_failure:
-      - script: echo 'failed'
-
-  # deploy to qhode-rc-environment
-  - name: deploy_qhode_rc
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: push_rc
-        switch: off
-      - IN: build_rcami
-        switch: off
-      - IN: aws_rc_pem
-      - IN: qhode_rc_swarm
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/deployQhodeRc.sh
-    on_success:
-      - script: echo 'succeeded'
-    on_failure:
-      - script: echo 'failed'
-
-  ###############################
-  # end Shippable-Server(Qhode) pipeline
-  ###############################
-
-  ###############################
-  # begin Shippable-Server(Prod) pipeline
-  ###############################
+#  ###############################
+#  # begin Shippable-Server(Qhode) pipeline
+#  ###############################
+#  # deploy to qhode-alpha-environment
+#  - name: deploy_qhode_alpha
+#    type: runSh
+#    steps:
+#      - IN: config_repo
+#        switch: off
+#      - IN: push_alpha
+#      - IN: aws_alpha_pem
+#      - IN: qhode_alpha_swarm
+#      - TASK:
+#        - script: ./IN/config_repo/gitRepo/deployQhodeAlpha.sh
+#    on_success:
+#      - script: echo 'succeeded'
+#    on_failure:
+#      - script: echo 'failed'
+#
+#  # deploy to qhode-rc-environment
+#  - name: deploy_qhode_rc
+#    type: runSh
+#    steps:
+#      - IN: config_repo
+#        switch: off
+#      - IN: push_rc
+#        switch: off
+#      - IN: build_rcami
+#        switch: off
+#      - IN: aws_rc_pem
+#      - IN: qhode_rc_swarm
+#      - TASK:
+#        - script: ./IN/config_repo/gitRepo/deployQhodeRc.sh
+#    on_success:
+#      - script: echo 'succeeded'
+#    on_failure:
+#      - script: echo 'failed'
+#
+#  ###############################
+#  # end Shippable-Server(Qhode) pipeline
+#  ###############################
+#
+#  ###############################
+#  # begin Shippable-Server(Prod) pipeline
+#  ###############################
 
   ###########################################
   # release production from default manifest
   ###########################################
 
-  - name: rel-final
+#  - name: rel-final
+#    type: release
+#    steps:
+#      - IN: ship_ver
+#        switch: off
+#      - TASK: managed
+#        bump: patch
+
+  - name: rel_prod
     type: release
     steps:
-      - IN: rel-rc
+      - IN: ship_ver
         switch: off
       - TASK: managed
-        bump: final
+        bump: patch
 
   ###########################################
   # push rc release to special repo
   ###########################################
 
-  - name: push_final
-    type: runCLI
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: base_repo
-        switch: off
-      - IN: shipbits_ecr_cli
-      - IN: ship_dh_cli
-      - IN: push_rc
-        switch: off
-      - IN: rel-final
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/pushFinal.sh
-    on_success:
-      - script: echo 'succeeded'
-    on_failure:
-      - script: echo 'failed'
+#  - name: push_final
+#    type: runCLI
+#    steps:
+#      - IN: config_repo
+#        switch: off
+#      - IN: base_repo
+#        switch: off
+#      - IN: shipbits_ecr_cli
+#      - IN: ship_dh_cli
+#      - IN: push_rc
+#        switch: off
+#      - IN: rel-final
+#      - TASK:
+#        - script: ./IN/config_repo/gitRepo/pushFinal.sh
+#    on_success:
+#      - script: echo 'succeeded'
+#    on_failure:
+#      - script: echo 'failed'
+
+
 
   ###############################
   # end Shippable-Server(Prod) pipeline
@@ -391,18 +409,18 @@ jobs:
   # BEGIN Build Acceptance Tests
   ###########################################
 
-  - name: build_acceptance
-    type: runSh
-    steps:
-      - IN: bat_repo
-      - IN: bat_ship_alpha_parms
-      - IN: deploy_alpha
-      - TASK:
-        - script: IN/bat_repo/gitRepo/test.sh bat_ship_alpha_parms
-    on_success:
-      - script: echo 'succeeded'
-    on_failure:
-      - script: echo 'failed'
+#  - name: build_acceptance
+#    type: runSh
+#    steps:
+#      - IN: bat_repo
+#      - IN: bat_ship_alpha_parms
+#      - IN: deploy_alpha
+#      - TASK:
+#        - script: IN/bat_repo/gitRepo/test.sh bat_ship_alpha_parms
+#    on_success:
+#      - script: echo 'succeeded'
+#    on_failure:
+#      - script: echo 'failed'
 
   ###########################################
   # END Build Acceptance Tests
@@ -602,7 +620,7 @@ jobs:
       - IN: u14_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14 build_u14
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u14 drydock
       - OUT: u14_img
     on_success:
       - script: echo 'on success !!!!!'
@@ -618,7 +636,7 @@ jobs:
       - IN: u14all_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14all build_u14all
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u14all drydock
       - OUT: u14all_img
     on_success:
       - script: echo 'on success !!!!!'
@@ -634,7 +652,7 @@ jobs:
       - IN: u14nodall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14nodall build_u14nodall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u14nodall drydock
       - OUT: u14nodall_img
     on_success:
       - script: echo 'on success !!!!!'
@@ -650,7 +668,7 @@ jobs:
       - IN: u14pytall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14pytall build_u14pytall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u14pytall drydock
       - OUT: u14pytall_img
     on_success:
       - script: echo 'on success !!!!!'
@@ -666,7 +684,7 @@ jobs:
       - IN: u14cloall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14cloall build_u14cloall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u14cloall drydock
       - OUT: u14cloall_img
     on_success:
       - script: echo 'on success !!!!!'
@@ -682,7 +700,7 @@ jobs:
       - IN: u14golall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14golall build_u14golall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u14golall drydock
       - OUT: u14golall_img
     on_success:
       - script: echo 'on success !!!!!'
@@ -698,7 +716,7 @@ jobs:
       - IN: u14javall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14javall build_u14javall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u14javall drydock
       - OUT: u14javall_img
     on_success:
       - script: echo 'on success !!!!!'
@@ -714,7 +732,7 @@ jobs:
       - IN: u14scaall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14scaall build_u14scaall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u14scaall drydock
       - OUT: u14scaall_img
     on_success:
       - script: echo 'on success !!!!!'
@@ -730,7 +748,7 @@ jobs:
       - IN: u14ruball_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14ruball build_u14ruball
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u14ruball drydock
       - OUT: u14ruball_img
     on_success:
       - script: echo 'on success !!!!!'
@@ -746,7 +764,7 @@ jobs:
       - IN: u14phpall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14phpall build_u14phpall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u14phpall drydock
       - OUT: u14phpall_img
     on_success:
       - script: echo 'on success !!!!!'
@@ -762,7 +780,7 @@ jobs:
       - IN: u14cppall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14cppall build_u14cppall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u14cppall drydock
       - OUT: u14cppall_img
     on_success:
       - script: echo 'on success !!!!!'
@@ -777,7 +795,7 @@ jobs:
       - IN: u16_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u16 build_u16
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u16 drydock
       - OUT: u16_img
     on_success:
       - script: echo 'on success !!!!!'
@@ -793,7 +811,7 @@ jobs:
       - IN: u16all_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u16all build_u16all
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u16all drydock
       - OUT: u16all_img
     on_success:
       - script: echo 'on success !!!!!'
@@ -809,7 +827,7 @@ jobs:
       - IN: u16nodall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u16nodall build_u16nodall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u16nodall drydock
       - OUT: u16nodall_img
     on_success:
       - script: echo 'on success !!!!!'
@@ -825,7 +843,7 @@ jobs:
       - IN: u16pytall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u16pytall build_u16pytall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u16pytall drydock
       - OUT: u16pytall_img
     on_success:
       - script: echo 'on success !!!!!'
@@ -841,7 +859,7 @@ jobs:
       - IN: u16cloall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u16cloall build_u16cloall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u16cloall drydock
       - OUT: u16cloall_img
     on_success:
       - script: echo 'on success !!!!!'
@@ -857,7 +875,7 @@ jobs:
       - IN: u16golall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u16golall build_u16golall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u16golall drydock
       - OUT: u16golall_img
     on_success:
       - script: echo 'on success !!!!!'
@@ -873,7 +891,7 @@ jobs:
       - IN: u16javall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u16javall build_u16javall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u16javall drydock
       - OUT: u16javall_img
     on_success:
       - script: echo 'on success !!!!!'
@@ -889,7 +907,7 @@ jobs:
       - IN: u16scaall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u16scaall build_u16scaall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u16scaall drydock
       - OUT: u16scaall_img
     on_success:
       - script: echo 'on success !!!!!'
@@ -905,7 +923,7 @@ jobs:
       - IN: u16ruball_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u16ruball build_u16ruball
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u16ruball drydock
       - OUT: u16ruball_img
     on_success:
       - script: echo 'on success !!!!!'
@@ -921,7 +939,7 @@ jobs:
       - IN: u16phpall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u16phpall build_u16phpall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u16phpall drydock
       - OUT: u16phpall_img
     on_success:
       - script: echo 'on success !!!!!'
@@ -937,7 +955,7 @@ jobs:
       - IN: u16cppall_repo
       - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u16cppall build_u16cppall
+        - script: ./IN/config_repo/gitRepo/buildImage.sh u16cppall drydock
       - OUT: u16cppall_img
     on_success:
       - script: echo 'on success !!!!!'

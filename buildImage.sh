@@ -1,11 +1,12 @@
 #!/bin/bash -e
 
 export CONTEXT=$1
-export CURR_JOB=$2
+export HUB_ORG=$2
+
 export IMAGE_NAME=$CONTEXT
+export CURR_JOB="build_"$CONTEXT
 export RES_REPO=$CONTEXT"_repo"
 export RES_IMAGE_OUT=$CONTEXT"_img"
-export HUB_ORG="drydock"
 export TAG_NAME="master"
 
 export RES_REPO_UP=$(echo $RES_REPO | awk '{print toupper($0)}')
