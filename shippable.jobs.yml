@@ -98,122 +98,6 @@ jobs:
       - script: echo 'Failed job .... :('
 
 #  ###########################################
-#  # release alpha server from default manifest
-#  ###########################################
-#
-#  - name: rel-alpha
-#    type: release
-#    on_start:
-#      - NOTIFY: slack_alpha
-#    steps:
-#      - IN: ship_ver
-#      - IN: api_img
-#      - IN: www_img
-#      - IN: nexec_img
-#      - IN: micro_img
-#      - IN: genexec_img
-#      - TASK: managed
-#        bump: alpha
-#    on_success:
-#      - NOTIFY: slack_alpha
-#    on_failure:
-#      - NOTIFY: slack_alpha
-#
-#  ###########################################
-#  # push alpha release to special repo
-#  ###########################################
-#
-#  - name: push_alpha
-#    type: runCLI
-#    steps:
-#      - IN: config_repo
-#        switch: off
-#      - IN: base_repo
-#        switch: off
-#      - IN: shipbits_ecr_cli
-#      - IN: ship_dh_cli
-#      - IN: rel-alpha
-#      - IN: api_img
-#        switch: off
-#      - IN: www_img
-#        switch: off
-#      - IN: nexec_img
-#        switch: off
-#      - IN: micro_img
-#        switch: off
-#      - IN: genexec_img
-#        switch: off
-#      - TASK:
-#        - script: ./IN/config_repo/gitRepo/pushAlpha.sh
-#    on_success:
-#      - script: echo 'succeeded'
-#    on_failure:
-#      - script: echo 'failed'
-#
-#  ###########################################
-#  # deploy alpha release to alpha environment
-#  ###########################################
-#
-#  - name: deploy_alpha
-#    type: runSh
-#    on_start:
-#      - NOTIFY: slack_alpha
-#    steps:
-#      - IN: config_repo
-#        switch: off
-#      - IN: push_alpha
-#      - IN: aws_alpha_pem
-#      - IN: aws_alpha_swarm
-#      - TASK:
-#        - script: ./IN/config_repo/gitRepo/deployAlpha.sh
-#    on_success:
-#      - script: echo 'succeeded'
-#      - NOTIFY: slack_alpha
-#    on_failure:
-#      - script: echo 'failed'
-#      - NOTIFY: slack_alpha
-#
-#  ###########################################
-#  # release rc server from default manifest
-#  ###########################################
-#
-#  - name: rel-rc
-#    type: release
-#    on_start:
-#      - NOTIFY: slack_rc
-#    steps:
-#      - IN: rel-alpha
-#        switch: off
-#      - TASK: managed
-#        bump: rc
-#    on_success:
-#      - NOTIFY: slack_rc
-#    on_failure:
-#      - NOTIFY: slack_rc
-#  ###########################################
-#  # push rc release to special repo
-#  ###########################################
-#
-#  - name: push_rc
-#    type: runCLI
-#    steps:
-#      - IN: config_repo
-#        switch: off
-#      - IN: base_repo
-#        switch: off
-#      - IN: shipbits_ecr_cli
-#      - IN: ship_dh_cli
-#      - IN: push_alpha
-#        switch: off
-#      - IN: rel-rc
-#      - TASK:
-#        - script: ./IN/config_repo/gitRepo/pushRc.sh
-#    on_success:
-#      - script: echo 'succeeded'
-#    on_failure:
-#      - script: echo 'failed'
-#
-#  ###########################################
 #  # deploy rc release to rc environment
 #  ###########################################
   - name: deploy_rc
@@ -241,63 +125,9 @@ jobs:
       - script: echo 'failed'
       - NOTIFY: slack_rc
 
-#  ###############################
-#  # begin Shippable-Server(Qhode) pipeline
-#  ###############################
-#  # deploy to qhode-alpha-environment
-#  - name: deploy_qhode_alpha
-#    type: runSh
-#    steps:
-#      - IN: config_repo
-#        switch: off
-#      - IN: push_alpha
-#      - IN: aws_alpha_pem
-#      - IN: qhode_alpha_swarm
-#      - TASK:
-#        - script: ./IN/config_repo/gitRepo/deployQhodeAlpha.sh
-#    on_success:
-#      - script: echo 'succeeded'
-#    on_failure:
-#      - script: echo 'failed'
-#
-#  # deploy to qhode-rc-environment
-#  - name: deploy_qhode_rc
-#    type: runSh
-#    steps:
-#      - IN: config_repo
-#        switch: off
-#      - IN: push_rc
-#        switch: off
-#      - IN: build_rcami
-#        switch: off
-#      - IN: aws_rc_pem
-#      - IN: qhode_rc_swarm
-#      - TASK:
-#        - script: ./IN/config_repo/gitRepo/deployQhodeRc.sh
-#    on_success:
-#      - script: echo 'succeeded'
-#    on_failure:
-#      - script: echo 'failed'
-#
-#  ###############################
-#  # end Shippable-Server(Qhode) pipeline
-#  ###############################
-#
-#  ###############################
-#  # begin Shippable-Server(Prod) pipeline
-#  ###############################
-
   ###########################################
   # release production from default manifest
   ###########################################
-
-#  - name: rel-final
-#    type: release
-#    steps:
-#      - IN: ship_ver
-#        switch: off
-#      - TASK: managed
-#        bump: patch
 
   - name: rel_prod
     type: release
@@ -308,35 +138,6 @@ jobs:
         switch: off
       - TASK: managed
         bump: patch
-
-  ###########################################
-  # push rc release to special repo
-  ###########################################
-
-#  - name: push_final
-#    type: runCLI
-#    steps:
-#      - IN: config_repo
-#        switch: off
-#      - IN: base_repo
-#        switch: off
-#      - IN: shipbits_ecr_cli
-#      - IN: ship_dh_cli
-#      - IN: push_rc
-#        switch: off
-#      - IN: rel-final
-#      - TASK:
-#        - script: ./IN/config_repo/gitRepo/pushFinal.sh
-#    on_success:
-#      - script: echo 'succeeded'
-#    on_failure:
-#      - script: echo 'failed'
-
-
-
-  ###############################
-  # end Shippable-Server(Prod) pipeline
-  ###############################
 
   ###########################################
   # BEGIN run infra provisioning
@@ -1180,6 +981,7 @@ jobs:
   - name: tag_push_repo_u14
     type: runCLI
     steps:
+      - IN: tag_push_img_u14
       - IN: config_repo
         switch: off
       - IN: avi_gh_ssh
@@ -1216,6 +1018,7 @@ jobs:
   - name: tag_push_repo_u14all
     type: runCLI
     steps:
+      - IN: tag_push_img_u14all
       - IN: config_repo
         switch: off
       - IN: avi_gh_ssh
@@ -1252,6 +1055,7 @@ jobs:
   - name: tag_push_repo_u14nodall
     type: runCLI
     steps:
+      - IN: tag_push_img_u14nodall
       - IN: config_repo
         switch: off
       - IN: avi_gh_ssh
@@ -1288,6 +1092,7 @@ jobs:
   - name: tag_push_repo_u14pytall
     type: runCLI
     steps:
+      - IN: tag_push_img_u14pytall
       - IN: config_repo
         switch: off
       - IN: avi_gh_ssh
@@ -1324,6 +1129,7 @@ jobs:
   - name: tag_push_repo_u14cloall
     type: runCLI
     steps:
+      - IN: tag_push_img_u14cloall
       - IN: config_repo
         switch: off
       - IN: avi_gh_ssh
@@ -1360,6 +1166,7 @@ jobs:
   - name: tag_push_repo_u14golall
     type: runCLI
     steps:
+      - IN: tag_push_img_u14golall
       - IN: config_repo
         switch: off
       - IN: avi_gh_ssh
@@ -1396,6 +1203,7 @@ jobs:
   - name: tag_push_repo_u14javall
     type: runCLI
     steps:
+      - IN: tag_push_img_u14javall
       - IN: config_repo
         switch: off
       - IN: avi_gh_ssh
@@ -1432,6 +1240,7 @@ jobs:
   - name: tag_push_repo_u14scaall
     type: runCLI
     steps:
+      - IN: tag_push_img_u14scaall
       - IN: config_repo
         switch: off
       - IN: avi_gh_ssh
@@ -1468,6 +1277,7 @@ jobs:
   - name: tag_push_repo_u14ruball
     type: runCLI
     steps:
+      - IN: tag_push_img_u14ruball
       - IN: config_repo
         switch: off
       - IN: avi_gh_ssh
@@ -1504,6 +1314,7 @@ jobs:
   - name: tag_push_repo_u14phpall
     type: runCLI
     steps:
+      - IN: tag_push_img_u14phpall
       - IN: config_repo
         switch: off
       - IN: avi_gh_ssh
@@ -1540,6 +1351,7 @@ jobs:
   - name: tag_push_repo_u14cppall
     type: runCLI
     steps:
+      - IN: tag_push_img_u14cppall
       - IN: config_repo
         switch: off
       - IN: avi_gh_ssh
@@ -1555,7 +1367,6 @@ jobs:
       - script: echo 'on success !!!!!'
     on_failure:
       - script: echo 'Failed job .... :('
-
 
   - name: tag_push_img_u16
     type: runCLI
@@ -1577,6 +1388,7 @@ jobs:
   - name: tag_push_repo_u16
     type: runCLI
     steps:
+      - IN: tag_push_img_u16
       - IN: config_repo
         switch: off
       - IN: avi_gh_ssh
@@ -1613,6 +1425,7 @@ jobs:
   - name: tag_push_repo_u16all
     type: runCLI
     steps:
+      - IN: tag_push_img_u16all
       - IN: config_repo
         switch: off
       - IN: avi_gh_ssh
@@ -1649,6 +1462,7 @@ jobs:
   - name: tag_push_repo_u16nodall
     type: runCLI
     steps:
+      - IN: tag_push_img_u16nodall
       - IN: config_repo
         switch: off
       - IN: avi_gh_ssh
@@ -1685,6 +1499,7 @@ jobs:
   - name: tag_push_repo_u16pytall
     type: runCLI
     steps:
+      - IN: tag_push_img_u16pytall
       - IN: config_repo
         switch: off
       - IN: avi_gh_ssh
@@ -1721,6 +1536,7 @@ jobs:
   - name: tag_push_repo_u16cloall
     type: runCLI
     steps:
+      - IN: tag_push_img_u16cloall
       - IN: config_repo
         switch: off
       - IN: avi_gh_ssh
@@ -1757,6 +1573,7 @@ jobs:
   - name: tag_push_repo_u16golall
     type: runCLI
     steps:
+      - IN: tag_push_img_u16golall
       - IN: config_repo
         switch: off
       - IN: avi_gh_ssh
@@ -1793,6 +1610,7 @@ jobs:
   - name: tag_push_repo_u16javall
     type: runCLI
     steps:
+      - IN: tag_push_img_u16javall
       - IN: config_repo
         switch: off
       - IN: avi_gh_ssh
@@ -1829,6 +1647,7 @@ jobs:
   - name: tag_push_repo_u16scaall
     type: runCLI
     steps:
+      - IN: tag_push_img_u16scaall
       - IN: config_repo
         switch: off
       - IN: avi_gh_ssh
@@ -1865,6 +1684,7 @@ jobs:
   - name: tag_push_repo_u16ruball
     type: runCLI
     steps:
+      - IN: tag_push_img_u16ruball
       - IN: config_repo
         switch: off
       - IN: avi_gh_ssh
@@ -1901,6 +1721,7 @@ jobs:
   - name: tag_push_repo_u16phpall
     type: runCLI
     steps:
+      - IN: tag_push_img_u16phpall
       - IN: config_repo
         switch: off
       - IN: avi_gh_ssh
@@ -1937,6 +1758,7 @@ jobs:
   - name: tag_push_repo_u16cppall
     type: runCLI
     steps:
+      - IN: tag_push_img_u16cppall
       - IN: config_repo
         switch: off
       - IN: avi_gh_ssh
