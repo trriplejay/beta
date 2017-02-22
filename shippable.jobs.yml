@@ -56,6 +56,7 @@ jobs:
       - IN: micro_repo
       - IN: microbase_img
       - IN: shipbits_ecr_cli
+      - IN: ship_dh_cli
       - TASK:
         - script: ./IN/micro_repo/gitRepo/build.sh
       - OUT: micro_img
