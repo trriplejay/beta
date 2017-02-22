@@ -1,12 +1,9 @@
 #!/bin/bash -e
 
 export CURR_JOB="test_git_push"
-export RES_REPO="config_repo"
 export RES_TEST_REPO="test_repo"
 export RES_GH_SSH="avi_gh_ssh"
 
-export RES_REPO_UP=$(echo $RES_REPO | awk '{print toupper($0)}')
-export RES_REPO_STATE=$(eval echo "$"$RES_REPO_UP"_STATE")
 
 export RES_TEST_REPO_UP=$(echo $RES_TEST_REPO | awk '{print toupper($0)}')
 export RES_TEST_REPO_STATE=$(eval echo "$"$RES_TEST_REPO_UP"_STATE")
@@ -16,12 +13,9 @@ export RES_GH_SSH_META=$(eval echo "$"$RES_GH_SSH_UP"_META")
 
 set_context() {
   echo "CURR_JOB=$CURR_JOB"
-  echo "RES_REPO=$RES_REPO"
   echo "RES_TEST_REPO=$RES_TEST_REPO"
   echo "RES_GH_SSH=$RES_GH_SSH"
 
-  echo "RES_REPO_UP=$RES_REPO_UP"
-  echo "RES_REPO_STATE=$RES_REPO_STATE"
   echo "RES_TEST_REPO_UP=$RES_TEST_REPO_UP"
   echo "RES_TEST_REPO_STATE=$RES_TEST_REPO_STATE"
   echo "RES_GH_SSH_UP=$RES_GH_SSH_UP"
