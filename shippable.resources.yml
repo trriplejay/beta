@@ -28,6 +28,13 @@ resources:
       sourceName: shippable/nexec
       branch: master
 
+  - name: cexec_repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/cexec
+      branch: master
+
   - name: nexec_img
     type: image
     integration: ecr-bits-push
