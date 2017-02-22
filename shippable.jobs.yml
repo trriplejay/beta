@@ -15,6 +15,22 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
+  - name: build_cexec
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: cexec_repo
+      - IN: microbase_img
+      - IN: ship_dh_cli
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/buildImage.sh cexec drydock
+      - OUT: cexec_img
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
   - name: build_nexec
     type: runCLI
     steps:
@@ -956,11 +972,189 @@ jobs:
         switch: off
       - IN: www_repo
         switch: off
+      - IN: rel_prod
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagAndPushRepo.sh www Shippable
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  - name: tag_push_img_api
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: api_img
+        switch: off
       - IN: shipbits_ecr_cli
         switch: off
       - IN: rel_prod
       - TASK:
-        - script: ./IN/config_repo/gitRepo/tagAndPushRepo.sh www 374168611083.dkr.ecr.us-east-1.amazonaws.com Shippable
+        - script: ./IN/config_repo/gitRepo/tagAndPushImage.sh api 374168611083.dkr.ecr.us-east-1.amazonaws.com
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  - name: tag_push_repo_api
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: avi_gh_ssh
+        switch: off
+      - IN: api_img
+        switch: off
+      - IN: api_repo
+        switch: off
+      - IN: rel_prod
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagAndPushRepo.sh api Shippable
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  - name: tag_push_img_nexec
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: nexec_img
+        switch: off
+      - IN: shipbits_ecr_cli
+        switch: off
+      - IN: rel_prod
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagAndPushImage.sh nexec 374168611083.dkr.ecr.us-east-1.amazonaws.com
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  - name: tag_push_repo_nexec
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: avi_gh_ssh
+        switch: off
+      - IN: nexec_img
+        switch: off
+      - IN: nexec_repo
+        switch: off
+      - IN: rel_prod
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagAndPushRepo.sh nexec Shippable
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  - name: tag_push_img_microbase
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: www_img
+        switch: off
+      - IN: ship_dh_cli
+        switch: off
+      - IN: rel_prod
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagAndPushImage.sh microbase drydock
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  - name: tag_push_repo_microbase
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: avi_gh_ssh
+        switch: off
+      - IN: microbase_img
+        switch: off
+      - IN: microbase_repo
+        switch: off
+      - IN: rel_prod
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagAndPushRepo.sh microbase Shippable
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  - name: tag_push_img_micro
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: micro_img
+        switch: off
+      - IN: shipbits_ecr_cli
+        switch: off
+      - IN: rel_prod
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagAndPushImage.sh micro 374168611083.dkr.ecr.us-east-1.amazonaws.com
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  - name: tag_push_repo_micro
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: avi_gh_ssh
+        switch: off
+      - IN: micro_img
+        switch: off
+      - IN: micro_repo
+        switch: off
+      - IN: rel_prod
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagAndPushRepo.sh micro Shippable
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  - name: tag_push_img_genexec
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: genexec_img
+        switch: off
+      - IN: shipbits_ecr_cli
+        switch: off
+      - IN: rel_prod
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagAndPushImage.sh genexec 374168611083.dkr.ecr.us-east-1.amazonaws.com
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  - name: tag_push_repo_cexec
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: avi_gh_ssh
+        switch: off
+      - IN: cexec_img
+        switch: off
+      - IN: cexec_repo
+        switch: off
+      - IN: rel_prod
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagAndPushRepo.sh cexec Shippable
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:

@@ -28,6 +28,14 @@ resources:
       sourceName: shippable/nexec
       branch: master
 
+  - name: nexec_img
+    type: image
+    integration: ecr-bits-push
+    pointer:
+      sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/nexec"
+    seed:
+      versionName: latest
+
   - name: cexec_repo
     type: gitRepo
     integration: ric03uec-github
@@ -35,11 +43,11 @@ resources:
       sourceName: shippable/cexec
       branch: master
 
-  - name: nexec_img
+  - name: cexec_img
     type: image
-    integration: ecr-bits-push
+    integration: shipDH
     pointer:
-      sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/nexec"
+      sourceName: "drydock/cexec"
     seed:
       versionName: latest
 
