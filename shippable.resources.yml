@@ -137,16 +137,6 @@ resources:
   # begin alpha rc infra
   ###############################
 
-# CREDS for AWS ALPHA account
-  - name: aws_alpha_access
-    type: integration
-    integration: aws-alpha-access
-
-# PEM key for AWS ALPHA account
-  - name: aws_alpha_pem
-    type: integration
-    integration: aws-alpha-pem
-
 # REPO of AWS Infra provisioning
   - name: infra_repo
     type: gitRepo
@@ -255,12 +245,6 @@ resources:
   ###############################
   # BEGIN notification resources
   ###############################
-  - name: slack_alpha
-    type: notification
-    integration: ship-slack
-    pointer:
-      recipients:
-        - "#alpha"
 
   - name: slack_rc
     type: notification
