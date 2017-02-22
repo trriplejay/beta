@@ -187,10 +187,10 @@ jobs:
     type: runSh
     steps:
       - IN: bat_repo
-      - IN: bat_ship_alpha_parms
+      - IN: bvt_params
       - IN: deploy_rc
       - TASK:
-        - script: IN/bat_repo/gitRepo/test.sh bat_ship_alpha_parms
+        - script: IN/bat_repo/gitRepo/test.sh bvt_params
     on_success:
       - script: echo 'succeeded'
     on_failure:
