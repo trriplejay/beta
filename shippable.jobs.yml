@@ -325,39 +325,7 @@ jobs:
   ###########################################
   # BEGIN run infra provisioning
   ###########################################
-
-  - name: alpha_saas_infra_prov
-    type: runSh
-    steps:
-      - IN: aws_alpha_pem
-      - IN: aws_alpha_access
-      - IN: infra_repo
-        switch: off
-      - TASK:
-        - script: IN/infra_repo/gitRepo/provision.sh alpha saas
-    on_success:
-      - script: echo 'SUCCESS!'
-    on_failure:
-      - script: echo 'FAILURE!'
-    always:
-      - script: /build/IN/infra_repo/gitRepo/archiveProvisionState.sh alpha saas
-
-  - name: alpha_server_infra_prov
-    type: runSh
-    steps:
-      - IN: aws_alpha_pem
-      - IN: aws_alpha_access
-      - IN: infra_repo
-        switch: off
-      - TASK:
-        - script: IN/infra_repo/gitRepo/provision.sh alpha server
-    on_success:
-      - script: echo 'SUCCESS!'
-    on_failure:
-      - script: echo 'FAILURE!'
-    always:
-      - script: /build/IN/infra_repo/gitRepo/archiveProvisionState.sh alpha server
-
+  
   - name: rc_saas_infra_prov
     type: runSh
     steps:
@@ -373,22 +341,6 @@ jobs:
       - script: echo 'FAILURE!'
     always:
       - script: /build/IN/infra_repo/gitRepo/archiveProvisionState.sh rc saas
-
-  - name: rc_server_infra_prov
-    type: runSh
-    steps:
-      - IN: aws_rc_pem
-      - IN: aws_rc_access
-      - IN: infra_repo
-        switch: off
-      - TASK:
-        - script: IN/infra_repo/gitRepo/provision.sh rc server
-    on_success:
-      - script: echo 'SUCCESS!'
-    on_failure:
-      - script: echo 'FAILURE!'
-    always:
-      - script: /build/IN/infra_repo/gitRepo/archiveProvisionState.sh rc server
 
   - name: prod_saas_infra_prov
     type: runSh
