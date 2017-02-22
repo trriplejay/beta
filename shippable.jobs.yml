@@ -288,6 +288,8 @@ jobs:
     steps:
       - IN: ship_ver
         switch: off
+      - IN: bvt
+        switch: off
       - TASK: managed
         bump: patch
 
@@ -412,7 +414,7 @@ jobs:
   # BEGIN Build Acceptance Tests
   ###########################################
 
-  - name: build_acceptance
+  - name: bvt
     type: runSh
     steps:
       - IN: bat_repo
