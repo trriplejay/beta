@@ -207,10 +207,7 @@ jobs:
     steps:
       - IN: config_repo
         switch: off
-#      - IN: push_rc
-#        switch: off
-      - IN: build_rcami
-        switch: off
+      - IN: patch_baseami
       - IN: aws_rc_pem
       - IN: aws_rc_swarm
       - TASK:
@@ -490,6 +487,7 @@ jobs:
   - name: patch_baseami
     type: runSh
     steps:
+      - IN: cexec_repo
       - IN: baseami_params
       - IN: aws_bits_access
       - IN: build_baseami
