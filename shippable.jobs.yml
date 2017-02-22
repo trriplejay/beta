@@ -207,9 +207,15 @@ jobs:
     steps:
       - IN: config_repo
         switch: off
+      - IN: base_repo
       - IN: patch_baseami
       - IN: aws_rc_pem
       - IN: aws_rc_swarm
+      - IN: api_img
+      - IN: www_img
+      - IN: nexec_img
+      - IN: genexec_img
+      - IN: micro_img
       - TASK:
         - script: ./IN/config_repo/gitRepo/deployRc.sh
     on_success:
