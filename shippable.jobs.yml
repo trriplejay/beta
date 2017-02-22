@@ -923,3 +923,49 @@ jobs:
   ###########################################
   # END Drydock image builds
   ###########################################
+
+  ###########################################
+  # START TAG & PUSH image/repos/amis
+  ###########################################
+
+  - name: tag_push_img_www
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: www_img
+        switch: off
+      - IN: shipbits_ecr_cli
+        switch: off
+      - IN: rel_prod
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagAndPushImage.sh www 374168611083.dkr.ecr.us-east-1.amazonaws.com
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  - name: tag_push_repo_www
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: avi_gh_ssh
+        switch: off
+      - IN: www_img
+        switch: off
+      - IN: www_repo
+        switch: off
+      - IN: shipbits_ecr_cli
+        switch: off
+      - IN: rel_prod
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagAndPushRepo.sh www 374168611083.dkr.ecr.us-east-1.amazonaws.com Shippable
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  ###########################################
+  # START TAG & PUSH image/repos/amis
+  ###########################################
