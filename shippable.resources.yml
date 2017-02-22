@@ -669,13 +669,6 @@ resources:
     type: integration
     integration: avi_gh_ssh
 
-  - name: test_repo
-    type: gitRepo
-    integration: avinci_gh
-    pointer:
-      sourceName: avinci/test
-      branch: master
-
   ###############################
   # End SSH Key to GH
   ###############################

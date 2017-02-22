@@ -1,16 +1,10 @@
 #!/bin/bash -e
 
 export CURR_JOB="deploy_rc"
-export RES_REPO="config_repo"
-export RES_PUSH="push_rc"
+
 export RES_SWARM="aws_rc_swarm"
 export RES_PEM="aws_rc_pem"
-
-export RES_REPO_UP=$(echo $RES_REPO | awk '{print toupper($0)}')
-export RES_REPO_STATE=$(eval echo "$"$RES_REPO_UP"_STATE")
-
-export RES_PUSH_UP=$(echo $RES_PUSH | awk '{print toupper($0)}')
-export RES_PUSH_VER_NAME=$(eval echo "$"$RES_PUSH_UP"_VERSIONNAME")
+export DEPLOY_VERSION="master"
 
 export RES_SWARM_UP=$(echo $RES_SWARM | awk '{print toupper($0)}')
 export RES_SWARM_PARAMS_STR=$RES_SWARM_UP"_PARAMS_RC"
@@ -27,14 +21,9 @@ set_context() {
   #export $PEM_KEY=$(RES_PEM_INT_STR)
 
   echo "CURR_JOB=$CURR_JOB"
-  echo "RES_REPO=$RES_REPO"
-  echo "RES_PUSH=$RES_PUSH"
   echo "RES_SWARM=$RES_SWARM"
+  echo "DEPLOY_VERSION=$DEPLOY_VERSION"
 
-  echo "RES_REPO_UP=$RES_REPO_UP"
-  echo "RES_REPO_STATE=$RES_REPO_STATE"
-  echo "RES_PUSH_UP=$RES_PUSH_UP"
-  echo "RES_PUSH_VER_NAME=$RES_PUSH_VER_NAME"
   echo "RES_SWARM_UP=$RES_SWARM_UP"
   echo "RES_SWARM_PARAMS=$RES_SWARM_PARAMS"
   echo "RES_PEM_UP=$RES_PEM_UP"
@@ -85,7 +74,7 @@ pull_base_repo() {
 }
 
 deploy() {
-  echo "Deploying the release $RES_PUSH_VER_NAME to rc"
+  echo "Deploying the release $DEPLOY_VERSION to rc"
   echo "--------------------------------------"
 
   echo "SSH key file list"
@@ -96,19 +85,18 @@ deploy() {
   ssh -A $BASTION_USER@$BASTION_IP ssh $SWARM_USER@$SWARM_IP "$inspect_command"
   echo "-------------------------------------="
 
-  #local deploy_command="ls -al"
-  local deploy_command="sudo /home/ubuntu/base/base.sh --release $RES_PUSH_VER_NAME"
+  local deploy_command="sudo /home/ubuntu/base/base.sh --release $DEPLOY_VERSION"
   echo "Executing deploy command: $deploy_command"
   ssh -A $BASTION_USER@$BASTION_IP ssh $SWARM_USER@$SWARM_IP "$deploy_command"
   echo "-------------------------------------="
 
-  echo "Successfully deployed release $RES_PUSH_VER_NAME to rc env"
+  echo "Successfully deployed release $DEPLOY_VERSION to rc env"
 }
 
 create_version() {
   echo "Creating a state file for" $CURR_JOB
   # create a state file so that next job can pick it up
-  echo "versionName=$RES_PUSH_VER_NAME" > "$JOB_STATE/$CURR_JOB.env" #adding version state
+  echo "versionName=$DEPLOY_VERSION" > "$JOB_STATE/$CURR_JOB.env" #adding version state
   echo "Completed creating a state file for" $CURR_JOB
 }
 

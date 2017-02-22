@@ -325,7 +325,7 @@ jobs:
   ###########################################
   # BEGIN run infra provisioning
   ###########################################
-  
+
   - name: rc_saas_infra_prov
     type: runSh
     steps:
@@ -922,26 +922,4 @@ jobs:
 
   ###########################################
   # END Drydock image builds
-  ###########################################
-
-  ###########################################
-  # Start Test GitRepo push
-  ###########################################
-
-  - name: test_git_push
-    type: runSh
-    steps:
-      - IN: avi_gh_ssh
-      - IN: test_repo
-      - IN: config_repo
-        switch: off
-      - TASK:
-        - script: IN/config_repo/gitRepo/testGit.sh
-    on_success:
-      - script: echo "SUCCESS"
-    on_failure:
-      - script: echo 'Failed job .... :('
-
-  ###########################################
-  # End Test GitRepo push
   ###########################################
