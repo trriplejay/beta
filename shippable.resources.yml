@@ -626,3 +626,9 @@ resources:
   ###############################
   # End SSH Key to GH
   ###############################
+
+  - name: team_params
+    type: params
+    version:
+      params:
+        #shippable org owner token
