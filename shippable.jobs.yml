@@ -117,6 +117,7 @@ jobs:
       - IN: nexec_img
       - IN: genexec_img
       - IN: micro_img
+        switch: off
       - TASK:
         - script: ./IN/config_repo/gitRepo/deployRc.sh
     on_success:
