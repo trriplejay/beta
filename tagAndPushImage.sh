@@ -13,7 +13,7 @@ export RES_IMAGE_UP=$(echo $RES_IMAGE | awk '{print toupper($0)}')
 export RES_IMAGE_META=$(eval echo "$"$RES_IMAGE_UP"_META")
 
 export RES_VER_UP=$(echo $RES_VER | awk '{print toupper($0)}')
-export RES_VER_NAME=$(eval echo "$"$RES_REPO_UP"_VERSIONNAME")
+export RES_VER_NAME=$(eval echo "$"$RES_VER_UP"_VERSIONNAME")
 
 set_context() {
   export PULL_IMG=$HUB_ORG/$IMAGE_NAME:$UP_TAG_NAME
