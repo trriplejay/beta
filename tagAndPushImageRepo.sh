@@ -17,7 +17,7 @@ export RES_IMAGE_UP=$(echo $RES_IMAGE | awk '{print toupper($0)}')
 export RES_IMAGE_META=$(eval echo "$"$RES_IMAGE_UP"_META")
 
 export RES_VER_UP=$(echo $RES_VER | awk '{print toupper($0)}')
-export RES_VER_NAME=$(eval echo "$"$RES_REPO_UP"_VERSIONANAME")
+export RES_VER_NAME=$(eval echo "$"$RES_REPO_UP"_VERSIONNAME")
 
 export RES_REPO_UP=$(echo $RES_REPO | awk '{print toupper($0)}')
 export RES_REPO_STATE=$(eval echo "$"$RES_REPO_UP"_STATE")
