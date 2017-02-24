@@ -85,7 +85,7 @@ deploy() {
   ssh -A $BASTION_USER@$BASTION_IP ssh $SWARM_USER@$SWARM_IP "$inspect_command"
   echo "-------------------------------------="
 
-  local deploy_command="sudo /home/ubuntu/base/base.sh update --version $DEPLOY_VERSION"
+  local deploy_command="sudo /home/ubuntu/base/base.sh upgrade --version $DEPLOY_VERSION"
   echo "Executing deploy command: $deploy_command"
   ssh -A $BASTION_USER@$BASTION_IP ssh $SWARM_USER@$SWARM_IP "$deploy_command"
   echo "-------------------------------------="
