@@ -22,7 +22,7 @@ jobs:
         switch: off
       - IN: cexec_repo
         switch: off
-      - IN: lock_team
+      - IN: lock_trigger_cexec
       - IN: microbase_img
       - IN: ship_dh_cli
       - TASK:
@@ -40,7 +40,7 @@ jobs:
         switch: off
       - IN: nexec_repo
         switch: off
-      - IN: lock_team
+      - IN: lock_trigger_nexec
       - IN: microbase_img
       - IN: shipbits_ecr_cli
       - TASK:
@@ -59,7 +59,7 @@ jobs:
     steps:
       - IN: micro_repo
         switch: off
-      - IN: lock_team
+      - IN: lock_trigger_micro
       - IN: microbase_img
       - IN: shipbits_ecr_cli
       - IN: ship_dh_cli
@@ -79,7 +79,7 @@ jobs:
         switch: off
       - IN: api_repo
         switch: off
-      - IN: lock_team
+      - IN: lock_trigger_api
       - IN: microbase_img
       - IN: shipbits_ecr_cli
       - TASK:
@@ -97,7 +97,7 @@ jobs:
         switch: off
       - IN: www_repo
         switch: off
-      - IN: lock_team
+      - IN: lock_trigger_www
       - IN: microbase_img
       - IN: shipbits_ecr_cli
       - TASK:
@@ -1349,13 +1349,65 @@ jobs:
   # begin LOCK UNLOCK JOBS
   ##########################
 
-  - name: lock_team
+  - name: lock_trigger_api
     type: runCLI
     steps:
       - IN: api_repo
+      - IN: team_params
+      - IN: config_repo
+        switch: off
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/lockUnlockTeams.sh pull
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  - name: lock_trigger_www
+    type: runCLI
+    steps:
       - IN: www_repo
+      - IN: team_params
+      - IN: config_repo
+        switch: off
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/lockUnlockTeams.sh pull
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  - name: lock_trigger_micro
+    type: runCLI
+    steps:
       - IN: micro_repo
+      - IN: team_params
+      - IN: config_repo
+        switch: off
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/lockUnlockTeams.sh pull
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  - name: lock_trigger_cexec
+    type: runCLI
+    steps:
       - IN: cexec_repo
+      - IN: team_params
+      - IN: config_repo
+        switch: off
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/lockUnlockTeams.sh pull
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  - name: lock_trigger_nexec
+    type: runCLI
+    steps:
       - IN: nexec_repo
       - IN: team_params
       - IN: config_repo
