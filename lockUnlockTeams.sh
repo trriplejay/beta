@@ -4,7 +4,7 @@ export RES_PARAMS="team_params"
 
 export RES_PARAMS_UP=$(echo $RES_PARAMS | awk '{print toupper($0)}')
 export RES_PARAMS_STR=$RES_PARAMS_UP"_PARAMS"
-export GITHUB_TOKEN=$(eval echo "$"$RES_PARAMS_STR"_TOKEN")
+export GITHUB_TOKEN=$(eval echo "$"$RES_PARAMS_STR"_GITHUB_TOKEN")
 export ORG_NAME=$(eval echo "$"$RES_PARAMS_STR"_ORG_NAME")
 export TEAM_ID=$(eval echo "$"$RES_PARAMS_STR"_TEAM_ID")
 export TEAM_NAME=$(eval echo "$"$RES_PARAMS_STR"_TEAM_NAME")
