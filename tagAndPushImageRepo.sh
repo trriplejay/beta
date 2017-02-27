@@ -89,6 +89,7 @@ tag_push_repo(){
 
   git remote add up $SSH_PATH
   git remote -v
+  git checkout master
 
   git pull --tags
   git checkout $IMG_REPO_COMMIT_SHA
