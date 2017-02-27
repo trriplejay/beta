@@ -15,8 +15,6 @@ set_context() {
   echo "TEAM_NAME=$TEAM_NAME"
   echo "TEAM_ID=$TEAM_ID"
   echo "GITHUB_API_URL=$GITHUB_API_URL"
-  echo "GITHUB_TOKEN=$GITHUB_TOKEN"
-
 }
 
 check_jq() {
