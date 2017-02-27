@@ -314,6 +314,64 @@ jobs:
   - name: build_finalami
     type: runSh
     steps:
+      - IN: tag_push_u16cppall
+        switch: off
+      - IN: tag_push_u16phpall
+        switch: off
+      - IN: tag_push_u16ruball
+        switch: off
+      - IN: tag_push_u16scaall
+        switch: off
+      - IN: tag_push_u16javall
+        switch: off
+      - IN: tag_push_u16golall
+        switch: off
+      - IN: tag_push_u16cloall
+        switch: off
+      - IN: tag_push_u16pytall
+        switch: off
+      - IN: tag_push_u16nodall
+        switch: off
+      - IN: tag_push_u16all
+        switch: off
+      - IN: tag_push_u16
+        switch: off
+      - IN: tag_push_u14cppall
+        switch: off
+      - IN: tag_push_u14phpall
+        switch: off
+      - IN: tag_push_u14ruball
+        switch: off
+      - IN: tag_push_u14scaall
+        switch: off
+      - IN: tag_push_u14javall
+        switch: off
+      - IN: tag_push_u14golall
+        switch: off
+      - IN: tag_push_u14cloall
+        switch: off
+      - IN: tag_push_u14pytall
+        switch: off
+      - IN: tag_push_u14nodall
+        switch: off
+      - IN: tag_push_u14all
+        switch: off
+      - IN: tag_push_u14
+        switch: off
+      - IN: tag_push_www
+        switch: off
+      - IN: tag_push_genexec
+        switch: off
+      - IN: tag_push_api
+        switch: off
+      - IN: tag_push_micro
+        switch: off
+      - IN: tag_push_microbase
+        switch: off
+      - IN: tag_push_cexec
+        switch: off
+      - IN: tag_push_nexec
+        switch: off
       - IN: baseami_params
       - IN: aws_bits_access
       - IN: bldami_repo
@@ -322,7 +380,7 @@ jobs:
         switch: off
       - IN: rel_prod
       - TASK:
-        - script: IN/bldami_repo/gitRepo/exec/execPack.sh build_finalami rel_prod
+        - script: IN/bldami_repo/gitRepo/exec/execPack.sh
     on_success:
       - script: echo "SUCCESS"
     on_failure:
@@ -333,6 +391,10 @@ jobs:
     steps:
       - IN: baseami_params
       - IN: aws_bits_access
+      - IN: tag_push_genexec
+        switch: off
+      - IN: tag_push_cexec
+        switch: off
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -348,6 +410,10 @@ jobs:
     steps:
       - IN: baseami_params
       - IN: aws_bits_access
+      - IN: tag_push_genexec
+        switch: off
+      - IN: tag_push_cexec
+        switch: off
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -817,9 +883,12 @@ jobs:
         switch: off
       - IN: shipbits_ecr_cli
         switch: off
+      - IN: ship_dh_cli
+        switch: off
       - IN: rel_prod
       - TASK:
         - script: ./IN/config_repo/gitRepo/tagAndPushImage.sh genexec 374168611083.dkr.ecr.us-east-1.amazonaws.com
+        - script: ./IN/config_repo/gitRepo/tagAndPushImage.sh genexec shipimg
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
@@ -1332,7 +1401,7 @@ jobs:
       - script: echo 'Failed job .... :('
 
   ###########################################
-  # START TAG & PUSH image/repos/amis
+  # END TAG & PUSH image/repos/amis
   ###########################################
 
   ##########################
@@ -1375,3 +1444,4 @@ jobs:
   ##########################
   # begin LOCK UNLOCK JOBS
   ##########################
+

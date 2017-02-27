@@ -79,18 +79,27 @@ pull_tag_image() {
   sudo docker tag -f $PULL_IMG $PUSH_IMG
 
   echo "Pushing $PUSH_IMG"
-  sudo docker push $PUSH_IMG
+  sudo docker push -f $PUSH_IMG
 
   echo "Completed Docker tag & push for $PUSH_IMG"
 }
 
 tag_push_repo(){
   pushd $RES_REPO_STATE
+
   git remote add up $SSH_PATH
   git remote -v
+
+  git pull --tags
   git checkout $IMG_REPO_COMMIT_SHA
+
+  if git tag -d $RES_VER_NAME; then
+    git push --delete origin $RES_VER_NAME
+  fi
+
   git tag $RES_VER_NAME
   git push up $RES_VER_NAME
+
   popd
 }
 
