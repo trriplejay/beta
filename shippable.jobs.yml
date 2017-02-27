@@ -7,7 +7,6 @@ jobs:
       - IN: microbase_repo
       - IN: u14_img
       - IN: ship_dh_cli
-      - OUT: lock_team
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh microbase drydock
       - OUT: microbase_img
@@ -1348,6 +1347,7 @@ jobs:
       - IN: micro_repo
       - IN: nexec_repo
       - IN: cexec_repo
+      - IN: build_microbase
       - IN: team_params
       - IN: config_repo
         switch: off
