@@ -322,7 +322,7 @@ jobs:
         switch: off
       - IN: rel_prod
       - TASK:
-        - script: IN/bldami_repo/gitRepo/exec/execPack.sh build_finalami rel_prod
+        - script: IN/bldami_repo/gitRepo/exec/execPack.sh
     on_success:
       - script: echo "SUCCESS"
     on_failure:
