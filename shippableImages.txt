@@ -1,5 +1,0 @@
-api
-www
-micro
-genexec
-nexec

@@ -79,7 +79,7 @@ pull_tag_image() {
   sudo docker tag -f $PULL_IMG $PUSH_IMG
 
   echo "Pushing $PUSH_IMG"
-  sudo docker push -f $PUSH_IMG
+  sudo docker push $PUSH_IMG
 
   echo "Completed Docker tag & push for $PUSH_IMG"
 }
