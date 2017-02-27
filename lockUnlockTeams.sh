@@ -56,16 +56,19 @@ change_permissions() {
     for repo_name in $TEAM_REPOS; do
       url="$GITHUB_API_URL/teams/$TEAM_ID/repos/$ORG_NAME/$repo_name"
       #check if this repo is managed by the team
-      local responseCode=$(curl --write-out %{http_code} --silent -X GET -H "Accept: application/json" -H "Authorization: token $GITHUB_TOKEN" $url)
-      if [ $responseCode -eq 204 ]; then
-        local res=$(curl --write-out %{http_code} --silent -X PUT -H "Content-Type: application/json" -H "Accept: application/vnd.github.v3.repository+json" -H "Authorization: token $GITHUB_TOKEN" $url -d "$data")
-        if [ $res -eq 204 ]; then
+      ret=$(curl -s -o /dev/null -w "%{http_code}" -X GET -H "Accept: application/json" -H "Authorization: token $GITHUB_TOKEN" $url)
+      if [ "$ret" == 204 ]; then
+        local res=$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H "Content-Type: application/json" -H "Accept: application/vnd.github.v3.repository+json" -H "Authorization: token $GITHUB_TOKEN" $url -d "$data")
+        if [ "$res" == 204 ]; then
           echo "Permission updated to $permission for repository $repo_name"
           echo "----------------------------------------------"
         else
           echo "Update $permission permission failed for repository $repo_name"
           echo "----------------------------------------------"
         fi
+      else
+        echo "Failed to fetch info for repository $repo_name"
+        echo "----------------------------------------------"
       fi
     done
   fi
