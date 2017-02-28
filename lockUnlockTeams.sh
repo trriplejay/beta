@@ -31,15 +31,17 @@ get_team_repos() {
   if [ $TEAM_ID != "" ] || [ $TEAM_ID != null ]; then
     echo "Getting team repositories for $TEAM_NAME"
     echo "----------------------------------------------"
+
     pageNo=1
     while true; do
       local url="$GITHUB_API_URL/teams/$TEAM_ID/repos?page=$pageNo"
-      local res=$(curl --silent -X GET -H "Accept: application/json" -H "Authorization: token $GITHUB_TOKEN" $url)
-      length=$(echo $res |  jq '. | length')
+      local ret=$(curl --silent -X GET -H "Accept: application/json" -H "Authorization: token $GITHUB_TOKEN" $url)
+      length=$(echo $ret |  jq '. | length')
       if [ "$length" -gt 0 ]; then
-        TEAM_REPOS+=$(echo $res |  jq -r ".[] | select(.fork == false) | .name")
+        TEAM_REPOS+=$(echo $ret |  jq -r "[ .[] | select(.fork == false) | .name ]")
         pageNo=$((pageNo+1))
       else
+        TEAM_REPOS=$(echo $TEAM_REPOS | jq -r .[])
         break
       fi
     done
@@ -58,8 +60,8 @@ change_permissions() {
       #check if this repo is managed by the team
       ret=$(curl -s -o /dev/null -w "%{http_code}" -X GET -H "Accept: application/json" -H "Authorization: token $GITHUB_TOKEN" $url)
       if [ "$ret" == 204 ]; then
-        local res=$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H "Content-Type: application/json" -H "Accept: application/vnd.github.v3.repository+json" -H "Authorization: token $GITHUB_TOKEN" $url -d "$data")
-        if [ "$res" == 204 ]; then
+        local ret=$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H "Content-Type: application/json" -H "Accept: application/vnd.github.v3.repository+json" -H "Authorization: token $GITHUB_TOKEN" $url -d "$data")
+        if [ "$ret" == 204 ]; then
           echo "Permission updated to $permission for repository $repo_name"
           echo "----------------------------------------------"
         else
