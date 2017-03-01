@@ -51,6 +51,13 @@ resources:
     seed:
       versionName: latest
 
+  - name: scripts_repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/node
+      branch: master
+
   ###############################
   # begin Shippable Server resources
   ###############################

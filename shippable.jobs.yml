@@ -109,6 +109,7 @@ jobs:
       - IN: config_repo
         switch: off
       - IN: base_repo
+      - IN: scripts_repo
       - IN: patch_baseami
       - IN: aws_rc_pem
       - IN: aws_rc_swarm
@@ -931,6 +932,23 @@ jobs:
       - IN: rel_prod
       - TASK:
         - script: ./IN/config_repo/gitRepo/tagAndPushImageRepo.sh cexec drydock Shippable
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  - name: tag_push_scripts
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: scripts_repo
+        switch: off
+      - IN: avi_gh_ssh
+        switch: off
+      - IN: rel_prod
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagAndPushRepo.sh node Shippable
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
