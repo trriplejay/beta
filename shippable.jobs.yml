@@ -1472,6 +1472,7 @@ jobs:
       - IN: micro_repo
       - IN: nexec_repo
       - IN: cexec_repo
+      - IN: mktg_repo
       - IN: build_microbase
       - IN: team_params
       - IN: config_repo
