@@ -47,6 +47,22 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
+  - name: build_mktg
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: mktg_repo
+      - IN: microbase_img
+      - IN: shipbits_ecr_cli
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/buildImage.sh mktg 374168611083.dkr.ecr.us-east-1.amazonaws.com
+      - OUT: mktg_img
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
   ##########################
   # begin Shippable Server jobs
   ##########################
@@ -118,6 +134,7 @@ jobs:
       - IN: nexec_img
       - IN: genexec_img
       - IN: micro_img
+      - IN: mktg_img
         switch: off
       - TASK:
         - script: ./IN/config_repo/gitRepo/deployRc.sh
@@ -937,6 +954,27 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
+  - name: tag_push_mktg
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: avi_gh_ssh
+        switch: off
+      - IN: mktg_img
+        switch: off
+      - IN: mktg_repo
+        switch: off
+      - IN: ship_dh_cli
+        switch: off
+      - IN: rel_prod
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagAndPushImageRepo.sh mktg 374168611083.dkr.ecr.us-east-1.amazonaws.com Shippable
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
   - name: tag_push_scripts
     type: runCLI
     steps:
@@ -1434,6 +1472,7 @@ jobs:
       - IN: micro_repo
       - IN: nexec_repo
       - IN: cexec_repo
+      - IN: mktg_repo
       - IN: build_microbase
       - IN: team_params
       - IN: config_repo
