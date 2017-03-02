@@ -88,6 +88,7 @@ jobs:
       - IN: config_repo
         switch: off
       - IN: api_repo
+      - IN: scripts_repo
       - IN: microbase_img
       - IN: shipbits_ecr_cli
       - TASK:
@@ -125,7 +126,6 @@ jobs:
       - IN: config_repo
         switch: off
       - IN: base_repo
-      - IN: scripts_repo
       - IN: patch_baseami
       - IN: aws_rc_pem
       - IN: aws_rc_swarm
