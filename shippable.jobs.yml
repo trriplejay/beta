@@ -133,9 +133,8 @@ jobs:
       - IN: www_img
       - IN: nexec_img
       - IN: genexec_img
-      - IN: micro_img
       - IN: mktg_img
-        switch: off
+      - IN: micro_img
       - TASK:
         - script: ./IN/config_repo/gitRepo/deployRc.sh
     on_success:
