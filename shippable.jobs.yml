@@ -391,7 +391,7 @@ jobs:
         switch: off
       - IN: tag_push_cexec
         switch: off
-      - IN: node_scripts_repo
+      - IN: tag_push_scripts
         switch: off
       - IN: tag_push_nexec
         switch: off
@@ -418,7 +418,7 @@ jobs:
         switch: off
       - IN: tag_push_cexec
         switch: off
-      - IN: node_scripts_repo
+      - IN: tag_push_scripts
         switch: off
       - IN: bldami_repo
         switch: off
@@ -439,7 +439,7 @@ jobs:
         switch: off
       - IN: tag_push_cexec
         switch: off
-      - IN: node_scripts_repo
+      - IN: tag_push_scripts
         switch: off
       - IN: bldami_repo
         switch: off
