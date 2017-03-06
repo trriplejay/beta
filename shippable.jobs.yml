@@ -88,7 +88,7 @@ jobs:
       - IN: config_repo
         switch: off
       - IN: api_repo
-      - IN: scripts_repo
+      - IN: node_scripts_repo
       - IN: microbase_img
       - IN: shipbits_ecr_cli
       - TASK:
@@ -284,6 +284,7 @@ jobs:
     type: runSh
     steps:
       - IN: cexec_repo
+      - IN: node_scripts_repo
       - IN: baseami_params
       - IN: aws_bits_access
       - IN: build_baseami
@@ -979,7 +980,7 @@ jobs:
     steps:
       - IN: config_repo
         switch: off
-      - IN: scripts_repo
+      - IN: node_scripts_repo
         switch: off
       - IN: avi_gh_ssh
         switch: off

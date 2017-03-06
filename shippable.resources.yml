@@ -51,7 +51,7 @@ resources:
     seed:
       versionName: latest
 
-  - name: scripts_repo
+  - name: node_scripts_repo
     type: gitRepo
     integration: ric03uec-github
     pointer:
