@@ -271,6 +271,8 @@ jobs:
         switch: off
       - IN: baseami_params
       - IN: aws_bits_access
+      - IN: node_scripts_repo
+        switch: off
       - IN: bldami_repo
         switch: off
       - TASK:
@@ -285,6 +287,7 @@ jobs:
     steps:
       - IN: cexec_repo
       - IN: node_scripts_repo
+        switch: off
       - IN: baseami_params
       - IN: aws_bits_access
       - IN: build_baseami
@@ -388,6 +391,8 @@ jobs:
         switch: off
       - IN: tag_push_cexec
         switch: off
+      - IN: node_scripts_repo
+        switch: off
       - IN: tag_push_nexec
         switch: off
       - IN: baseami_params
@@ -413,6 +418,8 @@ jobs:
         switch: off
       - IN: tag_push_cexec
         switch: off
+      - IN: node_scripts_repo
+        switch: off
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -431,6 +438,8 @@ jobs:
       - IN: tag_push_img_genexec
         switch: off
       - IN: tag_push_cexec
+        switch: off
+      - IN: node_scripts_repo
         switch: off
       - IN: bldami_repo
         switch: off
