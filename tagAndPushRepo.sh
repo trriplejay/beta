@@ -8,7 +8,7 @@ export RES_IMAGE=$CONTEXT"_img"
 export RES_VER="rel_prod"
 export RES_REPO=$CONTEXT"_repo"
 export RES_GH_SSH="avi_gh_ssh"
-export SH_PATH="git@github.com:$GH_ORG/$CONTEXT.git"
+export SSH_PATH="git@github.com:$GH_ORG/$CONTEXT.git"
 
 export RES_IMAGE_UP=$(echo $RES_IMAGE | awk '{print toupper($0)}')
 export RES_IMAGE_META=$(eval echo "$"$RES_IMAGE_UP"_META")
