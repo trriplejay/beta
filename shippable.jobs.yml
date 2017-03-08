@@ -31,17 +31,17 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_node_scripts
+  - name: build_node
     type: runCLI
     steps:
       - IN: config_repo
         switch: off
-      - IN: node_scripts_repo
+      - IN: node_repo
       - IN: microbase_img
       - IN: ship_dh_cli
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh node drydock
-      - OUT: node_scripts_img
+      - OUT: node_img
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
@@ -104,7 +104,7 @@ jobs:
       - IN: config_repo
         switch: off
       - IN: api_repo
-      - IN: node_scripts_repo
+      - IN: node_repo
       - IN: microbase_img
       - IN: shipbits_ecr_cli
       - TASK:
@@ -287,7 +287,7 @@ jobs:
         switch: off
       - IN: baseami_params
       - IN: aws_bits_access
-      - IN: node_scripts_repo
+      - IN: node_repo
         switch: off
       - IN: bldami_repo
         switch: off
@@ -302,7 +302,7 @@ jobs:
     type: runSh
     steps:
       - IN: cexec_repo
-      - IN: node_scripts_repo
+      - IN: node_repo
         switch: off
       - IN: baseami_params
       - IN: aws_bits_access
@@ -407,7 +407,7 @@ jobs:
         switch: off
       - IN: tag_push_cexec
         switch: off
-      - IN: tag_push_node_scripts
+      - IN: tag_push_node
         switch: off
       - IN: tag_push_nexec
         switch: off
@@ -434,7 +434,7 @@ jobs:
         switch: off
       - IN: tag_push_cexec
         switch: off
-      - IN: tag_push_node_scripts
+      - IN: tag_push_node
         switch: off
       - IN: bldami_repo
         switch: off
@@ -455,7 +455,7 @@ jobs:
         switch: off
       - IN: tag_push_cexec
         switch: off
-      - IN: tag_push_node_scripts
+      - IN: tag_push_node
         switch: off
       - IN: bldami_repo
         switch: off
@@ -1000,14 +1000,14 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_node_scripts
+  - name: tag_push_node
     type: runCLI
     steps:
       - IN: config_repo
         switch: off
-      - IN: node_scripts_repo
+      - IN: node_repo
         switch: off
-      - IN: node_scripts_img
+      - IN: node_img
         switch: off
       - IN: avi_gh_ssh
         switch: off
