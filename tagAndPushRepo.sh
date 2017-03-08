@@ -4,10 +4,14 @@ export CONTEXT=$1
 export GH_ORG=$2
 
 export CURR_JOB="tag_push_"$CONTEXT
+export RES_IMAGE=$CONTEXT"_img"
 export RES_VER="rel_prod"
 export RES_REPO=$CONTEXT"_repo"
 export RES_GH_SSH="avi_gh_ssh"
 export SSH_PATH="git@github.com:$GH_ORG/$CONTEXT.git"
+
+export RES_IMAGE_UP=$(echo $RES_IMAGE | awk '{print toupper($0)}')
+export RES_IMAGE_META=$(eval echo "$"$RES_IMAGE_UP"_META")
 
 export RES_VER_UP=$(echo $RES_VER | awk '{print toupper($0)}')
 export RES_VER_NAME=$(eval echo "$"$RES_VER_UP"_VERSIONNAME")
@@ -26,6 +30,7 @@ set_context() {
 
   echo "CONTEXT=$CONTEXT"
   echo "CURR_JOB=$CURR_JOB"
+  echo "RES_IMAGE=$RES_IMAGE"
   echo "RES_VER=$RES_VER"
   echo "RES_REPO=$RES_REPO"
   echo "RES_GH_SSH=$RES_GH_SSH"
