@@ -51,6 +51,14 @@ resources:
     seed:
       versionName: latest
 
+  - name: node_scripts_img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "drydock/node"
+    seed:
+      versionName: latest
+
   - name: node_scripts_repo
     type: gitRepo
     integration: ric03uec-github
