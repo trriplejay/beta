@@ -1013,7 +1013,7 @@ jobs:
         switch: off
       - IN: rel_prod
       - TASK:
-        - script: ./IN/config_repo/gitRepo/tagAndPushRepo.sh node drydock Shippable
+        - script: ./IN/config_repo/gitRepo/tagAndPushRepo.sh node Shippable
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
