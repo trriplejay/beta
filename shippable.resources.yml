@@ -51,7 +51,7 @@ resources:
     seed:
       versionName: latest
 
-  - name: node_scripts_img
+  - name: node_img
     type: image
     integration: shipDH
     pointer:
@@ -59,7 +59,7 @@ resources:
     seed:
       versionName: latest
 
-  - name: node_scripts_repo
+  - name: node_repo
     type: gitRepo
     integration: ric03uec-github
     pointer:
