@@ -60,9 +60,14 @@ change_permissions() {
       if [[ " ${REPOS_TO_BE_SKIPPED[*]} " != *"$repo_name"* ]]; then
         url="$GITHUB_API_URL/teams/$TEAM_ID/repos/$ORG_NAME/$repo_name"
         #check if this repo is managed by the team
-        ret=$(curl -s -o /dev/null -w "%{http_code}" -X GET -H "Accept: application/json" -H "Authorization: token $GITHUB_TOKEN" $url)
+        ret=$(curl -s -o /dev/null -w "%{http_code}" \
+          -X GET -H "Accept: application/json" \
+          -H "Authorization: token $GITHUB_TOKEN" $url)
         if [ "$ret" == 204 ]; then
-          local ret=$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H "Content-Type: application/json" -H "Accept: application/vnd.github.v3.repository+json" -H "Authorization: token $GITHUB_TOKEN" $url -d "$data")
+          local ret=$(curl -s -o /dev/null -w "%{http_code}" \
+          -X PUT -H "Content-Type: application/json" \
+          -H "Accept: application/vnd.github.v3.repository+json" \
+          -H "Authorization: token $GITHUB_TOKEN" $url -d "$data")
           if [ "$ret" == 204 ]; then
             echo "Permission updated to $permission for repository $repo_name"
             echo "----------------------------------------------"
@@ -74,6 +79,8 @@ change_permissions() {
           echo "Failed to fetch info for repository $repo_name"
           echo "----------------------------------------------"
         fi
+      else
+        echo "Skipping permission for repository $repo_name"
       fi
     done
   fi
