@@ -55,22 +55,32 @@ change_permissions() {
 
     local permission="$1"
     local data="{\"permission\": \"$permission\"}"
+    local REPOS_TO_BE_SKIPPED=(pm heap support)
     for repo_name in $TEAM_REPOS; do
-      url="$GITHUB_API_URL/teams/$TEAM_ID/repos/$ORG_NAME/$repo_name"
-      #check if this repo is managed by the team
-      ret=$(curl -s -o /dev/null -w "%{http_code}" -X GET -H "Accept: application/json" -H "Authorization: token $GITHUB_TOKEN" $url)
-      if [ "$ret" == 204 ]; then
-        local ret=$(curl -s -o /dev/null -w "%{http_code}" -X PUT -H "Content-Type: application/json" -H "Accept: application/vnd.github.v3.repository+json" -H "Authorization: token $GITHUB_TOKEN" $url -d "$data")
+      if [[ "${REPOS_TO_BE_SKIPPED[*]}" != *"$repo_name"* ]]; then
+        url="$GITHUB_API_URL/teams/$TEAM_ID/repos/$ORG_NAME/$repo_name"
+        #check if this repo is managed by the team
+        ret=$(curl -s -o /dev/null -w "%{http_code}" \
+          -X GET -H "Accept: application/json" \
+          -H "Authorization: token $GITHUB_TOKEN" $url)
         if [ "$ret" == 204 ]; then
-          echo "Permission updated to $permission for repository $repo_name"
-          echo "----------------------------------------------"
+          local ret=$(curl -s -o /dev/null -w "%{http_code}" \
+          -X PUT -H "Content-Type: application/json" \
+          -H "Accept: application/vnd.github.v3.repository+json" \
+          -H "Authorization: token $GITHUB_TOKEN" $url -d "$data")
+          if [ "$ret" == 204 ]; then
+            echo "Permission updated to $permission for repository $repo_name"
+            echo "----------------------------------------------"
+          else
+            echo "Update $permission permission failed for repository $repo_name"
+            echo "----------------------------------------------"
+          fi
         else
-          echo "Update $permission permission failed for repository $repo_name"
+          echo "Failed to fetch info for repository $repo_name"
           echo "----------------------------------------------"
         fi
       else
-        echo "Failed to fetch info for repository $repo_name"
-        echo "----------------------------------------------"
+        echo "Skipping permission for repository $repo_name"
       fi
     done
   fi
