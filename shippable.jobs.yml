@@ -993,7 +993,7 @@ jobs:
         switch: off
       - IN: mktg_repo
         switch: off
-      - IN: ship_dh_cli
+      - IN: shipbits_ecr_cli
         switch: off
       - IN: rel_prod
       - TASK:
