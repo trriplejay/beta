@@ -6,6 +6,14 @@ resources:
       sourceName: shippable/base
       branch: master
 
+  - name: base_img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "drydock/base"
+    seed:
+      versionName: latest
+
   - name: microbase_repo
     type: gitRepo
     integration: ric03uec-github
