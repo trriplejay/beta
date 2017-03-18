@@ -82,7 +82,7 @@ tag_push_repo() {
   local versions_file=$versions_dir""$RES_VER_NAME".json"
 
   # make sure the alias cp - i is overridden
-  unalias cp
+  #unalias cp
 
   cp -rf $migrations_dir"master.sql" $migrations_version_file
   cp -rf $migrations_post_install_dir"master-post_install.sql" $migrations_post_install_versions_file
