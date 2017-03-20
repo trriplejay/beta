@@ -29,6 +29,7 @@ set_context() {
   echo "RES_REPO_UP=$RES_REPO_UP"
   echo "RES_REPO_STATE=$RES_REPO_STATE"
   echo "BLD_IMG=$BLD_IMG"
+  echo "BUILD_NUMBER=$BUILD_NUMBER"
 }
 
 create_image() {
@@ -50,6 +51,7 @@ create_out_state() {
   echo "Creating a state file for $RES_IMAGE_OUT"
   echo versionName=$TAG_NAME > "$JOB_STATE/$RES_IMAGE_OUT.env"
   echo IMG_REPO_COMMIT_SHA=$RES_REPO_COMMIT >> "$JOB_STATE/$RES_IMAGE_OUT.env"
+  echo BUILD_NUMBER=$BUILD_NUMBER >> "$JOB_STATE/$RES_IMAGE_OUT.env"
 
   echo "Creating a state file for $CURR_JOB"
   echo versionName=$TAG_NAME > "$JOB_STATE/$CURR_JOB.env"
