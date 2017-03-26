@@ -1589,3 +1589,23 @@ jobs:
   # begin LOCK UNLOCK JOBS
   ##########################
 
+
+  ##########################
+  # begin DOCS JOBS
+  ##########################
+  - name: publish_prod_docs
+    type: runSh
+    steps:
+      - IN: docsv2_ciRepo
+        switch: off
+      - IN: aws_prod_access
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/publishDocs.sh prod s3://docs.shippable.com us-east-1
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  ##########################
+  # end DOCS JOBS
+  ##########################
