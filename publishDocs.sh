@@ -12,7 +12,7 @@ export AWS_SECRET_KEY=$(eval echo "$"$RES_AWS_CREDS_UP"_INTEGRATION_AWS_SECRET_A
 export AWS_S3_LOCAL_PATH="site"
 
 sync_docs() {
-  pushd IN/docsv2_ciRepo/gitRepo/
+  pushd IN/docsv2_repo/gitRepo/
 
   echo "Installing requirements with pip"
   pip install -r requirements.txt
