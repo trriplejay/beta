@@ -1596,6 +1596,8 @@ jobs:
   - name: publish_prod_docs
     type: runSh
     steps:
+      - IN: config_repo
+        switch: off
       - IN: docsv2_ciRepo
         switch: off
       - IN: aws_prod_access
