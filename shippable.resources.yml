@@ -674,3 +674,18 @@ resources:
         ORG_NAME: "shippable"
         GITHUB_API_URL: 'https://api.github.com'
         secure: x5wKdu6PFyLZAGowQQ2bs/p8VDzBJfOoe0JVKDK51GVfNlMCuZX3jY0bxlkj+im3Vl3xSGdUK0I2R+SzmbGiazPizjGC98MhR6T4XnhKGIMAqOzwHjyd2eRmyksZOCFQ1KkrXLGJ4jMkaOEnzgjWP98ZC9VHyd/QmbP9d74w+QY3EtMw0jzCN+7t/Y0JVP/SOj7NRjNdhcuXVA7YsSYur4aILJ+bpBLgRGe/AJiUaBEi9Xw9xrmOh+M1tv5qmzTkNE65KJfdRsljCvVT0ZPfVQFzdHAlmL3ffqYmaS2qwi9go7HbDLIvwuKve2cK36arhiHgrE8VSQa5I0L7J2gs3g==
+
+
+  ###############################
+  # begin docs resources
+  ###############################
+  - name: docsv2_repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/docsv2
+      branch: master
+
+  ###############################
+  # end docs resources
+  ###############################

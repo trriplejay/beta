@@ -1598,7 +1598,7 @@ jobs:
     steps:
       - IN: config_repo
         switch: off
-      - IN: docsv2_ciRepo
+      - IN: docsv2_repo
         switch: off
       - IN: aws_prod_access
       - TASK:
