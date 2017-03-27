@@ -1608,6 +1608,20 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
+  - name: publish_rc_docs
+    type: runSh
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: docsv2_repo
+      - IN: aws_rc_access
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/publishDocs.sh rc s3://rcdocs.shippable.com us-east-1
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
   ##########################
   # end DOCS JOBS
   ##########################
