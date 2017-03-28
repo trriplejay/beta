@@ -1637,7 +1637,7 @@ jobs:
         switch: off
       - IN: prod_api_params
       - TASK:
-        - script: ./IN/config_repo/gitRepo/check_queue.sh prod
+        - script: ./IN/config_repo/gitRepo/checkQueue.sh prod
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
