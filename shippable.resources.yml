@@ -275,6 +275,7 @@ resources:
         SUBNET_ID: "subnet-6df12f24"
         SECURITY_GROUP_ID: "sg-f634518c"
         REGION: "us-east-1"
+        SHIPPABLE_NODE_INIT_SCRIPT: "Ubuntu_14.04_Docker_1.13.sh"
 
   ###############################
   # END AMI Build resources
