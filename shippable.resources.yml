@@ -313,7 +313,7 @@ resources:
         api_url: "https://api.shippable.com"
         secure: rfE3f5nvnePbHS/4+1IzNCSPUR08M6/Dnz4D6IecZZiCiNiO7kIf4b1Ga/uj9K1zFIXVcNS1cW6q+GxrEMAROj1f32HxYsJuoK6TA1JmCSq3I04XnCChH1S5pzyHQeLJ/cN+sLvMFLRtF+YBZgzPRUC0NEmxnVcjI39nGYkcW/7Cc5G33f6lokB18cn/lY+YcNc2l65znbtmhPV8QFIbrp6ZKwfCagYmC+r4D2/ps9Kky56/Ap+ZRkOQCcIk1x5Wuxo+kxqbkNebBI4qm9EzQYYrRD02oyrXeNSYK+aDSjTHH+z9EcxzMxIHp+PDri5gw+EKI1DWx305w0ciPLKqqA==
         queue_limit: 1000
-        queue_limit_jobTrigger: 1000
+        queue_limit_jobTrigger: 5000
 
   - name: check_queue_trigger
     type: time
