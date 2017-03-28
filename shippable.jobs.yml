@@ -1625,3 +1625,25 @@ jobs:
   ##########################
   # end DOCS JOBS
   ##########################
+
+  ##########################
+  # begin check_queue job
+  ##########################
+  - name: check_prod_queue
+    type: runSh
+    steps:
+      - IN: check_queue_trigger
+      - IN: config_repo
+        switch: off
+      - IN: prod_api_params
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/check_queue.sh prod
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+      - NOTIFY: slack_prod
+
+  ##########################
+  # end check_queue job
+  ##########################
