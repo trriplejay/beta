@@ -95,6 +95,22 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
+  - name: build_admiral
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: admiral_repo
+      - IN: microbase_img
+      - IN: shipbits_ecr_cli
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/buildImage.sh admiral 374168611083.dkr.ecr.us-east-1.amazonaws.com
+      - OUT: admiral_img
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
   ##########################
   # begin Shippable Server jobs
   ##########################
@@ -1074,6 +1090,27 @@ jobs:
       - IN: rel_prod
       - TASK:
         - script: ./IN/config_repo/gitRepo/tagAndPushBaseRepo.sh
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  - name: tag_push_admiral
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: admiral_repo
+        switch: off
+      - IN: admiral_img
+        switch: off
+      - IN: avi_gh_ssh
+        switch: off
+      - IN: shipbits_ecr_cli
+        switch: off
+      - IN: rel_prod
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagAndPushImageRepo.sh admiral 374168611083.dkr.ecr.us-east-1.amazonaws.com Shippable
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
