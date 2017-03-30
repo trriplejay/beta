@@ -345,6 +345,21 @@ resources:
   # BEGIN drydock resources
   ###############################
 
+  - name: gitlab_repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: dry-dock/gitlab
+      branch: master
+
+  - name: gitlab_img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "drydock/gitlab"
+    seed:
+      versionName: latest
+
   - name: vault_repo
     type: gitRepo
     integration: ric03uec-github
