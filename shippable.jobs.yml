@@ -532,6 +532,21 @@ jobs:
   # START Drydock image builds
   ###########################################
 
+  - name: build_postgres
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: postgres_repo
+      - IN: ship_dh_cli
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/buildImage.sh postgres drydock
+      - OUT: postgres_img
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
   - name: build_u14
     type: runCLI
     steps:
@@ -1116,7 +1131,29 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  ### Taggin u14 images
+  ### Tagging core services
+  - name: tag_push_postgres
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: avi_gh_ssh
+        switch: off
+      - IN: postgres_img
+        switch: off
+      - IN: postgres_repo
+        switch: off
+      - IN: ship_dh_cli
+        switch: off
+      - IN: rel_prod
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagAndPushImageRepo.sh postgres drydock dry-dock
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  ### Tagging u14 images
   - name: tag_push_u14
     type: runCLI
     steps:
@@ -1348,7 +1385,7 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  ### Taggin u16 images
+  ### Tagging u16 images
   - name: tag_push_u16
     type: runCLI
     steps:
