@@ -345,6 +345,21 @@ resources:
   # BEGIN drydock resources
   ###############################
 
+  - name: vault_repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: dry-dock/vault
+      branch: master
+
+  - name: vault_img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "drydock/vault"
+    seed:
+      versionName: latest
+
   - name: postgres_repo
     type: gitRepo
     integration: ric03uec-github

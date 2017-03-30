@@ -532,6 +532,22 @@ jobs:
   # START Drydock image builds
   ###########################################
 
+  - name: build_vault
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: vault_repo
+      - IN: ship_dh_cli
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/buildImage.sh vault drydock
+      - OUT: vault_img
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+
   - name: build_postgres
     type: runCLI
     steps:
@@ -1132,6 +1148,27 @@ jobs:
       - script: echo 'Failed job .... :('
 
   ### Tagging core services
+  - name: tag_push_vault
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: avi_gh_ssh
+        switch: off
+      - IN: vault_img
+        switch: off
+      - IN: vault_repo
+        switch: off
+      - IN: ship_dh_cli
+        switch: off
+      - IN: rel_prod
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagAndPushImageRepo.sh vault drydock dry-dock
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
   - name: tag_push_postgres
     type: runCLI
     steps:
