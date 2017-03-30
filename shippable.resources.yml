@@ -344,6 +344,22 @@ resources:
   ###############################
   # BEGIN drydock resources
   ###############################
+
+  - name: postgres_repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: dry-dock/postgres
+      branch: master
+
+  - name: postgres_img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "drydock/postgres"
+    seed:
+      versionName: latest
+
   - name: u14_repo
     type: gitRepo
     integration: ric03uec-github
