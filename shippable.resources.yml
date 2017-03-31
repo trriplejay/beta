@@ -778,6 +778,13 @@ resources:
       sourceName: shippable/docsv2
       branch: master
 
+  - name: docsv2_ciRepo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/docsv2
+      branch: master
+
   ###############################
   # end docs resources
   ###############################
