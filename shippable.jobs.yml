@@ -1740,20 +1740,20 @@ jobs:
   ##########################
   # begin DOCS JOBS
   ##########################
-#  - name: publish_prod_docs
-#    type: runSh
-#    steps:
-#      - IN: config_repo
-#        switch: off
-#      - IN: docsv2_repo
-#        switch: off
-#      - IN: aws_prod_access
-#      - TASK:
-#        - script: ./IN/config_repo/gitRepo/publishDocs.sh prod s3://docs.shippable.com us-west-2
-#    on_success:
-#      - script: echo 'on success !!!!!'
-#    on_failure:
-#      - script: echo 'Failed job .... :('
+  - name: publish_prod_docs
+    type: runSh
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: docsv2_repo
+        switch: off
+      - IN: aws_prod_access
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/publishDocs.sh prod s3://docs.shippable.com us-west-2
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
 
   - name: publish_rc_docs
     type: runSh
