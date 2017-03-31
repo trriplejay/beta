@@ -1745,8 +1745,9 @@ jobs:
     steps:
       - IN: config_repo
         switch: off
-      - IN: docsv2_repo
-        switch: off
+      - IN: docsv2_ciRepo
+#      - IN: docsv2_repo
+#        switch: off
       - IN: aws_prod_access
       - TASK:
         - script: ./IN/config_repo/gitRepo/publishDocs.sh prod s3://docs.shippable.com us-west-2
