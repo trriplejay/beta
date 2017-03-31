@@ -771,14 +771,8 @@ resources:
   ###############################
   # begin docs resources
   ###############################
-  - name: docsv2_repo
-    type: gitRepo
-    integration: ric03uec-github
-    pointer:
-      sourceName: shippable/docsv2
-      branch: master
 
-  - name: docsv2_ciRepo
+  - name: docsv2_repo
     type: gitRepo
     integration: ric03uec-github
     pointer:
