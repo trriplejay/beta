@@ -532,6 +532,36 @@ jobs:
   # START Drydock image builds
   ###########################################
 
+  - name: build_redis
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: redis_repo
+      - IN: ship_dh_cli
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/buildImage.sh redis drydock
+      - OUT: redis_img
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  - name: build_rabbitmq
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: rabbitmq_repo
+      - IN: ship_dh_cli
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/buildImage.sh rabbitmq drydock
+      - OUT: rabbitmq_img
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
   - name: build_gitlab
     type: runCLI
     steps:
@@ -1163,6 +1193,49 @@ jobs:
       - script: echo 'Failed job .... :('
 
   ### Tagging core services
+
+  - name: tag_push_redis
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: avi_gh_ssh
+        switch: off
+      - IN: redis_img
+        switch: off
+      - IN: redis_repo
+        switch: off
+      - IN: ship_dh_cli
+        switch: off
+      - IN: rel_prod
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagAndPushImageRepo.sh redis drydock dry-dock
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  - name: tag_push_rabbitmq
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: avi_gh_ssh
+        switch: off
+      - IN: rabbitmq_img
+        switch: off
+      - IN: rabbitmq_repo
+        switch: off
+      - IN: ship_dh_cli
+        switch: off
+      - IN: rel_prod
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagAndPushImageRepo.sh rabbitmq drydock dry-dock
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
   - name: tag_push_gitlab
     type: runCLI
     steps:
