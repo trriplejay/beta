@@ -345,6 +345,36 @@ resources:
   # BEGIN drydock resources
   ###############################
 
+  - name: redis_repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: dry-dock/redis
+      branch: master
+
+  - name: redis_img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "drydock/redis"
+    seed:
+      versionName: latest
+
+  - name: rabbitmq_repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: dry-dock/rabbitmq
+      branch: master
+
+  - name: rabbitmq_img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: "drydock/rabbitmq"
+    seed:
+      versionName: latest
+
   - name: gitlab_repo
     type: gitRepo
     integration: ric03uec-github
