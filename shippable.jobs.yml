@@ -1842,7 +1842,7 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: deploy-docs-to-rc
+  - name: publish_rc_docs1
     type: runCLI
     steps:
       - IN: config_repo
