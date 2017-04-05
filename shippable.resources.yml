@@ -209,6 +209,12 @@ resources:
     type: integration
     integration: aws-rc-access
 
+ - name: aws-rc-cli
+   type: cliConfig
+   integration: aws_rc_access
+   pointer:
+     region: us-east-1
+
   ###############################
   # end alpha rc infra
   ###############################
@@ -807,6 +813,13 @@ resources:
     integration: ric03uec-github
     pointer:
       sourceName: shippable/docsv2
+      branch: master
+
+  - name: docs_repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/docs
       branch: master
 
   ###############################
