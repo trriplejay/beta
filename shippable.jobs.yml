@@ -1848,7 +1848,7 @@ jobs:
       - IN: config_repo
         switch: off
       - IN: docs_repo
-      - IN: aws-rc-cli
+      - IN: aws_rc_cli
       - TASK:
         - script: ./IN/config_repo/gitRepo/deployDocs.sh s3://rcdocs1.shippable.com us-east-1
     on_success:
