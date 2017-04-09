@@ -474,7 +474,7 @@ jobs:
       - IN: rel_prod
         switch: off
       - TASK:
-        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_finalami_tmp_v532 rel_prod ami-3f882529 v532
+        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_finalami_tmp_v532 rel_prod ami-3b972d2d v532
     on_success:
       - script: echo "SUCCESS"
     on_failure:
