@@ -480,6 +480,28 @@ jobs:
     on_failure:
       - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
 
+  - name: build_finalami_tmp_v541
+    type: runSh
+    steps:
+      - IN: baseami_params
+      - IN: aws_bits_access
+      - IN: tag_push_img_genexec
+        switch: off
+      - IN: tag_push_cexec
+        switch: off
+      - IN: tag_push_node
+        switch: off
+      - IN: bldami_repo
+        switch: off
+      - IN: rel_prod
+        switch: off
+      - TASK:
+        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_finalami_tmp_v541 rel_prod ami-90813b86 v541
+    on_success:
+      - script: echo "SUCCESS"
+    on_failure:
+      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
+
   - name: build_finalami_tmp
     type: runSh
     steps:
