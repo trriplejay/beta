@@ -102,9 +102,9 @@ jobs:
         switch: off
       - IN: admiral_repo
       - IN: microbase_img
-      - IN: shipbits_ecr_cli
+      - IN: ship_dh_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh admiral 374168611083.dkr.ecr.us-east-1.amazonaws.com
+        - script: ./IN/config_repo/gitRepo/buildImage.sh admiral drydock
       - OUT: admiral_img
     on_success:
       - script: echo 'on success !!!!!'
@@ -1204,11 +1204,11 @@ jobs:
         switch: off
       - IN: avi_gh_ssh
         switch: off
-      - IN: shipbits_ecr_cli
+      - IN: ship_dh_cli
         switch: off
       - IN: rel_prod
       - TASK:
-        - script: ./IN/config_repo/gitRepo/tagAndPushAdmiralImageRepo.sh 374168611083.dkr.ecr.us-east-1.amazonaws.com Shippable
+        - script: ./IN/config_repo/gitRepo/tagAndPushAdmiralImageRepo.sh drydock Shippable
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
