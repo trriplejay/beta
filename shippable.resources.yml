@@ -83,9 +83,9 @@ resources:
 
   - name: admiral_img
     type: image
-    integration: ecr-bits-push
+    integration: shipDH
     pointer:
-      sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/admiral"
+      sourceName: "drydock/admiral"
     seed:
       versionName: latest
 
