@@ -348,38 +348,6 @@ jobs:
     on_failure:
       - script: cat IN/bldami_repo/gitRepo/basePatch/output.txt
 
-  - name: build_rcami_tmp
-    type: runSh
-    steps:
-      - IN: baseami_params
-      - IN: aws_bits_access
-      - IN: bldami_repo
-        switch: off
-      - IN: u14_img
-        switch: off
-      - TASK:
-        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_rcami_tmp u14_img ami-4ae41a5c rc-stable
-    on_success:
-      - script: echo "SUCCESS"
-    on_failure:
-      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
-
-  - name: build_rcami_tmp_unst
-    type: runSh
-    steps:
-      - IN: baseami_params
-      - IN: aws_bits_access
-      - IN: bldami_repo
-        switch: off
-      - IN: u14_img
-        switch: off
-      - TASK:
-        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_rcami_tmp_unst u14_img ami-90fd0286 rc-unstable
-    on_success:
-      - script: echo "SUCCESS"
-    on_failure:
-      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
-
   - name: build_finalami
     type: runSh
     steps:
