@@ -348,38 +348,6 @@ jobs:
     on_failure:
       - script: cat IN/bldami_repo/gitRepo/basePatch/output.txt
 
-  - name: build_rcami_tmp
-    type: runSh
-    steps:
-      - IN: baseami_params
-      - IN: aws_bits_access
-      - IN: bldami_repo
-        switch: off
-      - IN: u14_img
-        switch: off
-      - TASK:
-        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_rcami_tmp u14_img ami-4ae41a5c rc-stable
-    on_success:
-      - script: echo "SUCCESS"
-    on_failure:
-      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
-
-  - name: build_rcami_tmp_unst
-    type: runSh
-    steps:
-      - IN: baseami_params
-      - IN: aws_bits_access
-      - IN: bldami_repo
-        switch: off
-      - IN: u14_img
-        switch: off
-      - TASK:
-        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_rcami_tmp_unst u14_img ami-90fd0286 rc-unstable
-    on_success:
-      - script: echo "SUCCESS"
-    on_failure:
-      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
-
   - name: build_finalami
     type: runSh
     steps:
@@ -458,7 +426,7 @@ jobs:
     on_failure:
       - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
 
-  - name: build_finalami_tmp_v532
+  - name: build_v532
     type: runSh
     steps:
       - IN: baseami_params
@@ -474,13 +442,13 @@ jobs:
       - IN: rel_prod
         switch: off
       - TASK:
-        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_finalami_tmp_v532 rel_prod ami-3b972d2d v532
+        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_v532 rel_prod ami-3b972d2d v532
     on_success:
       - script: echo "SUCCESS"
     on_failure:
       - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
 
-  - name: build_finalami_tmp_v541
+  - name: build_v541
     type: runSh
     steps:
       - IN: baseami_params
@@ -496,13 +464,13 @@ jobs:
       - IN: rel_prod
         switch: off
       - TASK:
-        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_finalami_tmp_v541 rel_prod ami-90813b86 v541
+        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_v541 rel_prod ami-90813b86 v541
     on_success:
       - script: echo "SUCCESS"
     on_failure:
       - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
 
-  - name: build_finalami_tmp
+  - name: build_stable
     type: runSh
     steps:
       - IN: baseami_params
@@ -518,13 +486,13 @@ jobs:
       - IN: rel_prod
         switch: off
       - TASK:
-        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_finalami_tmp rel_prod ami-4ae41a5c stable
+        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_stable rel_prod ami-4ae41a5c stable
     on_success:
       - script: echo "SUCCESS"
     on_failure:
       - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
 
-  - name: build_finalami_tmp_unst
+  - name: build_unstable
     type: runSh
     steps:
       - IN: baseami_params
@@ -540,15 +508,15 @@ jobs:
       - IN: rel_prod
         switch: off
       - TASK:
-        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_finalami_tmp_unst rel_prod ami-90fd0286 unstable
+        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_unstable rel_prod ami-90fd0286 unstable
     on_success:
       - script: echo "SUCCESS"
     on_failure:
       - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
+
   ###########################################
   # END Build AMI
   ###########################################
-
 
   ###########################################
   # START Drydock image builds
