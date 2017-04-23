@@ -55,7 +55,7 @@ change_permissions() {
 
     local permission="$1"
     local data="{\"permission\": \"$permission\"}"
-    local REPOS_TO_BE_SKIPPED=(pm heap support)
+    local REPOS_TO_BE_SKIPPED=(pm heap support docs docsv2)
     for repo_name in $TEAM_REPOS; do
       if [[ "${REPOS_TO_BE_SKIPPED[*]}" != *"$repo_name"* ]]; then
         url="$GITHUB_API_URL/teams/$TEAM_ID/repos/$ORG_NAME/$repo_name"
