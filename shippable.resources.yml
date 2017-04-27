@@ -299,6 +299,17 @@ resources:
         REGION: "us-east-1"
         SHIPPABLE_NODE_INIT_SCRIPT: "Ubuntu_14.04_Docker_1.13.sh"
 
+  - name: baseami_params_oh
+    type: params
+    version:
+      params:
+        SOURCE_AMI: "ami-8fab8fea"
+        VPC_ID: "vpc-7f4f8416"
+        SUBNET_ID: "subnet-b0161ffa"
+        SECURITY_GROUP_ID: "sg-3a2f8c53"
+        REGION: "us-east-2"
+        SHIPPABLE_NODE_INIT_SCRIPT: "Ubuntu_14.04_Docker_1.13.sh"
+
   ###############################
   # END AMI Build resources
   ###############################
