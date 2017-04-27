@@ -271,65 +271,65 @@ jobs:
   ###########################################
   # START Build AMI
   ###########################################
-  - name: build_baseami_oh
-    type: runSh
-    steps:
-      - IN: u16cppall_img
-        switch: off
-      - IN: u16phpall_img
-        switch: off
-      - IN: u16ruball_img
-        switch: off
-      - IN: u16scaall_img
-        switch: off
-      - IN: u16javall_img
-        switch: off
-      - IN: u16golall_img
-        switch: off
-      - IN: u16cloall_img
-        switch: off
-      - IN: u16pytall_img
-        switch: off
-      - IN: u16nodall_img
-        switch: off
-      - IN: u16all_img
-        switch: off
-      - IN: u16_img
-        switch: off
-      - IN: u14_img
-        switch: off
-      - IN: u14all_img
-        switch: off
-      - IN: u14nodall_img
-        switch: off
-      - IN: u14pytall_img
-        switch: off
-      - IN: u14cloall_img
-        switch: off
-      - IN: u14golall_img
-        switch: off
-      - IN: u14javall_img
-        switch: off
-      - IN: u14scaall_img
-        switch: off
-      - IN: u14ruball_img
-        switch: off
-      - IN: u14phpall_img
-        switch: off
-      - IN: u14cppall_img
-        switch: off
-      - IN: baseami_params_oh
-      - IN: aws_bits_access
-      - IN: node_repo
-        switch: off
-      - IN: bldami_repo
-        switch: off
-      - TASK:
-        - script: IN/bldami_repo/gitRepo/base/basePack.sh build_baseami_oh baseami_params_oh
-    on_success:
-      - script: echo "SUCCESS"
-    on_failure:
-      - script: cat IN/bldami_repo/gitRepo/base/output.txt
+#  - name: build_baseami_oh
+#    type: runSh
+#    steps:
+#      - IN: u16cppall_img
+#        switch: off
+#      - IN: u16phpall_img
+#        switch: off
+#      - IN: u16ruball_img
+#        switch: off
+#      - IN: u16scaall_img
+#        switch: off
+#      - IN: u16javall_img
+#        switch: off
+#      - IN: u16golall_img
+#        switch: off
+#      - IN: u16cloall_img
+#        switch: off
+#      - IN: u16pytall_img
+#        switch: off
+#      - IN: u16nodall_img
+#        switch: off
+#      - IN: u16all_img
+#        switch: off
+#      - IN: u16_img
+#        switch: off
+#      - IN: u14_img
+#        switch: off
+#      - IN: u14all_img
+#        switch: off
+#      - IN: u14nodall_img
+#        switch: off
+#      - IN: u14pytall_img
+#        switch: off
+#      - IN: u14cloall_img
+#        switch: off
+#      - IN: u14golall_img
+#        switch: off
+#      - IN: u14javall_img
+#        switch: off
+#      - IN: u14scaall_img
+#        switch: off
+#      - IN: u14ruball_img
+#        switch: off
+#      - IN: u14phpall_img
+#        switch: off
+#      - IN: u14cppall_img
+#        switch: off
+#      - IN: baseami_params_oh
+#      - IN: aws_bits_access
+#      - IN: node_repo
+#        switch: off
+#      - IN: bldami_repo
+#        switch: off
+#      - TASK:
+#        - script: IN/bldami_repo/gitRepo/base/basePack.sh build_baseami_oh baseami_params_oh
+#    on_success:
+#      - script: echo "SUCCESS"
+#    on_failure:
+#      - script: cat IN/bldami_repo/gitRepo/base/output.txt
 
   - name: build_baseami
     type: runSh
@@ -527,6 +527,28 @@ jobs:
         switch: off
       - TASK:
         - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_v541 rel_prod ami-90813b86 v541 Ubuntu_14.04_Docker_1.13.sh true
+    on_success:
+      - script: echo "SUCCESS"
+    on_failure:
+      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
+
+  - name: build_v551
+    type: runSh
+    steps:
+      - IN: baseami_params
+      - IN: aws_bits_access
+      - IN: tag_push_img_genexec
+        switch: off
+      - IN: tag_push_cexec
+        switch: off
+      - IN: tag_push_node
+        switch: off
+      - IN: bldami_repo
+        switch: off
+      - IN: rel_prod
+        switch: off
+      - TASK:
+        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_v541 rel_prod ami-4b36535d v551 Ubuntu_14.04_Docker_1.13.sh true
     on_success:
       - script: echo "SUCCESS"
     on_failure:
