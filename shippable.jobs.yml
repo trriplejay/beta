@@ -175,6 +175,7 @@ jobs:
         switch: off
       - IN: base_repo
       - IN: patch_baseami
+        switch: off
       - IN: aws_rc_pem
       - IN: aws_rc_swarm
       - IN: api_img
@@ -339,6 +340,7 @@ jobs:
       - IN: baseami_params
       - IN: aws_bits_access
       - IN: build_baseami
+        switch: off
       - IN: bldami_repo
         switch: off
       - TASK:
