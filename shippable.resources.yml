@@ -305,7 +305,7 @@ resources:
       params:
         SOURCE_AMI: "ami-8fab8fea"
         VPC_ID: "vpc-7f4f8416"
-        SUBNET_ID: "subnet-b0161ffa"
+        SUBNET_ID: "subnet-b8b410d1"
         SECURITY_GROUP_ID: "sg-3a2f8c53"
         REGION: "us-east-2"
         SHIPPABLE_NODE_INIT_SCRIPT: "Ubuntu_14.04_Docker_1.13.sh"
