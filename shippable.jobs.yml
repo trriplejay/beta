@@ -260,9 +260,9 @@ jobs:
       - TASK:
         - script: IN/bat_repo/gitRepo/test.sh bvt_params
     on_success:
-      - script: echo 'succeeded'
+      - NOTIFY: slack_rc
     on_failure:
-      - script: echo 'failed'
+      - NOTIFY: slack_rc
 
   ###########################################
   # END Build Acceptance Tests
