@@ -10,6 +10,8 @@ export RES_AWS_CREDS_UP=$(echo $RES_AWS_CREDS | awk '{print toupper($0)}')
 export AWS_ACCESS_KEY_ID=$(eval echo "$"$RES_AWS_CREDS_UP"_INTEGRATION_AWS_ACCESS_KEY_ID")
 export AWS_SECRET_ACCESS_KEY=$(eval echo "$"$RES_AWS_CREDS_UP"_INTEGRATION_AWS_SECRET_ACCESS_KEY")
 export AWS_S3_LOCAL_PATH="site"
+export REDIRECT_MAPPINGS_FILE="mapping.txt"
+export REDIRECT_MAPPINGS_SCRIPT="createredirect.sh"
 
 sync_docs() {
   pushd IN/docsv2_repo/gitRepo/
@@ -19,6 +21,11 @@ sync_docs() {
 
   echo "Building docs"
   mkdocs build
+
+  if [ -f $REDIRECT_MAPPINGS_FILE ]
+    echo "Setting up redirects"
+    ./$REDIRECT_MAPPINGS_SCRIPT
+  fi
 
   echo "Syncing with S3"
   aws s3 sync $AWS_S3_LOCAL_PATH $DOCS_BUCKET --delete --acl public-read --region $DOCS_REGION
