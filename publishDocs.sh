@@ -22,7 +22,7 @@ sync_docs() {
   echo "Building docs"
   mkdocs build
 
-  if [ -f $REDIRECT_MAPPINGS_FILE ]
+  if [ -f $REDIRECT_MAPPINGS_FILE ]; then
     echo "Setting up redirects"
     ./$REDIRECT_MAPPINGS_SCRIPT $REDIRECT_MAPPINGS_FILE $AWS_S3_LOCAL_PATH
   fi
