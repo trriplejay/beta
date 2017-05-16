@@ -1916,6 +1916,17 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
+  - name: publish_prod_docs1
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: docs_repo
+        switch: off
+      - IN: aws_prod_cli
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/deployDocs.sh s3://docs.shippable.com us-west-2
+
   - name: publish_rc_docs1
     type: runCLI
     steps:
@@ -1929,6 +1940,7 @@ jobs:
       - script: echo 'on success !!!!!'
     on_failure:
       - script: echo 'Failed job .... :('
+
   ##########################
   # end DOCS JOBS
   ##########################

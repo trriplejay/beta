@@ -237,6 +237,11 @@ resources:
   # end alpha rc infra
   ###############################
 
+  - name: aws_prod_cli
+    type: cliConfig
+    integration: aws-prod-access
+    pointer:
+      region: us-west-2
 
   ###############################
   # begin RC resources
