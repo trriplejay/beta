@@ -27,7 +27,7 @@ resources:
     pointer:
       sourceName: "drydock/microbase"
     seed:
-      versionName: latest
+      versionName: v5.5.3
 
   - name: nexec_repo
     type: gitRepo
