@@ -1887,7 +1887,7 @@ jobs:
   ##########################
   # begin DOCS JOBS
   ##########################
-  - name: publish_prod_docs1
+  - name: publish_prod_docs
     type: runCLI
     steps:
       - IN: config_repo
@@ -1898,7 +1898,7 @@ jobs:
       - TASK:
         - script: ./IN/config_repo/gitRepo/deployDocs.sh s3://docs.shippable.com us-west-2
 
-  - name: publish_rc_docs1
+  - name: publish_rc_docs
     type: runCLI
     steps:
       - IN: config_repo
