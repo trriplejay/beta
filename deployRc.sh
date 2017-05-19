@@ -93,10 +93,12 @@ deploy() {
   echo "-------------------------------------="
 
   #local deploy_command="sudo /home/ubuntu/base/base.sh upgrade --version $DEPLOY_VERSION"
-  local deploy_command="sudo /home/ubuntu/admiral/admiral.sh upgrade"
+  pushd /home/ubuntu/admiral
+  local deploy_command="sudo ./admiral.sh upgrade"
   echo "Executing deploy command: $deploy_command"
   ssh -A $BASTION_USER@$BASTION_IP ssh $SWARM_USER@$SWARM_IP "$deploy_command"
   echo "-------------------------------------="
+  popd
 
   echo "Successfully deployed release $DEPLOY_VERSION to rc env"
 }
