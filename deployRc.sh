@@ -66,13 +66,6 @@ configure_node_creds() {
   popd
 }
 
-pull_base_repo() {
-  echo "Pull base-repo started"
-  local PULL_CMD="git -C /home/ubuntu/base pull origin master"
-  ssh -A $BASTION_USER@$BASTION_IP ssh $SWARM_USER@$SWARM_IP "$PULL_CMD"
-  echo "Successfully pulled base-repo"
-}
-
 pull_admiral_repo() {
   echo "Pull admiral-repo started"
   local PULL_CMD="git -C /home/ubuntu/admiral pull origin master"
@@ -92,7 +85,6 @@ deploy() {
   ssh -A $BASTION_USER@$BASTION_IP ssh $SWARM_USER@$SWARM_IP "$inspect_command"
   echo "-------------------------------------="
 
-  #local deploy_command="sudo /home/ubuntu/base/base.sh upgrade --version $DEPLOY_VERSION"
   local deploy_command="sudo /home/ubuntu/admiral/admiral.sh upgrade"
   echo "Executing deploy command: $deploy_command"
   ssh -A $BASTION_USER@$BASTION_IP ssh $SWARM_USER@$SWARM_IP "$deploy_command"
@@ -112,7 +104,6 @@ main() {
   eval $(ssh-agent -s)
   set_context
   configure_node_creds
-  #pull_base_repo
   pull_admiral_repo
   deploy
   create_version
