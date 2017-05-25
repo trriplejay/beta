@@ -95,6 +95,20 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
+  - name: patch_mktg
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: mktg_img
+        switch: off
+      - IN: shipbits_ecr_cli
+        switch: off
+      - IN: rel_prod
+        switch: off
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/patchImage.sh mktg 374168611083.dkr.ecr.us-east-1.amazonaws.com rel_prod
+
   - name: build_admiral
     type: runCLI
     steps:
