@@ -279,6 +279,18 @@ jobs:
     on_failure:
       - NOTIFY: slack_rc
 
+  - name: bvt-v2
+    type: runSh
+    steps:
+      - IN: bvt_v2_repo
+      - IN: bvt_v2_params
+      - IN: deploy_rc
+      - TASK:
+        - script: IN/bvt_v2_repo/gitRepo/test.sh bvt_v2_params
+    on_success:
+      - NOTIFY: slack_rc
+    on_failure:
+      - NOTIFY: slack_rc
   ###########################################
   # END Build Acceptance Tests
   ###########################################
