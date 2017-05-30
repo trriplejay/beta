@@ -272,6 +272,7 @@ jobs:
       - IN: bat_repo
       - IN: bvt_params
       - IN: deploy_rc
+        switch: off
       - TASK:
         - script: IN/bat_repo/gitRepo/test.sh bvt_params
     on_success:
@@ -1895,7 +1896,7 @@ jobs:
   - name: unlock_team
     type: runCLI
     steps:
-      - IN: bvt
+      - IN: bvt-v2
       - IN: team_params
       - IN: config_repo
         switch: off
