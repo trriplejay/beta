@@ -47,22 +47,6 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_base
-    type: runCLI
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: base_repo
-      - IN: microbase_img
-      - IN: ship_dh_cli
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh base drydock
-      - OUT: base_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
   - name: build_nexec
     type: runCLI
     steps:
@@ -187,7 +171,6 @@ jobs:
     steps:
       - IN: config_repo
         switch: off
-      - IN: base_repo
       - IN: patch_baseami
         switch: off
       - IN: aws_rc_pem
@@ -1249,25 +1232,6 @@ jobs:
       - IN: rel_prod
       - TASK:
         - script: ./IN/config_repo/gitRepo/tagAndPushRepo.sh node Shippable
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
-  - name: tag_push_base
-    type: runCLI
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: base_repo
-        switch: off
-      - IN: base_img
-        switch: off
-      - IN: avi_gh_ssh
-        switch: off
-      - IN: rel_prod
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/tagAndPushBaseRepo.sh
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
