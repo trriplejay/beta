@@ -237,7 +237,8 @@ resources:
     type: params
     version:
       params:
-        secure: PHkbn8r0k25U6DZC3OzdI0rmRZA1FF7oe/Q/ijwEQ1/I1q2fnokwEdd8N11UuzY4nU15YFoptE5pe8PUKFbKuJCgBI6m7S3mrq5ihDIgwYRJgi2Bc/BqJz/hMYUCA5SRO2wUmKFdPgrgvMMxoQtIy3eWdGLb484YXnTD4fMpu5/M2UDQAaY2lc+x/NXRRAg/0F6yc2ANLsBEts2bEASCzyL6r49GnSNQ3QbwaCHrr5gBtOknx35bRHup8OnncqoXasKaWeLkHG4hSmDBjSr9NumasHfoVu7vB4NocGY6Gk7sp0UMT5UQHWGKJ5WRM/qnPTGL8OYxZ3v6clrPH3m/Fw==
+        secure: cSIYR0xJFn3+OK6WBhEgGa5LL2vSuL7xbuL3vXp+//TW13U9MXq8Ph8cqvIf/Jck0N/2+JA/0qF0YRaKWwi4kaQtLtYV7gWScdRzr9ORsFUll9BP6f9Ox7eTvC4nJcpqbTKLgwa5mo1ttYLCzJ7/FSSVlDfP5S2r8vQjy9qImEP6hDi2s2Qssc3bESkF4cYs3nIj/p/Nnb1O/F9L6prrF6RZ0tNa3SoEfGwRXIUOpxzcy2vptlpVMuwah1j0jXpJXfpSvGFDlnfKSLZ4FVIUQRsm+61ehHeqQTxEvbOl01ARtzI7cOcRwwwZ3vPTX7UXzhP+733/kOgWXpPUcC077w==
+
   ###############################
   # end RC resources
   ###############################
