@@ -200,6 +200,8 @@ jobs:
     steps:
       - IN: ship_ver
         switch: off
+      - IN: bvt-v2
+        switch: off
       - TASK: managed
         bump: patch
 
