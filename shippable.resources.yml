@@ -246,20 +246,6 @@ resources:
   ###############################
   # BEGIN BVT resources
   ###############################
-  - name: bat_repo
-    type: gitRepo
-    integration: ric03uec-github
-    pointer:
-      sourceName: shippable/bat
-      branch: master
-
-  - name: bvt_params
-    type: params
-    version:
-      params:
-        #API_TOKEN API_URL
-        secure: ZvT52e1ppkhFyJxZIXUXpF3dufd+PCIh+s527y6Tdetob7YWzS93pIdnpmrz+xL219ur8mu+OkOYZNTGhsMEMQJJJzUJC1nh2LeqHJF+gNSC1KUz3xD68SOw5kT5v7TiE7JYVA/8mIqrJFHVI7GhEq/YObkaZTmyFw6O4pikDSEqZMRnDlv0l2ou0xZw+YXHMHD8kiGOvZjK5rJ1xqPmmnCetxOm5/7g+d24x2797z2d8oS9yDSwG5KWdIZOh9tpI7EKKrMOsES6rBoUfYtFVOWReDzWKGK38tqFFK6gEuJzI6wMfUfy+GTpY+GFPjTfI+tJJfbKB69Ftk5+Pb777w7bwj8yweyFn5/V/GL1sTsI3X6zgHh1bmSHF5P5fwJDO7feX8Y5qVGcC5QDjbCzs3KTMAz2igLphGh4XdGLSqAJq7ooCTQ5BpMFWE3yWybGcnNXPe69BcuSUmHcvdBW7fCboNwgWOQxChKsa0V3dwJksn9Ehm/KUDCkORUdrCsZL751Hxb9OzPsPZUu/SRUmZWQ4jBosXU7Pkf77rwbES40USTFeqqzLXO+EhoSLAn/ozNcdfJ30IXnP/pu42CkXHqHGvQILRw+NE0PQ2PnYB239BTo0/Wg03ytLXYz3P2jbEAGJVrC8bDSBGeW1JQmLWaW6RzDvA4yymkGuxS1jQM=
-
   - name: bvt_v2_repo
     type: gitRepo
     integration: ric03uec-github
