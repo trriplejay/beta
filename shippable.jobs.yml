@@ -206,6 +206,7 @@ jobs:
         switch: off
       - IN: aws_rc_access
       - IN: aws_bits_access
+      - IN: aws_prod_access
       - IN: admiralami_params
       - TASK:
         - script: IN/bldami_repo/gitRepo/admiral/admiralPack.sh build_admiral_ami admiralami_params
