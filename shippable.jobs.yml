@@ -198,15 +198,17 @@ jobs:
   - name: build_admiral_ami
     type: runSh
     steps:
-      - IN: aws_rc_access
+      - IN: deploy_rc
+        switch: off
       - IN: config_repo
         switch: off
       - IN: bldami_repo
         switch: off
-      - IN: deploy_rc
-        switch: off
+      - IN: aws_rc_access
+      - IN: aws_bits_access
+      - IN: admiralami_params
       - TASK:
-        - script: IN/bldami_repo/gitRepo/admiral/admiralPack.sh
+        - script: IN/bldami_repo/gitRepo/admiral/admiralPack.sh build_admiral_ami admiralami_params
     on_success:
       - script: echo 'succeeded'
       - NOTIFY: slack_rc
