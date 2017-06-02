@@ -509,6 +509,25 @@ jobs:
     on_failure:
       - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
 
+  - name: build_final_admiral_ami
+    type: runSh
+    steps:
+      - IN: rel_prod
+        switch: off
+      - IN: config_repo
+        switch: off
+      - IN: bldami_repo
+        switch: off
+      - IN: aws_rc_access
+      - IN: aws_bits_access
+      - IN: admiralami_params
+      - TASK:
+        - script: IN/bldami_repo/gitRepo/admiral/admiralPack.sh build_admiral_ami admiralami_params rel_prod
+    on_success:
+      - script: echo 'SUCCESS'
+    on_failure:
+      - script: cat /build/IN/bldami_repo/gitRepo/admiral/output.txt
+
   - name: build_v532
     type: runSh
     steps:
