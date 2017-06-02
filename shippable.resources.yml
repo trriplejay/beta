@@ -79,8 +79,9 @@ resources:
     version:
       params:
         SOURCE_AMI: "ami-772aa961"
-        VPC_ID: "vpc-c52929a2"
-        SUBNET_ID: "subnet-70a92d39"
+        VPC_ID: "vpc-266f3241"
+        SUBNET_ID: "subnet-6df12f24"
+        SECURITY_GROUP_ID: "sg-f634518c"
         REGION: "us-east-1"
 
   ###############################
