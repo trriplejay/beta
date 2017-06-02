@@ -74,6 +74,15 @@ resources:
     seed:
       versionName: latest
 
+  - name: admiralami_params
+    type: params
+    version:
+      params:
+        SOURCE_AMI: "ami-772aa961",
+        VPC_ID: "vpc-c52929a2",
+        SUBNET_ID: "subnet-70a92d39"
+        REGION: "us-east-1"
+
 
   ###############################
   # begin Shippable Server resources
