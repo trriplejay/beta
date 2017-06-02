@@ -201,6 +201,8 @@ jobs:
       - IN: aws_rc_access
       - IN: config_repo
         switch: off
+      - IN: bldami_repo
+        switch: off
       - IN: deploy_rc
         switch: off
       - TASK:
