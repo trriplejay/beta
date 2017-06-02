@@ -204,7 +204,7 @@ jobs:
       - IN: deploy_rc
         switch: off
       - TASK:
-        - script: IN/bldami_repo/gitRepo/base/admiralPack.sh
+        - script: IN/bldami_repo/gitRepo/admiral/admiralPack.sh
     on_success:
       - script: echo 'succeeded'
       - NOTIFY: slack_rc
