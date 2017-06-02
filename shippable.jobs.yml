@@ -192,6 +192,27 @@ jobs:
       - NOTIFY: slack_rc
 
   ###########################################
+  # create admiral AMI after deployment
+  ###########################################
+
+  - name: build_admiral_ami
+    type: runSh
+    steps:
+      - IN: aws_rc_access
+      - IN: config_repo
+        switch: off
+      - IN: deploy_rc
+        switch: off
+      - TASK:
+        - script: IN/bldami_repo/gitRepo/admiral/admiralPack.sh
+    on_success:
+      - script: echo 'succeeded'
+      - NOTIFY: slack_rc
+    on_failure:
+      - script: echo 'failed'
+      - NOTIFY: slack_rc
+
+  ###########################################
   # release production from default manifest
   ###########################################
 
