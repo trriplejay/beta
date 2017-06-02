@@ -537,7 +537,7 @@ jobs:
       - IN: aws_bits_access
       - IN: admiralami_params
       - TASK:
-        - script: IN/bldami_repo/gitRepo/admiral/admiralPack.sh build_final_admiral_ami admiralami_params rel_prod
+        - script: IN/bldami_repo/gitRepo/admiralPatch/admiralPack.sh build_final_admiral_ami admiralami_params rel_prod
     on_success:
       - script: echo 'SUCCESS'
     on_failure:
