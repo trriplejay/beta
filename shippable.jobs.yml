@@ -204,7 +204,6 @@ jobs:
         switch: off
       - IN: bldami_repo
         switch: off
-      - IN: aws_rc_access
       - IN: aws_bits_access
       - IN: aws_prod_access
       - IN: admiralami_params
@@ -533,7 +532,7 @@ jobs:
         switch: off
       - IN: build_admiral_ami
         switch: off
-      - IN: aws_rc_access
+      - IN: aws_prod_access
       - IN: aws_bits_access
       - IN: admiralami_params
       - TASK:
