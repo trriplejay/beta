@@ -824,6 +824,14 @@ resources:
       sourceName: shippable/docs
       branch: master
 
+  - name: docs_repo_newui
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/docs
+      branch: newui
+
+
   ###############################
   # end docs resources
   ###############################
