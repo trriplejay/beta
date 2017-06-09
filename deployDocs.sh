@@ -2,12 +2,13 @@
 
 export DOCS_BUCKET=$1
 export DOCS_REGION=$2
+export DOCS_LOCATION=$3
 export AWS_S3_LOCAL_PATH="site"
 export REDIRECT_MAPPINGS_FILE="mapping.txt"
 export REDIRECT_MAPPINGS_SCRIPT="createredirect.sh"
 
 sync_docs() {
-  pushd IN/docs_repo/gitRepo/
+  pushd IN/$DOCS_LOCATION/gitRepo/
 
   echo "Installing requirements with pip"
   pip install -r requirements.txt
