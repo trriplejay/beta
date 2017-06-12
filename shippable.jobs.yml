@@ -1958,10 +1958,20 @@ jobs:
     steps:
       - IN: config_repo
         switch: off
+      - IN: docs_repo_newui
+      - IN: aws_rc_cli
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/deployDocs.sh s3://rcdocs.shippable.com us-east-1 docs_repo_newui
+
+  - name: publish_rc_docs_old
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
       - IN: docs_repo
       - IN: aws_rc_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/deployDocs.sh s3://rcdocs.shippable.com us-east-1 docs_repo
+        - script: ./IN/config_repo/gitRepo/deployDocs.sh s3://rcdocs1.shippable.com us-east-1 docs_repo
 
   ##########################
   # end DOCS JOBS
