@@ -3,12 +3,21 @@
 export DOCS_BUCKET=$1
 export DOCS_REGION=$2
 export DOCS_LOCATION=$3
+export RUN_MODE=$4
 export AWS_S3_LOCAL_PATH="site"
 export REDIRECT_MAPPINGS_FILE="mapping.txt"
 export REDIRECT_MAPPINGS_SCRIPT="createredirect.sh"
 
 sync_docs() {
   pushd IN/$DOCS_LOCATION/gitRepo/
+
+  if [ "$RUN_MODE" = "production" ]; then
+    echo "Copying prod-robots.txt > sources/robots.txt"
+    cp prod-robots.txt sources/robots.txt
+  else
+    echo "Copying dev-robots.txt > sources/robots.txt"
+    cp dev-robots.txt sources/robots.txt
+  fi
 
   echo "Installing requirements with pip"
   pip install -r requirements.txt
