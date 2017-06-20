@@ -1951,7 +1951,7 @@ jobs:
         switch: off
       - IN: aws_prod_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/deployDocs.sh s3://docs.shippable.com us-west-2 docs_repo
+        - script: ./IN/config_repo/gitRepo/deployDocs.sh s3://docs.shippable.com us-west-2 docs_repo production
 
   - name: publish_prod_docs_old_ui
     type: runCLI
@@ -1962,7 +1962,7 @@ jobs:
         switch: off
       - IN: aws_prod_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/deployDocs.sh s3://docsv1.shippable.com us-west-2 docs_repo_old_ui
+        - script: ./IN/config_repo/gitRepo/deployDocs.sh s3://docsv1.shippable.com us-west-2 docs_repo_old_ui production
 
   - name: publish_rc_docs
     type: runCLI
@@ -1972,7 +1972,7 @@ jobs:
       - IN: docs_repo
       - IN: aws_rc_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/deployDocs.sh s3://rcdocs.shippable.com us-east-1 docs_repo
+        - script: ./IN/config_repo/gitRepo/deployDocs.sh s3://rcdocs.shippable.com us-east-1 docs_repo rc
 
   - name: publish_rc_docs_old_ui
     type: runCLI
@@ -1982,7 +1982,7 @@ jobs:
       - IN: docs_repo_old_ui
       - IN: aws_rc_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/deployDocs.sh s3://rcdocs1.shippable.com us-east-1 docs_repo_old_ui
+        - script: ./IN/config_repo/gitRepo/deployDocs.sh s3://rcdocs1.shippable.com us-east-1 docs_repo_old_ui rc
 
   ##########################
   # end DOCS JOBS
