@@ -269,6 +269,10 @@ resources:
         #API_TOKEN API_URL LOG_LEVEL GITHUB_ACCESS_TOKEN_OWNER GITHUB_ACCESS_TOKEN_COLLAB GITHUB_ACCESS_TOKEN_MEMBER
         secure: uUYrw+mBKZt+2z15ewuCJIQ1HId41YdNXOx2y20CAgiqYURMhMVWbYGAD2hYw9ndygEklbOamXUSEVuRXBAyfLBBUCqf4IhQdCTa73A2osOxa94EaOCiEEXoDnogjTS8bC9ks23oz9k82jyh+umBFEo+t98Gu6P51lyuno0srHEuRbKRGhGWL2nKJ0ltmQ0yI5ezIx++nDBPplNurnZg8u120QhjzfAdNHQJN3vzlTwwkmHpfGxEWWDlDkETJhFRhlgb4RFwqa9HV9n2NR13MxQ/ETSxB56csJ0QPvIY9VblIyyG7DNkcj7WclzAcE/ym/wrsl5LQ8DjKtcsgU2wocLcWIpMXtgaqujWHI2ogRYZRTk2ABFjMq1M9aytQEQaWA1WHRGm4d9YU1Vi10NiVuvL4jSRskk+BAAAK4aoQD7ZIQBXZ2SB9Z9fOclCqLzKpK50v3l+oFBqEZK92ZGlI+aHqkI0XvCsdb/wFeNmtBHF7Tu2ZuNepQCiY6ZKfKCS16AAoT2yjlH8dzjvhlf83QdHpM9yIhNk2XoOuSX53Ecto/9wGm+Go1NYO2qIGwY4VVD5x/ArJmUEsVclifnM4mYWlno3J6odsCGEvBoNGGvJxDaN+1UmVFnuaVHkoxOUV4LZ/Z9SZ2prLAu9g4s7gyCjRChpmonfIqe5I/eF5lg=
 
+  - name: bvt_v2_ghc_owner_ssh_key
+    type: integration
+    integration: bvt_v2_ghc_owner_ssh_key
+
   ###############################
   # END BVT resources
   ###############################
