@@ -273,6 +273,10 @@ resources:
     type: integration
     integration: bvt_v2_ghc_owner_ssh_key
 
+  - name: bvt_v2_ghc_collab_ssh_key
+    type: integration
+    integration: bvt_v2_ghc_collab_ssh_key
+
   ###############################
   # END BVT resources
   ###############################

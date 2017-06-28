@@ -279,6 +279,7 @@ jobs:
       - IN: bvt_v2_repo
       - IN: bvt_v2_params
       - IN: bvt_v2_ghc_owner_ssh_key
+      - IN: bvt_v2_ghc_collab_ssh_key
       - IN: deploy_rc
       - TASK:
         - script: IN/bvt_v2_repo/gitRepo/test.sh bvt_v2_params
