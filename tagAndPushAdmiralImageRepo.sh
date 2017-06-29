@@ -28,6 +28,7 @@ export RES_GH_SSH_META=$(eval echo "$"$RES_GH_SSH_UP"_META")
 set_context() {
   export PULL_IMG=$HUB_ORG/$IMAGE_NAME:$UP_TAG_NAME
   export PUSH_IMG=$HUB_ORG/$IMAGE_NAME:$RES_VER_NAME
+  export PUSH_LAT_IMG=$HUB_ORG/$IMAGE_NAME:latest
 
   pushd $RES_IMAGE_META
   export IMG_REPO_COMMIT_SHA=$(jq -r '.version.propertyBag.IMG_REPO_COMMIT_SHA' version.json)
@@ -72,16 +73,25 @@ add_ssh_key() {
 }
 
 pull_tag_image() {
-  echo "Starting Docker tag and push for $PUSH_IMG"
+  echo "Starting Docker tag and push for $IMAGE_NAME"
   sudo docker pull $PULL_IMG
 
   echo "Tagging $PUSH_IMG"
   sudo docker tag -f $PULL_IMG $PUSH_IMG
 
+  echo "Tagging $PUSH_LAT_IMG"
+  sudo docker tag -f $PULL_IMG $PUSH_LAT_IMG
+
   echo "Pushing $PUSH_IMG"
   sudo docker push $PUSH_IMG
-
   echo "Completed Docker tag & push for $PUSH_IMG"
+
+
+  echo "Pushing $PUSH_LAT_IMG"
+  sudo docker push $PUSH_LAT_IMG
+  echo "Completed Docker tag & push for $PUSH_LAT_IMG"
+
+  echo "Completed Docker tag and push for $IMAGE_NAME"
 }
 
 tag_push_repo() {
