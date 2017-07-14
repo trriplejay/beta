@@ -69,7 +69,7 @@ tag_push_repo() {
   git pull --tags
 
   if git tag -d $RES_VER_NAME; then
-    git push --delete origin $RES_VER_NAME
+    git push --delete up $RES_VER_NAME
   fi
 
   local migrations_dir="migrations/"
