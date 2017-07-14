@@ -71,7 +71,7 @@ tag_push_repo(){
   git checkout $IMG_REPO_COMMIT_SHA
 
   if git tag -d $RES_VER_NAME; then
-    git push --delete origin $RES_VER_NAME
+    git push --delete up $RES_VER_NAME
   fi
 
   git tag $RES_VER_NAME
