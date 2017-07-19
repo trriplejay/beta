@@ -1214,7 +1214,7 @@ jobs:
       - IN: rel_prod
       - TASK:
         - script: ./IN/config_repo/gitRepo/tagAndPushImage.sh genexec 374168611083.dkr.ecr.us-east-1.amazonaws.com
-        - script: ./IN/config_repo/gitRepo/tagAndPushImage.sh genexec shipimg
+        - script: ./IN/config_repo/gitRepo/tagAndPushImage.sh genexec drydock
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
