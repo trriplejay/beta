@@ -604,7 +604,7 @@ jobs:
       - IN: rel_prod
         switch: off
       - TASK:
-        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_v541 rel_prod ami-4b36535d v551 Ubuntu_14.04_Docker_1.13.sh true
+        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_v551 rel_prod ami-4b36535d v551 Ubuntu_14.04_Docker_1.13.sh true
     on_success:
       - script: echo "SUCCESS"
     on_failure:
@@ -627,6 +627,26 @@ jobs:
         switch: off
       - TASK:
         - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_v561 rel_prod ami-c0a5f5d6 v561 Ubuntu_14.04_Docker_1.13.sh true
+    on_failure:
+      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
+
+  - name: build_v573
+    type: runSh
+    steps:
+      - IN: baseami_params
+      - IN: aws_bits_access
+      - IN: tag_push_img_genexec
+        switch: off
+      - IN: tag_push_cexec
+        switch: off
+      - IN: tag_push_node
+        switch: off
+      - IN: bldami_repo
+        switch: off
+      - IN: rel_prod
+        switch: off
+      - TASK:
+        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_v573 rel_prod ami-b9cfdeaf v573 Ubuntu_14.04_Docker_1.13.sh true
     on_failure:
       - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
 
