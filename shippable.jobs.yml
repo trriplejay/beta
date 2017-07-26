@@ -604,7 +604,7 @@ jobs:
       - IN: rel_prod
         switch: off
       - TASK:
-        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_v541 rel_prod ami-4b36535d v551 Ubuntu_14.04_Docker_1.13.sh true
+        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_v551 rel_prod ami-4b36535d v551 Ubuntu_14.04_Docker_1.13.sh true
     on_success:
       - script: echo "SUCCESS"
     on_failure:
