@@ -42,10 +42,10 @@ pull_tag_image() {
   sudo docker pull $PULL_IMG
 
   echo "Tagging $PUSH_IMG"
-  sudo docker tag -f $PULL_IMG $PUSH_IMG
+  sudo docker tag $PULL_IMG $PUSH_IMG
 
   echo "Tagging $PUSH_LAT_IMG"
-  sudo docker tag -f $PULL_IMG $PUSH_LAT_IMG
+  sudo docker tag $PULL_IMG $PUSH_LAT_IMG
 
   echo "Pushing $PUSH_IMG"
   sudo docker push $PUSH_IMG
