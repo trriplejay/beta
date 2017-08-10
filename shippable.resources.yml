@@ -819,8 +819,7 @@ resources:
         TEAM_NAME: "pushPull"
         ORG_NAME: "shippable"
         GITHUB_API_URL: 'https://api.github.com'
-        secure: x5wKdu6PFyLZAGowQQ2bs/p8VDzBJfOoe0JVKDK51GVfNlMCuZX3jY0bxlkj+im3Vl3xSGdUK0I2R+SzmbGiazPizjGC98MhR6T4XnhKGIMAqOzwHjyd2eRmyksZOCFQ1KkrXLGJ4jMkaOEnzgjWP98ZC9VHyd/QmbP9d74w+QY3EtMw0jzCN+7t/Y0JVP/SOj7NRjNdhcuXVA7YsSYur4aILJ+bpBLgRGe/AJiUaBEi9Xw9xrmOh+M1tv5qmzTkNE65KJfdRsljCvVT0ZPfVQFzdHAlmL3ffqYmaS2qwi9go7HbDLIvwuKve2cK36arhiHgrE8VSQa5I0L7J2gs3g==
-
+        secure: H1tIPW0aI2jSU+5XDWcwNtvyZue60/Fysc3xz8YMzfwXdF8yu2sJEqkxEJotQk+qtzAlins6d3LxNQ88dy+ZzkvgNyeodkBJJVoL67L5oFo17KlYcNS85OA2c+DRBtS612nid41ah14Gi2gNIt+P7e8fOHnDyzhB/SS9rRXXmv01MP6lGnx+L6fsQ9lbCY0pCc63qix5eBPFXB0yjYj3mxsfkCAsYhvy2r4YF1Ro1lqE2iLpIVatIl+e4mdQNBythqFMHe10Td/u6I7Zz+sOnjeH2VAvyzPCEeZF6Glr++l7yBm9/uoW7jAlMw6XhvhsSZVu/1GzBG6z12/BDakOWw==
 
   ###############################
   # begin docs resources
