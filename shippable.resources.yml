@@ -175,7 +175,7 @@ resources:
   - name: ship_ver
     type: version
     seed:
-      versionName: "5.8.0"
+      versionName: "5.9.1"
 
   ###############################
   # end Shippable Server resources
