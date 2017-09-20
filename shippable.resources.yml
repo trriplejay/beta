@@ -51,6 +51,12 @@ resources:
       sourceName: shippable/execTemplates
       branch: master
 
+  - name: execTemplates_img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: drydock/execTemplates
+
   - name: node_repo
     type: gitRepo
     integration: ric03uec-github
