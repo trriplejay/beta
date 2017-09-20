@@ -116,6 +116,7 @@ jobs:
     type: runCLI
     steps:
       - IN: micro_repo
+      - IN: execTemplates_repo
       - IN: microbase_img
       - IN: shipbits_ecr_cli
       - IN: ship_dh_cli
