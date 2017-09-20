@@ -44,6 +44,13 @@ resources:
     seed:
       versionName: latest
 
+  - name: execTemplates_repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/execTemplates
+      branch: master
+
   - name: node_repo
     type: gitRepo
     integration: ric03uec-github
