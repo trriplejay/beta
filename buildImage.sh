@@ -3,7 +3,7 @@
 export CONTEXT=$1
 export HUB_ORG=$2
 
-export IMAGE_NAME=$CONTEXT
+export IMAGE_NAME=$(echo $CONTEXT | awk '{print tolower($0)}')
 export CURR_JOB="build_"$CONTEXT
 export RES_REPO=$CONTEXT"_repo"
 export RES_IMAGE_OUT=$CONTEXT"_img"
