@@ -47,6 +47,18 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
+  - name: build_execTemplates
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: execTemplates_repo
+      - IN: microbase_img
+      - IN: ship_dh_cli
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/buildImage.sh execTemplates drydock
+      - OUT: execTemplates_img
+
   - name: build_nexec
     type: runCLI
     steps:
