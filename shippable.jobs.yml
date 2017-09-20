@@ -1355,6 +1355,21 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
+  - name: tag_push_execTemplates
+    type: runCLI
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: execTemplates_repo
+        switch: off
+      - IN: execTemplates_img
+        switch: off
+      - IN: avi_gh_ssh
+        switch: off
+      - IN: rel_prod
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagAndPushRepo.sh execTemplates Shippable
+
   - name: tag_push_admiral
     type: runCLI
     steps:
