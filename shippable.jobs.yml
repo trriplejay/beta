@@ -2012,14 +2012,14 @@ jobs:
   ##########################
   # begin DOCS JOBS
   ##########################
-  - name: publish_prod_docs
-    type: runCLI
+  - name: publish_prod_docs_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
       - IN: docs_repo
         switch: off
-      - IN: aws_prod_cli
+      - IN: aws_v2_prod_cli
       - TASK:
         - script: ./IN/config_repo/gitRepo/deployDocs.sh s3://docs.shippable.com us-west-2 docs_repo production
 
