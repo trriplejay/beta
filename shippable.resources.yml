@@ -213,10 +213,6 @@ resources:
     integration: aws-rc-pem
 
   # CREDS for AWS RC account
-  - name: aws_rc_access
-    type: integration
-    integration: aws-rc-access
-
   - name: aws_v2_rc_access
     type: integration
     integration: aws_rc_access
