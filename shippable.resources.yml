@@ -244,12 +244,6 @@ resources:
     type: integration
     integration: aws-prod-pem
 
-  - name: aws_prod_cli
-    type: cliConfig
-    integration: aws-prod-access
-    pointer:
-      region: us-west-2
-
   - name: aws_v2_prod_cli
     type: cliConfig
     integration: aws_prod_access
