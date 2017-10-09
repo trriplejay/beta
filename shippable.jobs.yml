@@ -2023,7 +2023,7 @@ jobs:
       - TASK:
         - script: ./IN/config_repo/gitRepo/deployDocs.sh s3://docs.shippable.com us-west-2 docs_repo production
 
-  - name: publish_rc_docs
+  - name: publish_rc_docs_tmp
     type: runSh
     steps:
       - IN: config_repo
