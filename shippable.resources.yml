@@ -250,6 +250,12 @@ resources:
     pointer:
       region: us-west-2
 
+  - name: aws_v2_prod_cli
+    type: cliConfig
+    integration: aws_prod_access
+    pointer:
+      region: us-west-2
+
   ###############################
   # begin RC resources
   ###############################
