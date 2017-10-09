@@ -217,12 +217,11 @@ resources:
     type: integration
     integration: aws_rc_access
 
-  - name: aws_rc_cli
+  - name: aws_v2_rc_cli
     type: cliConfig
-    integration: aws-rc-access
+    integration: aws_rc_access
     pointer:
       region: us-east-1
-
   ###############################
   # end rc infra
   ###############################
