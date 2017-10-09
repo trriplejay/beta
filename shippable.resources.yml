@@ -197,10 +197,9 @@ resources:
   ###############################
 
   ###############################
-  # begin alpha rc infra
+  # begin rc infra
   ###############################
-
-# REPO of AWS Infra provisioning
+  # REPO of AWS Infra provisioning
   - name: infra_repo
     type: gitRepo
     integration: "ric03uec-github"
@@ -208,15 +207,19 @@ resources:
       sourceName: "Shippable/infra"
       branch: master
 
-# PEM key for AWS RC account
+  # PEM key for AWS RC account
   - name: aws_rc_pem
     type: integration
     integration: aws-rc-pem
 
-# CREDS for AWS RC account
+  # CREDS for AWS RC account
   - name: aws_rc_access
     type: integration
     integration: aws-rc-access
+
+  - name: aws_v2_rc_access
+    type: integration
+    integration: aws_rc_access
 
   - name: aws_rc_cli
     type: cliConfig
@@ -225,20 +228,19 @@ resources:
       region: us-east-1
 
   ###############################
-  # end alpha rc infra
+  # end rc infra
   ###############################
-
 
   ###############################
   # begin prod infra resources
   ###############################
 
-# CREDS for AWS PROD account
+  # CREDS for AWS PROD account
   - name: aws_prod_access
     type: integration
     integration: aws-prod-access
 
-# PEM key for AWS PROD account
+  # PEM key for AWS PROD account
   - name: aws_prod_pem
     type: integration
     integration: aws-prod-pem
@@ -256,7 +258,7 @@ resources:
   # begin RC resources
   ###############################
 
-# Swarm node info for alpha
+  # Swarm node info for alpha
   - name: aws_rc_swarm
     type: params
     version:
