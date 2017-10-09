@@ -235,13 +235,14 @@ resources:
     type: integration
     integration: aws-prod-access
 
+  - name: aws_v2_prod_access
+    type: integration
+    integration: aws_prod_access
+
   # PEM key for AWS PROD account
   - name: aws_prod_pem
     type: integration
     integration: aws-prod-pem
-  ###############################
-  # end alpha rc infra
-  ###############################
 
   - name: aws_prod_cli
     type: cliConfig

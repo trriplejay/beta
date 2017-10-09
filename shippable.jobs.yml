@@ -267,7 +267,7 @@ jobs:
     type: runSh
     steps:
       - IN: aws_prod_pem
-      - IN: aws_prod_access
+      - IN: aws_v2_prod_access
       - IN: infra_repo
         switch: off
       - TASK:
