@@ -371,9 +371,7 @@ jobs:
         switch: off
       - IN: tag_push_microbase
         switch: off
-      - IN: tag_push_cexec
-        switch: off
-      - IN: tag_push_node
+      - IN: tag_push_repo
         switch: off
       - IN: tag_push_nexec
         switch: off
@@ -405,7 +403,7 @@ jobs:
         switch: off
       - IN: tag_push_micro
         switch: off
-      - IN: tag_push_node
+      - IN: tag_push_repo
         switch: off
       - IN: tag_push_nexec
         switch: off
@@ -432,9 +430,7 @@ jobs:
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
         switch: off
-      - IN: tag_push_cexec
-        switch: off
-      - IN: tag_push_node
+      - IN: tag_push_repo
         switch: off
       - IN: bldami_repo
         switch: off
@@ -454,9 +450,7 @@ jobs:
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
         switch: off
-      - IN: tag_push_cexec
-        switch: off
-      - IN: tag_push_node
+      - IN: tag_push_repo
         switch: off
       - IN: bldami_repo
         switch: off
@@ -476,9 +470,7 @@ jobs:
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
         switch: off
-      - IN: tag_push_cexec
-        switch: off
-      - IN: tag_push_node
+      - IN: tag_push_repo
         switch: off
       - IN: bldami_repo
         switch: off
@@ -498,9 +490,7 @@ jobs:
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
         switch: off
-      - IN: tag_push_cexec
-        switch: off
-      - IN: tag_push_node
+      - IN: tag_push_repo
         switch: off
       - IN: bldami_repo
         switch: off
@@ -518,9 +508,7 @@ jobs:
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
         switch: off
-      - IN: tag_push_cexec
-        switch: off
-      - IN: tag_push_node
+      - IN: tag_push_repo
         switch: off
       - IN: bldami_repo
         switch: off
@@ -538,9 +526,7 @@ jobs:
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
         switch: off
-      - IN: tag_push_cexec
-        switch: off
-      - IN: tag_push_node
+      - IN: tag_push_repo
         switch: off
       - IN: bldami_repo
         switch: off
@@ -558,9 +544,7 @@ jobs:
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
         switch: off
-      - IN: tag_push_cexec
-        switch: off
-      - IN: tag_push_node
+      - IN: tag_push_repo
         switch: off
       - IN: bldami_repo
         switch: off
@@ -580,9 +564,7 @@ jobs:
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
         switch: off
-      - IN: tag_push_cexec
-        switch: off
-      - IN: tag_push_node
+      - IN: tag_push_repo
         switch: off
       - IN: bldami_repo
         switch: off
