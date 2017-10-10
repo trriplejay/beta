@@ -230,7 +230,7 @@ jobs:
       - IN: bldami_repo
         switch: off
       - IN: aws_v2_bits_access
-      - IN: aws_prod_access
+      - IN: aws_v2_prod_access
       - IN: admiralami_params
       - TASK:
         - script: IN/bldami_repo/gitRepo/admiral/admiralPack.sh build_admiral_ami admiralami_params
@@ -559,7 +559,7 @@ jobs:
         switch: off
       - IN: build_admiral_ami
         switch: off
-      - IN: aws_prod_access
+      - IN: aws_v2_prod_access
       - IN: aws_v2_bits_access
       - IN: admiralami_params
       - TASK:
