@@ -1416,6 +1416,42 @@ jobs:
       - script: echo 'Failed job .... :('
 
   ### Tagging core services
+  - name: tag_push_services
+    type: runSh
+    steps:
+      - IN: rel_prod
+      - IN: config_repo
+        switch: off
+      - IN: ship_dh_cli
+        switch: off
+      - IN: avi_gh_ssh
+        switch: off
+      - IN: gitlab_img
+        switch: off
+      - IN: gitlab_repo
+        switch: off
+      - IN: postgres_img
+        switch: off
+      - IN: postgres_repo
+        switch: off
+      - IN: rabbitmq_img
+        switch: off
+      - IN: rabbitmq_repo
+        switch: off
+      - IN: redis_img
+        switch: off
+      - IN: redis_repo
+        switch: off
+      - IN: vault_img
+        switch: off
+      - IN: vault_repo
+        switch: off
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagAndPushSvcs.sh
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
 
   - name: tag_push_redis
     type: runSh
