@@ -85,6 +85,11 @@ main() {
   echo "============= End State for $CONTEXT======================"
   echo ""
 
+  add_ssh_key
+
+  echo "Creating a state file for $CURR_JOB"
+  shipctl post_resource_state $CURR_JOB versionName $RES_VER_NAME
+
   for c in `cat coreServices.txt`; do
     export CONTEXT=$c
     export HUB_ORG=drydock
@@ -127,15 +132,14 @@ main() {
     echo "============= End State for $CONTEXT======================"
     echo ""
 
+    shipctl put_resource_state $CURR_JOB $CONTEXT"_COMMIT_SHA" $IMG_REPO_COMMIT_SHA
+
   done
 
   popd
 
-#  set_context
-#  add_ssh_key
 #  pull_tag_image
 #  tag_push_repo
-#  create_out_state
 }
 
 main
