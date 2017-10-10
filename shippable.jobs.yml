@@ -483,26 +483,6 @@ jobs:
         switch: off
       - IN: tag_push_u16
         switch: off
-      - IN: tag_push_u14cppall
-        switch: off
-      - IN: tag_push_u14phpall
-        switch: off
-      - IN: tag_push_u14ruball
-        switch: off
-      - IN: tag_push_u14scaall
-        switch: off
-      - IN: tag_push_u14javall
-        switch: off
-      - IN: tag_push_u14golall
-        switch: off
-      - IN: tag_push_u14cloall
-        switch: off
-      - IN: tag_push_u14pytall
-        switch: off
-      - IN: tag_push_u14nodall
-        switch: off
-      - IN: tag_push_u14all
-        switch: off
       - IN: tag_push_u14
         switch: off
       - IN: tag_push_www
