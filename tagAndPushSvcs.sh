@@ -177,6 +177,22 @@ process_u16_services() {
   done
 }
 
+process_repo_services() {
+  for c in `cat coreServices.txt`; do
+    export CONTEXT=$c
+    export GH_ORG=Shippable
+
+    echo ""
+    echo "============= Begin info for CONTEXT $CONTEXT======================"
+    echo "CONTEXT=$CONTEXT"
+    echo "GH_ORG=$GH_ORG"
+    echo "============= End info for CONTEXT $CONTEXT======================"
+    echo ""
+
+    tag_push_repo
+  done
+}
+
 main() {
   set_job_context
   add_ssh_key
@@ -193,8 +209,11 @@ main() {
     then
       echo "Executing process_u16_services"
       process_u16_services
+    elif [ "$RUN_TYPE" = "repo" ]
+    then
+      echo "Executing process_repo_services"
+      process_repo_services
     fi
-
   popd
 }
 
