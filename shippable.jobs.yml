@@ -1216,27 +1216,6 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_cexec
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: avi_gh_ssh
-        switch: off
-      - IN: cexec_img
-        switch: off
-      - IN: cexec_repo
-        switch: off
-      - IN: ship_dh_cli
-        switch: off
-      - IN: rel_prod
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/tagAndPushImageRepo.sh cexec drydock Shippable
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
   - name: tag_push_mktg
     type: runSh
     steps:
@@ -1260,40 +1239,6 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_node
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: node_repo
-        switch: off
-      - IN: node_img
-        switch: off
-      - IN: avi_gh_ssh
-        switch: off
-      - IN: rel_prod
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/tagAndPushRepo.sh node Shippable
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
-  - name: tag_push_execTemplates
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: execTemplates_repo
-        switch: off
-      - IN: execTemplates_img
-        switch: off
-      - IN: avi_gh_ssh
-        switch: off
-      - IN: rel_prod
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/tagAndPushRepo.sh execTemplates Shippable
-
   - name: tag_push_admiral
     type: runSh
     steps:
@@ -1310,6 +1255,28 @@ jobs:
       - IN: rel_prod
       - TASK:
         - script: ./IN/config_repo/gitRepo/tagAndPushAdmiralImageRepo.sh drydock Shippable
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  ### Tagging repo services
+  - name: tag_push_repo
+    type: runSh
+    steps:
+      - IN: rel_prod
+      - IN: config_repo
+        switch: off
+      - IN: avi_gh_ssh
+        switch: off
+      - IN: execTemplates_repo
+        switch: off
+      - IN: node_repo
+        switch: off
+      - IN: cexec_repo
+        switch: off
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagAndPushSvcs.sh repo
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
