@@ -94,7 +94,7 @@ main() {
     export RES_REPO_STATE=$(shipctl get_resource_state $RES_REPO)
 
     pushd $RES_REPO_META
-      export IMG_REPO_COMMIT_SHA=$(shipctl get_json_value version.json '.version.propertyBag.shaData.commitSha')
+      export IMG_REPO_COMMIT_SHA=$(shipctl get_json_value version.json 'version.propertyBag.shaData.commitSha')
     popd
 
     echo ""
