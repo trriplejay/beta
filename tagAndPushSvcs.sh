@@ -77,7 +77,7 @@ main() {
   pushd $RES_CONF_REPO_STATE
 
   for c in `cat coreServices.txt`; do
-    export CONTEXT=c
+    export CONTEXT=$c
     export HUB_ORG=drydock
     export GH_ORG=dry-dock
 
