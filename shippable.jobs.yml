@@ -229,7 +229,7 @@ jobs:
         switch: off
       - IN: bldami_repo
         switch: off
-      - IN: aws_bits_access
+      - IN: aws_v2_bits_access
       - IN: aws_prod_access
       - IN: admiralami_params
       - TASK:
@@ -427,7 +427,7 @@ jobs:
       - IN: u14cppall_img
         switch: off
       - IN: baseami_params
-      - IN: aws_bits_access
+      - IN: aws_v2_bits_access
       - IN: node_repo
         switch: off
       - IN: bldami_repo
@@ -446,7 +446,7 @@ jobs:
       - IN: node_repo
         switch: off
       - IN: baseami_params
-      - IN: aws_bits_access
+      - IN: aws_v2_bits_access
       - IN: build_baseami
         switch: off
       - IN: bldami_repo
@@ -522,7 +522,7 @@ jobs:
       - IN: tag_push_nexec
         switch: off
       - IN: baseami_params
-      - IN: aws_bits_access
+      - IN: aws_v2_bits_access
       - IN: bldami_repo
         switch: off
       - IN: patch_baseami
@@ -560,7 +560,7 @@ jobs:
       - IN: build_admiral_ami
         switch: off
       - IN: aws_prod_access
-      - IN: aws_bits_access
+      - IN: aws_v2_bits_access
       - IN: admiralami_params
       - TASK:
         - script: IN/bldami_repo/gitRepo/admiralPatch/admiralPatchPack.sh build_final_admiral_ami admiralami_params rel_prod
@@ -573,7 +573,7 @@ jobs:
     type: runSh
     steps:
       - IN: baseami_params
-      - IN: aws_bits_access
+      - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
         switch: off
       - IN: tag_push_cexec
@@ -595,7 +595,7 @@ jobs:
     type: runSh
     steps:
       - IN: baseami_params
-      - IN: aws_bits_access
+      - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
         switch: off
       - IN: tag_push_cexec
@@ -617,7 +617,7 @@ jobs:
     type: runSh
     steps:
       - IN: baseami_params
-      - IN: aws_bits_access
+      - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
         switch: off
       - IN: tag_push_cexec
@@ -639,7 +639,7 @@ jobs:
     type: runSh
     steps:
       - IN: baseami_params
-      - IN: aws_bits_access
+      - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
         switch: off
       - IN: tag_push_cexec
@@ -659,7 +659,7 @@ jobs:
     type: runSh
     steps:
       - IN: baseami_params
-      - IN: aws_bits_access
+      - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
         switch: off
       - IN: tag_push_cexec
@@ -679,7 +679,7 @@ jobs:
     type: runSh
     steps:
       - IN: baseami_params
-      - IN: aws_bits_access
+      - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
         switch: off
       - IN: tag_push_cexec
@@ -699,7 +699,7 @@ jobs:
     type: runSh
     steps:
       - IN: baseami_params
-      - IN: aws_bits_access
+      - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
         switch: off
       - IN: tag_push_cexec
@@ -721,7 +721,7 @@ jobs:
     type: runSh
     steps:
       - IN: baseami_params
-      - IN: aws_bits_access
+      - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
         switch: off
       - IN: tag_push_cexec
