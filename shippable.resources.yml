@@ -52,13 +52,6 @@ resources:
       branch: master
     buildOnCommit: false
 
-  - name: cexec_img
-    type: image
-    integration: shipDH
-    pointer:
-      sourceName: "drydock/cexec"
-    seed:
-      versionName: latest
 
   - name: execTemplates_repo
     type: gitRepo
@@ -67,28 +60,12 @@ resources:
       sourceName: shippable/execTemplates
       branch: master
 
-  - name: execTemplates_img
-    type: image
-    integration: shipDH
-    pointer:
-      sourceName: drydock/execTemplates
-    seed:
-      versionName: master
-
   - name: node_repo
     type: gitRepo
     integration: ric03uec-github
     pointer:
       sourceName: shippable/node
       branch: master
-
-  - name: node_img
-    type: image
-    integration: shipDH
-    pointer:
-      sourceName: "drydock/node"
-    seed:
-      versionName: latest
 
   - name: admiral_repo
     type: gitRepo
