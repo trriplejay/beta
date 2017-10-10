@@ -118,7 +118,6 @@ main() {
     echo "SSH_PATH=$SSH_PATH"
     echo "HUB_ORG=$HUB_ORG"
 
-    echo "RES_IMAGE_META=$RES_IMAGE_META"
     echo "RES_VER_NAME=$RES_VER_NAME"
     echo "RES_REPO_STATE=$RES_REPO_STATE"
 
