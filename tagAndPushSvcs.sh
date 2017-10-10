@@ -1,11 +1,14 @@
 #!/bin/bash -e
 
+export RUN_TYPE=$1
+export CURR_JOB=$1"tag_push_"$RUN_TYPE
+
 set_job_context() {
   eval `ssh-agent -s`
   ps -eaf | grep ssh
   which ssh-agent
 
-  export CURR_JOB="tag_push_services"
+
   export UP_TAG_NAME="master"
   export RES_VER="rel_prod"
   export RES_VER_NAME=$(shipctl get_resource_version_name $RES_VER)
@@ -136,12 +139,39 @@ process_core_services() {
   done
 }
 
+process_u14_services() {
+  for c in `cat u14Services.txt`; do
+    export CONTEXT=$c
+    export HUB_ORG=drydock
+    export GH_ORG=dry-dock
+
+    echo ""
+    echo "============= Begin info for CONTEXT $CONTEXT======================"
+    echo "CONTEXT=$CONTEXT"
+    echo "HUB_ORG=$HUB_ORG"
+    echo "GH_ORG=$GH_ORG"
+    echo "============= End info for CONTEXT $CONTEXT======================"
+    echo ""
+
+    pull_tag_image
+    tag_push_repo
+  done
+}
+
 main() {
   set_job_context
   add_ssh_key
 
   pushd $RES_CONF_REPO_STATE
-    process_core_services
+    if [ "$RUN_TYPE" = "core" ]; then
+      echo "Executing process_core_services"
+      process_core_services
+    elif [ "$RUN_TYPE" = "u14" ]
+    then
+      echo "Executing process_u14_services"
+      process_u14_services
+    fi
+
   popd
 }
 
