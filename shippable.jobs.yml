@@ -1,6 +1,6 @@
 jobs:
-  - name: build_microbase
-    type: runCLI
+  - name: build_microbase_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -15,8 +15,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_cexec
-    type: runCLI
+  - name: build_cexec_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -31,8 +31,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_node
-    type: runCLI
+  - name: build_node_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -47,8 +47,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_execTemplates
-    type: runCLI
+  - name: build_execTemplates_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -59,8 +59,8 @@ jobs:
         - script: ./IN/config_repo/gitRepo/buildImage.sh execTemplates drydock
       - OUT: execTemplates_img
 
-  - name: build_nexec
-    type: runCLI
+  - name: build_nexec_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -75,8 +75,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_mktg
-    type: runCLI
+  - name: build_mktg_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -91,8 +91,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: patch_mktg
-    type: runCLI
+  - name: patch_mktg_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -105,8 +105,8 @@ jobs:
       - TASK:
         - script: ./IN/config_repo/gitRepo/patchImage.sh mktg 374168611083.dkr.ecr.us-east-1.amazonaws.com rel_prod
 
-  - name: build_admiral
-    type: runCLI
+  - name: build_admiral_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -124,8 +124,8 @@ jobs:
   ##########################
   # begin Shippable Server jobs
   ##########################
-  - name: build_micro
-    type: runCLI
+  - name: build_micro_tmp
+    type: runSh
     steps:
       - IN: micro_repo
       - IN: execTemplates_repo
@@ -141,8 +141,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_api
-    type: runCLI
+  - name: build_api_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -158,8 +158,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_www
-    type: runCLI
+  - name: build_www_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -449,65 +449,65 @@ jobs:
   - name: build_finalami
     type: runSh
     steps:
-      - IN: tag_push_u16cppall
+      - IN: tag_push_u16cppall_tmp
         switch: off
-      - IN: tag_push_u16phpall
+      - IN: tag_push_u16phpall_tmp
         switch: off
-      - IN: tag_push_u16ruball
+      - IN: tag_push_u16ruball_tmp
         switch: off
-      - IN: tag_push_u16scaall
+      - IN: tag_push_u16scaall_tmp
         switch: off
-      - IN: tag_push_u16javall
+      - IN: tag_push_u16javall_tmp
         switch: off
-      - IN: tag_push_u16golall
+      - IN: tag_push_u16golall_tmp
         switch: off
-      - IN: tag_push_u16cloall
+      - IN: tag_push_u16cloall_tmp
         switch: off
-      - IN: tag_push_u16pytall
+      - IN: tag_push_u16pytall_tmp
         switch: off
-      - IN: tag_push_u16nodall
+      - IN: tag_push_u16nodall_tmp
         switch: off
-      - IN: tag_push_u16all
+      - IN: tag_push_u16all_tmp
         switch: off
-      - IN: tag_push_u16
+      - IN: tag_push_u16_tmp
         switch: off
-      - IN: tag_push_u14cppall
+      - IN: tag_push_u14cppall_tmp
         switch: off
-      - IN: tag_push_u14phpall
+      - IN: tag_push_u14phpall_tmp
         switch: off
-      - IN: tag_push_u14ruball
+      - IN: tag_push_u14ruball_tmp
         switch: off
-      - IN: tag_push_u14scaall
+      - IN: tag_push_u14scaall_tmp
         switch: off
-      - IN: tag_push_u14javall
+      - IN: tag_push_u14javall_tmp
         switch: off
-      - IN: tag_push_u14golall
+      - IN: tag_push_u14golall_tmp
         switch: off
-      - IN: tag_push_u14cloall
+      - IN: tag_push_u14cloall_tmp
         switch: off
-      - IN: tag_push_u14pytall
+      - IN: tag_push_u14pytall_tmp
         switch: off
-      - IN: tag_push_u14nodall
+      - IN: tag_push_u14nodall_tmp
         switch: off
-      - IN: tag_push_u14all
+      - IN: tag_push_u14all_tmp
         switch: off
-      - IN: tag_push_u14
+      - IN: tag_push_u14_tmp
         switch: off
-      - IN: tag_push_www
+      - IN: tag_push_www_tmp
         switch: off
-      - IN: tag_push_img_genexec
+      - IN: tag_push_img_genexec_tmp
         switch: off
-      - IN: tag_push_api
+      - IN: tag_push_api_tmp
         switch: off
-      - IN: tag_push_micro
+      - IN: tag_push_micro_tmp
         switch: off
-      - IN: tag_push_microbase
+      - IN: tag_push_microbase_tmp
         switch: off
-      - IN: tag_push_cexec
+      - IN: tag_push_cexec_tmp
         switch: off
-      - IN: tag_push_node
+      - IN: tag_push_node_tmp
         switch: off
-      - IN: tag_push_nexec
+      - IN: tag_push_nexec_tmp
         switch: off
       - IN: baseami_params
       - IN: aws_bits_access
@@ -529,17 +529,17 @@ jobs:
     steps:
       - IN: rel_prod
         switch: off
-      - IN: tag_push_www
+      - IN: tag_push_www_tmp
         switch: off
-      - IN: tag_push_img_genexec
+      - IN: tag_push_img_genexec_tmp
         switch: off
-      - IN: tag_push_api
+      - IN: tag_push_api_tmp
         switch: off
-      - IN: tag_push_micro
+      - IN: tag_push_micro_tmp
         switch: off
-      - IN: tag_push_node
+      - IN: tag_push_node_tmp
         switch: off
-      - IN: tag_push_nexec
+      - IN: tag_push_nexec_tmp
         switch: off
       - IN: config_repo
         switch: off
@@ -562,11 +562,11 @@ jobs:
     steps:
       - IN: baseami_params
       - IN: aws_bits_access
-      - IN: tag_push_img_genexec
+      - IN: tag_push_img_genexec_tmp
         switch: off
-      - IN: tag_push_cexec
+      - IN: tag_push_cexec_tmp
         switch: off
-      - IN: tag_push_node
+      - IN: tag_push_node_tmp
         switch: off
       - IN: bldami_repo
         switch: off
@@ -584,9 +584,9 @@ jobs:
     steps:
       - IN: baseami_params
       - IN: aws_bits_access
-      - IN: tag_push_img_genexec
+      - IN: tag_push_img_genexec_tmp
         switch: off
-      - IN: tag_push_cexec
+      - IN: tag_push_cexec_tmp
         switch: off
       - IN: tag_push_node
         switch: off
@@ -606,9 +606,9 @@ jobs:
     steps:
       - IN: baseami_params
       - IN: aws_bits_access
-      - IN: tag_push_img_genexec
+      - IN: tag_push_img_genexec_tmp
         switch: off
-      - IN: tag_push_cexec
+      - IN: tag_push_cexec_tmp
         switch: off
       - IN: tag_push_node
         switch: off
@@ -628,9 +628,9 @@ jobs:
     steps:
       - IN: baseami_params
       - IN: aws_bits_access
-      - IN: tag_push_img_genexec
+      - IN: tag_push_img_genexec_tmp
         switch: off
-      - IN: tag_push_cexec
+      - IN: tag_push_cexec_tmp
         switch: off
       - IN: tag_push_node
         switch: off
@@ -648,11 +648,11 @@ jobs:
     steps:
       - IN: baseami_params
       - IN: aws_bits_access
-      - IN: tag_push_img_genexec
+      - IN: tag_push_img_genexec_tmp
         switch: off
-      - IN: tag_push_cexec
+      - IN: tag_push_cexec_tmp
         switch: off
-      - IN: tag_push_node
+      - IN: tag_push_node_tmp
         switch: off
       - IN: bldami_repo
         switch: off
@@ -668,11 +668,11 @@ jobs:
     steps:
       - IN: baseami_params
       - IN: aws_bits_access
-      - IN: tag_push_img_genexec
+      - IN: tag_push_img_genexec_tmp
         switch: off
-      - IN: tag_push_cexec
+      - IN: tag_push_cexec_tmp
         switch: off
-      - IN: tag_push_node
+      - IN: tag_push_node_tmp
         switch: off
       - IN: bldami_repo
         switch: off
@@ -688,11 +688,11 @@ jobs:
     steps:
       - IN: baseami_params
       - IN: aws_bits_access
-      - IN: tag_push_img_genexec
+      - IN: tag_push_img_genexec_tmp
         switch: off
-      - IN: tag_push_cexec
+      - IN: tag_push_cexec_tmp
         switch: off
-      - IN: tag_push_node
+      - IN: tag_push_node_tmp
         switch: off
       - IN: bldami_repo
         switch: off
@@ -710,11 +710,11 @@ jobs:
     steps:
       - IN: baseami_params
       - IN: aws_bits_access
-      - IN: tag_push_img_genexec
+      - IN: tag_push_img_genexec_tmp
         switch: off
-      - IN: tag_push_cexec
+      - IN: tag_push_cexec_tmp
         switch: off
-      - IN: tag_push_node
+      - IN: tag_push_node_tmp
         switch: off
       - IN: bldami_repo
         switch: off
@@ -735,8 +735,8 @@ jobs:
   # START Drydock image builds
   ###########################################
 
-  - name: build_redis
-    type: runCLI
+  - name: build_redis_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -750,8 +750,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_rabbitmq
-    type: runCLI
+  - name: build_rabbitmq_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -765,8 +765,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_gitlab
-    type: runCLI
+  - name: build_gitlab_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -780,8 +780,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_vault
-    type: runCLI
+  - name: build_vault_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -796,8 +796,8 @@ jobs:
       - script: echo 'Failed job .... :('
 
 
-  - name: build_postgres
-    type: runCLI
+  - name: build_postgres_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -811,8 +811,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_u14
-    type: runCLI
+  - name: build_u14_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -826,8 +826,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_u14all
-    type: runCLI
+  - name: build_u14all_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -842,8 +842,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_u14nodall
-    type: runCLI
+  - name: build_u14nodall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -858,8 +858,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_u14pytall
-    type: runCLI
+  - name: build_u14pytall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -874,8 +874,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_u14cloall
-    type: runCLI
+  - name: build_u14cloall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -890,8 +890,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_u14golall
-    type: runCLI
+  - name: build_u14golall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -906,8 +906,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_u14javall
-    type: runCLI
+  - name: build_u14javall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -922,8 +922,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_u14scaall
-    type: runCLI
+  - name: build_u14scaall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -938,8 +938,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_u14ruball
-    type: runCLI
+  - name: build_u14ruball_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -954,8 +954,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_u14phpall
-    type: runCLI
+  - name: build_u14phpall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -970,8 +970,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_u14cppall
-    type: runCLI
+  - name: build_u14cppall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -986,8 +986,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_u16
-    type: runCLI
+  - name: build_u16_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1001,8 +1001,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_u16all
-    type: runCLI
+  - name: build_u16all_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1017,8 +1017,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_u16nodall
-    type: runCLI
+  - name: build_u16nodall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1033,8 +1033,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_u16pytall
-    type: runCLI
+  - name: build_u16pytall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1049,8 +1049,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_u16cloall
-    type: runCLI
+  - name: build_u16cloall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1065,8 +1065,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_u16golall
-    type: runCLI
+  - name: build_u16golall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1081,8 +1081,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_u16javall
-    type: runCLI
+  - name: build_u16javall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1097,8 +1097,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_u16scaall
-    type: runCLI
+  - name: build_u16scaall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1113,8 +1113,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_u16ruball
-    type: runCLI
+  - name: build_u16ruball_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1129,8 +1129,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_u16phpall
-    type: runCLI
+  - name: build_u16phpall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1145,8 +1145,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_u16cppall
-    type: runCLI
+  - name: build_u16cppall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1169,8 +1169,8 @@ jobs:
   # START TAG & PUSH image/repos/amis
   ###########################################
 
-  - name: tag_push_www
-    type: runCLI
+  - name: tag_push_www_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1190,8 +1190,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_api
-    type: runCLI
+  - name: tag_push_api_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1211,8 +1211,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_nexec
-    type: runCLI
+  - name: tag_push_nexec_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1232,8 +1232,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_micro
-    type: runCLI
+  - name: tag_push_micro_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1253,8 +1253,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_img_genexec
-    type: runCLI
+  - name: tag_push_img_genexec_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1273,8 +1273,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_microbase
-    type: runCLI
+  - name: tag_push_microbase_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1294,8 +1294,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_cexec
-    type: runCLI
+  - name: tag_push_cexec_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1315,8 +1315,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_mktg
-    type: runCLI
+  - name: tag_push_mktg_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1336,8 +1336,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_node
-    type: runCLI
+  - name: tag_push_node_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1355,8 +1355,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_execTemplates
-    type: runCLI
+  - name: tag_push_execTemplates_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1370,8 +1370,8 @@ jobs:
       - TASK:
         - script: ./IN/config_repo/gitRepo/tagAndPushRepo.sh execTemplates Shippable
 
-  - name: tag_push_admiral
-    type: runCLI
+  - name: tag_push_admiral_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1393,8 +1393,8 @@ jobs:
 
   ### Tagging core services
 
-  - name: tag_push_redis
-    type: runCLI
+  - name: tag_push_redis_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1414,8 +1414,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_rabbitmq
-    type: runCLI
+  - name: tag_push_rabbitmq_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1435,8 +1435,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_gitlab
-    type: runCLI
+  - name: tag_push_gitlab_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1456,8 +1456,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_vault
-    type: runCLI
+  - name: tag_push_vault_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1477,8 +1477,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_postgres
-    type: runCLI
+  - name: tag_push_postgres_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1499,8 +1499,8 @@ jobs:
       - script: echo 'Failed job .... :('
 
   ### Tagging u14 images
-  - name: tag_push_u14
-    type: runCLI
+  - name: tag_push_u14_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1520,8 +1520,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_u14all
-    type: runCLI
+  - name: tag_push_u14all_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1541,8 +1541,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_u14nodall
-    type: runCLI
+  - name: tag_push_u14nodall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1562,8 +1562,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_u14pytall
-    type: runCLI
+  - name: tag_push_u14pytall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1583,8 +1583,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_u14cloall
-    type: runCLI
+  - name: tag_push_u14cloall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1604,8 +1604,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_u14golall
-    type: runCLI
+  - name: tag_push_u14golall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1625,8 +1625,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_u14javall
-    type: runCLI
+  - name: tag_push_u14javall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1646,8 +1646,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_u14scaall
-    type: runCLI
+  - name: tag_push_u14scaall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1667,8 +1667,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_u14ruball
-    type: runCLI
+  - name: tag_push_u14ruball_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1688,8 +1688,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_u14phpall
-    type: runCLI
+  - name: tag_push_u14phpall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1709,8 +1709,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_u14cppall
-    type: runCLI
+  - name: tag_push_u14cppall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1731,8 +1731,8 @@ jobs:
       - script: echo 'Failed job .... :('
 
   ### Tagging u16 images
-  - name: tag_push_u16
-    type: runCLI
+  - name: tag_push_u16_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1752,8 +1752,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_u16all
-    type: runCLI
+  - name: tag_push_u16all_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1773,8 +1773,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_u16nodall
-    type: runCLI
+  - name: tag_push_u16nodall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1794,8 +1794,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_u16pytall
-    type: runCLI
+  - name: tag_push_u16pytall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1815,8 +1815,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_u16cloall
-    type: runCLI
+  - name: tag_push_u16cloall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1836,8 +1836,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_u16golall
-    type: runCLI
+  - name: tag_push_u16golall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1857,8 +1857,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_u16javall
-    type: runCLI
+  - name: tag_push_u16javall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1878,8 +1878,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_u16scaall
-    type: runCLI
+  - name: tag_push_u16scaall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1899,8 +1899,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_u16ruball
-    type: runCLI
+  - name: tag_push_u16ruball_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1920,8 +1920,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_u16phpall
-    type: runCLI
+  - name: tag_push_u16phpall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1941,8 +1941,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_u16cppall
-    type: runCLI
+  - name: tag_push_u16cppall_tmp
+    type: runSh
     steps:
       - IN: config_repo
         switch: off
@@ -1970,8 +1970,8 @@ jobs:
   # begin LOCK UNLOCK JOBS
   ##########################
 
-  - name: lock_team
-    type: runCLI
+  - name: lock_team_tmp
+    type: runSh
     steps:
       - IN: api_repo
       - IN: www_repo
@@ -1979,7 +1979,7 @@ jobs:
       - IN: nexec_repo
       - IN: cexec_repo
       - IN: mktg_repo
-      - IN: build_microbase
+      - IN: build_microbase_tmp
       - IN: team_params
       - IN: config_repo
         switch: off
@@ -1990,8 +1990,8 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: unlock_team
-    type: runCLI
+  - name: unlock_team_tmp
+    type: runSh
     steps:
       - IN: bvt-v2
       - IN: team_params
