@@ -1997,18 +1997,29 @@ jobs:
   - name: lock_team
     type: runSh
     steps:
-      - IN: api_repo
-      - IN: www_repo
-      - IN: micro_repo
-      - IN: nexec_repo
-      - IN: cexec_repo
-      - IN: mktg_repo
-      - IN: build_microbase
+      - IN: wh_api_repo
+      - IN: wh_www_repo
+      - IN: wh_micro_repo
+      - IN: wh_nexec_repo
+      - IN: wh_cexec_repo
+      - IN: wh_mktg_repo
       - IN: team_params
       - IN: config_repo
         switch: off
       - TASK:
         - script: ./IN/config_repo/gitRepo/lockUnlockTeams.sh pull
+      - OUT: api_repo
+        replicate: wh_api_repo
+      - OUT: www_repo
+        replicate: wh_www_repo
+      - OUT: micro_repo
+        replicate: wh_micro_repo
+      - OUT: nexec_repo
+        replicate: wh_nexec_repo
+      - OUT: cexec_repo
+        replicate: wh_cexec_repo
+      - OUT: mktg_repo
+        replicate: wh_mktg_repo
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
