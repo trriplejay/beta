@@ -304,9 +304,9 @@ resources:
       sourceName: shippable/buildami
       branch: master
 
-  - name: aws_bits_access
+  - name: aws_v2_bits_access
     type: integration
-    integration: aws-bits-access
+    integration: aws_bits_access
 
   - name: baseami_params
     type: params
