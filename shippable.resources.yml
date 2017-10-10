@@ -23,7 +23,7 @@ resources:
 
   - name: nexec_img
     type: image
-    integration: ecr-bits-push
+    integration: ecr_bits_push
     pointer:
       sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/nexec"
     seed:
@@ -128,7 +128,7 @@ resources:
 
   - name: api_img
     type: image
-    integration: ecr-bits-push
+    integration: ecr_bits_push
     pointer:
       sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/api"
     seed:
@@ -143,7 +143,7 @@ resources:
 
   - name: www_img
     type: image
-    integration: ecr-bits-push
+    integration: ecr_bits_push
     pointer:
       sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/www"
     seed:
@@ -158,7 +158,7 @@ resources:
 
   - name: micro_img
     type: image
-    integration: ecr-bits-push
+    integration: ecr_bits_push
     pointer:
       sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/micro"
     seed:
@@ -166,7 +166,7 @@ resources:
 
   - name: genexec_img
     type: image
-    integration: ecr-bits-push
+    integration: ecr_bits_push
     pointer:
       sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/genexec"
     seed:
@@ -181,7 +181,7 @@ resources:
 
   - name: mktg_img
     type: image
-    integration: ecr-bits-push
+    integration: ecr_bits_push
     pointer:
       sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/mktg"
     seed:
