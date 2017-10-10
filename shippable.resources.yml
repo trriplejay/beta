@@ -102,11 +102,11 @@ resources:
   ###############################
   # begin Shippable Server resources
   ###############################
-  - name: shipbits_ecr_cli
+  - name: shipbits_ecr_v2_cli
     type: cliConfig
-    integration: "ecr-bits-push"
+    integration: ecr_bits_push
     pointer:
-      region: "us-east-1"
+      region: us-east-1
 
   - name: ship_dh_cli
     type: cliConfig
