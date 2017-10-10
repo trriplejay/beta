@@ -71,6 +71,11 @@ main() {
   export RES_GH_SSH="avi_gh_ssh"
   export RES_GH_SSH_META=$(shipctl get_resource_meta $RES_GH_SSH)
 
+  export RES_CONF_REPO="config_repo"
+  export RES_CONF_REPO_STATE=$(shipctl get_resource_state $RES_CONF_REPO)
+
+  pushd RES_CONF_REPO_STATE
+
   for c in `cat coreServices.txt`; do
     export CONTEXT=c
     export HUB_ORG=drydock
@@ -121,6 +126,8 @@ main() {
     echo ""
 
   done
+
+  popd
 
 #  set_context
 #  add_ssh_key
