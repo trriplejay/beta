@@ -74,7 +74,7 @@ main() {
   export RES_CONF_REPO="config_repo"
   export RES_CONF_REPO_STATE=$(shipctl get_resource_state $RES_CONF_REPO)
 
-  pushd RES_CONF_REPO_STATE
+  pushd $RES_CONF_REPO_STATE
 
   for c in `cat coreServices.txt`; do
     export CONTEXT=c
