@@ -2008,18 +2008,18 @@ jobs:
         switch: off
       - TASK:
         - script: ./IN/config_repo/gitRepo/lockUnlockTeams.sh pull
-      - OUT: api_repo
-        replicate: wh_api_repo
-      - OUT: www_repo
-        replicate: wh_www_repo
-      - OUT: micro_repo
-        replicate: wh_micro_repo
-      - OUT: nexec_repo
-        replicate: wh_nexec_repo
-      - OUT: cexec_repo
-        replicate: wh_cexec_repo
-      - OUT: mktg_repo
-        replicate: wh_mktg_repo
+#      - OUT: api_repo
+#        replicate: wh_api_repo
+#      - OUT: www_repo
+#        replicate: wh_www_repo
+#      - OUT: micro_repo
+#        replicate: wh_micro_repo
+#      - OUT: nexec_repo
+#        replicate: wh_nexec_repo
+#      - OUT: cexec_repo
+#        replicate: wh_cexec_repo
+#      - OUT: mktg_repo
+#        replicate: wh_mktg_repo
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
