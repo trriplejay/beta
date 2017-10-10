@@ -76,6 +76,15 @@ main() {
 
   pushd $RES_CONF_REPO_STATE
 
+  echo ""
+  echo "============= Begin State for $CURR_JOB======================"
+  echo "CURR_JOB=$CURR_JOB"
+  echo "RES_VER=$RES_VER"
+  echo "UP_TAG_NAME=$UP_TAG_NAME"
+  echo "RES_GH_SSH_META=$RES_GH_SSH_META"
+  echo "============= End State for $CONTEXT======================"
+  echo ""
+
   for c in `cat coreServices.txt`; do
     export CONTEXT=$c
     export HUB_ORG=drydock
@@ -99,25 +108,19 @@ main() {
 
     echo ""
     echo "============= Begin State for $CONTEXT======================"
-    echo "CURR_JOB=$CURR_JOB"
+
     echo "IMAGE_NAME=$IMAGE_NAME"
     echo "RES_IMAGE=$RES_IMAGE"
-    echo "RES_VER=$RES_VER"
+
     echo "RES_REPO=$RES_REPO"
     echo "RES_GH_SSH=$RES_GH_SSH"
     echo "GH_ORG=$GH_ORG"
     echo "SSH_PATH=$SSH_PATH"
     echo "HUB_ORG=$HUB_ORG"
-    echo "UP_TAG_NAME=$UP_TAG_NAME"
 
-    echo "RES_IMAGE_UP=$RES_IMAGE_UP"
     echo "RES_IMAGE_META=$RES_IMAGE_META"
-    echo "RES_VER_UP=$RES_VER_UP"
     echo "RES_VER_NAME=$RES_VER_NAME"
-    echo "RES_REPO_UP=$RES_REPO_UP"
     echo "RES_REPO_STATE=$RES_REPO_STATE"
-    echo "RES_GH_SSH_UP=$RES_GH_SSH_UP"
-    echo "RES_GH_SSH_META=$RES_GH_SSH_META"
 
     echo "IMG_REPO_COMMIT_SHA=$IMG_REPO_COMMIT_SHA"
     echo "PULL_IMG=$PULL_IMG"
