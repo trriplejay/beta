@@ -231,10 +231,6 @@ resources:
   ###############################
 
   # CREDS for AWS PROD account
-  - name: aws_prod_access
-    type: integration
-    integration: aws-prod-access
-
   - name: aws_v2_prod_access
     type: integration
     integration: aws_prod_access
