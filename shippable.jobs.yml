@@ -66,7 +66,9 @@ jobs:
         switch: off
       - IN: nexec_repo
       - IN: microbase_img
-      - IN: shipbits_ecr_cli
+      - IN: shipbits_ecr_v2_cli
+        scopes:
+          - ecr
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh nexec 374168611083.dkr.ecr.us-east-1.amazonaws.com
       - OUT: nexec_img
@@ -82,7 +84,9 @@ jobs:
         switch: off
       - IN: mktg_repo
       - IN: microbase_img
-      - IN: shipbits_ecr_cli
+      - IN: shipbits_ecr_v2_cli
+        scopes:
+          - ecr
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh mktg 374168611083.dkr.ecr.us-east-1.amazonaws.com
       - OUT: mktg_img
@@ -98,7 +102,9 @@ jobs:
         switch: off
       - IN: mktg_img
         switch: off
-      - IN: shipbits_ecr_cli
+      - IN: shipbits_ecr_v2_cli
+        scopes:
+          - ecr
         switch: off
       - IN: rel_prod
         switch: off
@@ -130,7 +136,9 @@ jobs:
       - IN: micro_repo
       - IN: execTemplates_repo
       - IN: microbase_img
-      - IN: shipbits_ecr_cli
+      - IN: shipbits_ecr_v2_cli
+        scopes:
+          - ecr
       - IN: ship_dh_cli
       - TASK:
         - script: ./IN/micro_repo/gitRepo/build.sh
@@ -149,7 +157,9 @@ jobs:
       - IN: api_repo
       - IN: node_repo
       - IN: microbase_img
-      - IN: shipbits_ecr_cli
+      - IN: shipbits_ecr_v2_cli
+        scopes:
+          - ecr
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh api 374168611083.dkr.ecr.us-east-1.amazonaws.com
       - OUT: api_img
@@ -165,7 +175,9 @@ jobs:
         switch: off
       - IN: www_repo
       - IN: microbase_img
-      - IN: shipbits_ecr_cli
+      - IN: shipbits_ecr_v2_cli
+        scopes:
+          - ecr
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh www 374168611083.dkr.ecr.us-east-1.amazonaws.com
       - OUT: www_img
@@ -1180,7 +1192,9 @@ jobs:
         switch: off
       - IN: www_repo
         switch: off
-      - IN: shipbits_ecr_cli
+      - IN: shipbits_ecr_v2_cli
+        scopes:
+          - ecr
         switch: off
       - IN: rel_prod
       - TASK:
@@ -1201,7 +1215,9 @@ jobs:
         switch: off
       - IN: api_repo
         switch: off
-      - IN: shipbits_ecr_cli
+      - IN: shipbits_ecr_v2_cli
+        scopes:
+          - ecr
         switch: off
       - IN: rel_prod
       - TASK:
@@ -1222,7 +1238,9 @@ jobs:
         switch: off
       - IN: nexec_repo
         switch: off
-      - IN: shipbits_ecr_cli
+      - IN: shipbits_ecr_v2_cli
+        scopes:
+          - ecr
         switch: off
       - IN: rel_prod
       - TASK:
@@ -1243,7 +1261,9 @@ jobs:
         switch: off
       - IN: micro_repo
         switch: off
-      - IN: shipbits_ecr_cli
+      - IN: shipbits_ecr_v2_cli
+        scopes:
+          - ecr
         switch: off
       - IN: rel_prod
       - TASK:
@@ -1260,7 +1280,9 @@ jobs:
         switch: off
       - IN: genexec_img
         switch: off
-      - IN: shipbits_ecr_cli
+      - IN: shipbits_ecr_v2_cli
+        scopes:
+          - ecr
         switch: off
       - IN: ship_dh_cli
         switch: off
@@ -1326,7 +1348,9 @@ jobs:
         switch: off
       - IN: mktg_repo
         switch: off
-      - IN: shipbits_ecr_cli
+      - IN: shipbits_ecr_v2_cli
+        scopes:
+          - ecr
         switch: off
       - IN: rel_prod
       - TASK:
