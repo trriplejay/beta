@@ -64,8 +64,8 @@ main() {
 
   IFS='_' read -ra ARR <<< "$JOB_TRIGGERED_BY_NAME"
 
-  echo ${ARR[0]
-  echo ${ARR[1]
+  echo ${ARR[0]}
+  echo ${ARR[1]}
 
 
 #  set_context
