@@ -178,7 +178,7 @@ process_u16_services() {
 }
 
 process_repo_services() {
-  for c in `cat coreServices.txt`; do
+  for c in `cat repoServices.txt`; do
     export CONTEXT=$c
     export GH_ORG=Shippable
 
@@ -194,7 +194,7 @@ process_repo_services() {
 }
 
 process_ship_ecr_services() {
-  for c in `cat u16Services.txt`; do
+  for c in `cat ecrServices.txt`; do
     export CONTEXT=$c
     export HUB_ORG=374168611083.dkr.ecr.us-east-1.amazonaws.com
     export GH_ORG=Shippable
@@ -213,7 +213,7 @@ process_ship_ecr_services() {
 }
 
 process_ship_dry_services() {
-  for c in `cat u16Services.txt`; do
+  for c in `cat dryServices.txt`; do
     export CONTEXT=$c
     export HUB_ORG=drydock
     export GH_ORG=Shippable
