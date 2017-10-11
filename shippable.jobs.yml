@@ -365,8 +365,6 @@ jobs:
         switch: off
       - IN: tag_push_img_genexec
         switch: off
-      - IN: tag_push_microbase
-        switch: off
       - IN: tag_push_repo
         switch: off
       - IN: baseami_params
@@ -1029,43 +1027,27 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_microbase
+  ### Tagging drydock Shippable services
+  - name: tag_push_dry
     type: runSh
     steps:
+      - IN: rel_prod
       - IN: config_repo
-        switch: off
-      - IN: avi_gh_ssh
-        switch: off
-      - IN: microbase_img
-        switch: off
-      - IN: microbase_repo
         switch: off
       - IN: ship_dh_cli
         switch: off
-      - IN: rel_prod
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/tagAndPushImageRepo.sh microbase drydock Shippable
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
-  - name: tag_push_admiral
-    type: runSh
-    steps:
-      - IN: config_repo
+      - IN: avi_gh_ssh
         switch: off
       - IN: admiral_repo
         switch: off
       - IN: admiral_img
         switch: off
-      - IN: avi_gh_ssh
+      - IN: microbase_img
         switch: off
-      - IN: ship_dh_cli
+      - IN: microbase_repo
         switch: off
-      - IN: rel_prod
       - TASK:
-        - script: ./IN/config_repo/gitRepo/tagAndPushAdmiralImageRepo.sh drydock Shippable
+        - script: ./IN/config_repo/gitRepo/tagAndPushSvcs.sh dry
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
