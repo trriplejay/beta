@@ -117,11 +117,13 @@ jobs:
       - IN: config_repo
         switch: off
       - IN: microbase_img
+        switch: off
       - IN: mktg_repo
       - IN: nexec_repo
       - IN: api_repo
       - IN: www_repo
       - IN: shipbits_ecr_v2_cli
+        switch: off
         scopes:
           - ecr
       - TASK:
