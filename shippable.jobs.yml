@@ -1,4 +1,14 @@
 jobs:
+  - name: test_job
+    type: runSh
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: test_repo
+        switch: off
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/test.sh
+
   ##########################
   # begin DOCS JOBS
   ##########################
