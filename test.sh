@@ -12,7 +12,6 @@ set_context() {
   export RES_REPO_STATE=$(shipctl get_resource_state $RES_REPO)
   export RES_REPO_UP=$(shipctl to_uppercase $RES_REPO)
   export RES_REPO_COMMIT=$(eval echo "$"$RES_REPO_UP"_COMMIT")
-
   export BLD_IMG=$HUB_ORG/$IMAGE_NAME:$TAG_NAME
 
   echo "CONTEXT=$CONTEXT"
@@ -20,14 +19,12 @@ set_context() {
   echo "RES_REPO=$RES_REPO"
   echo "RES_IMAGE_OUT=$RES_IMAGE_OUT"
   echo "HUB_ORG=$HUB_ORG"
-  echo "RES_TAG=$RES_TAG"
-
-  echo "RES_TAG_UP=$RES_TAG_UP"
   echo "TAG_NAME=$TAG_NAME"
   echo "RES_REPO_UP=$RES_REPO_UP"
   echo "RES_REPO_STATE=$RES_REPO_STATE"
   echo "BLD_IMG=$BLD_IMG"
   echo "BUILD_NUMBER=$BUILD_NUMBER"
+  echo "RES_REPO_COMMIT=$RES_REPO_COMMIT"
 
 }
 

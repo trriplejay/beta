@@ -108,8 +108,26 @@ jobs:
       - script: echo 'Failed job .... :('
 
   ##########################
-  # begin LOCK UNLOCK JOBS
+  # end LOCK UNLOCK JOBS
   ##########################
+
+  - name: build_ship_ecr_svcs
+    type: runSh
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: microbase_img
+      - IN: mktg_repo
+      - IN: shipbits_ecr_v2_cli
+        scopes:
+          - ecr
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/genBuildImage.sh 374168611083.dkr.ecr.us-east-1.amazonaws.com
+      - OUT: mktg_img
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
 
   - name: build_microbase
     type: runSh
@@ -145,23 +163,23 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_mktg
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: mktg_repo
-      - IN: microbase_img
-      - IN: shipbits_ecr_v2_cli
-        scopes:
-          - ecr
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh mktg 374168611083.dkr.ecr.us-east-1.amazonaws.com
-      - OUT: mktg_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
+#  - name: build_mktg
+#    type: runSh
+#    steps:
+#      - IN: config_repo
+#        switch: off
+#      - IN: mktg_repo
+#      - IN: microbase_img
+#      - IN: shipbits_ecr_v2_cli
+#        scopes:
+#          - ecr
+#      - TASK:
+#        - script: ./IN/config_repo/gitRepo/buildImage.sh mktg 374168611083.dkr.ecr.us-east-1.amazonaws.com
+#      - OUT: mktg_img
+#    on_success:
+#      - script: echo 'on success !!!!!'
+#    on_failure:
+#      - script: echo 'Failed job .... :('
 
   - name: patch_mktg
     type: runSh
