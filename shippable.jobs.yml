@@ -6,7 +6,7 @@ jobs:
         switch: off
       - IN: test_repo
       - TASK:
-        - script: ./IN/config_repo/gitRepo/test.sh
+        - script: ./IN/config_repo/gitRepo/test.sh drydock
 
   ##########################
   # begin DOCS JOBS
