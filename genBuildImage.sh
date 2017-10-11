@@ -60,8 +60,8 @@ main() {
   export CONTEXT=${ARR[0]}
 
   set_context
-  #create_image
-  #create_out_state
+  create_image
+  create_out_state
 }
 
 main
