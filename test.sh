@@ -59,7 +59,15 @@ create_out_state() {
 }
 
 main() {
-   printenv
+  #printenv
+  echo $JOB_TRIGGERED_BY_NAME
+
+  IFS='_' read -ra ARR <<< "$JOB_TRIGGERED_BY_NAME"
+
+  echo ${ARR[0]
+  echo ${ARR[1]
+
+
 #  set_context
 #  create_image
 #  create_out_state
