@@ -141,6 +141,7 @@ jobs:
       - IN: config_repo
         switch: off
       - IN: microbase_repo
+        switch: off
       - IN: u14_img
       - IN: ship_dh_cli
       - TASK:
