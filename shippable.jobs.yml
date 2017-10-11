@@ -1,4 +1,107 @@
 jobs:
+  ##########################
+  # begin DOCS JOBS
+  ##########################
+  - name: publish_prod_docs
+    type: runSh
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: docs_repo
+        switch: off
+      - IN: aws_v2_prod_cli
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/deployDocs.sh s3://docs.shippable.com us-west-2 docs_repo production
+
+  - name: publish_rc_docs
+    type: runSh
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: docs_repo
+      - IN: aws_v2_rc_cli
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/deployDocs.sh s3://rcdocs.shippable.com us-east-1 docs_repo rc
+
+  ##########################
+  # end DOCS JOBS
+  ##########################
+
+  ##########################
+  # begin check_queue job
+  ##########################
+  - name: check_prod_queue
+    type: runSh
+    steps:
+      - IN: check_queue_trigger
+      - IN: config_repo
+        switch: off
+      - IN: prod_api_params
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/checkQueue.sh prod
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+      - NOTIFY: slack_prod
+
+  ##########################
+  # end check_queue job
+  ##########################
+
+  ##########################
+  # begin LOCK UNLOCK JOBS
+  ##########################
+
+  - name: lock_team
+    type: runSh
+    steps:
+      - IN: wh_api_repo
+      - IN: wh_www_repo
+      - IN: wh_micro_repo
+      - IN: wh_nexec_repo
+      - IN: wh_cexec_repo
+      - IN: wh_mktg_repo
+      - IN: team_params
+      - IN: config_repo
+        switch: off
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/lockUnlockTeams.sh pull
+      - OUT: api_repo
+        replicate: wh_api_repo
+      - OUT: www_repo
+        replicate: wh_www_repo
+      - OUT: micro_repo
+        replicate: wh_micro_repo
+      - OUT: nexec_repo
+        replicate: wh_nexec_repo
+      - OUT: cexec_repo
+        replicate: wh_cexec_repo
+      - OUT: mktg_repo
+        replicate: wh_mktg_repo
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  - name: unlock_team
+    type: runSh
+    steps:
+      - IN: bvt-v2
+      - IN: team_params
+      - IN: config_repo
+        switch: off
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/lockUnlockTeams.sh push
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
+  ##########################
+  # begin LOCK UNLOCK JOBS
+  ##########################
+
   - name: build_microbase
     type: runSh
     steps:
@@ -83,9 +186,6 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  ##########################
-  # begin Shippable Server jobs
-  ##########################
   - name: build_micro
     type: runSh
     steps:
@@ -353,215 +453,6 @@ jobs:
       - script: echo "SUCCESS"
     on_failure:
       - script: cat IN/bldami_repo/gitRepo/basePatch/output.txt
-
-  - name: build_finalami
-    type: runSh
-    steps:
-      - IN: tag_push_u16
-        switch: off
-      - IN: tag_push_u14
-        switch: off
-      - IN: tag_push_ecr
-        switch: off
-      - IN: tag_push_img_genexec
-        switch: off
-      - IN: tag_push_repo
-        switch: off
-      - IN: baseami_params
-      - IN: aws_v2_bits_access
-      - IN: bldami_repo
-        switch: off
-      - IN: patch_baseami
-        switch: off
-      - IN: rel_prod
-        switch: off
-      - TASK:
-        - script: IN/bldami_repo/gitRepo/exec/execPack.sh
-    on_success:
-      - script: echo "SUCCESS"
-    on_failure:
-      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
-
-  - name: build_final_admiral_ami
-    type: runSh
-    steps:
-      - IN: rel_prod
-        switch: off
-      - IN: tag_push_img_genexec
-        switch: off
-      - IN: tag_push_repo
-        switch: off
-      - IN: tag_push_ecr
-        switch: off
-      - IN: config_repo
-        switch: off
-      - IN: bldami_repo
-        switch: off
-      - IN: build_admiral_ami
-        switch: off
-      - IN: aws_v2_prod_access
-      - IN: aws_v2_bits_access
-      - IN: admiralami_params
-      - TASK:
-        - script: IN/bldami_repo/gitRepo/admiralPatch/admiralPatchPack.sh build_final_admiral_ami admiralami_params rel_prod
-    on_success:
-      - script: echo 'SUCCESS'
-    on_failure:
-      - script: cat /build/IN/bldami_repo/gitRepo/admiralPatch/output.txt
-
-  - name: build_v532
-    type: runSh
-    steps:
-      - IN: baseami_params
-      - IN: aws_v2_bits_access
-      - IN: tag_push_img_genexec
-        switch: off
-      - IN: tag_push_repo
-        switch: off
-      - IN: bldami_repo
-        switch: off
-      - IN: rel_prod
-        switch: off
-      - TASK:
-        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_v532 rel_prod ami-3b972d2d v532 Ubuntu_14.04_Docker_1.13.sh true
-    on_success:
-      - script: echo "SUCCESS"
-    on_failure:
-      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
-
-  - name: build_v541
-    type: runSh
-    steps:
-      - IN: baseami_params
-      - IN: aws_v2_bits_access
-      - IN: tag_push_img_genexec
-        switch: off
-      - IN: tag_push_repo
-        switch: off
-      - IN: bldami_repo
-        switch: off
-      - IN: rel_prod
-        switch: off
-      - TASK:
-        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_v541 rel_prod ami-90813b86 v541 Ubuntu_14.04_Docker_1.13.sh true
-    on_success:
-      - script: echo "SUCCESS"
-    on_failure:
-      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
-
-  - name: build_v551
-    type: runSh
-    steps:
-      - IN: baseami_params
-      - IN: aws_v2_bits_access
-      - IN: tag_push_img_genexec
-        switch: off
-      - IN: tag_push_repo
-        switch: off
-      - IN: bldami_repo
-        switch: off
-      - IN: rel_prod
-        switch: off
-      - TASK:
-        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_v551 rel_prod ami-4b36535d v551 Ubuntu_14.04_Docker_1.13.sh true
-    on_success:
-      - script: echo "SUCCESS"
-    on_failure:
-      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
-
-  - name: build_v561
-    type: runSh
-    steps:
-      - IN: baseami_params
-      - IN: aws_v2_bits_access
-      - IN: tag_push_img_genexec
-        switch: off
-      - IN: tag_push_repo
-        switch: off
-      - IN: bldami_repo
-        switch: off
-      - IN: rel_prod
-        switch: off
-      - TASK:
-        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_v561 rel_prod ami-c0a5f5d6 v561 Ubuntu_14.04_Docker_1.13.sh true
-    on_failure:
-      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
-
-  - name: build_v573
-    type: runSh
-    steps:
-      - IN: baseami_params
-      - IN: aws_v2_bits_access
-      - IN: tag_push_img_genexec
-        switch: off
-      - IN: tag_push_repo
-        switch: off
-      - IN: bldami_repo
-        switch: off
-      - IN: rel_prod
-        switch: off
-      - TASK:
-        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_v573 rel_prod ami-b9cfdeaf v573 Ubuntu_14.04_Docker_1.13.sh true
-    on_failure:
-      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
-
-  - name: build_v582
-    type: runSh
-    steps:
-      - IN: baseami_params
-      - IN: aws_v2_bits_access
-      - IN: tag_push_img_genexec
-        switch: off
-      - IN: tag_push_repo
-        switch: off
-      - IN: bldami_repo
-        switch: off
-      - IN: rel_prod
-        switch: off
-      - TASK:
-        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_v582 rel_prod ami-f9d6e782 v582 Ubuntu_14.04_Docker_17.06.sh true
-    on_failure:
-      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
-
-  - name: build_stable
-    type: runSh
-    steps:
-      - IN: baseami_params
-      - IN: aws_v2_bits_access
-      - IN: tag_push_img_genexec
-        switch: off
-      - IN: tag_push_repo
-        switch: off
-      - IN: bldami_repo
-        switch: off
-      - IN: rel_prod
-        switch: off
-      - TASK:
-        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_stable rel_prod ami-4ae41a5c stable Ubuntu_14.04_Docker_1.9.sh false
-    on_success:
-      - script: echo "SUCCESS"
-    on_failure:
-      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
-
-  - name: build_unstable
-    type: runSh
-    steps:
-      - IN: baseami_params
-      - IN: aws_v2_bits_access
-      - IN: tag_push_img_genexec
-        switch: off
-      - IN: tag_push_repo
-        switch: off
-      - IN: bldami_repo
-        switch: off
-      - IN: rel_prod
-        switch: off
-      - TASK:
-        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_unstable rel_prod ami-90fd0286 unstable Ubuntu_14.04_Docker_1.11.sh false
-    on_success:
-      - script: echo "SUCCESS"
-    on_failure:
-      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
 
   ###########################################
   # END Build AMI
@@ -1298,106 +1189,222 @@ jobs:
   # END TAG & PUSH image/repos/amis
   ###########################################
 
+
+
+
   ##########################
-  # begin LOCK UNLOCK JOBS
+  # start build release amis
   ##########################
 
-  - name: lock_team
+  - name: build_finalami
     type: runSh
     steps:
-      - IN: wh_api_repo
-      - IN: wh_www_repo
-      - IN: wh_micro_repo
-      - IN: wh_nexec_repo
-      - IN: wh_cexec_repo
-      - IN: wh_mktg_repo
-      - IN: team_params
-      - IN: config_repo
+      - IN: tag_push_u16
+        switch: off
+      - IN: tag_push_u14
+        switch: off
+      - IN: tag_push_ecr
+        switch: off
+      - IN: tag_push_img_genexec
+        switch: off
+      - IN: tag_push_repo
+        switch: off
+      - IN: baseami_params
+      - IN: aws_v2_bits_access
+      - IN: bldami_repo
+        switch: off
+      - IN: patch_baseami
+        switch: off
+      - IN: rel_prod
         switch: off
       - TASK:
-        - script: ./IN/config_repo/gitRepo/lockUnlockTeams.sh pull
-      - OUT: api_repo
-        replicate: wh_api_repo
-      - OUT: www_repo
-        replicate: wh_www_repo
-      - OUT: micro_repo
-        replicate: wh_micro_repo
-      - OUT: nexec_repo
-        replicate: wh_nexec_repo
-      - OUT: cexec_repo
-        replicate: wh_cexec_repo
-      - OUT: mktg_repo
-        replicate: wh_mktg_repo
+        - script: IN/bldami_repo/gitRepo/exec/execPack.sh
     on_success:
-      - script: echo 'on success !!!!!'
+      - script: echo "SUCCESS"
     on_failure:
-      - script: echo 'Failed job .... :('
+      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
 
-  - name: unlock_team
+  - name: build_final_admiral_ami
     type: runSh
     steps:
-      - IN: bvt-v2
-      - IN: team_params
+      - IN: rel_prod
+        switch: off
+      - IN: tag_push_img_genexec
+        switch: off
+      - IN: tag_push_repo
+        switch: off
+      - IN: tag_push_ecr
+        switch: off
       - IN: config_repo
         switch: off
+      - IN: bldami_repo
+        switch: off
+      - IN: build_admiral_ami
+        switch: off
+      - IN: aws_v2_prod_access
+      - IN: aws_v2_bits_access
+      - IN: admiralami_params
       - TASK:
-        - script: ./IN/config_repo/gitRepo/lockUnlockTeams.sh push
+        - script: IN/bldami_repo/gitRepo/admiralPatch/admiralPatchPack.sh build_final_admiral_ami admiralami_params rel_prod
     on_success:
-      - script: echo 'on success !!!!!'
+      - script: echo 'SUCCESS'
     on_failure:
-      - script: echo 'Failed job .... :('
+      - script: cat /build/IN/bldami_repo/gitRepo/admiralPatch/output.txt
 
-  ##########################
-  # begin LOCK UNLOCK JOBS
-  ##########################
-
-
-  ##########################
-  # begin DOCS JOBS
-  ##########################
-  - name: publish_prod_docs
+  - name: build_v532
     type: runSh
     steps:
-      - IN: config_repo
+      - IN: baseami_params
+      - IN: aws_v2_bits_access
+      - IN: tag_push_img_genexec
         switch: off
-      - IN: docs_repo
+      - IN: tag_push_repo
         switch: off
-      - IN: aws_v2_prod_cli
+      - IN: bldami_repo
+        switch: off
+      - IN: rel_prod
+        switch: off
       - TASK:
-        - script: ./IN/config_repo/gitRepo/deployDocs.sh s3://docs.shippable.com us-west-2 docs_repo production
-
-  - name: publish_rc_docs
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: docs_repo
-      - IN: aws_v2_rc_cli
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/deployDocs.sh s3://rcdocs.shippable.com us-east-1 docs_repo rc
-
-  ##########################
-  # end DOCS JOBS
-  ##########################
-
-  ##########################
-  # begin check_queue job
-  ##########################
-  - name: check_prod_queue
-    type: runSh
-    steps:
-      - IN: check_queue_trigger
-      - IN: config_repo
-        switch: off
-      - IN: prod_api_params
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/checkQueue.sh prod
+        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_v532 rel_prod ami-3b972d2d v532 Ubuntu_14.04_Docker_1.13.sh true
     on_success:
-      - script: echo 'on success !!!!!'
+      - script: echo "SUCCESS"
     on_failure:
-      - script: echo 'Failed job .... :('
-      - NOTIFY: slack_prod
+      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
+
+  - name: build_v541
+    type: runSh
+    steps:
+      - IN: baseami_params
+      - IN: aws_v2_bits_access
+      - IN: tag_push_img_genexec
+        switch: off
+      - IN: tag_push_repo
+        switch: off
+      - IN: bldami_repo
+        switch: off
+      - IN: rel_prod
+        switch: off
+      - TASK:
+        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_v541 rel_prod ami-90813b86 v541 Ubuntu_14.04_Docker_1.13.sh true
+    on_success:
+      - script: echo "SUCCESS"
+    on_failure:
+      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
+
+  - name: build_v551
+    type: runSh
+    steps:
+      - IN: baseami_params
+      - IN: aws_v2_bits_access
+      - IN: tag_push_img_genexec
+        switch: off
+      - IN: tag_push_repo
+        switch: off
+      - IN: bldami_repo
+        switch: off
+      - IN: rel_prod
+        switch: off
+      - TASK:
+        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_v551 rel_prod ami-4b36535d v551 Ubuntu_14.04_Docker_1.13.sh true
+    on_success:
+      - script: echo "SUCCESS"
+    on_failure:
+      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
+
+  - name: build_v561
+    type: runSh
+    steps:
+      - IN: baseami_params
+      - IN: aws_v2_bits_access
+      - IN: tag_push_img_genexec
+        switch: off
+      - IN: tag_push_repo
+        switch: off
+      - IN: bldami_repo
+        switch: off
+      - IN: rel_prod
+        switch: off
+      - TASK:
+        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_v561 rel_prod ami-c0a5f5d6 v561 Ubuntu_14.04_Docker_1.13.sh true
+    on_failure:
+      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
+
+  - name: build_v573
+    type: runSh
+    steps:
+      - IN: baseami_params
+      - IN: aws_v2_bits_access
+      - IN: tag_push_img_genexec
+        switch: off
+      - IN: tag_push_repo
+        switch: off
+      - IN: bldami_repo
+        switch: off
+      - IN: rel_prod
+        switch: off
+      - TASK:
+        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_v573 rel_prod ami-b9cfdeaf v573 Ubuntu_14.04_Docker_1.13.sh true
+    on_failure:
+      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
+
+  - name: build_v582
+    type: runSh
+    steps:
+      - IN: baseami_params
+      - IN: aws_v2_bits_access
+      - IN: tag_push_img_genexec
+        switch: off
+      - IN: tag_push_repo
+        switch: off
+      - IN: bldami_repo
+        switch: off
+      - IN: rel_prod
+        switch: off
+      - TASK:
+        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_v582 rel_prod ami-f9d6e782 v582 Ubuntu_14.04_Docker_17.06.sh true
+    on_failure:
+      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
+
+  - name: build_stable
+    type: runSh
+    steps:
+      - IN: baseami_params
+      - IN: aws_v2_bits_access
+      - IN: tag_push_img_genexec
+        switch: off
+      - IN: tag_push_repo
+        switch: off
+      - IN: bldami_repo
+        switch: off
+      - IN: rel_prod
+        switch: off
+      - TASK:
+        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_stable rel_prod ami-4ae41a5c stable Ubuntu_14.04_Docker_1.9.sh false
+    on_success:
+      - script: echo "SUCCESS"
+    on_failure:
+      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
+
+  - name: build_unstable
+    type: runSh
+    steps:
+      - IN: baseami_params
+      - IN: aws_v2_bits_access
+      - IN: tag_push_img_genexec
+        switch: off
+      - IN: tag_push_repo
+        switch: off
+      - IN: bldami_repo
+        switch: off
+      - IN: rel_prod
+        switch: off
+      - TASK:
+        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_unstable rel_prod ami-90fd0286 unstable Ubuntu_14.04_Docker_1.11.sh false
+    on_success:
+      - script: echo "SUCCESS"
+    on_failure:
+      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
 
   ##########################
-  # end check_queue job
+  # end build release amis
   ##########################
