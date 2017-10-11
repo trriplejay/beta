@@ -5,7 +5,6 @@ jobs:
       - IN: config_repo
         switch: off
       - IN: test_repo
-        switch: off
       - TASK:
         - script: ./IN/config_repo/gitRepo/test.sh
 
