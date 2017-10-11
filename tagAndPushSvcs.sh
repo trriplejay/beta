@@ -212,6 +212,25 @@ process_ship_ecr_services() {
   done
 }
 
+process_ship_dry_services() {
+  for c in `cat u16Services.txt`; do
+    export CONTEXT=$c
+    export HUB_ORG=drydock
+    export GH_ORG=Shippable
+
+    echo ""
+    echo "============= Begin info for CONTEXT $CONTEXT======================"
+    echo "CONTEXT=$CONTEXT"
+    echo "HUB_ORG=$HUB_ORG"
+    echo "GH_ORG=$GH_ORG"
+    echo "============= End info for CONTEXT $CONTEXT======================"
+    echo ""
+
+    pull_tag_image
+    tag_push_repo
+  done
+}
+
 main() {
   set_job_context
   add_ssh_key
@@ -236,6 +255,10 @@ main() {
     then
       echo "Executing process_ship_ecr_services"
       process_ship_ecr_services
+    elif [ "$RUN_TYPE" = "dry" ]
+    then
+      echo "Executing process_ship_dry_services"
+      process_ship_dry_services
     fi
   popd
 }
