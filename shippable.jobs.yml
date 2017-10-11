@@ -111,6 +111,30 @@ jobs:
   # end LOCK UNLOCK JOBS
   ##########################
 
+  - name: build_ship_dd_svcs
+    type: runSh
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: postgres_repo
+      - IN: vault_repo
+      - IN: gitlab_repo
+      - IN: rabbitmq_repo
+      - IN: rabbitmq_repo
+      - IN: redis_repo
+        switch: off
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/genBuildImage.sh drydock
+      - OUT: postgres_img
+      - OUT: vault_img
+      - OUT: gitlab_img
+      - OUT: rabbitmq_img
+      - OUT: redis_img
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
   - name: build_ship_ecr_svcs
     type: runSh
     steps:
@@ -152,7 +176,6 @@ jobs:
       - script: echo 'on success !!!!!'
     on_failure:
       - script: echo 'Failed job .... :('
-
 
   - name: patch_mktg
     type: runSh
@@ -424,82 +447,6 @@ jobs:
   ###########################################
   # START Drydock image builds
   ###########################################
-
-  - name: build_redis
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: redis_repo
-      - IN: ship_dh_cli
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh redis drydock
-      - OUT: redis_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
-  - name: build_rabbitmq
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: rabbitmq_repo
-      - IN: ship_dh_cli
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh rabbitmq drydock
-      - OUT: rabbitmq_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
-  - name: build_gitlab
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: gitlab_repo
-      - IN: ship_dh_cli
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh gitlab drydock
-      - OUT: gitlab_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
-  - name: build_vault
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: vault_repo
-      - IN: ship_dh_cli
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh vault drydock
-      - OUT: vault_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
-
-  - name: build_postgres
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: postgres_repo
-      - IN: ship_dh_cli
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh postgres drydock
-      - OUT: postgres_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
 
   - name: build_u14
     type: runSh
