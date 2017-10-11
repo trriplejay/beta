@@ -120,7 +120,6 @@ jobs:
       - IN: vault_repo
       - IN: gitlab_repo
       - IN: rabbitmq_repo
-      - IN: rabbitmq_repo
       - IN: redis_repo
         switch: off
       - TASK:
