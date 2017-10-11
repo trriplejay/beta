@@ -112,6 +112,7 @@ jobs:
       - IN: gitlab_repo
       - IN: rabbitmq_repo
       - IN: redis_repo
+      - IN: ship_dh_cli
         switch: off
       - TASK:
         - script: ./IN/config_repo/gitRepo/genBuildImage.sh drydock
