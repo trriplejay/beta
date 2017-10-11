@@ -1,13 +1,4 @@
 jobs:
-  - name: test_job
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: test_repo
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/test.sh drydock
-
   ##########################
   # begin DOCS JOBS
   ##########################
