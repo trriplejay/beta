@@ -209,6 +209,7 @@ resources:
     pointer:
       sourceName: shippable/mktg
       branch: master
+    buildOnCommit: false
 
   - name: mktg_img
     type: image

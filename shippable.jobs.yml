@@ -118,12 +118,18 @@ jobs:
         switch: off
       - IN: microbase_img
       - IN: mktg_repo
+      - IN: nexec_repo
+      - IN: api_repo
+      - IN: www_repo
       - IN: shipbits_ecr_v2_cli
         scopes:
           - ecr
       - TASK:
         - script: ./IN/config_repo/gitRepo/genBuildImage.sh 374168611083.dkr.ecr.us-east-1.amazonaws.com
       - OUT: mktg_img
+      - OUT: nexec_img
+      - OUT: api_img
+      - OUT: www_img
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
@@ -145,41 +151,6 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_nexec
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: nexec_repo
-      - IN: microbase_img
-      - IN: shipbits_ecr_v2_cli
-        scopes:
-          - ecr
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh nexec 374168611083.dkr.ecr.us-east-1.amazonaws.com
-      - OUT: nexec_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
-#  - name: build_mktg
-#    type: runSh
-#    steps:
-#      - IN: config_repo
-#        switch: off
-#      - IN: mktg_repo
-#      - IN: microbase_img
-#      - IN: shipbits_ecr_v2_cli
-#        scopes:
-#          - ecr
-#      - TASK:
-#        - script: ./IN/config_repo/gitRepo/buildImage.sh mktg 374168611083.dkr.ecr.us-east-1.amazonaws.com
-#      - OUT: mktg_img
-#    on_success:
-#      - script: echo 'on success !!!!!'
-#    on_failure:
-#      - script: echo 'Failed job .... :('
 
   - name: patch_mktg
     type: runSh
@@ -227,43 +198,6 @@ jobs:
         - script: ./IN/micro_repo/gitRepo/build.sh
       - OUT: micro_img
       - OUT: genexec_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
-  - name: build_api
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: api_repo
-      - IN: node_repo
-      - IN: microbase_img
-      - IN: shipbits_ecr_v2_cli
-        scopes:
-          - ecr
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh api 374168611083.dkr.ecr.us-east-1.amazonaws.com
-      - OUT: api_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
-  - name: build_www
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: www_repo
-      - IN: microbase_img
-      - IN: shipbits_ecr_v2_cli
-        scopes:
-          - ecr
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh www 374168611083.dkr.ecr.us-east-1.amazonaws.com
-      - OUT: www_img
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
