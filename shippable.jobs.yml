@@ -1027,6 +1027,27 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
+  - name: tag_push_admiral
+    type: runSh
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: admiral_repo
+        switch: off
+      - IN: admiral_img
+        switch: off
+      - IN: avi_gh_ssh
+        switch: off
+      - IN: ship_dh_cli
+        switch: off
+      - IN: rel_prod
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagAndPushAdmiralImageRepo.sh drydock Shippable
+    on_success:
+      - script: echo 'on success !!!!!'
+    on_failure:
+      - script: echo 'Failed job .... :('
+
   ### Tagging drydock Shippable services
   - name: tag_push_dry
     type: runSh
@@ -1037,10 +1058,6 @@ jobs:
       - IN: ship_dh_cli
         switch: off
       - IN: avi_gh_ssh
-        switch: off
-      - IN: admiral_repo
-        switch: off
-      - IN: admiral_img
         switch: off
       - IN: microbase_img
         switch: off
