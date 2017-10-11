@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 export RUN_TYPE=$1
-export CURR_JOB=$1"tag_push_"$RUN_TYPE
+export CURR_JOB="tag_push_"$RUN_TYPE
 
 set_job_context() {
   eval `ssh-agent -s`
