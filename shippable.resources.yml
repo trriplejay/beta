@@ -1,4 +1,11 @@
 resources:
+  - name: test_repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/test
+      branch: master
+
   - name: microbase_repo
     type: gitRepo
     integration: ric03uec-github
