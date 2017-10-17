@@ -227,7 +227,7 @@ jobs:
       - IN: micro_repo
       - IN: reqExec_repo
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildAndPushReqExec.sh x86_64 Ubuntu s3://shippable-artifacts us-east-1
+        - script: ./IN/config_repo/gitRepo/buildAndPushReqExecArtifacts.sh x86_64 Ubuntu s3://shippable-artifacts us-east-1
 
 #  ###########################################
 #  # deploy rc release to rc environment
