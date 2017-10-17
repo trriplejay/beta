@@ -52,7 +52,6 @@ resources:
       branch: master
     buildOnCommit: false
 
-
   - name: execTemplates_repo
     type: gitRepo
     integration: ric03uec-github
@@ -81,6 +80,13 @@ resources:
       sourceName: "drydock/admiral"
     seed:
       versionName: latest
+
+  - name: reqExec_repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/reqExec
+      branch: master
 
   - name: admiralami_params
     type: params
