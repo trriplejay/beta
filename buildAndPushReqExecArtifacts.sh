@@ -71,7 +71,8 @@ build_reports() {
 push_to_s3() {
   echo "Pushing to S3..."
   tar -zcvf "$REQ_EXEC_BINARY_TAR" -C "$REQ_EXEC_BINARY_DIR" .
-  aws s3 cp --acl public-read --region "$ARTIFACTS_BUCKET_REGION" "$REQ_EXEC_BINARY_TAR" "$S3_BUCKET_BINARY_DIR"
+  # TODO: Uncomment after a AWS CLI is configured and the S3 bucket has been created.
+  # aws s3 cp --acl public-read --region "$ARTIFACTS_BUCKET_REGION" "$REQ_EXEC_BINARY_TAR" "$S3_BUCKET_BINARY_DIR"
 }
 
 main() {
