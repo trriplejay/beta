@@ -219,6 +219,16 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
+  - name: package_reqExec_x86_64_Ubuntu
+    type: runSh
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: micro_repo
+      - IN: reqExec_repo
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/buildAndPushReqExec.sh x86_64 Ubuntu s3://shippable-artifacts us-east-1
+
 #  ###########################################
 #  # deploy rc release to rc environment
 #  ###########################################
