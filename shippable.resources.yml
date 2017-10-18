@@ -335,6 +335,12 @@ resources:
     type: integration
     integration: aws_bits_access
 
+  - name: aws_v2_bits_access_cli
+    type: cliConfig
+    integration: aws_bits_access
+    pointer:
+      region: us-east-1
+
   - name: baseami_params
     type: params
     version:
