@@ -846,6 +846,17 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
+  - name: tag_push_img_reqproc
+    type: runSh
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: ship_dh_cli
+        switch: off
+      - IN: rel_prod
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagAndPushImage.sh reqproc drydock
+
   - name: tag_push_admiral
     type: runSh
     steps:
