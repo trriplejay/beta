@@ -4,7 +4,6 @@
 export ARCHITECTURE="$1"
 export OS="$2"
 export ARTIFACTS_BUCKET="$3"
-export ARTIFACTS_BUCKET_REGION="$4"
 
 # Release version name
 export RELEASE_RESOURCE="rel_prod"
@@ -32,11 +31,6 @@ check_input() {
 
   if [ -z "$ARTIFACTS_BUCKET" ]; then
     echo "Missing input parameter ARTIFACTS_BUCKET"
-    exit 1
-  fi
-
-  if [ -z "$ARTIFACTS_BUCKET_REGION" ]; then
-    echo "Missing input parameter ARTIFACTS_BUCKET_REGION"
     exit 1
   fi
 }
