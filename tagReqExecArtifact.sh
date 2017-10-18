@@ -4,7 +4,6 @@
 export ARCHITECTURE="$1"
 export OS="$2"
 export ARTIFACTS_BUCKET="$3"
-export ARTIFACTS_BUCKET_REGION="$4"
 
 # Release version name
 export RELEASE_RESOURCE="rel_prod"
@@ -34,16 +33,11 @@ check_input() {
     echo "Missing input parameter ARTIFACTS_BUCKET"
     exit 1
   fi
-
-  if [ -z "$ARTIFACTS_BUCKET_REGION" ]; then
-    echo "Missing input parameter ARTIFACTS_BUCKET_REGION"
-    exit 1
-  fi
 }
 
 copy_artifact() {
   echo "Copying from $S3_BUCKET_FROM_PATH to $S3_BUCKET_TO_PATH"
-  aws s3 cp "$S3_BUCKET_FROM_PATH" "$S3_BUCKET_TO_PATH"
+  aws s3 cp --acl public-read "$S3_BUCKET_FROM_PATH" "$S3_BUCKET_TO_PATH"
 }
 
 main() {

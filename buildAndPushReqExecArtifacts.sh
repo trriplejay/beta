@@ -4,7 +4,6 @@
 export ARCHITECTURE="$1"
 export OS="$2"
 export ARTIFACTS_BUCKET="$3"
-export ARTIFACTS_BUCKET_REGION="$4"
 export VERSION=master
 
 # reqExec
@@ -32,11 +31,6 @@ check_input() {
 
   if [ -z "$ARTIFACTS_BUCKET" ]; then
     echo "Missing input parameter ARTIFACTS_BUCKET"
-    exit 1
-  fi
-
-  if [ -z "$ARTIFACTS_BUCKET_REGION" ]; then
-    echo "Missing input parameter ARTIFACTS_BUCKET_REGION"
     exit 1
   fi
 }
@@ -71,7 +65,7 @@ build_reports() {
 push_to_s3() {
   echo "Pushing to S3..."
   tar -zcvf "$REQ_EXEC_BINARY_TAR" -C "$REQ_EXEC_BINARY_DIR" .
-  aws s3 cp --acl public-read --region "$ARTIFACTS_BUCKET_REGION" "$REQ_EXEC_BINARY_TAR" "$S3_BUCKET_BINARY_DIR"
+  aws s3 cp --acl public-read "$REQ_EXEC_BINARY_TAR" "$S3_BUCKET_BINARY_DIR"
 }
 
 main() {
