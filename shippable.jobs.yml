@@ -851,6 +851,16 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
+  - name: tag_push_reqExec_x86_64_Ubuntu
+    type: runSh
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: rel_prod
+      - IN: aws_v2_bits_access_cli
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagReqExecArtifact.sh x86_64 Ubuntu s3://shippable-artifacts us-east-1
+
   ### Tagging drydock Shippable services
   - name: tag_push_dry
     type: runSh
