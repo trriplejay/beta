@@ -928,6 +928,8 @@ jobs:
         switch: off
       - IN: cexec_repo
         switch: off
+      - IN: reqExec_repo
+        switch: off
       - TASK:
         - script: ./IN/config_repo/gitRepo/tagAndPushSvcs.sh repo
     on_success:
