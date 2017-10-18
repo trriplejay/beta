@@ -37,7 +37,7 @@ check_input() {
 
 copy_artifact() {
   echo "Copying from $S3_BUCKET_FROM_PATH to $S3_BUCKET_TO_PATH"
-  aws s3 cp "$S3_BUCKET_FROM_PATH" "$S3_BUCKET_TO_PATH"
+  aws s3 cp --acl public-read "$S3_BUCKET_FROM_PATH" "$S3_BUCKET_TO_PATH"
 }
 
 main() {
