@@ -266,6 +266,7 @@ jobs:
       - IN: genexec_img
       - IN: mktg_img
       - IN: micro_img
+        switch: off
       - IN: admiral_img
       - TASK:
         - script: ./IN/config_repo/gitRepo/deployRc.sh
