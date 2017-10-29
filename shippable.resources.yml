@@ -27,7 +27,7 @@ resources:
     pointer:
       sourceName: shippable/nexec
       branch: master
-    buildOnCommit: false
+      buildOnCommit: false
 
   - name: nexec_img
     type: image
@@ -50,7 +50,7 @@ resources:
     pointer:
       sourceName: shippable/cexec
       branch: master
-    buildOnCommit: false
+      buildOnCommit: false
 
   - name: execTemplates_repo
     type: gitRepo
@@ -138,7 +138,7 @@ resources:
     pointer:
       sourceName: shippable/api
       branch: master
-    buildOnCommit: false
+      buildOnCommit: false
 
   - name: api_img
     type: image
@@ -161,7 +161,7 @@ resources:
     pointer:
       sourceName: shippable/www
       branch: master
-    buildOnCommit: false
+      buildOnCommit: false
 
   - name: www_img
     type: image
@@ -184,7 +184,7 @@ resources:
     pointer:
       sourceName: shippable/micro
       branch: master
-    buildOnCommit: false
+      buildOnCommit: false
 
   - name: micro_img
     type: image
@@ -215,7 +215,7 @@ resources:
     pointer:
       sourceName: shippable/mktg
       branch: master
-    buildOnCommit: false
+      buildOnCommit: false
 
   - name: mktg_img
     type: image
