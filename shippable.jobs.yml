@@ -87,7 +87,8 @@ jobs:
   - name: unlock_team
     type: runSh
     steps:
-      - IN: bvt-v2
+#      - IN: bvt-v2
+      - IN: deploy_rc #temp instead of bvt-v2
       - IN: team_params
       - IN: config_repo
         switch: off
@@ -311,7 +312,9 @@ jobs:
     steps:
       - IN: ship_ver
         switch: off
-      - IN: bvt-v2
+#      - IN: bvt-v2
+#        switch: off
+      - IN: unlock_team  #temp instead of bvt-v2
         switch: off
       - TASK: managed
         bump: patch
@@ -366,7 +369,7 @@ jobs:
       - IN: bvt_v2_params
       - IN: bvt_v2_ghc_owner_ssh_key
       - IN: bvt_v2_ghc_collab_ssh_key
-      - IN: deploy_rc
+#      - IN: deploy_rc
       - TASK:
         - script: IN/bvt_v2_repo/gitRepo/test.sh bvt_v2_params
     on_success:
