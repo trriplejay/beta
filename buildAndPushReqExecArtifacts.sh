@@ -46,9 +46,6 @@ build_reqExec() {
     echo "Packaging reqExec..."
     make package
 
-    echo "Copying build.sh..."
-    cp build.sh $REQ_EXEC_BINARY_DIR
-
     echo "Copying dist..."
     cp -r dist $REQ_EXEC_BINARY_DIR
   popd
