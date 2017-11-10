@@ -7,7 +7,7 @@ export ARTIFACTS_BUCKET="$3"
 export VERSION=master
 
 # reqExec
-export REQ_EXEC_PATH="$REQEXEC_REPO_STATE"
+export REQ_EXEC_PATH="$REQEXEC_REPO_STATE/package/$ARCHITECTURE/$OS/"
 
 # Reports
 export REPORTS_SRC_DIR="$MICRO_REPO_STATE/gol/src/github.com/Shippable/reports"
