@@ -7,7 +7,8 @@ export ARTIFACTS_BUCKET="$3"
 export VERSION=master
 
 # reqExec
-export REQ_EXEC_PATH="$REQEXEC_REPO_STATE/package/$ARCHITECTURE/$OS/"
+export REQ_EXEC_PATH="$REQEXEC_REPO_STATE"
+export REQ_EXEC_PACKAGE_PATH="$REQEXEC_REPO_STATE/package/$ARCHITECTURE/$OS"
 
 # Reports
 export REPORTS_SRC_DIR="$MICRO_REPO_STATE/gol/src/github.com/Shippable/reports"
@@ -44,6 +45,8 @@ create_binaries_dir() {
 build_reqExec() {
   pushd $REQ_EXEC_PATH
     echo "Packaging reqExec..."
+    # move package.sh file for specific ARCH-OS to home folder before building
+    cp $REQ_EXEC_PACKAGE_PATH/package.sh $REQ_EXEC_PATH/
     make package
 
     echo "Copying dist..."
