@@ -1322,6 +1322,24 @@ jobs:
     on_failure:
       - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
 
+  - name: build_v5104
+    type: runSh
+    steps:
+      - IN: baseami_params
+      - IN: aws_v2_bits_access
+      - IN: tag_push_img_genexec
+        switch: off
+      - IN: tag_push_repo
+        switch: off
+      - IN: bldami_repo
+        switch: off
+      - IN: rel_prod
+        switch: off
+      - TASK:
+        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_v5104 rel_prod ami-312b8d4b v5104 Ubuntu_14.04_Docker_17.06.sh true
+    on_failure:
+      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
+
   - name: build_stable
     type: runSh
     steps:
