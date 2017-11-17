@@ -45,9 +45,7 @@ create_binaries_dir() {
 build_reqExec() {
   pushd $REQ_EXEC_PATH
     echo "Packaging reqExec..."
-    # move package.sh file for specific ARCH-OS to home folder before building
-    cp $REQ_EXEC_PACKAGE_PATH/package.sh $REQ_EXEC_PATH/
-    make package
+    make "package_"$ARCHITECTURE"_"$OS
 
     echo "Copying dist..."
     cp -r dist $REQ_EXEC_BINARY_DIR
