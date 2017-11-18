@@ -226,11 +226,6 @@ jobs:
     steps:
       - IN: reqProc_repo
       - IN: package_reqExec_x86_64_Ubuntu_16_04
-        switch: off
-      - IN: package_reqExec_x86_64_macOS_10_12
-        switch: off
-      - IN: package_reqExec_aarch64_Ubuntu_16_04
-        switch: off
       - IN: execTemplates_repo
       - IN: shipbits_ecr_v2_cli
         scopes:
@@ -249,26 +244,6 @@ jobs:
       - IN: aws_v2_bits_access_cli
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildAndPushReqExecArtifacts.sh x86_64 Ubuntu_16.04 s3://shippable-artifacts
-
-  - name: package_reqExec_x86_64_macOS_10_12
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: reqExec_repo
-      - IN: aws_v2_bits_access_cli
-      - TASK:
-        - script: echo "This should run ./IN/config_repo/gitRepo/buildAndPushReqExecArtifacts.sh x86_64 macOS_10.12 s3://shippable-artifacts"
-
-  - name: package_reqExec_aarch64_Ubuntu_16_04
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: reqExec_repo
-      - IN: aws_v2_bits_access_cli
-      - TASK:
-        - script: echo "This should run ./IN/config_repo/gitRepo/buildAndPushReqExecArtifacts.sh aarch64 Ubuntu_16.04 s3://shippable-artifacts"
 
   #  ###########################################
   #  # deploy rc release to rc environment
