@@ -41,7 +41,7 @@ create_binaries_dir() {
 build_reqExec() {
   pushd $REQ_EXEC_PATH
     echo "Packaging reqExec..."
-    ./$REQ_EXEC_PACKAGE_PATH/package.sh
+    $REQ_EXEC_PACKAGE_PATH/package.sh
 
     echo "Copying dist..."
     cp -r dist $REQ_EXEC_BINARY_DIR
