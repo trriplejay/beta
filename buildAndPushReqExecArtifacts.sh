@@ -8,10 +8,12 @@ export VERSION=master
 
 # reqExec
 export REQ_EXEC_PATH="$REQEXEC_REPO_STATE"
-export REQ_EXEC_PACKAGE_DIR="$REQEXEC_REPO_STATE/package/$ARCHITECTURE/$OS"
+export REQ_EXEC_PACKAGE_PATH="$REQEXEC_REPO_STATE/package/$ARCHITECTURE/$OS"
 
 # Binaries
-export S3_BUCKET_BINARY_DIR="$ARTIFACTS_BUCKET/reqExec/$VERSION/$ARCHITECTURE/$OS"
+export REQ_EXEC_BINARY_DIR="/tmp/reqExec"
+export REQ_EXEC_BINARY_TAR="/tmp/reqExec-$VERSION-$ARCHITECTURE-$OS.tar.gz"
+export S3_BUCKET_BINARY_DIR="$ARTIFACTS_BUCKET/reqExec/$VERSION/"
 
 check_input() {
   if [ -z "$ARCHITECTURE" ]; then
@@ -36,23 +38,27 @@ create_binaries_dir() {
   mkdir $REQ_EXEC_BINARY_DIR
 }
 
-build_and_push_reqExec() {
+build_reqExec() {
   pushd $REQ_EXEC_PATH
     echo "Packaging reqExec..."
-    $REQ_EXEC_PACKAGE_DIR/package.sh
+    $REQ_EXEC_PACKAGE_PATH/package.sh
 
-    echo "Cleaning up S3 binary path..."
-    aws s3 rm --recursive $S3_BUCKET_BINARY_DIR
-
-    echo "Pushing reqExec binary to S3..."
-    aws s3 cp --recursive --acl public-read dist/main $S3_BUCKET_BINARY_DIR
+    echo "Copying dist..."
+    cp -r dist $REQ_EXEC_BINARY_DIR
   popd
+}
+
+push_to_s3() {
+  echo "Pushing to S3..."
+  tar -zcvf "$REQ_EXEC_BINARY_TAR" -C "$REQ_EXEC_BINARY_DIR" .
+  aws s3 cp --acl public-read "$REQ_EXEC_BINARY_TAR" "$S3_BUCKET_BINARY_DIR"
 }
 
 main() {
   check_input
   create_binaries_dir
-  build_and_push_reqExec
+  build_reqExec
+  push_to_s3
 }
 
 main
