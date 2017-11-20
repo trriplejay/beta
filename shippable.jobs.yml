@@ -226,6 +226,11 @@ jobs:
     steps:
       - IN: reqProc_repo
       - IN: package_reqExec_x86_64_Ubuntu_16_04
+        switch: off
+      - IN: package_reqExec_x86_64_macOS_10_12
+        switch: off
+      - IN: package_reqExec_aarch64_Ubuntu_16_04
+        switch: off
       - IN: execTemplates_repo
       - IN: shipbits_ecr_v2_cli
         scopes:
