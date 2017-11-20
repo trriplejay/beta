@@ -946,7 +946,7 @@ jobs:
       - TASK:
         - script: echo "This should run ./IN/config_repo/gitRepo/tagAndPushImage.sh reqproc drydockaarch64"
 
-  - name: tag_reqExec_x86_64_Ubuntu_16_04_artifacts
+  - name: tag_reqExec_x86_64_Ubuntu_16_04
     type: runSh
     steps:
       - IN: config_repo
@@ -954,9 +954,9 @@ jobs:
       - IN: rel_prod
       - IN: aws_v2_bits_access_cli
       - TASK:
-        - script: ./IN/config_repo/gitRepo/tagReqExecArtifact.sh x86_64 Ubuntu_16_04 s3://shippable-artifacts
+        - script: ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh x86_64 Ubuntu_16_04 s3://shippable-artifacts
 
-  - name: tag_reqExec_x86_64_macOS_10_12_artifacts
+  - name: tag_reqExec_x86_64_macOS_10_12
     type: runSh
     steps:
       - IN: config_repo
@@ -964,9 +964,9 @@ jobs:
       - IN: rel_prod
       - IN: aws_v2_bits_access_cli
       - TASK:
-        - script: echo "This should run ./IN/config_repo/gitRepo/tagReqExecArtifact.sh x86_64 macOS_10_12 s3://shippable-artifacts"
+        - script: echo "This should run ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh x86_64 macOS_10_12 s3://shippable-artifacts"
 
-  - name: tag_reqExec_aarch64_Ubuntu_16_04_artifacts
+  - name: tag_reqExec_aarch64_Ubuntu_16_04
     type: runSh
     steps:
       - IN: config_repo
@@ -974,7 +974,7 @@ jobs:
       - IN: rel_prod
       - IN: aws_v2_bits_access_cli
       - TASK:
-        - script: echo "This should run ./IN/config_repo/gitRepo/tagReqExecArtifact.sh aarch64 Ubuntu_16_04 s3://shippable-artifacts"
+        - script: echo "This should run ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh aarch64 Ubuntu_16_04 s3://shippable-artifacts"
 
   - name: tag_push_admiral
     type: runSh
