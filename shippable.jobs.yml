@@ -220,8 +220,7 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  # This doesn't have a convention for OS yet. For now we are pushing to drydock/reqProc.
-  - name: build_reqProc_x86_64
+  - name: build_reqProc_x86_64_Ubuntu_16_04
     type: runSh
     steps:
       - IN: reqProc_repo
@@ -239,6 +238,44 @@ jobs:
       - IN: microbase_img
       - TASK:
         - script: ./IN/reqProc_repo/gitRepo/build.sh drydock
+
+  - name: build_reqProc_x86_64_macOS_10_12
+    type: runSh
+    steps:
+      - IN: reqProc_repo
+      - IN: package_reqExec_x86_64_Ubuntu_16_04
+        switch: off
+      - IN: package_reqExec_x86_64_macOS_10_12
+        switch: off
+      - IN: package_reqExec_aarch64_Ubuntu_16_04
+        switch: off
+      - IN: execTemplates_repo
+      - IN: shipbits_ecr_v2_cli
+        scopes:
+          - ecr
+      - IN: ship_dh_cli
+      - IN: microbase_img
+      - TASK:
+        - script: echo "This should run ./IN/reqProc_repo/gitRepo/build.sh TBD"
+
+  - name: build_reqProc_aarch64_Ubuntu_16_04
+    type: runSh
+    steps:
+      - IN: reqProc_repo
+      - IN: package_reqExec_x86_64_Ubuntu_16_04
+        switch: off
+      - IN: package_reqExec_x86_64_macOS_10_12
+        switch: off
+      - IN: package_reqExec_aarch64_Ubuntu_16_04
+        switch: off
+      - IN: execTemplates_repo
+      - IN: shipbits_ecr_v2_cli
+        scopes:
+          - ecr
+      - IN: ship_dh_cli
+      - IN: microbase_img
+      - TASK:
+        - script: echo "This should run ./IN/reqProc_repo/gitRepo/build.sh drydockaarch64"
 
   - name: package_reqExec_x86_64_Ubuntu_16_04
     type: runSh
