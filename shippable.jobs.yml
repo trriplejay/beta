@@ -228,6 +228,8 @@ jobs:
         switch: off
       - IN: package_reqExec_x86_64_macOS_10_12
         switch: off
+      - IN: package_reqExec_x86_64_WindowsServer_2016
+        switch: off
       - IN: package_reqExec_aarch64_Ubuntu_16_04
         switch: off
       - IN: execTemplates_repo
@@ -237,7 +239,7 @@ jobs:
       - IN: ship_dh_cli
       - IN: microbase_img
       - TASK:
-        - script: ./IN/reqProc_repo/gitRepo/build.sh drydock
+        - script: ./IN/reqProc_repo/gitRepo/build.sh x86_64 Ubuntu_16.04 drydock reqproc
 
   - name: build_reqProc_x86_64_macOS_10_12
     type: runSh
@@ -247,6 +249,8 @@ jobs:
         switch: off
       - IN: package_reqExec_x86_64_macOS_10_12
         switch: off
+      - IN: package_reqExec_x86_64_WindowsServer_2016
+        switch: off
       - IN: package_reqExec_aarch64_Ubuntu_16_04
         switch: off
       - IN: execTemplates_repo
@@ -256,7 +260,28 @@ jobs:
       - IN: ship_dh_cli
       - IN: microbase_img
       - TASK:
-        - script: echo "This should run ./IN/reqProc_repo/gitRepo/build.sh TBD"
+        - script: echo "This should run ./IN/reqProc_repo/gitRepo/build.sh x86_64 Ubuntu_16.04 drydock m10reqproc"
+
+  - name: build_reqProc_x86_64_WindowsServer_2016
+    type: runSh
+    steps:
+      - IN: reqProc_repo
+      - IN: package_reqExec_x86_64_Ubuntu_16_04
+        switch: off
+      - IN: package_reqExec_x86_64_macOS_10_12
+        switch: off
+      - IN: package_reqExec_x86_64_WindowsServer_2016
+        switch: off
+      - IN: package_reqExec_aarch64_Ubuntu_16_04
+        switch: off
+      - IN: execTemplates_repo
+      - IN: shipbits_ecr_v2_cli
+        scopes:
+          - ecr
+      - IN: ship_dh_cli
+      - IN: microbase_img
+      - TASK:
+        - script: echo "This should run ./IN/reqProc_repo/gitRepo/build.sh x86_64 WindowsServer_2016 drydock w16reqproc"
 
   - name: build_reqProc_aarch64_Ubuntu_16_04
     type: runSh
@@ -266,6 +291,8 @@ jobs:
         switch: off
       - IN: package_reqExec_x86_64_macOS_10_12
         switch: off
+      - IN: package_reqExec_x86_64_WindowsServer_2016
+        switch: off
       - IN: package_reqExec_aarch64_Ubuntu_16_04
         switch: off
       - IN: execTemplates_repo
@@ -275,7 +302,7 @@ jobs:
       - IN: ship_dh_cli
       - IN: microbase_img
       - TASK:
-        - script: echo "This should run ./IN/reqProc_repo/gitRepo/build.sh drydockaarch64"
+        - script: echo "This should run ./IN/reqProc_repo/gitRepo/build.sh x86_64 Ubuntu_16.04 drydockaarch64 reqproc"
 
   - name: package_reqExec_x86_64_Ubuntu_16_04
     type: runSh
@@ -298,6 +325,17 @@ jobs:
       - IN: aws_v2_bits_access_cli
       - TASK:
         - script: echo "This should run ./IN/config_repo/gitRepo/buildAndPushReqExecArtifacts.sh x86_64 macOS_10.12 s3://shippable-artifacts"
+
+  - name: package_reqExec_x86_64_WindowsServer_2016
+    type: runSh
+    steps:
+      - IN: microbase_img
+      - IN: config_repo
+        switch: off
+      - IN: reqExec_repo
+      - IN: aws_v2_bits_access_cli
+      - TASK:
+        - script: echo "This should run ./IN/config_repo/gitRepo/buildAndPushReqExecArtifacts.sh x86_64 WindowsServer_2016 s3://shippable-artifacts"
 
   - name: package_reqExec_aarch64_Ubuntu_16_04
     type: runSh
@@ -933,7 +971,18 @@ jobs:
         switch: off
       - IN: rel_prod
       - TASK:
-        - script: echo "This should run ./IN/config_repo/gitRepo/tagAndPushImage.sh reqproc TBD"
+        - script: echo "This should run ./IN/config_repo/gitRepo/tagAndPushImage.sh m10reqproc drydock"
+
+  - name: tag_reqProc_x86_64_WindowsServer_2016
+    type: runSh
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: ship_dh_cli
+        switch: off
+      - IN: rel_prod
+      - TASK:
+        - script: echo "This should run ./IN/config_repo/gitRepo/tagAndPushImage.sh w16reqproc drydock"
 
   - name: tag_reqProc_aarch64_Ubuntu_16_04
     type: runSh
@@ -965,6 +1014,16 @@ jobs:
       - IN: aws_v2_bits_access_cli
       - TASK:
         - script: echo "This should run ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh x86_64 macOS_10.12 s3://shippable-artifacts"
+
+  - name: tag_reqExec_x86_64_WindowsServer_2016
+    type: runSh
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: rel_prod
+      - IN: aws_v2_bits_access_cli
+      - TASK:
+        - script: echo "This should run ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh x86_64 WindowsServer_2016 s3://shippable-artifacts"
 
   - name: tag_reqExec_aarch64_Ubuntu_16_04
     type: runSh
