@@ -3,3 +3,4 @@ node
 cexec
 reqExec
 reqProc
+reqKick

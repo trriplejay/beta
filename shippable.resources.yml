@@ -95,6 +95,13 @@ resources:
       sourceName: shippable/reqProc
       branch: master
 
+  - name: reqKick_repo
+    type: gitRepo
+    integration: ric03uec-github
+    pointer:
+      sourceName: shippable/reqKick
+      branch: master
+
   - name: admiralami_params
     type: params
     version:
