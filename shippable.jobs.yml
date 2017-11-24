@@ -339,6 +339,9 @@ jobs:
 
   - name: package_reqExec_aarch64_Ubuntu_16_04
     type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
     steps:
       - IN: microbase_img
       - IN: config_repo
@@ -346,7 +349,7 @@ jobs:
       - IN: reqExec_repo
       - IN: aws_v2_bits_access_cli
       - TASK:
-        - script: echo "This should run ./IN/config_repo/gitRepo/buildAndPushReqExecArtifacts.sh aarch64 Ubuntu_16.04 s3://shippable-artifacts"
+        - script: ./IN/config_repo/gitRepo/buildAndPushReqExecArtifacts.sh aarch64 Ubuntu_16.04 s3://shippable-artifacts
 
   #  ###########################################
   #  # deploy rc release to rc environment
