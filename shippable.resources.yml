@@ -125,6 +125,10 @@ resources:
     type: cliConfig
     integration: "shipDH"
 
+  - name: ship_dh_cli_v2
+    type: cliConfig
+    integration: ric03uec-dockerhub
+
   - name: config_repo
     type: gitRepo
     integration: ric03uec-github
