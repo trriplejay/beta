@@ -982,11 +982,11 @@ jobs:
       - IN: rel_prod
       - IN: aws_v2_bits_access_cli
       - TASK:
-        script:
-          - ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh x86_64 Ubuntu_16.04 s3://shippable-artifacts
-          - ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh x86_64 macOS_10.12 s3://shippable-artifacts
-          - echo "This should run ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh x86_64 WindowsServer_2016 s3://shippable-artifacts"
-          - ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh aarch64 Ubuntu_16.04 s3://shippable-artifacts
+          script:
+            - ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh x86_64 Ubuntu_16.04 s3://shippable-artifacts
+            - ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh x86_64 macOS_10.12 s3://shippable-artifacts
+            - echo "This should run ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh x86_64 WindowsServer_2016 s3://shippable-artifacts"
+            - ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh aarch64 Ubuntu_16.04 s3://shippable-artifacts
 
   - name: tag_push_admiral
     type: runSh
