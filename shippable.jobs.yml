@@ -243,6 +243,10 @@ jobs:
 
   - name: build_reqProc_x86_64_macOS_10_12
     type: runSh
+    runtime:
+      architecture: x86_64
+      os: macOS_10.12
+      container: false
     steps:
       - IN: reqProc_repo
       - IN: package_reqExec_x86_64_Ubuntu_16_04
@@ -264,6 +268,10 @@ jobs:
 
   - name: build_reqProc_x86_64_WindowsServer_2016
     type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
     steps:
       - IN: reqProc_repo
       - IN: package_reqExec_x86_64_Ubuntu_16_04
@@ -285,6 +293,10 @@ jobs:
 
   - name: build_reqProc_aarch64_Ubuntu_16_04
     type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: false
     steps:
       - IN: reqProc_repo
       - IN: package_reqExec_x86_64_Ubuntu_16_04
@@ -332,6 +344,10 @@ jobs:
 
   - name: package_reqExec_x86_64_WindowsServer_2016
     type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
     steps:
       - IN: microbase_img
       - IN: config_repo
