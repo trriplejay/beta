@@ -1290,17 +1290,13 @@ jobs:
 
   - name: build_finalami
     type: runSh
+    dependencyMode: strict
     steps:
       - IN: tag_push_u16
-        switch: off
       - IN: tag_push_u14
-        switch: off
       - IN: tag_push_ecr
-        switch: off
       - IN: tag_push_img_genexec
-        switch: off
       - IN: tag_push_repo
-        switch: off
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: bldami_repo
@@ -1318,15 +1314,13 @@ jobs:
 
   - name: build_final_admiral_ami
     type: runSh
+    dependencyMode: strict
     steps:
       - IN: rel_prod
         switch: off
       - IN: tag_push_img_genexec
-        switch: off
       - IN: tag_push_repo
-        switch: off
       - IN: tag_push_ecr
-        switch: off
       - IN: config_repo
         switch: off
       - IN: bldami_repo
@@ -1345,13 +1339,12 @@ jobs:
 
   - name: build_v532
     type: runSh
+    dependencyMode: strict
     steps:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-        switch: off
       - IN: tag_push_repo
-        switch: off
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -1365,13 +1358,12 @@ jobs:
 
   - name: build_v541
     type: runSh
+    dependencyMode: strict
     steps:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-        switch: off
       - IN: tag_push_repo
-        switch: off
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -1385,13 +1377,12 @@ jobs:
 
   - name: build_v551
     type: runSh
+    dependencyMode: strict
     steps:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-        switch: off
       - IN: tag_push_repo
-        switch: off
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -1405,13 +1396,12 @@ jobs:
 
   - name: build_v561
     type: runSh
+    dependencyMode: strict
     steps:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-        switch: off
       - IN: tag_push_repo
-        switch: off
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -1423,13 +1413,12 @@ jobs:
 
   - name: build_v573
     type: runSh
+    dependencyMode: strict
     steps:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-        switch: off
       - IN: tag_push_repo
-        switch: off
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -1441,13 +1430,12 @@ jobs:
 
   - name: build_v582
     type: runSh
+    dependencyMode: strict
     steps:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-        switch: off
       - IN: tag_push_repo
-        switch: off
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -1459,13 +1447,12 @@ jobs:
 
   - name: build_v5104
     type: runSh
+    dependencyMode: strict
     steps:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-        switch: off
       - IN: tag_push_repo
-        switch: off
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -1477,13 +1464,12 @@ jobs:
 
   - name: build_stable
     type: runSh
+    dependencyMode: strict
     steps:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-        switch: off
       - IN: tag_push_repo
-        switch: off
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -1497,13 +1483,12 @@ jobs:
 
   - name: build_unstable
     type: runSh
+    dependencyMode: strict
     steps:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-        switch: off
       - IN: tag_push_repo
-        switch: off
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
