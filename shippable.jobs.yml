@@ -1290,13 +1290,17 @@ jobs:
 
   - name: build_finalami
     type: runSh
-    dependencyMode: strict
     steps:
       - IN: tag_push_u16
+        switch: off
       - IN: tag_push_u14
+        switch: off
       - IN: tag_push_ecr
+        switch: off
       - IN: tag_push_img_genexec
+        switch: off
       - IN: tag_push_repo
+        switch: off
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: bldami_repo
