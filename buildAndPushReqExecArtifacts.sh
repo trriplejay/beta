@@ -8,10 +8,7 @@ export VERSION=master
 
 # reqExec
 export REQ_EXEC_PATH="$REQEXEC_REPO_STATE"
-
-# Reports
-export REPORTS_SRC_DIR="$MICRO_REPO_STATE/gol/src/github.com/Shippable/reports"
-export REPORTS_BIN_DIR="$MICRO_REPO_STATE/gol/bin"
+export REQ_EXEC_PACKAGE_PATH="$REQEXEC_REPO_STATE/package/$ARCHITECTURE/$OS"
 
 # Binaries
 export REQ_EXEC_BINARY_DIR="/tmp/reqExec"
@@ -44,21 +41,10 @@ create_binaries_dir() {
 build_reqExec() {
   pushd $REQ_EXEC_PATH
     echo "Packaging reqExec..."
-    make package
-
-    echo "Copying build.sh..."
-    cp build.sh $REQ_EXEC_BINARY_DIR
+    $REQ_EXEC_PACKAGE_PATH/package.sh
 
     echo "Copying dist..."
     cp -r dist $REQ_EXEC_BINARY_DIR
-  popd
-}
-
-build_reports() {
-  pushd $REPORTS_SRC_DIR
-    echo "Packaging reports..."
-    make build
-    cp -r $REPORTS_BIN_DIR $REQ_EXEC_BINARY_DIR
   popd
 }
 
@@ -72,7 +58,6 @@ main() {
   check_input
   create_binaries_dir
   build_reqExec
-  build_reports
   push_to_s3
 }
 

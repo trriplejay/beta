@@ -113,7 +113,7 @@ jobs:
       - IN: gitlab_repo
       - IN: rabbitmq_repo
       - IN: redis_repo
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
         switch: off
       - TASK:
         - script: ./IN/config_repo/gitRepo/genBuildImage.sh drydock
@@ -160,7 +160,7 @@ jobs:
         switch: off
       - IN: microbase_repo
       - IN: u14_img
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh microbase drydock
       - OUT: microbase_img
@@ -192,7 +192,7 @@ jobs:
         switch: off
       - IN: admiral_repo
       - IN: microbase_img
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh admiral drydock
       - OUT: admiral_img
@@ -210,7 +210,7 @@ jobs:
       - IN: shipbits_ecr_v2_cli
         scopes:
           - ecr
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/micro_repo/gitRepo/build.sh
       - OUT: micro_img
@@ -220,36 +220,161 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_reqProc_x86_64_Ubuntu
+  - name: build_reqProc_x86_64_Ubuntu_16_04
     type: runSh
     steps:
       - IN: reqProc_repo
-      - IN: package_reqExec_x86_64_Ubuntu
+      - IN: package_reqExec_x86_64_Ubuntu_16_04
+        switch: off
+      - IN: package_reqExec_x86_64_macOS_10_12
+        switch: off
+      - IN: package_reqExec_x86_64_WindowsServer_2016
+        switch: off
+      - IN: package_reqExec_aarch64_Ubuntu_16_04
+        switch: off
       - IN: execTemplates_repo
       - IN: shipbits_ecr_v2_cli
         scopes:
           - ecr
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - IN: microbase_img
       - TASK:
-        - script: ./IN/reqProc_repo/gitRepo/build.sh drydock x86_64 Ubuntu
+        - script: ./IN/reqProc_repo/gitRepo/build.sh x86_64 Ubuntu_16.04 drydock reqproc
 
-  - name: package_reqExec_x86_64_Ubuntu
+  - name: build_reqProc_x86_64_macOS_10_12
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: macOS_10.12
+      container: false
+    steps:
+      - IN: reqProc_repo
+      - IN: package_reqExec_x86_64_Ubuntu_16_04
+        switch: off
+      - IN: package_reqExec_x86_64_macOS_10_12
+        switch: off
+      - IN: package_reqExec_x86_64_WindowsServer_2016
+        switch: off
+      - IN: package_reqExec_aarch64_Ubuntu_16_04
+        switch: off
+      - IN: execTemplates_repo
+      - IN: shipbits_ecr_v2_cli
+        scopes:
+          - ecr
+      - IN: ship_dh_cli_v2
+      - IN: microbase_img
+      - TASK:
+        - script: ./IN/reqProc_repo/gitRepo/build.sh x86_64 macOS_10.12 drydock m10reqproc
+
+  - name: build_reqProc_x86_64_WindowsServer_2016
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
+    steps:
+      - IN: reqProc_repo
+      - IN: package_reqExec_x86_64_Ubuntu_16_04
+        switch: off
+      - IN: package_reqExec_x86_64_macOS_10_12
+        switch: off
+      - IN: package_reqExec_x86_64_WindowsServer_2016
+        switch: off
+      - IN: package_reqExec_aarch64_Ubuntu_16_04
+        switch: off
+      - IN: execTemplates_repo
+      - IN: shipbits_ecr_v2_cli
+        scopes:
+          - ecr
+      - IN: ship_dh_cli_v2
+      - IN: microbase_img
+      - TASK:
+        - script: echo "This should run ./IN/reqProc_repo/gitRepo/build.sh x86_64 WindowsServer_2016 drydock w16reqproc"
+
+  - name: build_reqProc_aarch64_Ubuntu_16_04
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: false
+    steps:
+      - IN: reqProc_repo
+      - IN: package_reqExec_x86_64_Ubuntu_16_04
+        switch: off
+      - IN: package_reqExec_x86_64_macOS_10_12
+        switch: off
+      - IN: package_reqExec_x86_64_WindowsServer_2016
+        switch: off
+      - IN: package_reqExec_aarch64_Ubuntu_16_04
+        switch: off
+      - IN: execTemplates_repo
+      - IN: shipbits_ecr_v2_cli
+        scopes:
+          - ecr
+      - IN: ship_dh_cli_v2
+      - IN: microbase_img
+      - TASK:
+        - script: ./IN/reqProc_repo/gitRepo/build.sh aarch64 Ubuntu_16.04 drydockaarch64 reqproc
+
+  - name: package_reqExec_x86_64_Ubuntu_16_04
     type: runSh
     steps:
+      - IN: microbase_img
       - IN: config_repo
-        switch: off
-      - IN: micro_repo
         switch: off
       - IN: reqExec_repo
       - IN: aws_v2_bits_access_cli
-      - IN: microbase_img
       - TASK:
-        - script: ./IN/config_repo/gitRepo/buildAndPushReqExecArtifacts.sh x86_64 Ubuntu s3://shippable-artifacts
+        - script: ./IN/config_repo/gitRepo/buildAndPushReqExecArtifacts.sh x86_64 Ubuntu_16.04 s3://shippable-artifacts
 
-#  ###########################################
-#  # deploy rc release to rc environment
-#  ###########################################
+  - name: package_reqExec_x86_64_macOS_10_12
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: macOS_10.12
+      container: false
+    steps:
+      - IN: microbase_img
+      - IN: config_repo
+        switch: off
+      - IN: reqExec_repo
+      - IN: aws_v2_bits_access_cli
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/buildAndPushReqExecArtifacts.sh x86_64 macOS_10.12 s3://shippable-artifacts
+
+  - name: package_reqExec_x86_64_WindowsServer_2016
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
+    steps:
+      - IN: microbase_img
+      - IN: config_repo
+        switch: off
+      - IN: reqExec_repo
+      - IN: aws_v2_bits_access_cli
+      - TASK:
+        - script: echo "This should run ./IN/config_repo/gitRepo/buildAndPushReqExecArtifacts.sh x86_64 WindowsServer_2016 s3://shippable-artifacts"
+
+  - name: package_reqExec_aarch64_Ubuntu_16_04
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: false
+    steps:
+      - IN: microbase_img
+      - IN: config_repo
+        switch: off
+      - IN: reqExec_repo
+      - IN: aws_v2_bits_access_cli
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/buildAndPushReqExecArtifacts.sh aarch64 Ubuntu_16.04 s3://shippable-artifacts
+
+  #  ###########################################
+  #  # deploy rc release to rc environment
+  #  ###########################################
   - name: deploy_rc
     type: runSh
     on_start:
@@ -476,7 +601,7 @@ jobs:
       - IN: config_repo
         switch: off
       - IN: u14_repo
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh u14 drydock
       - OUT: u14_img
@@ -492,7 +617,7 @@ jobs:
         switch: off
       - IN: u14_img
       - IN: u14all_repo
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh u14all drydock
       - OUT: u14all_img
@@ -508,7 +633,7 @@ jobs:
         switch: off
       - IN: u14all_img
       - IN: u14nodall_repo
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh u14nodall drydock
       - OUT: u14nodall_img
@@ -524,7 +649,7 @@ jobs:
         switch: off
       - IN: u14all_img
       - IN: u14pytall_repo
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh u14pytall drydock
       - OUT: u14pytall_img
@@ -540,7 +665,7 @@ jobs:
         switch: off
       - IN: u14all_img
       - IN: u14cloall_repo
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh u14cloall drydock
       - OUT: u14cloall_img
@@ -556,7 +681,7 @@ jobs:
         switch: off
       - IN: u14all_img
       - IN: u14golall_repo
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh u14golall drydock
       - OUT: u14golall_img
@@ -572,7 +697,7 @@ jobs:
         switch: off
       - IN: u14all_img
       - IN: u14javall_repo
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh u14javall drydock
       - OUT: u14javall_img
@@ -588,7 +713,7 @@ jobs:
         switch: off
       - IN: u14javall_img
       - IN: u14scaall_repo
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh u14scaall drydock
       - OUT: u14scaall_img
@@ -604,7 +729,7 @@ jobs:
         switch: off
       - IN: u14all_img
       - IN: u14ruball_repo
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh u14ruball drydock
       - OUT: u14ruball_img
@@ -620,7 +745,7 @@ jobs:
         switch: off
       - IN: u14all_img
       - IN: u14phpall_repo
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh u14phpall drydock
       - OUT: u14phpall_img
@@ -636,7 +761,7 @@ jobs:
         switch: off
       - IN: u14all_img
       - IN: u14cppall_repo
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh u14cppall drydock
       - OUT: u14cppall_img
@@ -651,7 +776,7 @@ jobs:
       - IN: config_repo
         switch: off
       - IN: u16_repo
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh u16 drydock
       - OUT: u16_img
@@ -667,7 +792,7 @@ jobs:
         switch: off
       - IN: u16_img
       - IN: u16all_repo
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh u16all drydock
       - OUT: u16all_img
@@ -683,7 +808,7 @@ jobs:
         switch: off
       - IN: u16all_img
       - IN: u16nodall_repo
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh u16nodall drydock
       - OUT: u16nodall_img
@@ -699,7 +824,7 @@ jobs:
         switch: off
       - IN: u16all_img
       - IN: u16pytall_repo
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh u16pytall drydock
       - OUT: u16pytall_img
@@ -715,7 +840,7 @@ jobs:
         switch: off
       - IN: u16all_img
       - IN: u16cloall_repo
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh u16cloall drydock
       - OUT: u16cloall_img
@@ -731,7 +856,7 @@ jobs:
         switch: off
       - IN: u16all_img
       - IN: u16golall_repo
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh u16golall drydock
       - OUT: u16golall_img
@@ -747,7 +872,7 @@ jobs:
         switch: off
       - IN: u16all_img
       - IN: u16javall_repo
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh u16javall drydock
       - OUT: u16javall_img
@@ -763,7 +888,7 @@ jobs:
         switch: off
       - IN: u16javall_img
       - IN: u16scaall_repo
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh u16scaall drydock
       - OUT: u16scaall_img
@@ -779,7 +904,7 @@ jobs:
         switch: off
       - IN: u16all_img
       - IN: u16ruball_repo
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh u16ruball drydock
       - OUT: u16ruball_img
@@ -795,7 +920,7 @@ jobs:
         switch: off
       - IN: u16all_img
       - IN: u16phpall_repo
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh u16phpall drydock
       - OUT: u16phpall_img
@@ -811,7 +936,7 @@ jobs:
         switch: off
       - IN: u16all_img
       - IN: u16cppall_repo
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh u16cppall drydock
       - OUT: u16cppall_img
@@ -839,7 +964,7 @@ jobs:
         scopes:
           - ecr
         switch: off
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
         switch: off
       - IN: rel_prod
       - TASK:
@@ -850,16 +975,34 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_img_reqproc
+  - name: tag_reqProc
     type: runSh
     steps:
       - IN: config_repo
         switch: off
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
         switch: off
       - IN: rel_prod
       - TASK:
-        - script: ./IN/config_repo/gitRepo/tagAndPushImage.sh reqproc drydock
+          script:
+            - ./IN/config_repo/gitRepo/tagAndPushImage.sh reqproc drydock
+            - ./IN/config_repo/gitRepo/tagAndPushImage.sh m10reqproc drydock
+            - echo "This should run ./IN/config_repo/gitRepo/tagAndPushImage.sh w16reqproc drydock"
+            - ./IN/config_repo/gitRepo/tagAndPushImage.sh reqproc drydockaarch64
+
+  - name: tag_reqExec
+    type: runSh
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: rel_prod
+      - IN: aws_v2_bits_access_cli
+      - TASK:
+          script:
+            - ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh x86_64 Ubuntu_16.04 s3://shippable-artifacts
+            - ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh x86_64 macOS_10.12 s3://shippable-artifacts
+            - echo "This should run ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh x86_64 WindowsServer_2016 s3://shippable-artifacts"
+            - ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh aarch64 Ubuntu_16.04 s3://shippable-artifacts
 
   - name: tag_push_admiral
     type: runSh
@@ -872,7 +1015,7 @@ jobs:
         switch: off
       - IN: avi_gh_ssh
         switch: off
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
         switch: off
       - IN: rel_prod
       - TASK:
@@ -882,16 +1025,6 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: tag_push_reqExec_x86_64_Ubuntu
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: rel_prod
-      - IN: aws_v2_bits_access_cli
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/tagReqExecArtifact.sh x86_64 Ubuntu s3://shippable-artifacts
-
   ### Tagging drydock Shippable services
   - name: tag_push_dry
     type: runSh
@@ -899,7 +1032,7 @@ jobs:
       - IN: rel_prod
       - IN: config_repo
         switch: off
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
         switch: off
       - IN: avi_gh_ssh
         switch: off
@@ -973,6 +1106,8 @@ jobs:
         switch: off
       - IN: reqProc_repo
         switch: off
+      - IN: reqKick_repo
+        switch: off
       - TASK:
         - script: ./IN/config_repo/gitRepo/tagAndPushSvcs.sh repo
     on_success:
@@ -987,7 +1122,7 @@ jobs:
       - IN: rel_prod
       - IN: config_repo
         switch: off
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
         switch: off
       - IN: avi_gh_ssh
         switch: off
@@ -1025,7 +1160,7 @@ jobs:
       - IN: rel_prod
       - IN: config_repo
         switch: off
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
         switch: off
       - IN: avi_gh_ssh
         switch: off
@@ -1087,7 +1222,7 @@ jobs:
       - IN: rel_prod
       - IN: config_repo
         switch: off
-      - IN: ship_dh_cli
+      - IN: ship_dh_cli_v2
         switch: off
       - IN: avi_gh_ssh
         switch: off
@@ -1183,15 +1318,13 @@ jobs:
 
   - name: build_final_admiral_ami
     type: runSh
+    dependencyMode: strict
     steps:
       - IN: rel_prod
         switch: off
       - IN: tag_push_img_genexec
-        switch: off
       - IN: tag_push_repo
-        switch: off
       - IN: tag_push_ecr
-        switch: off
       - IN: config_repo
         switch: off
       - IN: bldami_repo
@@ -1210,13 +1343,12 @@ jobs:
 
   - name: build_v532
     type: runSh
+    dependencyMode: strict
     steps:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-        switch: off
       - IN: tag_push_repo
-        switch: off
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -1230,13 +1362,12 @@ jobs:
 
   - name: build_v541
     type: runSh
+    dependencyMode: strict
     steps:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-        switch: off
       - IN: tag_push_repo
-        switch: off
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -1250,13 +1381,12 @@ jobs:
 
   - name: build_v551
     type: runSh
+    dependencyMode: strict
     steps:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-        switch: off
       - IN: tag_push_repo
-        switch: off
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -1270,13 +1400,12 @@ jobs:
 
   - name: build_v561
     type: runSh
+    dependencyMode: strict
     steps:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-        switch: off
       - IN: tag_push_repo
-        switch: off
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -1288,13 +1417,12 @@ jobs:
 
   - name: build_v573
     type: runSh
+    dependencyMode: strict
     steps:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-        switch: off
       - IN: tag_push_repo
-        switch: off
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -1306,13 +1434,12 @@ jobs:
 
   - name: build_v582
     type: runSh
+    dependencyMode: strict
     steps:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-        switch: off
       - IN: tag_push_repo
-        switch: off
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -1322,15 +1449,31 @@ jobs:
     on_failure:
       - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
 
-  - name: build_stable
+  - name: build_v5104
     type: runSh
+    dependencyMode: strict
     steps:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-        switch: off
       - IN: tag_push_repo
+      - IN: bldami_repo
         switch: off
+      - IN: rel_prod
+        switch: off
+      - TASK:
+        - script: IN/bldami_repo/gitRepo/exec/execPackTmp.sh build_v5104 rel_prod ami-312b8d4b v5104 Ubuntu_14.04_Docker_17.06.sh true
+    on_failure:
+      - script: cat /build/IN/bldami_repo/gitRepo/exec/output.txt
+
+  - name: build_stable
+    type: runSh
+    dependencyMode: strict
+    steps:
+      - IN: baseami_params
+      - IN: aws_v2_bits_access
+      - IN: tag_push_img_genexec
+      - IN: tag_push_repo
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -1344,13 +1487,12 @@ jobs:
 
   - name: build_unstable
     type: runSh
+    dependencyMode: strict
     steps:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-        switch: off
       - IN: tag_push_repo
-        switch: off
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
