@@ -2,8 +2,14 @@
 
 export CONTEXT=$1
 export HUB_ORG=$2
+# $IMAGE_NAME is an optional argument
+export IMAGE_NAME=$3
 
-export IMAGE_NAME=$(echo $CONTEXT | awk '{print tolower($0)}')
+# For x86_64 images, both the $CONTEXT and $IMAGE_NAME are same
+# For other architectures, they differ and are expressed explicitly
+if [ -z "$IMAGE_NAME" ]; then
+  export IMAGE_NAME=$(echo $CONTEXT | awk '{print tolower($0)}')
+fi
 export CURR_JOB="build_"$CONTEXT
 export RES_REPO=$CONTEXT"_repo"
 export RES_IMAGE_OUT=$CONTEXT"_img"
