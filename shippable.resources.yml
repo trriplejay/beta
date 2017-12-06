@@ -899,6 +899,23 @@ resources:
     seed:
       versionName: master
 
+  # TODO: After fixing access permissions for dry-dock-aarch64
+  # change to ric03uec-github & dry-dock-aarch64/u16cpp
+  - name: aarch64_u16cpp_repo
+    type: gitRepo
+    integration: scriptnull-github
+    pointer:
+      sourceName: scriptnull/u16cpp
+      branch: master
+
+  - name: aarch64_u16cpp_img
+    type: image
+    integration: shipDH
+    pointer:
+      sourceName: drydockaarch64/u16cpp
+    seed:
+      versionName: master
+
   ###############################
   # END drydockaarch64 resources
   ###############################
