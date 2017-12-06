@@ -983,6 +983,22 @@ jobs:
         - script: ./IN/config_repo/gitRepo/buildImage.sh aarch64_u16pyt drydockaarch64 u16pyt
       - OUT: aarch64_u16pyt_img
 
+  - name: build_aarch64_u16cpp
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: false
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: aarch64_u16_img
+      - IN: aarch64_u16cpp_repo
+      - IN: ship_dh_cli_v2
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/buildImage.sh aarch64_u16cpp drydockaarch64 u16cpp
+      - OUT: aarch64_u16cpp_img
+
   ###########################################
   # END Drydockaarch64 image builds
   ###########################################
