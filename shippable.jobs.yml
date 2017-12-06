@@ -312,7 +312,7 @@ jobs:
         scopes:
           - ecr
       - IN: ship_dh_cli_v2
-      - IN: microbase_img
+      - IN: aarch64_microbase_img
       - TASK:
         - script: ./IN/reqProc_repo/gitRepo/build.sh aarch64 Ubuntu_16.04 drydockaarch64 reqproc
 
@@ -1001,6 +1001,10 @@ jobs:
 
   - name: build_aarch64_microbase
     type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: false
     steps:
       - IN: config_repo
         switch: off
