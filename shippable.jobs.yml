@@ -999,6 +999,18 @@ jobs:
         - script: ./IN/config_repo/gitRepo/buildImage.sh aarch64_u16cpp drydockaarch64 u16cpp
       - OUT: aarch64_u16cpp_img
 
+  - name: build_aarch64_microbase
+    type: runSh
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: aarch64_u16_img
+      - IN: aarch64_microbase_repo
+      - IN: ship_dh_cli_v2
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/buildImage.sh aarch64_microbase drydockaarch64 microbase
+      - OUT: aarch64_microbase_img
+
   ###########################################
   # END Drydockaarch64 image builds
   ###########################################
