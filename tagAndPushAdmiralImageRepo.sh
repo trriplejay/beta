@@ -9,6 +9,7 @@ export CURR_JOB="tag_push_"$CONTEXT
 export RES_IMAGE=$CONTEXT"_img"
 export UP_TAG_NAME="master"
 export RES_VER="rel_prod"
+export RES_VER_DATE=$(date +"%A, %b %d %Y")
 export RES_REPO=$CONTEXT"_repo"
 export RES_GH_SSH="avi_gh_ssh"
 export SSH_PATH="git@github.com:$GH_ORG/$CONTEXT.git"
@@ -114,8 +115,16 @@ tag_push_repo() {
   local version_file="version.txt"
   echo $RES_VER_NAME > $version_file
 
+  # prepare release notes
+  local template_file="releaseNotes/template.md"
+  local master_notes="releaseNotes/master.md"
+  local new_notes="releaseNotes/$RES_VER_NAME.md"
+  shipctl replace $master_notes
+  cp $master_notes $new_notes
+  cp $template_file $master_notes
+
   git add .
-  git commit -m "updating version.txt to $RES_VER_NAME" || true
+  git commit -m "updating version.txt to $RES_VER_NAME and adding release notes" || true
 
   git push up master
   IMG_REPO_COMMIT_SHA=$(git rev-parse HEAD)
