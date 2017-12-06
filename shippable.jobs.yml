@@ -364,7 +364,7 @@ jobs:
       os: Ubuntu_16.04
       container: false
     steps:
-      - IN: microbase_img
+      - IN: aarch64_microbase_img
       - IN: config_repo
         switch: off
       - IN: reqExec_repo
