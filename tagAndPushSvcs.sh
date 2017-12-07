@@ -47,17 +47,6 @@ add_ssh_key() {
     echo "Completed Extracting GH SSH Key"
     echo "-----------------------------------"
   popd
-
-  # TODO: Remove this after avi_gh_ssh is added to dry-dock-aarch64 organisation
-  pushd "$AARCH64_GH_SSH_META"
-    echo "Extracting AARCH64 GH SSH Key"
-    echo "-----------------------------------"
-    cat "integration.json"  | jq -r '.privateKey' > aarch64_gh_ssh.key
-    chmod 600 aarch64_gh_ssh.key
-    ssh-add aarch64_gh_ssh.key
-    echo "Completed Extracting AARCH64 GH SSH Key"
-    echo "-----------------------------------"
-  popd
 }
 
 pull_tag_image() {
@@ -132,7 +121,7 @@ tag_push_repo(){
     echo "Tagging repo with $RES_VER_NAME"
     git tag $RES_VER_NAME
     echo "Pushing tag $RES_VER_NAME"
-    git push up $RES_VER_NAME || true
+    git push up $RES_VER_NAME
   popd
 
   shipctl put_resource_state $CURR_JOB $CONTEXT"_COMMIT_SHA" $IMG_REPO_COMMIT_SHA
@@ -272,6 +261,19 @@ process_ship_dry_services() {
 }
 
 process_ship_aarch64_dry_services() {
+
+  # TODO: Remove this after avi_gh_ssh is added to dry-dock-aarch64 organisation
+  ssh-add -D
+  pushd "$AARCH64_GH_SSH_META"
+    echo "Extracting AARCH64 GH SSH Key"
+    echo "-----------------------------------"
+    cat "integration.json"  | jq -r '.privateKey' > aarch64_gh_ssh.key
+    chmod 600 aarch64_gh_ssh.key
+    ssh-add aarch64_gh_ssh.key
+    echo "Completed Extracting AARCH64 GH SSH Key"
+    echo "-----------------------------------"
+  popd
+
   for c in `cat dryServices.aarch64.txt`; do
     export CONTEXT="aarch64_$c"
     export CONTEXT_IMAGE=$c
