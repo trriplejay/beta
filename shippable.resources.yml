@@ -937,6 +937,11 @@ resources:
     type: integration
     integration: avi_gh_ssh
 
+  # TODO: Remove this after avi_gh_ssh is added to dry-dock-aarch64 organisation
+  - name: aarch64_gh_ssh
+    type: integration
+    integration: aarch64_gh_ssh
+
   ###############################
   # End SSH Key to GH
   ###############################
