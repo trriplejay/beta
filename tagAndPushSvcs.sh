@@ -61,7 +61,7 @@ add_ssh_key() {
 }
 
 pull_tag_image() {
-  export IMAGE_NAME=$CONTEXT_REPO
+  export IMAGE_NAME=$CONTEXT_IMAGE
   export RES_IMAGE=$CONTEXT"_img"
   export PULL_IMG=$HUB_ORG/$IMAGE_NAME:$UP_TAG_NAME
   export PUSH_IMG=$HUB_ORG/$IMAGE_NAME:$RES_VER_NAME
@@ -138,6 +138,7 @@ tag_push_repo(){
 process_core_services() {
   for c in `cat coreServices.txt`; do
     export CONTEXT=$c
+    export CONTEXT_IMAGE=$c
     export CONTEXT_REPO=$c
     export HUB_ORG=drydock
     export GH_ORG=dry-dock
@@ -147,6 +148,8 @@ process_core_services() {
     echo "CONTEXT=$CONTEXT"
     echo "HUB_ORG=$HUB_ORG"
     echo "GH_ORG=$GH_ORG"
+    echo "CONTEXT_IMAGE=$CONTEXT_IMAGE"
+    echo "CONTEXT_REPO=$CONTEXT_REPO"
     echo "============= End info for CONTEXT $CONTEXT======================"
     echo ""
 
@@ -158,6 +161,7 @@ process_core_services() {
 process_u14_services() {
   for c in `cat u14Services.txt`; do
     export CONTEXT=$c
+    export CONTEXT_IMAGE=$c
     export CONTEXT_REPO=$c
     export HUB_ORG=drydock
     export GH_ORG=dry-dock
@@ -167,6 +171,8 @@ process_u14_services() {
     echo "CONTEXT=$CONTEXT"
     echo "HUB_ORG=$HUB_ORG"
     echo "GH_ORG=$GH_ORG"
+    echo "CONTEXT_IMAGE=$CONTEXT_IMAGE"
+    echo "CONTEXT_REPO=$CONTEXT_REPO"
     echo "============= End info for CONTEXT $CONTEXT======================"
     echo ""
 
@@ -178,6 +184,7 @@ process_u14_services() {
 process_u16_services() {
   for c in `cat u16Services.txt`; do
     export CONTEXT=$c
+    export CONTEXT_IMAGE=$c
     export CONTEXT_REPO=$c
     export HUB_ORG=drydock
     export GH_ORG=dry-dock
@@ -187,6 +194,8 @@ process_u16_services() {
     echo "CONTEXT=$CONTEXT"
     echo "HUB_ORG=$HUB_ORG"
     echo "GH_ORG=$GH_ORG"
+    echo "CONTEXT_IMAGE=$CONTEXT_IMAGE"
+    echo "CONTEXT_REPO=$CONTEXT_REPO"
     echo "============= End info for CONTEXT $CONTEXT======================"
     echo ""
 
@@ -205,6 +214,7 @@ process_repo_services() {
     echo "============= Begin info for CONTEXT $CONTEXT======================"
     echo "CONTEXT=$CONTEXT"
     echo "GH_ORG=$GH_ORG"
+    echo "CONTEXT_REPO=$CONTEXT_REPO"
     echo "============= End info for CONTEXT $CONTEXT======================"
     echo ""
 
@@ -215,6 +225,7 @@ process_repo_services() {
 process_ship_ecr_services() {
   for c in `cat ecrServices.txt`; do
     export CONTEXT=$c
+    export CONTEXT_IMAGE=$c
     export CONTEXT_REPO=$c
     export HUB_ORG=374168611083.dkr.ecr.us-east-1.amazonaws.com
     export GH_ORG=Shippable
@@ -224,6 +235,8 @@ process_ship_ecr_services() {
     echo "CONTEXT=$CONTEXT"
     echo "HUB_ORG=$HUB_ORG"
     echo "GH_ORG=$GH_ORG"
+    echo "CONTEXT_IMAGE=$CONTEXT_IMAGE"
+    echo "CONTEXT_REPO=$CONTEXT_REPO"
     echo "============= End info for CONTEXT $CONTEXT======================"
     echo ""
 
@@ -235,6 +248,7 @@ process_ship_ecr_services() {
 process_ship_dry_services() {
   for c in `cat dryServices.x86_64.txt`; do
     export CONTEXT=$c
+    export CONTEXT_IMAGE=$c
     export CONTEXT_REPO=$c
     export HUB_ORG=drydock
     export GH_ORG=Shippable
@@ -244,6 +258,8 @@ process_ship_dry_services() {
     echo "CONTEXT=$CONTEXT"
     echo "HUB_ORG=$HUB_ORG"
     echo "GH_ORG=$GH_ORG"
+    echo "CONTEXT_IMAGE=$CONTEXT_IMAGE"
+    echo "CONTEXT_REPO=$CONTEXT_REPO"
     echo "============= End info for CONTEXT $CONTEXT======================"
     echo ""
 
@@ -255,6 +271,7 @@ process_ship_dry_services() {
 process_ship_aarch64_dry_services() {
   for c in `cat dryServices.aarch64.txt`; do
     export CONTEXT="aarch64_$c"
+    export CONTEXT_IMAGE=$c
     export CONTEXT_REPO=$c
     export HUB_ORG=drydockaarch64
     export GH_ORG=dry-dock-aarch64
@@ -264,6 +281,8 @@ process_ship_aarch64_dry_services() {
     echo "CONTEXT=$CONTEXT"
     echo "HUB_ORG=$HUB_ORG"
     echo "GH_ORG=$GH_ORG"
+    echo "CONTEXT_IMAGE=$CONTEXT_IMAGE"
+    echo "CONTEXT_REPO=$CONTEXT_REPO"
     echo "============= End info for CONTEXT $CONTEXT======================"
     echo ""
 
