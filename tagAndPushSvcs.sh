@@ -213,10 +213,29 @@ process_ship_ecr_services() {
 }
 
 process_ship_dry_services() {
-  for c in `cat dryServices.txt`; do
+  for c in `cat dryServices.x86_64.txt`; do
     export CONTEXT=$c
     export HUB_ORG=drydock
     export GH_ORG=Shippable
+
+    echo ""
+    echo "============= Begin info for CONTEXT $CONTEXT======================"
+    echo "CONTEXT=$CONTEXT"
+    echo "HUB_ORG=$HUB_ORG"
+    echo "GH_ORG=$GH_ORG"
+    echo "============= End info for CONTEXT $CONTEXT======================"
+    echo ""
+
+    pull_tag_image
+    tag_push_repo
+  done
+}
+
+process_ship_aarch64_dry_services() {
+  for c in `cat dryServices.aarch64.txt`; do
+    export CONTEXT=$c
+    export HUB_ORG=drydockaarch64
+    export GH_ORG=dry-dock-aarch64
 
     echo ""
     echo "============= Begin info for CONTEXT $CONTEXT======================"
@@ -259,6 +278,10 @@ main() {
     then
       echo "Executing process_ship_dry_services"
       process_ship_dry_services
+    elif [ "$RUN_TYPE" = "aarch64_dry" ]
+    then
+      echo "Executing process_ship_aarch64_dry_services"
+      process_ship_aarch64_dry_services
     fi
   popd
 }
