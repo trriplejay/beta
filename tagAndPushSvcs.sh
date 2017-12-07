@@ -125,11 +125,14 @@ tag_push_repo(){
     git checkout $IMG_REPO_COMMIT_SHA
 
     if git tag -d $RES_VER_NAME; then
+      echo "Removing existing tag"
       git push --delete up $RES_VER_NAME
     fi
 
+    echo "Tagging repo with $RES_VER_NAME"
     git tag $RES_VER_NAME
-    git push up $RES_VER_NAME
+    echo "Pushing tag $RES_VER_NAME"
+    git push up $RES_VER_NAME || true
   popd
 
   shipctl put_resource_state $CURR_JOB $CONTEXT"_COMMIT_SHA" $IMG_REPO_COMMIT_SHA
