@@ -15,6 +15,10 @@ set_job_context() {
   export RES_GH_SSH="avi_gh_ssh"
   export RES_GH_SSH_META=$(shipctl get_resource_meta $RES_GH_SSH)
 
+  # TODO: Remove this after avi_gh_ssh is added to dry-dock-aarch64 organisation
+  export AARCH64_GH_SSH="aarch64_gh_ssh"
+  export AARCH64_GH_SSH_META=$(shipctl get_resource_meta $AARCH64_GH_SSH)
+
   export RES_CONF_REPO="config_repo"
   export RES_CONF_REPO_STATE=$(shipctl get_resource_state $RES_CONF_REPO)
 
@@ -41,6 +45,17 @@ add_ssh_key() {
     chmod 600 gh_ssh.key
     ssh-add gh_ssh.key
     echo "Completed Extracting GH SSH Key"
+    echo "-----------------------------------"
+  popd
+
+  # TODO: Remove this after avi_gh_ssh is added to dry-dock-aarch64 organisation
+  pushd "$AARCH64_GH_SSH_META"
+    echo "Extracting AARCH64 GH SSH Key"
+    echo "-----------------------------------"
+    cat "integration.json"  | jq -r '.privateKey' > aarch64_gh_ssh.key
+    chmod 600 aarch64_gh_ssh.key
+    ssh-add aarch64_gh_ssh.key
+    echo "Completed Extracting AARCH64 GH SSH Key"
     echo "-----------------------------------"
   popd
 }

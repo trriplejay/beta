@@ -1148,6 +1148,8 @@ jobs:
         switch: off
       - IN: avi_gh_ssh
         switch: off
+      - IN: aarch64_gh_ssh  # TODO: Remove this after avi_gh_ssh is added to dry-dock-aarch64 organisation
+        switch: off
       - IN: aarch64_microbase_img
         switch: off
       - IN: aarch64_microbase_repo
