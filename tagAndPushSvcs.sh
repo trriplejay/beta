@@ -61,7 +61,7 @@ add_ssh_key() {
 }
 
 pull_tag_image() {
-  export IMAGE_NAME=$CONTEXT
+  export IMAGE_NAME=$CONTEXT_REPO
   export RES_IMAGE=$CONTEXT"_img"
   export PULL_IMG=$HUB_ORG/$IMAGE_NAME:$UP_TAG_NAME
   export PUSH_IMG=$HUB_ORG/$IMAGE_NAME:$RES_VER_NAME
@@ -97,7 +97,7 @@ pull_tag_image() {
 }
 
 tag_push_repo(){
-  export SSH_PATH="git@github.com:$GH_ORG/$CONTEXT.git"
+  export SSH_PATH="git@github.com:$GH_ORG/$CONTEXT_REPO.git"
   export RES_REPO=$CONTEXT"_repo"
   export RES_REPO_META=$(shipctl get_resource_meta $RES_REPO)
   export RES_REPO_STATE=$(shipctl get_resource_state $RES_REPO)
@@ -138,6 +138,7 @@ tag_push_repo(){
 process_core_services() {
   for c in `cat coreServices.txt`; do
     export CONTEXT=$c
+    export CONTEXT_REPO=$c
     export HUB_ORG=drydock
     export GH_ORG=dry-dock
 
@@ -157,6 +158,7 @@ process_core_services() {
 process_u14_services() {
   for c in `cat u14Services.txt`; do
     export CONTEXT=$c
+    export CONTEXT_REPO=$c
     export HUB_ORG=drydock
     export GH_ORG=dry-dock
 
@@ -176,6 +178,7 @@ process_u14_services() {
 process_u16_services() {
   for c in `cat u16Services.txt`; do
     export CONTEXT=$c
+    export CONTEXT_REPO=$c
     export HUB_ORG=drydock
     export GH_ORG=dry-dock
 
@@ -195,6 +198,7 @@ process_u16_services() {
 process_repo_services() {
   for c in `cat repoServices.txt`; do
     export CONTEXT=$c
+    export CONTEXT_REPO=$c
     export GH_ORG=Shippable
 
     echo ""
@@ -211,6 +215,7 @@ process_repo_services() {
 process_ship_ecr_services() {
   for c in `cat ecrServices.txt`; do
     export CONTEXT=$c
+    export CONTEXT_REPO=$c
     export HUB_ORG=374168611083.dkr.ecr.us-east-1.amazonaws.com
     export GH_ORG=Shippable
 
@@ -230,6 +235,7 @@ process_ship_ecr_services() {
 process_ship_dry_services() {
   for c in `cat dryServices.x86_64.txt`; do
     export CONTEXT=$c
+    export CONTEXT_REPO=$c
     export HUB_ORG=drydock
     export GH_ORG=Shippable
 
@@ -248,7 +254,8 @@ process_ship_dry_services() {
 
 process_ship_aarch64_dry_services() {
   for c in `cat dryServices.aarch64.txt`; do
-    export CONTEXT=$c
+    export CONTEXT="aarch64_$c"
+    export CONTEXT_REPO=$c
     export HUB_ORG=drydockaarch64
     export GH_ORG=dry-dock-aarch64
 
