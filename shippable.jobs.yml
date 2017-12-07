@@ -1119,10 +1119,6 @@ jobs:
   ### Tagging drydockaarch64 Shippable services
   - name: tag_push_aarch64_dry
     type: runSh
-    runtime:
-      architecture: aarch64
-      os: Ubuntu_16.04
-      container: false
     steps:
       - IN: rel_prod
       - IN: config_repo
