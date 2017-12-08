@@ -228,6 +228,8 @@ jobs:
         switch: off
       - IN: package_reqExec_x86_64_Ubuntu_14_04
         switch: off
+      - IN: package_reqExec_x86_64_CentOS_7
+        switch: off
       - IN: package_reqExec_x86_64_macOS_10_12
         switch: off
       - IN: package_reqExec_x86_64_WindowsServer_2016
@@ -254,6 +256,8 @@ jobs:
       - IN: package_reqExec_x86_64_Ubuntu_16_04
         switch: off
       - IN: package_reqExec_x86_64_Ubuntu_14_04
+        switch: off
+      - IN: package_reqExec_x86_64_CentOS_7
         switch: off
       - IN: package_reqExec_x86_64_macOS_10_12
         switch: off
@@ -282,6 +286,8 @@ jobs:
         switch: off
       - IN: package_reqExec_x86_64_Ubuntu_14_04
         switch: off
+      - IN: package_reqExec_x86_64_CentOS_7
+        switch: off
       - IN: package_reqExec_x86_64_macOS_10_12
         switch: off
       - IN: package_reqExec_x86_64_WindowsServer_2016
@@ -308,6 +314,8 @@ jobs:
       - IN: package_reqExec_x86_64_Ubuntu_16_04
         switch: off
       - IN: package_reqExec_x86_64_Ubuntu_14_04
+        switch: off
+      - IN: package_reqExec_x86_64_CentOS_7
         switch: off
       - IN: package_reqExec_x86_64_macOS_10_12
         switch: off
@@ -346,6 +354,17 @@ jobs:
       - IN: aws_v2_bits_access_cli
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildAndPushReqExecArtifacts.sh x86_64 Ubuntu_14.04 s3://shippable-artifacts
+  
+  # TODO: move this job to x86_64 CentOS_7
+  - name: package_reqExec_x86_64_CentOS_7
+    steps:
+      - IN: microbase_img
+      - IN: config_repo
+        switch: off
+      - IN: reqExec_repo
+      - IN: aws_v2_bits_access_cli
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/buildAndPushReqExecArtifacts.sh x86_64 CentOS_7 s3://shippable-artifacts
 
   - name: package_reqExec_x86_64_macOS_10_12
     type: runSh
@@ -1090,6 +1109,7 @@ jobs:
           script:
             - ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh x86_64 Ubuntu_16.04 s3://shippable-artifacts
             - ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh x86_64 Ubuntu_14.04 s3://shippable-artifacts
+            - ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh x86_64 CentOS_7 s3://shippable-artifacts
             - ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh x86_64 macOS_10.12 s3://shippable-artifacts
             - echo "This should run ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh x86_64 WindowsServer_2016 s3://shippable-artifacts"
             - ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh aarch64 Ubuntu_16.04 s3://shippable-artifacts
