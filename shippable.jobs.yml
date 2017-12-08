@@ -1408,6 +1408,34 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
+  ### Tagging aarch64 u16 services
+  - name: tag_push_aarch64_u16
+    type: runSh
+    steps:
+      - IN: rel_prod
+      - IN: config_repo
+        switch: off
+      - IN: ship_dh_cli_v2
+        switch: off
+      - IN: avi_gh_ssh
+        switch: off
+      - IN: aarch64_gh_ssh  # TODO: Remove this after avi_gh_ssh is added to dry-dock-aarch64 organisation
+        switch: off
+      - IN: aarch64_u16_img
+        switch: off
+      - IN: aarch64_u16_repo
+        switch: off
+      - IN: aarch64_u16pyt_img
+        switch: off
+      - IN: aarch64_u16pyt_repo
+        switch: off
+      - IN: aarch64_u16cpp_img
+        switch: off
+      - IN: aarch64_u16cpp_repo
+        switch: off
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/tagAndPushSvcs.sh aarch64_u16
+
   ###########################################
   # END TAG & PUSH image/repos/amis
   ###########################################

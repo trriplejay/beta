@@ -174,7 +174,7 @@ process_u14_services() {
 }
 
 process_u16_services() {
-  for c in `cat u16Services.txt`; do
+  for c in `cat u16Services.x86_64.txt`; do
     export CONTEXT=$c
     export CONTEXT_IMAGE=$c
     export CONTEXT_REPO=$c
@@ -260,9 +260,8 @@ process_ship_dry_services() {
   done
 }
 
-process_ship_aarch64_dry_services() {
-
-  # TODO: Remove this after avi_gh_ssh is added to dry-dock-aarch64 organisation
+# TODO: Remove this after avi_gh_ssh is added to dry-dock-aarch64 organisation
+add_aarch64_ssh_key() {
   ssh-add -D
   pushd "$AARCH64_GH_SSH_META"
     echo "Extracting AARCH64 GH SSH Key"
@@ -273,8 +272,39 @@ process_ship_aarch64_dry_services() {
     echo "Completed Extracting AARCH64 GH SSH Key"
     echo "-----------------------------------"
   popd
+}
+
+process_ship_aarch64_dry_services() {
+  # TODO: Remove this after avi_gh_ssh is added to dry-dock-aarch64 organisation
+  add_aarch64_ssh_key
 
   for c in `cat dryServices.aarch64.txt`; do
+    export CONTEXT="aarch64_$c"
+    export CONTEXT_IMAGE=$c
+    export CONTEXT_REPO=$c
+    export HUB_ORG=drydockaarch64
+    export GH_ORG=dry-dock-aarch64
+
+    echo ""
+    echo "============= Begin info for CONTEXT $CONTEXT======================"
+    echo "CONTEXT=$CONTEXT"
+    echo "HUB_ORG=$HUB_ORG"
+    echo "GH_ORG=$GH_ORG"
+    echo "CONTEXT_IMAGE=$CONTEXT_IMAGE"
+    echo "CONTEXT_REPO=$CONTEXT_REPO"
+    echo "============= End info for CONTEXT $CONTEXT======================"
+    echo ""
+
+    pull_tag_image
+    tag_push_repo
+  done
+}
+
+process_aarch64_u16_services() {
+  # TODO: Remove this after avi_gh_ssh is added to dry-dock-aarch64 organisation
+  add_aarch64_ssh_key
+
+  for c in `cat u16Services.aarch64.txt`; do
     export CONTEXT="aarch64_$c"
     export CONTEXT_IMAGE=$c
     export CONTEXT_REPO=$c
@@ -328,6 +358,10 @@ main() {
     then
       echo "Executing process_ship_aarch64_dry_services"
       process_ship_aarch64_dry_services
+    elif [ "$RUN_TYPE" = "aarch64_u16" ]
+    then
+      echo "Executing process_aarch64_u16_services"
+      process_aarch64_u16_services
     fi
   popd
 }
