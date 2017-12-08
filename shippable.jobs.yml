@@ -357,6 +357,7 @@ jobs:
   
   # TODO: move this job to x86_64 CentOS_7
   - name: package_reqExec_x86_64_CentOS_7
+    type: runSh
     steps:
       - IN: microbase_img
       - IN: config_repo
