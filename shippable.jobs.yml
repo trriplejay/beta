@@ -970,68 +970,6 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-#  ### Tagging u16 services
-#  - name: tag_push_u16
-#    type: runSh
-#    steps:
-#      - IN: rel_prod
-#      - IN: config_repo
-#        switch: off
-#      - IN: ship_dh_cli_v2
-#        switch: off
-#      - IN: avi_gh_ssh
-#        switch: off
-##      - IN: u16_img
-##        switch: off
-##      - IN: u16_repo
-##        switch: off
-##      - IN: u16all_img
-##        switch: off
-##      - IN: u16all_repo
-##        switch: off
-##      - IN: u16nodall_img
-##        switch: off
-##      - IN: u16nodall_repo
-##        switch: off
-##      - IN: u16pytall_img
-##        switch: off
-##      - IN: u16pytall_repo
-##        switch: off
-##      - IN: u16cloall_img
-##        switch: off
-##      - IN: u16cloall_repo
-##        switch: off
-##      - IN: u16golall_img
-##        switch: off
-##      - IN: u16golall_repo
-##        switch: off
-##      - IN: u16javall_img
-##        switch: off
-##      - IN: u16javall_repo
-##        switch: off
-##      - IN: u16scaall_img
-##        switch: off
-##      - IN: u16scaall_repo
-##        switch: off
-##      - IN: u16ruball_img
-##        switch: off
-##      - IN: u16ruball_repo
-##        switch: off
-##      - IN: u16phpall_img
-##        switch: off
-##      - IN: u16phpall_repo
-##        switch: off
-##      - IN: u16cppall_img
-##        switch: off
-##      - IN: u16cppall_repo
-##        switch: off
-#      - TASK:
-#        - script: ./IN/config_repo/gitRepo/tagAndPushSvcs.sh u16
-#    on_success:
-#      - script: echo 'on success !!!!!'
-#    on_failure:
-#      - script: echo 'Failed job .... :('
-
   ### Tagging aarch64 u16 services
   - name: tag_push_aarch64_u16
     type: runSh
@@ -1072,8 +1010,8 @@ jobs:
   - name: build_finalami
     type: runSh
     steps:
-#      - IN: tag_push_u16
-#        switch: off
+      - IN: tag_push_u16
+        switch: off
       - IN: tag_push_u14
         switch: off
       - IN: tag_push_ecr
