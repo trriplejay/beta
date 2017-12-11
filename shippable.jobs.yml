@@ -550,24 +550,24 @@ jobs:
 #        switch: off
 #      - IN: u14all_img
 #        switch: off
-      - IN: u14nodall_img
-        switch: off
-      - IN: u14pytall_img
-        switch: off
-      - IN: u14cloall_img
-        switch: off
-      - IN: u14golall_img
-        switch: off
-      - IN: u14javall_img
-        switch: off
-      - IN: u14scaall_img
-        switch: off
-      - IN: u14ruball_img
-        switch: off
-      - IN: u14phpall_img
-        switch: off
-      - IN: u14cppall_img
-        switch: off
+#      - IN: u14nodall_img
+#        switch: off
+#      - IN: u14pytall_img
+#        switch: off
+#      - IN: u14cloall_img
+#        switch: off
+#      - IN: u14golall_img
+#        switch: off
+#      - IN: u14javall_img
+#        switch: off
+#      - IN: u14scaall_img
+#        switch: off
+#      - IN: u14ruball_img
+#        switch: off
+#      - IN: u14phpall_img
+#        switch: off
+#      - IN: u14cppall_img
+#        switch: off
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: node_repo
@@ -638,150 +638,150 @@ jobs:
 #      - script: echo 'on success !!!!!'
 #    on_failure:
 #      - script: echo 'Failed job .... :('
-
-  - name: build_u14nodall
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-#      - IN: u14all_img
-      - IN: u14nodall_repo
-      - IN: ship_dh_cli_v2
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14nodall drydock
-      - OUT: u14nodall_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
-  - name: build_u14pytall
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-#      - IN: u14all_img
-      - IN: u14pytall_repo
-      - IN: ship_dh_cli_v2
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14pytall drydock
-      - OUT: u14pytall_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
-  - name: build_u14cloall
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-#      - IN: u14all_img
-      - IN: u14cloall_repo
-      - IN: ship_dh_cli_v2
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14cloall drydock
-      - OUT: u14cloall_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
-  - name: build_u14golall
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-#      - IN: u14all_img
-      - IN: u14golall_repo
-      - IN: ship_dh_cli_v2
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14golall drydock
-      - OUT: u14golall_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
-  - name: build_u14javall
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-#      - IN: u14all_img
-      - IN: u14javall_repo
-      - IN: ship_dh_cli_v2
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14javall drydock
-      - OUT: u14javall_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
-  - name: build_u14scaall
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: u14javall_img
-      - IN: u14scaall_repo
-      - IN: ship_dh_cli_v2
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14scaall drydock
-      - OUT: u14scaall_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
-  - name: build_u14ruball
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-#      - IN: u14all_img
-      - IN: u14ruball_repo
-      - IN: ship_dh_cli_v2
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14ruball drydock
-      - OUT: u14ruball_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
-  - name: build_u14phpall
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-#      - IN: u14all_img
-      - IN: u14phpall_repo
-      - IN: ship_dh_cli_v2
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14phpall drydock
-      - OUT: u14phpall_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
-  - name: build_u14cppall
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-#      - IN: u14all_img
-      - IN: u14cppall_repo
-      - IN: ship_dh_cli_v2
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14cppall drydock
-      - OUT: u14cppall_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
+#
+#  - name: build_u14nodall
+#    type: runSh
+#    steps:
+#      - IN: config_repo
+#        switch: off
+##      - IN: u14all_img
+#      - IN: u14nodall_repo
+#      - IN: ship_dh_cli_v2
+#      - TASK:
+#        - script: ./IN/config_repo/gitRepo/buildImage.sh u14nodall drydock
+#      - OUT: u14nodall_img
+#    on_success:
+#      - script: echo 'on success !!!!!'
+#    on_failure:
+#      - script: echo 'Failed job .... :('
+#
+#  - name: build_u14pytall
+#    type: runSh
+#    steps:
+#      - IN: config_repo
+#        switch: off
+##      - IN: u14all_img
+#      - IN: u14pytall_repo
+#      - IN: ship_dh_cli_v2
+#      - TASK:
+#        - script: ./IN/config_repo/gitRepo/buildImage.sh u14pytall drydock
+#      - OUT: u14pytall_img
+#    on_success:
+#      - script: echo 'on success !!!!!'
+#    on_failure:
+#      - script: echo 'Failed job .... :('
+#
+#  - name: build_u14cloall
+#    type: runSh
+#    steps:
+#      - IN: config_repo
+#        switch: off
+##      - IN: u14all_img
+#      - IN: u14cloall_repo
+#      - IN: ship_dh_cli_v2
+#      - TASK:
+#        - script: ./IN/config_repo/gitRepo/buildImage.sh u14cloall drydock
+#      - OUT: u14cloall_img
+#    on_success:
+#      - script: echo 'on success !!!!!'
+#    on_failure:
+#      - script: echo 'Failed job .... :('
+#
+#  - name: build_u14golall
+#    type: runSh
+#    steps:
+#      - IN: config_repo
+#        switch: off
+##      - IN: u14all_img
+#      - IN: u14golall_repo
+#      - IN: ship_dh_cli_v2
+#      - TASK:
+#        - script: ./IN/config_repo/gitRepo/buildImage.sh u14golall drydock
+#      - OUT: u14golall_img
+#    on_success:
+#      - script: echo 'on success !!!!!'
+#    on_failure:
+#      - script: echo 'Failed job .... :('
+#
+#  - name: build_u14javall
+#    type: runSh
+#    steps:
+#      - IN: config_repo
+#        switch: off
+##      - IN: u14all_img
+#      - IN: u14javall_repo
+#      - IN: ship_dh_cli_v2
+#      - TASK:
+#        - script: ./IN/config_repo/gitRepo/buildImage.sh u14javall drydock
+#      - OUT: u14javall_img
+#    on_success:
+#      - script: echo 'on success !!!!!'
+#    on_failure:
+#      - script: echo 'Failed job .... :('
+#
+#  - name: build_u14scaall
+#    type: runSh
+#    steps:
+#      - IN: config_repo
+#        switch: off
+#      - IN: u14javall_img
+#      - IN: u14scaall_repo
+#      - IN: ship_dh_cli_v2
+#      - TASK:
+#        - script: ./IN/config_repo/gitRepo/buildImage.sh u14scaall drydock
+#      - OUT: u14scaall_img
+#    on_success:
+#      - script: echo 'on success !!!!!'
+#    on_failure:
+#      - script: echo 'Failed job .... :('
+#
+#  - name: build_u14ruball
+#    type: runSh
+#    steps:
+#      - IN: config_repo
+#        switch: off
+##      - IN: u14all_img
+#      - IN: u14ruball_repo
+#      - IN: ship_dh_cli_v2
+#      - TASK:
+#        - script: ./IN/config_repo/gitRepo/buildImage.sh u14ruball drydock
+#      - OUT: u14ruball_img
+#    on_success:
+#      - script: echo 'on success !!!!!'
+#    on_failure:
+#      - script: echo 'Failed job .... :('
+#
+#  - name: build_u14phpall
+#    type: runSh
+#    steps:
+#      - IN: config_repo
+#        switch: off
+##      - IN: u14all_img
+#      - IN: u14phpall_repo
+#      - IN: ship_dh_cli_v2
+#      - TASK:
+#        - script: ./IN/config_repo/gitRepo/buildImage.sh u14phpall drydock
+#      - OUT: u14phpall_img
+#    on_success:
+#      - script: echo 'on success !!!!!'
+#    on_failure:
+#      - script: echo 'Failed job .... :('
+#
+#  - name: build_u14cppall
+#    type: runSh
+#    steps:
+#      - IN: config_repo
+#        switch: off
+##      - IN: u14all_img
+#      - IN: u14cppall_repo
+#      - IN: ship_dh_cli_v2
+#      - TASK:
+#        - script: ./IN/config_repo/gitRepo/buildImage.sh u14cppall drydock
+#      - OUT: u14cppall_img
+#    on_success:
+#      - script: echo 'on success !!!!!'
+#    on_failure:
+#      - script: echo 'Failed job .... :('
 
   - name: build_u16
     type: runSh
@@ -1276,42 +1276,42 @@ jobs:
 #        switch: off
 #      - IN: u14all_repo
 #        switch: off
-      - IN: u14nodall_img
-        switch: off
-      - IN: u14nodall_repo
-        switch: off
-      - IN: u14pytall_img
-        switch: off
-      - IN: u14pytall_repo
-        switch: off
-      - IN: u14cloall_img
-        switch: off
-      - IN: u14cloall_repo
-        switch: off
-      - IN: u14golall_img
-        switch: off
-      - IN: u14golall_repo
-        switch: off
-      - IN: u14javall_img
-        switch: off
-      - IN: u14javall_repo
-        switch: off
-      - IN: u14scaall_img
-        switch: off
-      - IN: u14scaall_repo
-        switch: off
-      - IN: u14ruball_img
-        switch: off
-      - IN: u14ruball_repo
-        switch: off
-      - IN: u14phpall_img
-        switch: off
-      - IN: u14phpall_repo
-        switch: off
-      - IN: u14cppall_img
-        switch: off
-      - IN: u14cppall_repo
-        switch: off
+#      - IN: u14nodall_img
+#        switch: off
+#      - IN: u14nodall_repo
+#        switch: off
+#      - IN: u14pytall_img
+#        switch: off
+#      - IN: u14pytall_repo
+#        switch: off
+#      - IN: u14cloall_img
+#        switch: off
+#      - IN: u14cloall_repo
+#        switch: off
+#      - IN: u14golall_img
+#        switch: off
+#      - IN: u14golall_repo
+#        switch: off
+#      - IN: u14javall_img
+#        switch: off
+#      - IN: u14javall_repo
+#        switch: off
+#      - IN: u14scaall_img
+#        switch: off
+#      - IN: u14scaall_repo
+#        switch: off
+#      - IN: u14ruball_img
+#        switch: off
+#      - IN: u14ruball_repo
+#        switch: off
+#      - IN: u14phpall_img
+#        switch: off
+#      - IN: u14phpall_repo
+#        switch: off
+#      - IN: u14cppall_img
+#        switch: off
+#      - IN: u14cppall_repo
+#        switch: off
       - TASK:
         - script: ./IN/config_repo/gitRepo/tagAndPushSvcs.sh u14
     on_success:
