@@ -524,50 +524,50 @@ jobs:
   - name: build_baseami
     type: runSh
     steps:
-#      - IN: u16cppall_img
-#        switch: off
-#      - IN: u16phpall_img
-#        switch: off
-#      - IN: u16ruball_img
-#        switch: off
-#      - IN: u16scaall_img
-#        switch: off
-#      - IN: u16javall_img
-#        switch: off
-#      - IN: u16golall_img
-#        switch: off
-#      - IN: u16cloall_img
-#        switch: off
-#      - IN: u16pytall_img
-#        switch: off
-#      - IN: u16nodall_img
-#        switch: off
-#      - IN: u16all_img
-#        switch: off
-#      - IN: u16_img
-#        switch: off
-#      - IN: u14_img
-#        switch: off
-#      - IN: u14all_img
-#        switch: off
-#      - IN: u14nodall_img
-#        switch: off
-#      - IN: u14pytall_img
-#        switch: off
-#      - IN: u14cloall_img
-#        switch: off
-#      - IN: u14golall_img
-#        switch: off
-#      - IN: u14javall_img
-#        switch: off
-#      - IN: u14scaall_img
-#        switch: off
-#      - IN: u14ruball_img
-#        switch: off
-#      - IN: u14phpall_img
-#        switch: off
-#      - IN: u14cppall_img
-#        switch: off
+      - IN: u16cppall_img
+        switch: off
+      - IN: u16phpall_img
+        switch: off
+      - IN: u16ruball_img
+        switch: off
+      - IN: u16scaall_img
+        switch: off
+      - IN: u16javall_img
+        switch: off
+      - IN: u16golall_img
+        switch: off
+      - IN: u16cloall_img
+        switch: off
+      - IN: u16pytall_img
+        switch: off
+      - IN: u16nodall_img
+        switch: off
+      - IN: u16all_img
+        switch: off
+      - IN: u16_img
+        switch: off
+      - IN: u14_img
+        switch: off
+      - IN: u14all_img
+        switch: off
+      - IN: u14nodall_img
+        switch: off
+      - IN: u14pytall_img
+        switch: off
+      - IN: u14cloall_img
+        switch: off
+      - IN: u14golall_img
+        switch: off
+      - IN: u14javall_img
+        switch: off
+      - IN: u14scaall_img
+        switch: off
+      - IN: u14ruball_img
+        switch: off
+      - IN: u14phpall_img
+        switch: off
+      - IN: u14cppall_img
+        switch: off
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: node_repo
@@ -908,68 +908,6 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  ### Tagging u14 services
-  - name: tag_push_u14
-    type: runSh
-    steps:
-      - IN: rel_prod
-      - IN: config_repo
-        switch: off
-      - IN: ship_dh_cli_v2
-        switch: off
-      - IN: avi_gh_ssh
-        switch: off
-#      - IN: u14_img
-#        switch: off
-#      - IN: u14_repo
-#        switch: off
-#      - IN: u14all_img
-#        switch: off
-#      - IN: u14all_repo
-#        switch: off
-#      - IN: u14nodall_img
-#        switch: off
-#      - IN: u14nodall_repo
-#        switch: off
-#      - IN: u14pytall_img
-#        switch: off
-#      - IN: u14pytall_repo
-#        switch: off
-#      - IN: u14cloall_img
-#        switch: off
-#      - IN: u14cloall_repo
-#        switch: off
-#      - IN: u14golall_img
-#        switch: off
-#      - IN: u14golall_repo
-#        switch: off
-#      - IN: u14javall_img
-#        switch: off
-#      - IN: u14javall_repo
-#        switch: off
-#      - IN: u14scaall_img
-#        switch: off
-#      - IN: u14scaall_repo
-#        switch: off
-#      - IN: u14ruball_img
-#        switch: off
-#      - IN: u14ruball_repo
-#        switch: off
-#      - IN: u14phpall_img
-#        switch: off
-#      - IN: u14phpall_repo
-#        switch: off
-#      - IN: u14cppall_img
-#        switch: off
-#      - IN: u14cppall_repo
-#        switch: off
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/tagAndPushSvcs.sh u14
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
   ### Tagging aarch64 u16 services
   - name: tag_push_aarch64_u16
     type: runSh
@@ -1010,9 +948,9 @@ jobs:
   - name: build_finalami
     type: runSh
     steps:
-      - IN: tag_push_u16
+      - IN: tag_push_x86_64_ubu_16_04
         switch: off
-      - IN: tag_push_u14
+      - IN: tag_push_x86_64_ubu_14_04
         switch: off
       - IN: tag_push_ecr
         switch: off
