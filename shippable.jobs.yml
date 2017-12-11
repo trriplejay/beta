@@ -1,31 +1,4 @@
 jobs:
-  ##########################
-  # begin DOCS JOBS
-  ##########################
-#  - name: publish_prod_docs
-#    type: runSh
-#    steps:
-#      - IN: config_repo
-#        switch: off
-#      - IN: docs_repo
-#        switch: off
-#      - IN: aws_v2_prod_cli
-#      - TASK:
-#        - script: ./IN/config_repo/gitRepo/deployDocs.sh s3://docs.shippable.com us-west-2 docs_repo production
-#
-#  - name: publish_rc_docs
-#    type: runSh
-#    steps:
-#      - IN: config_repo
-#        switch: off
-#      - IN: docs_repo
-#      - IN: aws_v2_rc_cli
-#      - TASK:
-#        - script: ./IN/config_repo/gitRepo/deployDocs.sh s3://rcdocs.shippable.com us-east-1 docs_repo rc
-
-  ##########################
-  # end DOCS JOBS
-  ##########################
 
   ##########################
   # begin check_queue job
