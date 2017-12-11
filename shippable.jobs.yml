@@ -132,7 +132,7 @@ jobs:
       - IN: config_repo
         switch: off
       - IN: microbase_repo
-      - IN: u14_img
+#      - IN: u14_img
       - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh microbase drydock
@@ -546,8 +546,8 @@ jobs:
         switch: off
       - IN: u16_img
         switch: off
-      - IN: u14_img
-        switch: off
+#      - IN: u14_img
+#        switch: off
       - IN: u14all_img
         switch: off
       - IN: u14nodall_img
@@ -608,27 +608,27 @@ jobs:
   # START Drydock image builds
   ###########################################
 
-  - name: build_u14
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: u14_repo
-      - IN: ship_dh_cli_v2
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14 drydock
-      - OUT: u14_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
+#  - name: build_u14
+#    type: runSh
+#    steps:
+#      - IN: config_repo
+#        switch: off
+#      - IN: u14_repo
+#      - IN: ship_dh_cli_v2
+#      - TASK:
+#        - script: ./IN/config_repo/gitRepo/buildImage.sh u14 drydock
+#      - OUT: u14_img
+#    on_success:
+#      - script: echo 'on success !!!!!'
+#    on_failure:
+#      - script: echo 'Failed job .... :('
 
   - name: build_u14all
     type: runSh
     steps:
       - IN: config_repo
         switch: off
-      - IN: u14_img
+#      - IN: u14_img
       - IN: u14all_repo
       - IN: ship_dh_cli_v2
       - TASK:
@@ -1268,10 +1268,10 @@ jobs:
         switch: off
       - IN: avi_gh_ssh
         switch: off
-      - IN: u14_img
-        switch: off
-      - IN: u14_repo
-        switch: off
+#      - IN: u14_img
+#        switch: off
+#      - IN: u14_repo
+#        switch: off
       - IN: u14all_img
         switch: off
       - IN: u14all_repo
