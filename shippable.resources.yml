@@ -513,21 +513,21 @@ resources:
 #    seed:
 #      versionName: tip
 
-  - name: u14all_repo
-    type: gitRepo
-    integration: ric03uec-github
-    pointer:
-      sourceName: dry-dock/u14all
-      branch: master
-      buildOnTagPush: true
-
-  - name: u14all_img
-    type: image
-    integration: shipDH
-    pointer:
-      sourceName: "drydock/u14all"
-    seed:
-      versionName: tip
+#  - name: u14all_repo
+#    type: gitRepo
+#    integration: ric03uec-github
+#    pointer:
+#      sourceName: dry-dock/u14all
+#      branch: master
+#      buildOnTagPush: true
+#
+#  - name: u14all_img
+#    type: image
+#    integration: shipDH
+#    pointer:
+#      sourceName: "drydock/u14all"
+#    seed:
+#      versionName: tip
 
   - name: u14nodall_repo
     type: gitRepo

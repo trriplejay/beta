@@ -548,8 +548,8 @@ jobs:
         switch: off
 #      - IN: u14_img
 #        switch: off
-      - IN: u14all_img
-        switch: off
+#      - IN: u14all_img
+#        switch: off
       - IN: u14nodall_img
         switch: off
       - IN: u14pytall_img
@@ -623,28 +623,28 @@ jobs:
 #    on_failure:
 #      - script: echo 'Failed job .... :('
 
-  - name: build_u14all
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-#      - IN: u14_img
-      - IN: u14all_repo
-      - IN: ship_dh_cli_v2
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh u14all drydock
-      - OUT: u14all_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
+#  - name: build_u14all
+#    type: runSh
+#    steps:
+#      - IN: config_repo
+#        switch: off
+##      - IN: u14_img
+#      - IN: u14all_repo
+#      - IN: ship_dh_cli_v2
+#      - TASK:
+#        - script: ./IN/config_repo/gitRepo/buildImage.sh u14all drydock
+#      - OUT: u14all_img
+#    on_success:
+#      - script: echo 'on success !!!!!'
+#    on_failure:
+#      - script: echo 'Failed job .... :('
 
   - name: build_u14nodall
     type: runSh
     steps:
       - IN: config_repo
         switch: off
-      - IN: u14all_img
+#      - IN: u14all_img
       - IN: u14nodall_repo
       - IN: ship_dh_cli_v2
       - TASK:
@@ -660,7 +660,7 @@ jobs:
     steps:
       - IN: config_repo
         switch: off
-      - IN: u14all_img
+#      - IN: u14all_img
       - IN: u14pytall_repo
       - IN: ship_dh_cli_v2
       - TASK:
@@ -676,7 +676,7 @@ jobs:
     steps:
       - IN: config_repo
         switch: off
-      - IN: u14all_img
+#      - IN: u14all_img
       - IN: u14cloall_repo
       - IN: ship_dh_cli_v2
       - TASK:
@@ -692,7 +692,7 @@ jobs:
     steps:
       - IN: config_repo
         switch: off
-      - IN: u14all_img
+#      - IN: u14all_img
       - IN: u14golall_repo
       - IN: ship_dh_cli_v2
       - TASK:
@@ -708,7 +708,7 @@ jobs:
     steps:
       - IN: config_repo
         switch: off
-      - IN: u14all_img
+#      - IN: u14all_img
       - IN: u14javall_repo
       - IN: ship_dh_cli_v2
       - TASK:
@@ -740,7 +740,7 @@ jobs:
     steps:
       - IN: config_repo
         switch: off
-      - IN: u14all_img
+#      - IN: u14all_img
       - IN: u14ruball_repo
       - IN: ship_dh_cli_v2
       - TASK:
@@ -756,7 +756,7 @@ jobs:
     steps:
       - IN: config_repo
         switch: off
-      - IN: u14all_img
+#      - IN: u14all_img
       - IN: u14phpall_repo
       - IN: ship_dh_cli_v2
       - TASK:
@@ -772,7 +772,7 @@ jobs:
     steps:
       - IN: config_repo
         switch: off
-      - IN: u14all_img
+#      - IN: u14all_img
       - IN: u14cppall_repo
       - IN: ship_dh_cli_v2
       - TASK:
@@ -1272,10 +1272,10 @@ jobs:
 #        switch: off
 #      - IN: u14_repo
 #        switch: off
-      - IN: u14all_img
-        switch: off
-      - IN: u14all_repo
-        switch: off
+#      - IN: u14all_img
+#        switch: off
+#      - IN: u14all_repo
+#        switch: off
       - IN: u14nodall_img
         switch: off
       - IN: u14nodall_repo
