@@ -191,35 +191,6 @@ jobs:
       - TASK:
         - script: ./IN/reqProc_repo/gitRepo/build.sh x86_64 macOS_10.12 drydock m10reqproc
 
-  - name: build_reqProc_x86_64_WindowsServer_2016
-    type: runSh
-    runtime:
-      architecture: x86_64
-      os: WindowsServer_2016
-      container: false
-    steps:
-      - IN: reqProc_repo
-      - IN: package_reqExec_x86_64_Ubuntu_16_04
-        switch: off
-      - IN: package_reqExec_x86_64_Ubuntu_14_04
-        switch: off
-      - IN: package_reqExec_x86_64_CentOS_7
-        switch: off
-      - IN: package_reqExec_x86_64_macOS_10_12
-        switch: off
-      - IN: package_reqExec_x86_64_WindowsServer_2016
-        switch: off
-      - IN: package_reqExec_aarch64_Ubuntu_16_04
-        switch: off
-      - IN: execTemplates_repo
-      - IN: shipbits_ecr_v2_cli
-        scopes:
-          - ecr
-      - IN: ship_dh_cli_v2
-      - IN: microbase_img
-      - TASK:
-        - script: echo "This should run ./IN/reqProc_repo/gitRepo/build.sh x86_64 WindowsServer_2016 drydock w16reqproc"
-
   - name: build_reqProc_aarch64_Ubuntu_16_04
     type: runSh
     runtime:
