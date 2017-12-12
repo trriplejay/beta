@@ -300,7 +300,7 @@ jobs:
       - IN: mktg_img
       - IN: micro_img
         switch: off
-      - IN: admiral_img
+#      - IN: admiral_img
       - TASK:
         - script: ./IN/config_repo/gitRepo/deployRc.sh
     on_success:
@@ -624,27 +624,6 @@ jobs:
             - ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh x86_64 macOS_10.12 s3://shippable-artifacts
             - echo "This should run ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh x86_64 WindowsServer_2016 s3://shippable-artifacts"
             - ./IN/config_repo/gitRepo/tagReqExecArtifacts.sh aarch64 Ubuntu_16.04 s3://shippable-artifacts
-
-#  - name: tag_push_admiral
-#    type: runSh
-#    steps:
-#      - IN: config_repo
-#        switch: off
-##      - IN: admiral_repo
-##        switch: off
-##      - IN: admiral_img
-##        switch: off
-#      - IN: avi_gh_ssh
-#        switch: off
-#      - IN: ship_dh_cli_v2
-#        switch: off
-#      - IN: rel_prod
-#      - TASK:
-#        - script: ./IN/config_repo/gitRepo/tagAndPushAdmiralImageRepo.sh drydock Shippable
-#    on_success:
-#      - script: echo 'on success !!!!!'
-#    on_failure:
-#      - script: echo 'Failed job .... :('
 
   ### Tagging drydockaarch64 Shippable services
   - name: tag_push_aarch64_dry
