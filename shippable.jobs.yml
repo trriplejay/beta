@@ -118,21 +118,21 @@ jobs:
       - TASK:
         - script: ./IN/config_repo/gitRepo/patchImage.sh mktg 374168611083.dkr.ecr.us-east-1.amazonaws.com rel_prod
 
-  - name: build_admiral
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: admiral_repo
-      - IN: microbase_img
-      - IN: ship_dh_cli_v2
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh admiral drydock
-      - OUT: admiral_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
+#  - name: build_admiral
+#    type: runSh
+#    steps:
+#      - IN: config_repo
+#        switch: off
+#      - IN: admiral_repo
+#      - IN: microbase_img
+#      - IN: ship_dh_cli_v2
+#      - TASK:
+#        - script: ./IN/config_repo/gitRepo/buildImage.sh admiral drydock
+#      - OUT: admiral_img
+#    on_success:
+#      - script: echo 'on success !!!!!'
+#    on_failure:
+#      - script: echo 'Failed job .... :('
 
   - name: build_micro
     type: runSh
@@ -366,7 +366,7 @@ jobs:
       - IN: mktg_img
       - IN: micro_img
         switch: off
-      - IN: admiral_img
+#      - IN: admiral_img
       - TASK:
         - script: ./IN/config_repo/gitRepo/deployRc.sh
     on_success:
@@ -696,10 +696,10 @@ jobs:
     steps:
       - IN: config_repo
         switch: off
-      - IN: admiral_repo
-        switch: off
-      - IN: admiral_img
-        switch: off
+#      - IN: admiral_repo
+#        switch: off
+#      - IN: admiral_img
+#        switch: off
       - IN: avi_gh_ssh
         switch: off
       - IN: ship_dh_cli_v2
@@ -707,28 +707,6 @@ jobs:
       - IN: rel_prod
       - TASK:
         - script: ./IN/config_repo/gitRepo/tagAndPushAdmiralImageRepo.sh drydock Shippable
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
-  ### Tagging drydock Shippable services
-  - name: tag_push_dry
-    type: runSh
-    steps:
-      - IN: rel_prod
-      - IN: config_repo
-        switch: off
-      - IN: ship_dh_cli_v2
-        switch: off
-      - IN: avi_gh_ssh
-        switch: off
-      - IN: microbase_img
-        switch: off
-      - IN: microbase_repo
-        switch: off
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/tagAndPushSvcs.sh dry
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
