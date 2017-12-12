@@ -82,20 +82,20 @@ resources:
         SECURITY_GROUP_ID: "sg-9df159f8"
         REGION: "us-east-1"
 
-  - name: admiral_repo
-    type: gitRepo
-    integration: avinci_gh
-    pointer:
-      sourceName: shippable/admiral
-      branch: master
-
-  - name: admiral_img
-    type: image
-    integration: shipDH
-    pointer:
-      sourceName: "drydock/admiral"
-    seed:
-      versionName: latest
+#  - name: admiral_repo
+#    type: gitRepo
+#    integration: avinci_gh
+#    pointer:
+#      sourceName: shippable/admiral
+#      branch: master
+#
+#  - name: admiral_img
+#    type: image
+#    integration: shipDH
+#    pointer:
+#      sourceName: "drydock/admiral"
+#    seed:
+#      versionName: latest
 
 
 
