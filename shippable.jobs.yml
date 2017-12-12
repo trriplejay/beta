@@ -82,7 +82,7 @@ jobs:
       - IN: config_repo
         switch: off
 #      - IN: microbase_img
-        switch: off
+#        switch: off
       - IN: mktg_repo
       - IN: nexec_repo
       - IN: api_repo
@@ -353,7 +353,7 @@ jobs:
       os: Ubuntu_16.04
       container: false
     steps:
-#      - IN: aarch64_microbase_img
+      - IN: aarch64_microbase_img
       - IN: config_repo
         switch: off
       - IN: reqExec_repo
