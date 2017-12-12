@@ -176,8 +176,6 @@ jobs:
         switch: off
       - IN: package_reqExec_x86_64_macOS_10_12
         switch: off
-      - IN: package_reqExec_x86_64_WindowsServer_2016
-        switch: off
       - IN: package_reqExec_aarch64_Ubuntu_16_04
         switch: off
       - IN: execTemplates_repo
@@ -204,8 +202,6 @@ jobs:
       - IN: package_reqExec_x86_64_CentOS_7
         switch: off
       - IN: package_reqExec_x86_64_macOS_10_12
-        switch: off
-      - IN: package_reqExec_x86_64_WindowsServer_2016
         switch: off
       - IN: package_reqExec_aarch64_Ubuntu_16_04
         switch: off
