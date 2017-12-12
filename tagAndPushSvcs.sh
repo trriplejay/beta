@@ -127,75 +127,6 @@ tag_push_repo(){
   shipctl put_resource_state $CURR_JOB $CONTEXT"_COMMIT_SHA" $IMG_REPO_COMMIT_SHA
 }
 
-process_core_services() {
-  for c in `cat coreServices.txt`; do
-    export CONTEXT=$c
-    export CONTEXT_IMAGE=$c
-    export CONTEXT_REPO=$c
-    export HUB_ORG=drydock
-    export GH_ORG=dry-dock
-
-    echo ""
-    echo "============= Begin info for CONTEXT $CONTEXT======================"
-    echo "CONTEXT=$CONTEXT"
-    echo "HUB_ORG=$HUB_ORG"
-    echo "GH_ORG=$GH_ORG"
-    echo "CONTEXT_IMAGE=$CONTEXT_IMAGE"
-    echo "CONTEXT_REPO=$CONTEXT_REPO"
-    echo "============= End info for CONTEXT $CONTEXT======================"
-    echo ""
-
-    pull_tag_image
-    tag_push_repo
-  done
-}
-
-process_u14_services() {
-  for c in `cat u14Services.txt`; do
-    export CONTEXT=$c
-    export CONTEXT_IMAGE=$c
-    export CONTEXT_REPO=$c
-    export HUB_ORG=drydock
-    export GH_ORG=dry-dock
-
-    echo ""
-    echo "============= Begin info for CONTEXT $CONTEXT======================"
-    echo "CONTEXT=$CONTEXT"
-    echo "HUB_ORG=$HUB_ORG"
-    echo "GH_ORG=$GH_ORG"
-    echo "CONTEXT_IMAGE=$CONTEXT_IMAGE"
-    echo "CONTEXT_REPO=$CONTEXT_REPO"
-    echo "============= End info for CONTEXT $CONTEXT======================"
-    echo ""
-
-    pull_tag_image
-    tag_push_repo
-  done
-}
-
-process_u16_services() {
-  for c in `cat u16Services.x86_64.txt`; do
-    export CONTEXT=$c
-    export CONTEXT_IMAGE=$c
-    export CONTEXT_REPO=$c
-    export HUB_ORG=drydock
-    export GH_ORG=dry-dock
-
-    echo ""
-    echo "============= Begin info for CONTEXT $CONTEXT======================"
-    echo "CONTEXT=$CONTEXT"
-    echo "HUB_ORG=$HUB_ORG"
-    echo "GH_ORG=$GH_ORG"
-    echo "CONTEXT_IMAGE=$CONTEXT_IMAGE"
-    echo "CONTEXT_REPO=$CONTEXT_REPO"
-    echo "============= End info for CONTEXT $CONTEXT======================"
-    echo ""
-
-    pull_tag_image
-    tag_push_repo
-  done
-}
-
 process_repo_services() {
   for c in `cat repoServices.txt`; do
     export CONTEXT=$c
@@ -331,18 +262,7 @@ main() {
   add_ssh_key
 
   pushd $RES_CONF_REPO_STATE
-    if [ "$RUN_TYPE" = "core" ]; then
-      echo "Executing process_core_services"
-      process_core_services
-    elif [ "$RUN_TYPE" = "u14" ]
-    then
-      echo "Executing process_u14_services"
-      process_u14_services
-    elif [ "$RUN_TYPE" = "u16" ]
-    then
-      echo "Executing process_u16_services"
-      process_u16_services
-    elif [ "$RUN_TYPE" = "repo" ]
+    if [ "$RUN_TYPE" = "repo" ]
     then
       echo "Executing process_repo_services"
       process_repo_services
