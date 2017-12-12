@@ -81,7 +81,7 @@ jobs:
     steps:
       - IN: config_repo
         switch: off
-      - IN: microbase_img
+#      - IN: microbase_img
         switch: off
       - IN: mktg_repo
       - IN: nexec_repo
@@ -102,21 +102,21 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  - name: build_microbase
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: microbase_repo
-#      - IN: u14_img
-      - IN: ship_dh_cli_v2
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/buildImage.sh microbase drydock
-      - OUT: microbase_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
+#  - name: build_microbase
+#    type: runSh
+#    steps:
+#      - IN: config_repo
+#        switch: off
+#      - IN: microbase_repo
+##      - IN: u14_img
+#      - IN: ship_dh_cli_v2
+#      - TASK:
+#        - script: ./IN/config_repo/gitRepo/buildImage.sh microbase drydock
+#      - OUT: microbase_img
+#    on_success:
+#      - script: echo 'on success !!!!!'
+#    on_failure:
+#      - script: echo 'Failed job .... :('
 
   - name: patch_mktg
     type: runSh
@@ -140,7 +140,7 @@ jobs:
       - IN: config_repo
         switch: off
       - IN: admiral_repo
-      - IN: microbase_img
+#      - IN: microbase_img
       - IN: ship_dh_cli_v2
       - TASK:
         - script: ./IN/config_repo/gitRepo/buildImage.sh admiral drydock
@@ -155,7 +155,7 @@ jobs:
     steps:
       - IN: micro_repo
       - IN: execTemplates_repo
-      - IN: microbase_img
+#      - IN: microbase_img
       - IN: shipbits_ecr_v2_cli
         scopes:
           - ecr
@@ -190,7 +190,7 @@ jobs:
         scopes:
           - ecr
       - IN: ship_dh_cli_v2
-      - IN: microbase_img
+#      - IN: microbase_img
       - TASK:
         - script: ./IN/reqProc_repo/gitRepo/build.sh x86_64 Ubuntu_16.04 drydock reqproc
 
@@ -219,7 +219,7 @@ jobs:
         scopes:
           - ecr
       - IN: ship_dh_cli_v2
-      - IN: microbase_img
+#      - IN: microbase_img
       - TASK:
         - script: ./IN/reqProc_repo/gitRepo/build.sh x86_64 macOS_10.12 drydock m10reqproc
 
@@ -248,7 +248,7 @@ jobs:
         scopes:
           - ecr
       - IN: ship_dh_cli_v2
-      - IN: microbase_img
+#      - IN: microbase_img
       - TASK:
         - script: echo "This should run ./IN/reqProc_repo/gitRepo/build.sh x86_64 WindowsServer_2016 drydock w16reqproc"
 
@@ -284,7 +284,7 @@ jobs:
   - name: package_reqExec_x86_64_Ubuntu_16_04
     type: runSh
     steps:
-      - IN: microbase_img
+#      - IN: microbase_img
       - IN: config_repo
         switch: off
       - IN: reqExec_repo
@@ -296,7 +296,7 @@ jobs:
   - name: package_reqExec_x86_64_Ubuntu_14_04
     type: runSh
     steps:
-      - IN: microbase_img
+#      - IN: microbase_img
       - IN: config_repo
         switch: off
       - IN: reqExec_repo
@@ -308,7 +308,7 @@ jobs:
   - name: package_reqExec_x86_64_CentOS_7
     type: runSh
     steps:
-      - IN: microbase_img
+#      - IN: microbase_img
       - IN: config_repo
         switch: off
       - IN: reqExec_repo
@@ -323,7 +323,7 @@ jobs:
       os: macOS_10.12
       container: false
     steps:
-      - IN: microbase_img
+#      - IN: microbase_img
       - IN: config_repo
         switch: off
       - IN: reqExec_repo
@@ -338,7 +338,7 @@ jobs:
       os: WindowsServer_2016
       container: false
     steps:
-      - IN: microbase_img
+#      - IN: microbase_img
       - IN: config_repo
         switch: off
       - IN: reqExec_repo
@@ -353,7 +353,7 @@ jobs:
       os: Ubuntu_16.04
       container: false
     steps:
-      - IN: aarch64_microbase_img
+#      - IN: aarch64_microbase_img
       - IN: config_repo
         switch: off
       - IN: reqExec_repo
@@ -747,10 +747,10 @@ jobs:
         switch: off
       - IN: avi_gh_ssh
         switch: off
-      - IN: microbase_img
-        switch: off
-      - IN: microbase_repo
-        switch: off
+#      - IN: microbase_img
+#        switch: off
+#      - IN: microbase_repo
+#        switch: off
       - TASK:
         - script: ./IN/config_repo/gitRepo/tagAndPushSvcs.sh dry
     on_success:
