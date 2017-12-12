@@ -1,5 +1,0 @@
-gitlab
-postgres
-rabbitmq
-redis
-vault

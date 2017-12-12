@@ -76,30 +76,6 @@ jobs:
   # end LOCK UNLOCK JOBS
   ##########################
 
-  - name: build_ship_dd_svcs
-    type: runSh
-    steps:
-      - IN: config_repo
-        switch: off
-      - IN: postgres_repo
-      - IN: vault_repo
-      - IN: gitlab_repo
-      - IN: rabbitmq_repo
-      - IN: redis_repo
-      - IN: ship_dh_cli_v2
-        switch: off
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/genBuildImage.sh drydock
-      - OUT: postgres_img
-      - OUT: vault_img
-      - OUT: gitlab_img
-      - OUT: rabbitmq_img
-      - OUT: redis_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
   - name: build_ship_ecr_svcs
     type: runSh
     steps:
@@ -865,44 +841,6 @@ jobs:
         switch: off
       - TASK:
         - script: ./IN/config_repo/gitRepo/tagAndPushSvcs.sh repo
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
-  ### Tagging core services
-  - name: tag_push_core
-    type: runSh
-    steps:
-      - IN: rel_prod
-      - IN: config_repo
-        switch: off
-      - IN: ship_dh_cli_v2
-        switch: off
-      - IN: avi_gh_ssh
-        switch: off
-      - IN: gitlab_img
-        switch: off
-      - IN: gitlab_repo
-        switch: off
-      - IN: postgres_img
-        switch: off
-      - IN: postgres_repo
-        switch: off
-      - IN: rabbitmq_img
-        switch: off
-      - IN: rabbitmq_repo
-        switch: off
-      - IN: redis_img
-        switch: off
-      - IN: redis_repo
-        switch: off
-      - IN: vault_img
-        switch: off
-      - IN: vault_repo
-        switch: off
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/tagAndPushSvcs.sh core
     on_success:
       - script: echo 'on success !!!!!'
     on_failure:
