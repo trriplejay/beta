@@ -38,25 +38,6 @@ jobs:
       - TASK:
         - script: ./IN/config_repo/gitRepo/patchImage.sh mktg 374168611083.dkr.ecr.us-east-1.amazonaws.com rel_prod
 
-  - name: build_micro
-    type: runSh
-    steps:
-      - IN: micro_repo
-      - IN: execTemplates_repo
-      - IN: microbase_img
-      - IN: shipbits_ecr_v2_cli
-        scopes:
-          - ecr
-      - IN: ship_dh_cli_v2
-      - TASK:
-        - script: ./IN/micro_repo/gitRepo/build.sh
-      - OUT: micro_img
-      - OUT: genexec_img
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
   - name: build_reqProc_x86_64_Ubuntu_16_04
     type: runSh
     steps:
