@@ -622,46 +622,6 @@ jobs:
       - TASK:
         - script: ./IN/config_repo/gitRepo/tagAndPushSvcs.sh aarch64_dry
 
-  ### Tagging ecr hosted services
-  - name: tag_push_ecr
-    type: runSh
-    steps:
-      - IN: rel_prod
-      - IN: config_repo
-        switch: off
-      - IN: shipbits_ecr_v2_cli
-        scopes:
-          - ecr
-        switch: off
-      - IN: avi_gh_ssh
-        switch: off
-      - IN: mktg_img
-        switch: off
-      - IN: mktg_repo
-        switch: off
-      - IN: micro_img
-        switch: off
-      - IN: micro_repo
-        switch: off
-      - IN: nexec_img
-        switch: off
-      - IN: nexec_repo
-        switch: off
-      - IN: api_img
-        switch: off
-      - IN: api_repo
-        switch: off
-      - IN: www_img
-        switch: off
-      - IN: www_repo
-        switch: off
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/tagAndPushSvcs.sh ecr
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
   ### Tagging aarch64 u16 services
   - name: tag_push_aarch64_u16
     type: runSh
@@ -703,7 +663,7 @@ jobs:
     steps:
       - IN: dry_dh_x86_64_Ubuntu_tag_push
         switch: off
-      - IN: tag_push_ecr
+      - IN: ship_ecr_x86_64_Ubuntu_tag_push
         switch: off
       - IN: tag_push_img_genexec
         switch: off
@@ -732,7 +692,7 @@ jobs:
         switch: off
       - IN: tag_push_img_genexec
       - IN: gh_ship_repos_tag_push
-      - IN: tag_push_ecr
+      - IN: ship_ecr_x86_64_Ubuntu_tag_push
       - IN: config_repo
         switch: off
       - IN: bldami_repo

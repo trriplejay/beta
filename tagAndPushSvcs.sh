@@ -127,70 +127,6 @@ tag_push_repo(){
   shipctl put_resource_state $CURR_JOB $CONTEXT"_COMMIT_SHA" $IMG_REPO_COMMIT_SHA
 }
 
-process_repo_services() {
-  for c in `cat repoServices.txt`; do
-    export CONTEXT=$c
-    export CONTEXT_REPO=$c
-    export GH_ORG=Shippable
-
-    echo ""
-    echo "============= Begin info for CONTEXT $CONTEXT======================"
-    echo "CONTEXT=$CONTEXT"
-    echo "GH_ORG=$GH_ORG"
-    echo "CONTEXT_REPO=$CONTEXT_REPO"
-    echo "============= End info for CONTEXT $CONTEXT======================"
-    echo ""
-
-    tag_push_repo
-  done
-}
-
-process_ship_ecr_services() {
-  for c in `cat ecrServices.txt`; do
-    export CONTEXT=$c
-    export CONTEXT_IMAGE=$c
-    export CONTEXT_REPO=$c
-    export HUB_ORG=374168611083.dkr.ecr.us-east-1.amazonaws.com
-    export GH_ORG=Shippable
-
-    echo ""
-    echo "============= Begin info for CONTEXT $CONTEXT======================"
-    echo "CONTEXT=$CONTEXT"
-    echo "HUB_ORG=$HUB_ORG"
-    echo "GH_ORG=$GH_ORG"
-    echo "CONTEXT_IMAGE=$CONTEXT_IMAGE"
-    echo "CONTEXT_REPO=$CONTEXT_REPO"
-    echo "============= End info for CONTEXT $CONTEXT======================"
-    echo ""
-
-    pull_tag_image
-    tag_push_repo
-  done
-}
-
-process_ship_dry_services() {
-  for c in `cat dryServices.x86_64.txt`; do
-    export CONTEXT=$c
-    export CONTEXT_IMAGE=$c
-    export CONTEXT_REPO=$c
-    export HUB_ORG=drydock
-    export GH_ORG=Shippable
-
-    echo ""
-    echo "============= Begin info for CONTEXT $CONTEXT======================"
-    echo "CONTEXT=$CONTEXT"
-    echo "HUB_ORG=$HUB_ORG"
-    echo "GH_ORG=$GH_ORG"
-    echo "CONTEXT_IMAGE=$CONTEXT_IMAGE"
-    echo "CONTEXT_REPO=$CONTEXT_REPO"
-    echo "============= End info for CONTEXT $CONTEXT======================"
-    echo ""
-
-    pull_tag_image
-    tag_push_repo
-  done
-}
-
 # TODO: Remove this after avi_gh_ssh is added to dry-dock-aarch64 organisation
 add_aarch64_ssh_key() {
   ssh-add -D
@@ -262,19 +198,7 @@ main() {
   add_ssh_key
 
   pushd $RES_CONF_REPO_STATE
-    if [ "$RUN_TYPE" = "repo" ]
-    then
-      echo "Executing process_repo_services"
-      process_repo_services
-    elif [ "$RUN_TYPE" = "ecr" ]
-    then
-      echo "Executing process_ship_ecr_services"
-      process_ship_ecr_services
-    elif [ "$RUN_TYPE" = "dry" ]
-    then
-      echo "Executing process_ship_dry_services"
-      process_ship_dry_services
-    elif [ "$RUN_TYPE" = "aarch64_dry" ]
+    if [ "$RUN_TYPE" = "aarch64_dry" ]
     then
       echo "Executing process_ship_aarch64_dry_services"
       process_ship_aarch64_dry_services
