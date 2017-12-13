@@ -22,93 +22,13 @@ jobs:
   # end check_queue job
   ##########################
 
-  ##########################
-  # begin LOCK UNLOCK JOBS
-  ##########################
-#
-#  - name: lock_team
-#    type: runSh
-#    steps:
-#      - IN: wh_api_repo
-#      - IN: wh_www_repo
-#      - IN: wh_micro_repo
-#      - IN: wh_nexec_repo
-#      - IN: wh_cexec_repo
-#      - IN: wh_mktg_repo
-#      - IN: team_params
-#      - IN: config_repo
-#        switch: off
-#      - TASK:
-#        - script: ./IN/config_repo/gitRepo/lockUnlockTeams.sh pull
-##      - OUT: api_repo
-##        replicate: wh_api_repo
-##      - OUT: www_repo
-##        replicate: wh_www_repo
-##      - OUT: micro_repo
-##        replicate: wh_micro_repo
-##      - OUT: nexec_repo
-##        replicate: wh_nexec_repo
-##      - OUT: cexec_repo
-##        replicate: wh_cexec_repo
-##      - OUT: mktg_repo
-##        replicate: wh_mktg_repo
-#    on_success:
-#      - script: echo 'on success !!!!!'
-#    on_failure:
-#      - script: echo 'Failed job .... :('
-#
-#  - name: unlock_team
-#    type: runSh
-#    steps:
-##      - IN: bvt-v2
-#      - IN: deploy_rc #temp instead of bvt-v2
-#      - IN: team_params
-#      - IN: config_repo
-#        switch: off
-#      - TASK:
-#        - script: ./IN/config_repo/gitRepo/lockUnlockTeams.sh push
-#    on_success:
-#      - script: echo 'on success !!!!!'
-#    on_failure:
-#      - script: echo 'Failed job .... :('
-
-  ##########################
-  # end LOCK UNLOCK JOBS
-  ##########################
-
-#  - name: build_ship_ecr_svcs
-#    type: runSh
-#    steps:
-#      - IN: config_repo
-#        switch: off
-#      - IN: microbase_img
-#        switch: off
-##      - IN: mktg_repo
-##      - IN: nexec_repo
-##      - IN: api_repo
-##      - IN: www_repo
-#      - IN: shipbits_ecr_v2_cli
-#        switch: off
-#        scopes:
-#          - ecr
-#      - TASK:
-#        - script: ./IN/config_repo/gitRepo/genBuildImage.sh 374168611083.dkr.ecr.us-east-1.amazonaws.com
-#      - OUT: mktg_img
-#      - OUT: nexec_img
-#      - OUT: api_img
-#      - OUT: www_img
-#    on_success:
-#      - script: echo 'on success !!!!!'
-#    on_failure:
-#      - script: echo 'Failed job .... :('
-
   - name: patch_mktg
     type: runSh
     steps:
       - IN: config_repo
         switch: off
-      - IN: mktg_img
-        switch: off
+#      - IN: mktg_img
+#        switch: off
       - IN: shipbits_ecr_v2_cli
         scopes:
           - ecr
