@@ -27,8 +27,8 @@ jobs:
     steps:
       - IN: config_repo
         switch: off
-      - IN: mktg_img
-        switch: off
+#      - IN: mktg_img
+#        switch: off
       - IN: shipbits_ecr_v2_cli
         scopes:
           - ecr
