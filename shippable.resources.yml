@@ -91,10 +91,6 @@ resources:
     pointer:
       region: us-east-1
 
-  - name: ship_dh_cli
-    type: cliConfig
-    integration: "shipDH"
-
   - name: ship_dh_cli_v2
     type: cliConfig
     integration: ric03uec-dockerhub
