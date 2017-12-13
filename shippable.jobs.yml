@@ -270,11 +270,11 @@ jobs:
         switch: off
       - IN: aws_rc_pem
       - IN: aws_rc_swarm
-      - IN: api_img
-      - IN: www_img
-      - IN: nexec_img
+#      - IN: api_img
+#      - IN: www_img
+#      - IN: nexec_img
       - IN: genexec_img
-      - IN: mktg_img
+#      - IN: mktg_img
       - IN: micro_img
         switch: off
       - IN: admiral_img
