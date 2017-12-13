@@ -662,34 +662,6 @@ jobs:
     on_failure:
       - script: echo 'Failed job .... :('
 
-  ### Tagging repo services
-  - name: tag_push_repo
-    type: runSh
-    steps:
-      - IN: rel_prod
-      - IN: config_repo
-        switch: off
-      - IN: avi_gh_ssh
-        switch: off
-      - IN: execTemplates_repo
-        switch: off
-      - IN: node_repo
-        switch: off
-      - IN: cexec_repo
-        switch: off
-      - IN: reqExec_repo
-        switch: off
-      - IN: reqProc_repo
-        switch: off
-      - IN: reqKick_repo
-        switch: off
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/tagAndPushSvcs.sh repo
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
   ### Tagging aarch64 u16 services
   - name: tag_push_aarch64_u16
     type: runSh
@@ -735,7 +707,7 @@ jobs:
         switch: off
       - IN: tag_push_img_genexec
         switch: off
-      - IN: tag_push_repo
+      - IN: gh_ship_repos_tag_push
         switch: off
       - IN: baseami_params
       - IN: aws_v2_bits_access
@@ -759,7 +731,7 @@ jobs:
       - IN: rel_prod
         switch: off
       - IN: tag_push_img_genexec
-      - IN: tag_push_repo
+      - IN: gh_ship_repos_tag_push
       - IN: tag_push_ecr
       - IN: config_repo
         switch: off
@@ -784,7 +756,7 @@ jobs:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-      - IN: tag_push_repo
+      - IN: gh_ship_repos_tag_push
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -803,7 +775,7 @@ jobs:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-      - IN: tag_push_repo
+      - IN: gh_ship_repos_tag_push
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -822,7 +794,7 @@ jobs:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-      - IN: tag_push_repo
+      - IN: gh_ship_repos_tag_push
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -841,7 +813,7 @@ jobs:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-      - IN: tag_push_repo
+      - IN: gh_ship_repos_tag_push
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -858,7 +830,7 @@ jobs:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-      - IN: tag_push_repo
+      - IN: gh_ship_repos_tag_push
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -875,7 +847,7 @@ jobs:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-      - IN: tag_push_repo
+      - IN: gh_ship_repos_tag_push
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -892,7 +864,7 @@ jobs:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-      - IN: tag_push_repo
+      - IN: gh_ship_repos_tag_push
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -909,7 +881,7 @@ jobs:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-      - IN: tag_push_repo
+      - IN: gh_ship_repos_tag_push
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
@@ -928,7 +900,7 @@ jobs:
       - IN: baseami_params
       - IN: aws_v2_bits_access
       - IN: tag_push_img_genexec
-      - IN: tag_push_repo
+      - IN: gh_ship_repos_tag_push
       - IN: bldami_repo
         switch: off
       - IN: rel_prod
