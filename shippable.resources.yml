@@ -77,7 +77,6 @@ resources:
     pointer:
       sourceName: shippable/nexec
       branch: master
-      buildOnCommit: false
 
   - name: nexec_img
     type: image
@@ -86,13 +85,13 @@ resources:
       sourceName: "374168611083.dkr.ecr.us-east-1.amazonaws.com/nexec"
     seed:
       versionName: latest
+
   - name: www_repo
     type: gitRepo
     integration: ric03uec-github
     pointer:
       sourceName: shippable/www
       branch: master
-      buildOnCommit: false
 
   - name: www_img
     type: image
@@ -108,7 +107,6 @@ resources:
     pointer:
       sourceName: shippable/mktg
       branch: master
-      buildOnCommit: false
 
   - name: mktg_img
     type: image
@@ -124,7 +122,6 @@ resources:
     pointer:
       sourceName: shippable/api
       branch: master
-      buildOnCommit: false
 
   - name: api_img
     type: image
