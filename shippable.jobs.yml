@@ -731,8 +731,6 @@ jobs:
     steps:
       - IN: dry_dh_x86_64_Ubuntu_tag_push
         switch: off
-      - IN: dry_dh_x86_64_Ubuntu_14_04_tag_push
-        switch: off
       - IN: tag_push_ecr
         switch: off
       - IN: tag_push_img_genexec
