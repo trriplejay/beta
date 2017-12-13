@@ -726,11 +726,10 @@ jobs:
   ##########################
   # start build release amis
   ##########################
-
   - name: build_finalami
     type: runSh
     steps:
-      - IN: dry_dh_x86_64_Ubuntu_16_04_tag_push
+      - IN: dry_dh_x86_64_Ubuntu_tag_push
         switch: off
       - IN: dry_dh_x86_64_Ubuntu_14_04_tag_push
         switch: off
