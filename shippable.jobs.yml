@@ -25,52 +25,52 @@ jobs:
   ##########################
   # begin LOCK UNLOCK JOBS
   ##########################
-
-  - name: lock_team
-    type: runSh
-    steps:
-      - IN: wh_api_repo
-      - IN: wh_www_repo
-      - IN: wh_micro_repo
-      - IN: wh_nexec_repo
-      - IN: wh_cexec_repo
-      - IN: wh_mktg_repo
-      - IN: team_params
-      - IN: config_repo
-        switch: off
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/lockUnlockTeams.sh pull
-#      - OUT: api_repo
-#        replicate: wh_api_repo
-#      - OUT: www_repo
-#        replicate: wh_www_repo
-#      - OUT: micro_repo
-#        replicate: wh_micro_repo
-#      - OUT: nexec_repo
-#        replicate: wh_nexec_repo
-#      - OUT: cexec_repo
-#        replicate: wh_cexec_repo
-#      - OUT: mktg_repo
-#        replicate: wh_mktg_repo
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
-
-  - name: unlock_team
-    type: runSh
-    steps:
-#      - IN: bvt-v2
-      - IN: deploy_rc #temp instead of bvt-v2
-      - IN: team_params
-      - IN: config_repo
-        switch: off
-      - TASK:
-        - script: ./IN/config_repo/gitRepo/lockUnlockTeams.sh push
-    on_success:
-      - script: echo 'on success !!!!!'
-    on_failure:
-      - script: echo 'Failed job .... :('
+#
+#  - name: lock_team
+#    type: runSh
+#    steps:
+#      - IN: wh_api_repo
+#      - IN: wh_www_repo
+#      - IN: wh_micro_repo
+#      - IN: wh_nexec_repo
+#      - IN: wh_cexec_repo
+#      - IN: wh_mktg_repo
+#      - IN: team_params
+#      - IN: config_repo
+#        switch: off
+#      - TASK:
+#        - script: ./IN/config_repo/gitRepo/lockUnlockTeams.sh pull
+##      - OUT: api_repo
+##        replicate: wh_api_repo
+##      - OUT: www_repo
+##        replicate: wh_www_repo
+##      - OUT: micro_repo
+##        replicate: wh_micro_repo
+##      - OUT: nexec_repo
+##        replicate: wh_nexec_repo
+##      - OUT: cexec_repo
+##        replicate: wh_cexec_repo
+##      - OUT: mktg_repo
+##        replicate: wh_mktg_repo
+#    on_success:
+#      - script: echo 'on success !!!!!'
+#    on_failure:
+#      - script: echo 'Failed job .... :('
+#
+#  - name: unlock_team
+#    type: runSh
+#    steps:
+##      - IN: bvt-v2
+#      - IN: deploy_rc #temp instead of bvt-v2
+#      - IN: team_params
+#      - IN: config_repo
+#        switch: off
+#      - TASK:
+#        - script: ./IN/config_repo/gitRepo/lockUnlockTeams.sh push
+#    on_success:
+#      - script: echo 'on success !!!!!'
+#    on_failure:
+#      - script: echo 'Failed job .... :('
 
   ##########################
   # end LOCK UNLOCK JOBS
@@ -323,7 +323,7 @@ jobs:
         switch: off
 #      - IN: bvt-v2
 #        switch: off
-      - IN: unlock_team  #temp instead of bvt-v2
+      - IN: deploy_rc  #temp instead of bvt-v2
         switch: off
       - TASK: managed
         bump: patch
