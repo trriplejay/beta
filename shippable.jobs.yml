@@ -160,31 +160,31 @@ jobs:
   #  ###########################################
   #  # deploy rc release to rc environment
   #  ###########################################
-  # - name: deploy_rc
-  #   type: runSh
-  #   on_start:
-  #     - NOTIFY: slack_rc
-  #   steps:
-  #     - IN: config_repo
-  #       switch: off
-  #     - IN: patch_baseami
-  #       switch: off
-  #     - IN: aws_rc_pem
-  #     - IN: aws_rc_swarm
-  #     - IN: api_img
-  #     - IN: www_img
-  #     - IN: nexec_img
-  #     - IN: mktg_img
-  #     - IN: micro_img
-  #     - IN: admiral_img
-  #     - TASK:
-  #       - script: ./IN/config_repo/gitRepo/deployRc.sh
-  #   on_success:
-  #     - script: echo 'succeeded'
-  #     - NOTIFY: slack_rc
-  #   on_failure:
-  #     - script: echo 'failed'
-  #     - NOTIFY: slack_rc
+  - name: deploy_rc
+    type: runSh
+    on_start:
+      - NOTIFY: slack_rc
+    steps:
+      - IN: config_repo
+        switch: off
+      - IN: patch_baseami
+        switch: off
+      - IN: aws_rc_pem
+      - IN: aws_rc_swarm
+      - IN: api_img
+      - IN: www_img
+      - IN: nexec_img
+      - IN: mktg_img
+      - IN: micro_img
+      - IN: admiral_img
+      - TASK:
+        - script: ./IN/config_repo/gitRepo/deployRc.sh
+    on_success:
+      - script: echo 'succeeded'
+      - NOTIFY: slack_rc
+    on_failure:
+      - script: echo 'failed'
+      - NOTIFY: slack_rc
 
   ###########################################
   # create admiral AMI after deployment
@@ -193,8 +193,8 @@ jobs:
   - name: build_admiral_ami
     type: runSh
     steps:
-      # - IN: deploy_rc
-      #   switch: off
+      - IN: deploy_rc
+        switch: off
       - IN: config_repo
         switch: off
       - IN: bldami_repo
@@ -222,8 +222,8 @@ jobs:
         switch: off
 #      - IN: bvt-v2
 #        switch: off
-      # - IN: deploy_rc  #temp instead of bvt-v2
-      #   switch: off
+      - IN: deploy_rc  #temp instead of bvt-v2
+        switch: off
       - TASK: managed
         bump: patch
 
